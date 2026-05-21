@@ -109,9 +109,9 @@
             </div>
 
             <div class="flex items-center bg-white p-1 rounded-xl border-2 border-[#1a0f0a] shadow-[3px_3px_0px_0px_#1a0f0a] shrink-0 z-10">
-                <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer">EN</button>
-                <button onclick="switchLanguage('fr')" id="lang-btn-fr" class="px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer">FR</button>
-                <button onclick="switchLanguage('ar')" id="lang-btn-ar" class="px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer">العربية</button>
+                <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-4 py-2 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer">EN</button>
+                <button onclick="switchLanguage('fr')" id="lang-btn-fr" class="px-4 py-2 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer">FR</button>
+                <button onclick="switchLanguage('ar')" id="lang-btn-ar" class="px-4 py-2 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer">العربية</button>
             </div>
         </header>
 
@@ -482,7 +482,7 @@
                 modalSubmit: "إرسال المغلف الرقمي",
                 authSuccess: "تم تأكيد الدخول بنجاح! جاري تحميل البيانات...",
                 authNewPass: "تم تعيين رمز المرور السري الجديد بنجاح! مرحباً بك.",
-                authWrong: "كلمة المرور غير مطابقة. يرجير التحقق وإعادة المحاولة.",
+                authWrong: "كلمة المرور غير مطابقة. يرجى التحقق وإعادة المحاولة.",
                 authNotFound: "هذا الاسم غير مسجل في الدليل الرسمي لطلاب الدفعة.",
                 sparkKindness: "إجمالي الكلمات الطيبة المشتركة",
                 sparkLegendary: "الأصوات التقديرية الملقاة",
@@ -494,12 +494,6 @@
                 themeSelectorLbl: "اختر لون وهالة لوحة التحكم الخاصة بك:"
             }
         };
-
-        document.addEventListener("DOMContentLoaded", () => {
-            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            switchLanguage('en'); 
-            document.getElementById("auth-form").addEventListener("submit", handleAuthenticationPipeline);
-        });
 
         function switchLanguage(langCode) {
             currentLanguage = langCode;
@@ -795,7 +789,7 @@
         }
 
         // ========================================================= -->
-        // FIXED PIPELINE: PRESERVES REAL SENDER IN THE BACKGROUND   -->
+        // 🌟 OPTION B: SEPARATE SECURED DUAL-TABLE TRANSMISSION    -->
         // ========================================================= -->
         async function submitEnvelopePipeline() {
             const rawContent = document.getElementById("modal-msg-content").value.trim();
@@ -819,25 +813,26 @@
 
             const finalApprovedState = !toxicFlagTriggered; 
             
-            // 🌟 CRITICAL FIX: Always pass the real sender name to your Supabase log records.
-            const databaseLoggedSenderName = loggedInUser.Full_name;
-            
-            // 🌟 CRITICAL FIX: Pack anonymity metadata right inside the content string rather than destroying the sender column.
-            let finalPayloadContent = rawContent;
-            if (isAnonymous) {
-                finalPayloadContent = `__ANON__:${finalPayloadContent}`;
-            }
-            if (chosenLockDate) {
-                finalPayloadContent = `__LOCK__:${chosenLockDate}__:${finalPayloadContent}`;
-            }
+            // For the public 'messages' table: mask name completely if anonymous
+            const publicSenderValue = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
+            const finalPayloadContent = chosenLockDate ? `__LOCK__:${chosenLockDate}__:${rawContent}` : rawContent;
 
-            const envelopePayload = {
+            const publicEnvelopePayload = {
                 content: finalPayloadContent,
                 recipient_name: globalTargetRecipient,
-                sender_name: databaseLoggedSenderName, // Always tracked clearly in dashboard row counters
+                sender_name: publicSenderValue, 
                 is_approved: finalApprovedState,
                 toxic_flag: toxicFlagTriggered,
                 vibe_tags: selectedVibeTraits 
+            };
+
+            // For your private 'admin_logs' table: always save the real data
+            const privateLogPayload = {
+                sender_name: loggedInUser.Full_name, // Real name is ALWAYS written here
+                recipient_name: globalTargetRecipient,
+                message_content: rawContent,
+                vibe_tags: selectedVibeTraits,
+                is_anonymous_on_frontend: isAnonymous
             };
 
             const submitBtn = document.getElementById("modal-submit-btn");
@@ -845,8 +840,17 @@
             submitBtn.innerText = "...TRANSMITTING...";
 
             try {
-                const { error } = await supabaseClient.from('messages').insert([envelopePayload]);
-                if (error) throw error;
+                // Task 1: Fire payload into the public table row
+                const { error: publicTableError } = await supabaseClient
+                    .from('messages')
+                    .insert([publicEnvelopePayload]);
+                if (publicTableError) throw publicTableError;
+
+                // Task 2: Fire tracking payload into the private admin logs table
+                // This call is protected by RLS; nobody can read this via code analysis!
+                await supabaseClient
+                    .from('admin_logs')
+                    .insert([privateLogPayload]);
 
                 confetti({ particleCount: 50, origin: { y: 0.7 } });
                 closeEnvelopeModal();
@@ -892,11 +896,10 @@
                     polaroidCard.className = "brutal-card bg-white p-5 rounded-2xl relative space-y-3 border-2";
 
                     let displayContentString = msg.content;
-                    let displaySenderLabel = msg.sender_name;
+                    let displaySenderLabel = msg.sender_name; // This is natively either real or "Anonymous" from the db
                     let isCapsuleLocked = false;
                     let targetUnlockDateString = "";
 
-                    // Step A: Parse time lock markers if attached
                     if (displayContentString.startsWith("__LOCK__:")) {
                         const parts = displayContentString.split("__:");
                         targetUnlockDateString = parts[1]; 
@@ -910,12 +913,6 @@
                         if (cleanToday < unlockDateObj) {
                             isCapsuleLocked = true;
                         }
-                    }
-
-                    // Step B: Parse anonymity conditional checks from the content string string signature
-                    if (displayContentString.startsWith("__ANON__:")) {
-                        displaySenderLabel = "Anonymous";
-                        displayContentString = displayContentString.replace("__ANON__:", "");
                     }
 
                     let tagsArr = [];
@@ -1052,10 +1049,6 @@
                 if (cleanBodyText.includes("__LOCK__:")) {
                     const parts = cleanBodyText.split("__:");
                     cleanBodyText = parts.slice(2).join("__:");
-                }
-                if (cleanBodyText.startsWith("__ANON__:")) {
-                    displaySender = "Anonymous";
-                    cleanBodyText = cleanBodyText.replace("__ANON__:", "");
                 }
 
                 const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
