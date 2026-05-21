@@ -384,7 +384,6 @@
             }
         ];
 
-        // 2. FULL TRANSLATED MATRIX APPLIED DIRECTLY FOR BALOTS & CARD UI KEYS
         const LOCALIZATION_MAP = {
             en: {
                 heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
@@ -510,8 +509,8 @@
             ['en', 'fr', 'ar'].forEach(l => {
                 const btn = document.getElementById(`lang-btn-${l}`);
                 btn.className = l === langCode 
-                    ? "px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer bg-slate-950 text-white border border-slate-950 shadow-[1px_1px_0px_0px_#000]" 
-                    : "px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer text-slate-800 hover:bg-white/60";
+                    ? "px-4 py-2 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer bg-slate-950 text-white border border-slate-950 shadow-[1px_1px_0px_0px_#000]" 
+                    : "px-4 py-2 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer text-slate-800 hover:bg-white/60";
             });
 
             const dict = LOCALIZATION_MAP[langCode];
@@ -659,15 +658,11 @@
             } catch(e) {}
         }
 
-        // 1 & 4. EXPANDED MATRIX FLUID THEME ALLOCATION LAYER
         function updateProfileTheme(themeClass) {
             const card = document.getElementById("user-vault-card");
-            
-            // Purge existing theme class layers fluidly
             card.classList.remove('aura-green', 'aura-champagne', 'aura-pink', 'aura-purple', 'aura-red', 'aura-darkred', 'bg-white');
             card.classList.add(themeClass);
 
-            // Dynamically manage borders/shadow pairings based on tone depth to ensure premium contrast
             if(themeClass === 'aura-darkred') {
                 card.style.borderColor = "#ff8a80";
                 card.style.boxShadow = "6px 6px 0px 0px #ff8a80";
@@ -849,7 +844,7 @@
             } catch (err) {
                 console.error(err);
                 alert("Database transmission failed to establish pipeline verification link.");
-            } finaly {
+            } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = LOCALIZATION_MAP[currentLanguage].modalSubmit;
             }
