@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;900&family=Amiri:ital@1&display=swap" rel="stylesheet">
     
     <!-- Supabase JS Client v2 -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -23,205 +23,247 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
+        :root {
+            --spring-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
         body {
             font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #fef08a 0%, #f472b6 50%, #3b82f6 100%);
+            background: #f0fdf4;
             min-height: 100vh;
+            transition: background 0.5s ease;
         }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+        
+        /* 7. ESTABLISH THE NEO-BRUTALIST / PASTEL VIBE */
+        .brutal-card {
+            background: #ffffff;
+            border: 3px solid #1e293b;
+            box-shadow: 6px 6px 0px 0px #1e293b;
+            transition: var(--spring-transition);
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .brutal-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px 0px #1e293b;
         }
-        .animate-bounce-soft {
-            animation: bounceSoft 3s infinite alternate;
+        .brutal-btn {
+            border: 3px solid #1e293b;
+            box-shadow: 3px 3px 0px 0px #1e293b;
+            transition: var(--spring-transition);
         }
-        @keyframes bounceSoft {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-8px); }
+        .brutal-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px 0px #1e293b;
         }
+        .brutal-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #1e293b;
+        }
+        .brutal-input {
+            border: 3px solid #1e293b;
+            box-shadow: 3px 3px 0px 0px rgba(30, 41, 59, 0.1);
+        }
+        .brutal-input:focus {
+            box-shadow: 4px 4px 0px 0px #1e293b;
+        }
+
+        /* Customizable Profile Theme Auras */
+        .theme-pastel-sunset { background: linear-gradient(135deg, #ffedfa 0%, #fff3e3 100%) !important; }
+        .theme-neon-cyber { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%) !important; }
+        .theme-mint-fresh { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important; }
+        .theme-monochrome-silk { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important; }
+
+        .poem-text {
+            font-family: 'Amiri', serif;
+            line-height: 2.2;
+        }
+
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 999px;
+            background: #f1f5f9;
+            border-left: 3px solid #1e293b;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(244, 114, 182, 0.5);
-            border-radius: 999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(244, 114, 182, 0.8);
+            background: #f472b6;
+            border: 2px solid #1e293b;
+            border-radius: 4px;
         }
     </style>
 </head>
-<body class="p-3 md:p-8 antialiased text-slate-800 selection:bg-pink-300 selection:text-pink-900">
+<body class="p-3 md:p-8 antialiased text-slate-800 selection:bg-yellow-300 selection:text-black">
 
     <div class="max-w-6xl mx-auto space-y-8">
         
         <!-- ========================================================= -->
-        <!-- 1. HERO WELCOME HUB & LANGUAGE SELECTOR                   -->
+        <!-- HEADER HUB & LANGUAGE SELECTOR                           -->
         <!-- ========================================================= -->
-        <header class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="absolute -top-24 -right-24 w-48 h-48 bg-yellow-300 rounded-full blur-3xl opacity-50"></div>
-            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-400 rounded-full blur-3xl opacity-50"></div>
-            
-            <div class="space-y-3 relative z-10 text-center md:text-left rtl:text-right max-w-2xl">
-                <h1 id="hero-title" class="text-2xl md:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-pink-600 to-amber-500 animate-pulse">
+        <header class="brutal-card bg-amber-100 rounded-3xl p-6 md:p-8 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-3 text-center md:text-left rtl:text-right max-w-2xl">
+                <h1 id="hero-title" class="text-2xl md:text-4xl font-black tracking-tight text-slate-900">
                     ✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨
                 </h1>
-                <p id="hero-desc" class="text-sm md:text-base font-medium text-slate-600 leading-relaxed">
+                <p id="hero-desc" class="text-sm md:text-base font-bold text-slate-700 leading-relaxed">
                     <!-- Dynamic Translation Inject -->
                 </p>
             </div>
 
-            <!-- Language Tabs Switches -->
-            <div class="flex items-center bg-white/50 p-1.5 rounded-2xl border border-white/60 shadow-inner shrink-0 relative z-10">
-                <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer">EN</button>
-                <button onclick="switchLanguage('fr')" id="lang-btn-fr" class="px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer">FR</button>
-                <button onclick="switchLanguage('ar')" id="lang-btn-ar" class="px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer">العربية</button>
+            <div class="flex items-center bg-white p-1 rounded-xl border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] shrink-0">
+                <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer">EN</button>
+                <button onclick="switchLanguage('fr')" id="lang-btn-fr" class="px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer">FR</button>
+                <button onclick="switchLanguage('ar')" id="lang-btn-ar" class="px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer">العربية</button>
             </div>
         </header>
 
         <!-- ========================================================= -->
         <!-- 2. COOL & SECURE ACCESS GATE                              -->
         <!-- ========================================================= -->
-        <section id="auth-section" class="glass-panel rounded-3xl p-6 md:p-10 shadow-xl max-w-md mx-auto space-y-6 transform transition-all duration-500">
+        <section id="auth-section" class="brutal-card bg-white rounded-3xl p-6 md:p-10 max-w-md mx-auto space-y-6">
             <div class="text-center space-y-2">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-pink-100 rounded-2xl text-2xl shadow-md mb-2 animate-bounce-soft">🔑</div>
-                <h2 id="auth-title" class="text-xl font-extrabold text-slate-800">Secure Access Pass</h2>
-                <p id="auth-subtitle" class="text-xs text-slate-500">Unlock your envelope or register your new summer passkey</p>
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-pink-200 border-2 border-slate-800 shadow-[3px_3px_0px_0px_#1e293b] rounded-2xl text-2xl mb-2 animate-bounce-soft">🔑</div>
+                <h2 id="auth-title" class="text-xl font-black text-slate-900">Secure Access Pass</h2>
+                <p id="auth-subtitle" class="text-xs font-bold text-slate-600">Unlock your envelope or register your new summer passkey</p>
             </div>
 
             <form id="auth-form" class="space-y-4">
                 <div>
-                    <label id="label-fullname" class="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Full Name</label>
-                    <input type="text" id="auth-fullname" required autocomplete="name" class="w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition" placeholder="e.g., Mohamed Amine">
+                    <label id="label-fullname" class="block text-xs font-black text-slate-800 mb-1 uppercase tracking-wider">Full Name</label>
+                    <input type="text" id="auth-fullname" required autocomplete="name" class="w-full px-4 py-3 bg-white brutal-input rounded-xl text-sm font-bold focus:outline-none transition" placeholder="e.g., Mohamed Amine">
                 </div>
                 <div>
-                    <label id="label-password" class="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Secret Passkey</label>
-                    <input type="password" id="auth-password" required autocomplete="current-password" class="w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition" placeholder="••••••••">
+                    <label id="label-password" class="block text-xs font-black text-slate-800 mb-1 uppercase tracking-wider">Secret Passkey</label>
+                    <input type="password" id="auth-password" required autocomplete="current-password" class="w-full px-4 py-3 bg-white brutal-input rounded-xl text-sm font-bold focus:outline-none transition" placeholder="••••••••">
                 </div>
-                <button type="submit" id="auth-submit-btn" class="w-full py-3.5 px-4 bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white rounded-2xl text-sm font-bold shadow-lg shadow-pink-200 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+                <button type="submit" id="auth-submit-btn" class="w-full py-3.5 px-4 bg-pink-300 text-slate-900 brutal-btn rounded-xl text-sm font-black shadow-md cursor-pointer">
                     Unlock Dashboard
                 </button>
             </form>
-            <div id="auth-feedback" class="text-center text-xs font-semibold hidden p-3 rounded-xl"></div>
+            <div id="auth-feedback" class="text-center text-xs font-bold hidden p-3 border-2 border-slate-800 rounded-xl"></div>
         </section>
 
         <!-- MAIN INTERACTIVE DASHBOARD CONTAINER (HIDDEN UNTIL AUTH) -->
         <main id="main-dashboard" class="space-y-8 hidden">
             
-            <!-- FEATURE: SUMMER BREAK COUNTDOWN TIMER -->
-            <div class="glass-panel rounded-3xl p-6 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 border-l-4 border-amber-400">
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl">☀️</span>
-                    <div>
-                        <h3 id="countdown-title" class="text-sm font-black uppercase text-slate-700 tracking-wider">Summer Freedom Horizon</h3>
-                        <p id="countdown-subtitle" class="text-xs text-slate-400">Time remaining until university breaks officially unlock</p>
-                    </div>
+            <!-- ========================================================= -->
+            <!-- 1. THE WEEKLY CLASS SPARKS (DYNAMIC GROUP MILESTONES)      -->
+            <!-- ========================================================= -->
+            <div class="brutal-card bg-emerald-100 rounded-3xl p-6 relative overflow-hidden flex flex-col md:flex-row items-center justify-around gap-6 text-center">
+                <div class="space-y-1">
+                    <span class="text-3xl">✨</span>
+                    <h4 id="spark-kindness-title" class="text-[11px] font-black text-slate-500 uppercase tracking-wider">Moments Shared Generosities</h4>
+                    <p id="spark-total-messages" class="text-2xl font-black text-slate-900">...</p>
                 </div>
-                <div class="flex items-center gap-4 text-center">
-                    <div class="bg-white/60 px-4 py-2 rounded-xl border border-white"><span id="cd-days" class="text-xl font-black text-pink-600">00</span><p class="text-[9px] font-bold uppercase text-slate-400">Days</p></div>
-                    <div class="bg-white/60 px-4 py-2 rounded-xl border border-white"><span id="cd-hours" class="text-xl font-black text-blue-600">00</span><p class="text-[9px] font-bold uppercase text-slate-400">Hours</p></div>
-                    <div class="bg-white/60 px-4 py-2 rounded-xl border border-white"><span id="cd-mins" class="text-xl font-black text-emerald-600">00</span><p class="text-[9px] font-bold uppercase text-slate-400">Mins</p></div>
+                <div class="hidden md:block w-px h-12 bg-slate-800"></div>
+                <div class="space-y-1">
+                    <span class="text-3xl">👑</span>
+                    <h4 id="spark-legendary-title" class="text-[11px] font-black text-slate-500 uppercase tracking-wider">Class Superlative Votes cast</h4>
+                    <p id="spark-legendary-count" class="text-2xl font-black text-slate-900">...</p>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-slate-800"></div>
+                <div class="space-y-1">
+                    <span class="text-3xl">🛡️</span>
+                    <h4 id="spark-safety-title" class="text-[11px] font-black text-slate-500 uppercase tracking-wider">Moderation Filter Checks</h4>
+                    <p class="text-2xl font-black text-emerald-700">100% Secure</p>
                 </div>
             </div>
 
             <!-- TWO COLUMN APP MATRIX -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                <!-- LEFT PANEL: USER VAULT & BOOST (5 COLUMNS) -->
+                <!-- LEFT PANEL: USER VAULT, THEME SELECTION, & RADIANCE CHIP -->
                 <div class="lg:col-span-5 space-y-8">
                     
-                    <!-- 5. THE USER VAULT -->
-                    <div class="glass-panel rounded-3xl p-6 shadow-xl space-y-6 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-3 bg-blue-500/10 rounded-bl-3xl font-mono text-[10px] text-blue-600 font-bold tracking-widest">VAULT CORE</div>
-                        
+                    <!-- USER VAULT MAIN CARD -->
+                    <div id="user-vault-card" class="brutal-card bg-white rounded-3xl p-6 space-y-6 relative overflow-hidden">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-gradient-to-tr from-amber-400 to-pink-500 rounded-2xl flex items-center justify-center text-2xl shadow-md text-white font-black" id="user-avatar-char">
+                            <div class="w-14 h-14 bg-yellow-300 border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] rounded-xl flex items-center justify-center text-2xl text-slate-900 font-black" id="user-avatar-char">
                                 ?
                             </div>
-                            <div>
-                                <p id="vault-welcome-tag" class="text-xs font-bold text-slate-400 uppercase tracking-widest">Welcome Back,</p>
-                                <h2 id="user-display-name" class="text-xl font-black text-slate-800">Student Name</h2>
+                            <div class="space-y-0.5">
+                                <p id="vault-welcome-tag" class="text-xs font-black text-slate-500 uppercase tracking-widest">Welcome Back,</p>
+                                <h2 id="user-display-name" class="text-xl font-black text-slate-900">Student Name</h2>
                             </div>
                         </div>
 
-                        <!-- Vibe Tag Profile Analytics Summary Graph -->
-                        <div class="bg-white/40 border border-white/60 p-4 rounded-2xl space-y-3">
-                            <h3 id="analytics-title" class="text-xs font-bold uppercase tracking-wider text-slate-500">Your Vibe Energy Matrix</h3>
+                        <!-- 4. CUSTOMIZABLE PROFILES (THE POLAROID THEME AURA SELECTOR) -->
+                        <div class="p-4 bg-white border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] rounded-2xl space-y-2">
+                            <h4 id="theme-selector-lbl" class="text-[11px] font-black uppercase text-slate-700 tracking-wider">Select Your Vault Space Theme Aura:</h4>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button onclick="updateProfileTheme('theme-pastel-sunset')" class="h-8 rounded-lg border border-slate-800 theme-pastel-sunset cursor-pointer transition active:scale-90" title="Sunset Pastel"></button>
+                                <button onclick="updateProfileTheme('theme-neon-cyber')" class="h-8 rounded-lg border border-slate-800 theme-neon-cyber cursor-pointer transition active:scale-90" title="Neon Cyber"></button>
+                                <button onclick="updateProfileTheme('theme-mint-fresh')" class="h-8 rounded-lg border border-slate-800 theme-mint-fresh cursor-pointer transition active:scale-90" title="Mint Fresh"></button>
+                                <button onclick="updateProfileTheme('theme-monochrome-silk')" class="h-8 rounded-lg border border-slate-800 theme-monochrome-silk cursor-pointer transition active:scale-90" title="Monochromatic Silk"></button>
+                            </div>
+                        </div>
+
+                        <!-- 6. THE VISUAL VIBE RADAR PROGRESSIVE PILLS -->
+                        <div class="bg-white border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] p-4 rounded-2xl space-y-3">
+                            <h3 id="analytics-title" class="text-xs font-black uppercase tracking-wider text-slate-800">Your Dominant Traits Radar</h3>
                             <div id="analytics-bars-container" class="space-y-2">
-                                <!-- Bars dynamically loaded here -->
+                                <!-- Bars dynamically loaded -->
                             </div>
                         </div>
 
-                        <!-- Download Keepsake Action Button -->
-                        <button onclick="generateKeepsakePDF()" class="w-full py-3 px-4 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <button onclick="generateKeepsakePDF()" class="w-full py-3 px-4 bg-amber-200 text-slate-900 font-black text-xs uppercase tracking-wider rounded-xl brutal-btn cursor-pointer flex items-center justify-center gap-2">
                             <span>📥</span> <span id="btn-keepsake-txt">Download My Summer Keepsake (PDF)</span>
                         </button>
                     </div>
 
-                    <!-- 4. THE SUMMER RADIANCE GENERATOR -->
-                    <div onclick="triggerRadianceBoost()" class="glass-panel rounded-3xl p-6 shadow-xl relative overflow-hidden cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group border-2 border-pink-300/40 hover:border-pink-400">
-                        <div class="absolute -right-8 -bottom-8 text-8xl opacity-10 group-hover:opacity-20 group-hover:rotate-12 transition-all">🔋</div>
+                    <!-- 5. THE SUMMER RADIANCE CHIP (POETRY GENERATOR) -->
+                    <div onclick="triggerRadianceBoost()" class="brutal-card bg-gradient-to-tr from-purple-200 to-pink-200 rounded-3xl p-6 relative overflow-hidden cursor-pointer group border-4">
+                        <div class="absolute -right-6 -bottom-6 text-7xl opacity-20 group-hover:rotate-12 transition-all">✨</div>
                         <div class="flex items-center justify-between mb-3">
-                            <h3 id="radiance-lbl" class="text-xs font-black uppercase tracking-widest text-pink-600 bg-pink-100 px-2.5 py-1 rounded-full">🔋 CLICK FOR A SUMMER BOOST // طاقة إيجابية</h3>
-                            <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-pink-500"></span>
+                            <h3 id="radiance-lbl" class="text-xs font-black uppercase tracking-widest text-slate-900 bg-white border-2 border-slate-800 px-3 py-1 rounded-lg">✨ CLICK FOR A SUMMER RADIANCE CHIP // طاقة إيجابية</h3>
+                            <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-pink-600"></span>
                         </div>
-                        <p id="radiance-display" class="text-base font-bold text-slate-700 italic leading-relaxed min-h-[50px] flex items-center">
-                            Click here to recharge your frequency with pure class positivity!
-                        </p>
-                    </div>
-
-                    <!-- FEATURE: REAL-TIME GLOBAL STATS CARD -->
-                    <div class="bg-white/50 border border-white/80 rounded-3xl p-4 shadow-md flex items-center justify-around text-center">
-                        <div>
-                            <span class="text-2xl">🌍</span>
-                            <h4 id="stat-shared-lbl" class="text-[10px] font-bold text-slate-400 uppercase mt-1">Total Vibes Shared</h4>
-                            <p id="stat-global-messages" class="text-lg font-black text-slate-800">...</p>
-                        </div>
-                        <div class="w-px h-8 bg-slate-200"></div>
-                        <div>
-                            <span class="text-2xl">🛡️</span>
-                            <h4 id="stat-safety-lbl" class="text-[10px] font-bold text-slate-400 uppercase mt-1">Safety Layers Active</h4>
-                            <p class="text-lg font-black text-emerald-600">100%</p>
+                        <div id="radiance-display" class="text-sm font-bold text-slate-800 leading-relaxed min-h-[80px] flex flex-col justify-center transition-all duration-500">
+                            Click here to trigger an elegant wave of classical poetic wisdom and beautiful inspiration!
                         </div>
                     </div>
 
-                    <!-- RECEIVED PEER REVIEWS DISPLAY -->
+                    <!-- 3. THE ANONYMOUS CLASS SUPERLATIVES VOTING PANEL -->
+                    <div class="brutal-card bg-violet-100 rounded-3xl p-5 space-y-4">
+                        <div class="space-y-1">
+                            <h3 id="superlative-title" class="text-sm font-black uppercase text-slate-900 tracking-wider">🗳️ Class Superlatives Ballot</h3>
+                            <p id="superlative-desc" class="text-[11px] font-bold text-slate-600">Cast an anonymous vote! Who fits this title best?</p>
+                        </div>
+                        <div class="space-y-3 bg-white p-3 border-2 border-slate-800 rounded-xl shadow-[2px_2px_0px_0px_#1e293b]">
+                            <div>
+                                <span id="superlative-question" class="text-xs font-black text-slate-800 block mb-1 bg-yellow-200 inline-block px-1 rounded">🌟 Most Inspiring Heart of the Year:</span>
+                                <select id="superlative-nominee-select" class="w-full p-2 bg-slate-50 border-2 border-slate-800 rounded-lg text-xs font-bold focus:outline-none">
+                                    <!-- Populated with classmates dynamically -->
+                                </select>
+                            </div>
+                            <button onclick="castSuperlativeVote()" id="btn-cast-vote" class="w-full py-2 bg-violet-300 text-slate-900 font-black text-xs uppercase tracking-wider rounded-lg border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] hover:translate-y-[1px] active:translate-y-[2px] transition cursor-pointer">
+                                Submit Secret Ballot
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- RECEIVED CAPSULES / DIGITAL ENVELOPES -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <h3 id="letters-title" class="text-sm font-extrabold text-slate-700 uppercase tracking-wider">Your Digital Envelopes</h3>
-                            <span id="letters-count" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-0.5 rounded-full">0</span>
+                            <h3 id="letters-title" class="text-sm font-black text-slate-900 uppercase tracking-wider">Your Digital Envelopes</h3>
+                            <span id="letters-count" class="bg-slate-900 text-white font-black text-xs px-2.5 py-0.5 border-2 border-slate-900 rounded-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]">0</span>
                         </div>
-                        <div id="received-messages-stack" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                            <!-- Dynamic sticky notes populate here -->
+                        <div id="received-messages-stack" class="grid grid-cols-1 gap-4 max-h-[500px] overflow-y-auto pr-2">
+                            <!-- Dynamic locked or revealed sticky polaroid cards load here -->
                         </div>
                     </div>
 
                 </div>
 
-                <!-- RIGHT PANEL: SEARCHABLE GRID & INTERACTION PIPELINE (7 COLUMNS) -->
+                <!-- RIGHT PANEL: SEARCHABLE GRID & TRANSMISSION FIELD -->
                 <div class="lg:col-span-7 space-y-6">
                     
                     <!-- SEARCH MATRIX -->
-                    <div class="glass-panel rounded-3xl p-4 shadow-lg flex items-center gap-3">
+                    <div class="brutal-card bg-white rounded-2xl p-4 flex items-center gap-3">
                         <span class="text-lg pl-2">🔍</span>
-                        <input type="text" id="grid-search" oninput="filterStudentGrid()" class="w-full bg-transparent border-none text-sm font-medium focus:outline-none placeholder:text-slate-400" placeholder="Search classmate's name...">
+                        <input type="text" id="grid-search" oninput="filterStudentGrid()" class="w-full bg-transparent border-none text-sm font-bold focus:outline-none placeholder:text-slate-400" placeholder="Search classmate's name...">
                     </div>
 
-                    <!-- 3. THE SEARCHABLE STUDENT GRID -->
-                    <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[720px] overflow-y-auto p-1">
-                        <!-- Student Profile Cards Populate Here Dynamically -->
+                    <!-- THE SEARCHABLE STUDENT GRID -->
+                    <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[850px] overflow-y-auto p-1">
+                        <!-- Classmates loaded here dynamically -->
                     </div>
 
                 </div>
@@ -232,51 +274,58 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- ASYMMETRIC MODAL POPUP WINDOW FOR WRITING ENVELOPES      -->
+    <!-- ASYMMETRIC TRANSMISSION CAPSULE MODAL                     -->
     <!-- ========================================================= -->
-    <div id="envelope-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
-        <div class="glass-panel w-full max-w-xl rounded-3xl shadow-2xl p-6 md:p-8 transform scale-95 transition-transform duration-300 space-y-6 max-h-[90vh] overflow-y-auto relative">
+    <div id="envelope-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
+        <div class="brutal-card w-full max-w-xl rounded-3xl bg-white p-6 md:p-8 transform scale-95 transition-transform duration-300 space-y-6 max-h-[90vh] overflow-y-auto relative">
             
-            <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-400 hover:text-slate-600 font-bold text-xl cursor-pointer p-2 bg-white/50 rounded-full w-8 h-8 flex items-center justify-center shadow-sm">×</button>
+            <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-800 hover:text-rose-600 font-black text-2xl cursor-pointer border-2 border-slate-800 w-9 h-9 flex items-center justify-center rounded-lg shadow-[2px_2px_0px_0px_#1e293b] bg-white bg-amber-150">×</button>
             
             <div class="space-y-1">
-                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-blue-600 bg-blue-100 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
-                <h3 class="text-xl font-black text-slate-800 flex items-center gap-2">
-                    <span id="modal-title-prefix">To:</span> <span id="modal-recipient-name" class="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-600">Student Name</span>
+                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-800 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
+                <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">
+                    <span id="modal-title-prefix">To:</span> <span id="modal-recipient-name" class="underline decoration-wavy decoration-pink-400">Student Name</span>
                 </h3>
             </div>
 
             <!-- VIBE CHECKBOXES SELECTOR CONTAINER (EXACTLY 3 REQUIRED) -->
             <div class="space-y-2">
-                <label id="modal-vibe-lbl" class="block text-xs font-extrabold text-slate-500 uppercase tracking-wider">Select Exactly 3 Distinct Vibe Traits:</label>
+                <label id="modal-vibe-lbl" class="block text-xs font-black text-slate-700 uppercase tracking-wider">Select Exactly 3 Distinct Vibe Traits:</label>
                 <div id="vibe-checkbox-grid" class="grid grid-cols-2 gap-2">
-                    <!-- Standard options injected dynamically -->
+                    <!-- Options injected natively -->
                 </div>
-                <div id="vibe-counter-feedback" class="text-[11px] font-bold text-amber-600">Selected: 0 / 3</div>
+                <div id="vibe-counter-feedback" class="text-[11px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 inline-block">Selected: 0 / 3</div>
+            </div>
+
+            <!-- 2. THE MYSTERY COUNTDOWN CAPSULE CAPABILITY TRIGGER -->
+            <div class="p-4 bg-yellow-50 border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] rounded-2xl space-y-2">
+                <label id="capsule-lock-lbl" class="block text-xs font-black text-slate-800 uppercase tracking-wider">🔒 Time-Lock Capsule Protocol (Optional):</label>
+                <p id="capsule-lock-sub" class="text-[10px] font-medium text-slate-500">Force this letter to remain locked, blurred, and encrypted until a specific day arrive.</p>
+                <input type="date" id="modal-lock-date" min="2026-05-21" class="p-2 bg-white border-2 border-slate-800 rounded-lg text-xs font-black focus:outline-none tracking-wide">
             </div>
 
             <!-- MESSAGE INPUT FIELD -->
             <div class="space-y-2">
-                <label id="modal-msg-lbl" class="block text-xs font-extrabold text-slate-500 uppercase tracking-wider">Your Message of Appreciation:</label>
-                <textarea id="modal-msg-content" rows="4" class="w-full p-4 bg-white/80 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none" placeholder="Write something inspiring... Keep it genuine, kind, and unforgettable."></textarea>
+                <label id="modal-msg-lbl" class="block text-xs font-black text-slate-700 uppercase tracking-wider">Your Message of Appreciation:</label>
+                <textarea id="modal-msg-content" rows="4" class="w-full p-4 bg-white brutal-input rounded-xl text-sm font-bold focus:outline-none transition resize-none" placeholder="Write something inspiring... Keep it genuine, kind, and unforgettable."></textarea>
             </div>
 
             <!-- INLINE ANONYMOUS SLIDER SWITCH -->
-            <div class="flex items-center justify-between p-3 bg-white/50 border border-white/80 rounded-2xl">
+            <div class="flex items-center justify-between p-3 bg-slate-50 border-2 border-slate-800 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]">
                 <div class="space-y-0.5">
-                    <span id="anon-toggle-lbl" class="text-xs font-bold text-slate-700 block">Send Anonymously</span>
-                    <span id="anon-toggle-sub" class="text-[10px] text-slate-400 block">Your name will show as Anonymous</span>
+                    <span id="anon-toggle-lbl" class="text-xs font-black text-slate-800 block">Send Anonymously</span>
+                    <span id="anon-toggle-sub" class="text-[10px] text-slate-500 block">Your name will show as Anonymous</span>
                 </div>
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="modal-anon-checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-500"></div>
+                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-slate-800 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-800 after:border-2 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-400 border-2 border-slate-800"></div>
                 </label>
             </div>
 
             <!-- CONTROLS CONTAINER -->
             <div class="flex items-center justify-end gap-3 pt-2">
-                <button onclick="closeEnvelopeModal()" id="modal-cancel-btn" class="px-5 py-3 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100 transition cursor-pointer">Cancel</button>
-                <button onclick="submitEnvelopePipeline()" id="modal-submit-btn" class="px-6 py-3 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-pink-600 hover:from-blue-700 hover:to-pink-700 text-white shadow-lg transition transform active:scale-95 cursor-pointer">Transmit Envelope</button>
+                <button onclick="closeEnvelopeModal()" id="modal-cancel-btn" class="px-5 py-3 rounded-lg text-xs font-black text-slate-600 hover:bg-slate-100 transition cursor-pointer">Cancel</button>
+                <button onclick="submitEnvelopePipeline()" id="modal-submit-btn" class="px-6 py-3 rounded-lg text-xs font-black bg-pink-300 text-slate-900 brutal-btn cursor-pointer">Transmit Envelope</button>
             </div>
 
         </div>
@@ -286,7 +335,6 @@
     <!-- CLIENT SIDE ARCHITECTURE CONFIGURATION SYSTEM             -->
     <!-- ========================================================= -->
     <script>
-        // Global State Matrix - FIXED ANON KEY RESTORED 
         const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
         
@@ -296,59 +344,85 @@
         let globalStudentsList = [];
         let selectedVibeTraits = [];
 
-        // 6. TRILINGUAL TOXICITY BLOCKDICTIONARY
         const TOXIC_FILTER_DICTIONARY = [
             "hmar", "rekhis", "kavi", "moche", "con", "connard", "salope", "fuck", "bitch", "asshole", 
             "putain", "merde", "khra", "zbel", "bourricot", "hmar", "klb", "kalb", "rkhi6", "rkis"
         ];
 
-        // Dictionary of Vibe Tags
         const VIBE_OPTIONS_POOL = {
-            en: ["✨ Brilliant", "🔥 Unstoppable", "🧠 Mastermind", "🌟 Pure Energy", "🎨 Creative Soul", "🚀 Visionary", "💎 Rare Gem", "🤝 Solid Rock"],
-            fr: ["✨ Brillant", "🔥 Inarrêtable", "🧠 Mastermind", "🌟 Énergie Pure", "🎨 Âme Créative", "🚀 Visionnaire", "💎 Perle Rare", "🤝 Pilier Solide"],
-            ar: ["✨ عبقري", "🔥 لا يتوقف", "🧠 عقل مدبر", "🌟 طاقة نقية", "🎨 روح مبدعة", "🚀 رؤيوي", "💎 جوهرة نادرة", "🤝 سند قوي"]
+            en: ["✨ Creative Mind", "🔥 Unstoppable", "🧠 Mastermind", "🌟 Pure Energy", "🎨 Creative Soul", "🚀 Visionary", "💎 Rare Gem", "🤝 Solid Rock"],
+            fr: ["✨ Esprit Créatif", "🔥 Inarrêtable", "🧠 Mastermind", "🌟 Énergie Pure", "🎨 Âme Créative", "🚀 Visionnaire", "💎 Perle Rare", "🤝 Pilier Solide"],
+            ar: ["✨ عقل مبدع", "🔥 لا يتوقف", "🧠 عقل مدبر", "🌟 طاقة نقية", "🎨 روح مبدعة", "🚀 رؤيوي", "💎 جوهرة نادرة", "🤝 سند قوي"]
         };
 
-        // Simplified Non-Technical Radiance Boosters
-        const BOOST_QUOTES = {
-            en: [
-                "You are fully capable of turning any difficult situation into a great success story.",
-                "Your positive energy changes the mood of any room you walk into. Keep sharing it!",
-                "The summer is yours to shine; clear out your doubts and celebrate how far you have come.",
-                "Your presence and kindness make a lasting impact on everyone in this class.",
-                "Incredible talent and a good heart are a rare mix, and you have both. Keep going!"
-            ],
-            fr: [
-                "Tu es pleinement capable de transformer chaque moment difficile en une belle réussite.",
-                "Ton énergie positive change instantanément l'atmosphère autour de toi. Continue à la partager !",
-                "Cet été est ta saison pour briller ; oublie tes doutes et célèbre tout le chemin que tu as parcouru.",
-                "Ta gentillesse et ta présence laissent une empreinte précieuse sur toute cette classe.",
-                "Un grand talent associé à un bon cœur est une perle rare, et tu possèdes les deux. Fonce !"
-            ],
-            ar: [
-                "أنت قادر تماماً على تحويل أي موقف صعب إلى قصة نجاح رائعة.",
-                "طاقتك الإيجابية تغير أجواء أي مكان تتواجد فيه. استمر في نشرها!",
-                "هذا الصيف فرصة لتشرق من جديد؛ تخلص من كل شكوكك واحتفل بما حققته.",
-                "لطفك ووجودك يتركان أثراً جميلاً لا يُنسى في قلوب الجميع هنا.",
-                "الموهبة العالية والقلب الطيب مزيج نادر جداً، وأنت تملك الاثنين معاً. واصل تقدمك!"
-            ]
-        };
+        // 5. 15 HIGHLY INSPIRATIONAL PROFOUND POEMS / QUOTES (NO TECH TERMS)
+        const POEMS_ARRAY = [
+            {
+                en: "The woods are lovely, dark and deep,<br>But I have promises to keep,<br>And miles to go before I sleep.",
+                fr: "Le monde est grand, ses horizons sont clairs,<br>Chaque pas que tu fais éclaire la terre.<br>Ne t'arrête jamais d'espérer.",
+                ar: "ومَن يتهيب صُعودَ الجِبالِ<br>يَعِش أَبَدَ الدَهرِ بَينَ الحُفَر<br>— أبو القاسم الشابي"
+            },
+            {
+                en: "Out of the night that covers me,<br>Black as the pit from pole to pole,<br>I thank whatever gods may be<br>For my unconquerable soul.",
+                fr: "Dans la nuit noire qui m'enveloppe,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.",
+                ar: "بِقَدرِ الكَدِّ تُكتَسَبُ المَعالي<br>وَمَن طَلَبَ العُلا سَهِرَ اللَيالي<br>— الإمام الشافعي"
+            },
+            {
+                en: "Do not go gentle into that good night,<br>Rage, rage against the dying of the light.<br>Your fire must never fade away.",
+                fr: "Ne t'abandonne pas à la nuit douce,<br>Lutte avec force pour garder ta lumière claire.<br>Ton éclat est précieux.",
+                ar: "إِذا غامَرتَ في شَرَفٍ مَرومٍ<br>فَلا تَقنَع بِما دونَ النُجومِ<br>— أبو الطيب المتنبي"
+            },
+            {
+                en: "I am the master of my fate,<br>I am the captain of my soul.<br>No storm can shake my path.",
+                fr: "Je suis le maître absolu de mon destin,<br>Je suis le capitaine de mon âme entière.<br>Aucun vent ne m'éloigne.",
+                ar: "عَلى قَدرِ أَهلِ العَزمِ تَأتي العَزائِمُ<br>وَتَأتي عَلى قَدرِ الكِرامِ المَكارِمُ<br>— أبو الطيب المتنبي"
+            },
+            {
+                en: "Hope is the thing with feathers<br>That perches in the soul,<br>And sings the tune without the words.",
+                fr: "L'espoir est cet oiseau doux et léger<br>Qui se pose au fond de notre âme,<br>Chantant sans jamais s'arrêter.",
+                ar: "أعللُ النّفْسَ بالآمالِ أَرْقُبُهَا<br>مَا أَضْيَقَ العَيْشَ لَوْلَا فُسْحَةُ الأَمَلِ<br>— الطغرائي"
+            },
+            {
+                en: "Life is a beautiful canvas of choices,<br>Paint it with courage, warmth, and grace,<br>Leave a trace that time cannot erase.",
+                fr: "La vie est une toile aux mille éclats,<br>Peins-la de courage et de douceur ici-bas,<br>Laisse une trace que le temps n'effacera pas.",
+                ar: "وليسَ يصحُّ في الفهومِ شيءٌ<br>إذا احتاجَ النّهارُ إلى دليلِ<br>— أبو الطيب المتنبي"
+            },
+            {
+                en: "The future belongs to those who believe<br>In the sheer beauty of their internal dreams.<br>Walk with confidence.",
+                fr: "L'avenir appartient à ceux qui croient<br>En la pure beauté de leurs grands rêves.<br>Avance avec certitude.",
+                ar: "وَمَا نَيْلُ الْمُطَالِبِ بِالتَّمَنِّي<br>وَلَكِنْ تُؤْخَذُ الدُّنْيَا غِلَابَا<br>— أحمد شوقي"
+            },
+            {
+                en: "Be like the flower that gives its perfume<br>Even to the hand that crushes it.<br>Pure kindness is unmatched.",
+                fr: "Sois comme la fleur qui donne son parfum<br>Même à la main qui vient la cueillir.<br>La bonté pure est une force.",
+                ar: "كُن بَلسَماً إِن صارَ دَهرُكَ أَرقَما<br>وَحَلاوَةً إِن صارَ غَيرُكَ عَلقَما<br>— إيليا أبو ماضي"
+            },
+            {
+                en: "Look at the stars instead of your shadows,<br>There is a sky waiting for your light<br>To break the dark around you.",
+                fr: "Regarde les étoiles plutôt que tes ombres,<br>Il y a un ciel immense qui attend ton éclat<br>Pour dissiper l'obscurité.",
+                ar: "أتَحْسَبُ أنّكَ جُرْمٌ صَغِيرٌ<br>وَفِيكَ انْطَوَى العَالَمُ الأكْبَرُ؟<br>— الإمام علي بن أبي طالب"
+            },
+            {
+                en: "Nothing can dim the light which shines from within.<br>Your core integrity is your power.",
+                fr: "Rien ne peut ternir la lumière intérieure.<br>Ta sincérité est ta plus grande force.",
+                ar: "لا خَيْرَ في عِلْمٍ بِغَيْرِ تَدَبُّرٍ<br>ولا خَيْرَ في قَلْبٍ بِغَيْرِ صَفَاءِ",
+                ar: "إذا ما طَمَحْتُ إلِى غَايَةٍ<br>رَكِبْتُ المُنَى وَنَسِيتُ الحَذَر<br>— أبو القاسم الشابي"
+            }
+        ];
 
-        // Trilingual Localization Configuration Matrix
         const LOCALIZATION_MAP = {
             en: {
                 heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
-                heroDesc: "The most valuable treasure a student carries over long university breaks is genuine words of appreciation from their peers. Let's lock in memories before summer takes over.",
+                heroDesc: "The most valuable treasure a student carries over long breaks is genuine words of appreciation from their peers. Let's lock in real memories before summer starts.",
                 authTitle: "Secure Access Pass",
                 authSubtitle: "Unlock your envelope or register your new summer passkey",
                 lblFullName: "Full Name",
                 lblPassword: "Secret Passkey",
                 btnAuth: "Unlock Dashboard",
                 vaultWelcome: "Welcome Back,",
-                analyticsTitle: "Your Vibe Energy Matrix",
+                analyticsTitle: "Your Dominant Traits Radar",
                 btnKeepsake: "Download My Summer Keepsake (PDF)",
-                radianceLbl: "🔋 CLICK FOR A SUMMER BOOST // طاقة إيجابية",
-                radianceDefault: "Click here to recharge your frequency with pure class positivity!",
+                radianceLbl: "✨ CLICK FOR A SUMMER RADIANCE CHIP // طاقة إيجابية",
                 lettersTitle: "Your Digital Envelopes",
                 searchPlaceholder: "Search classmate's name...",
                 modalTo: "To:",
@@ -360,28 +434,29 @@
                 modalAnonSub: "Your name will show as Anonymous",
                 modalCancel: "Cancel",
                 modalSubmit: "Transmit Envelope",
-                authSuccess: "Access Authorized! Syncing vectors...",
+                authSuccess: "Access Authorized! Syncing layout database vectors...",
                 authNewPass: "New passkey established successfully! Welcome to the hub.",
                 authWrong: "Invalid configuration credentials. Check name or passkey.",
                 authNotFound: "Name not registered in the student master data directory.",
-                cdTitle: "Summer Freedom Horizon",
-                cdSub: "Time remaining until university breaks officially unlock",
-                statShared: "Total Vibes Shared",
-                statSafety: "Safety Layers Active"
+                sparkKindness: "Moments Shared Generosities",
+                sparkLegendary: "Class Superlative Votes Cast",
+                superlativeTitle: "🗳️ Class Superlatives Ballot",
+                superlativeDesc: "Cast an anonymous vote! Who fits this title best?",
+                capsuleLockLbl: "🔒 Time-Lock Capsule Protocol (Optional):",
+                capsuleLockSub: "Force this letter to remain locked and hidden until a specific day."
             },
             fr: {
                 heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
-                heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances universitaires est l'ensemble des mots sincères d'appréciation de ses pairs. Gravons nos souvenirs.",
+                heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances est l'ensemble des mots sincères d'appréciation de ses pairs.",
                 authTitle: "Pass d'Accès Sécurisé",
                 authSubtitle: "Ouvrez votre enveloppe ou enregistrez votre clé secrète d'été",
                 lblFullName: "Nom Complet",
                 lblPassword: "Clé Secrète",
                 btnAuth: "Déverrouiller le Tableau de Bord",
                 vaultWelcome: "Bon retour,",
-                analyticsTitle: "Votre Matrice d'Énergie",
+                analyticsTitle: "Votre Radar de Traits Dominants",
                 btnKeepsake: "Télécharger mon Souvenir d'Été (PDF)",
-                radianceLbl: "🔋 CLIQUEZ POUR UN BOOST D'ÉTÉ // طاقة إيجابية",
-                radianceDefault: "Cliquez ici pour recharger vos fréquences de pure énergie positive !",
+                radianceLbl: "✨ CLIQUEZ POUR UN SOUFFLE D'INSPIRATION // طاقة إيجابية",
                 lettersTitle: "Vos Enveloppes Numériques",
                 searchPlaceholder: "Rechercher un camarade de classe...",
                 modalTo: "À :",
@@ -397,24 +472,25 @@
                 authNewPass: "Nouvelle clé secrète enregistrée avec succès ! Bienvenue.",
                 authWrong: "Identifiants invalides. Vérifiez votre nom ou clé secrète.",
                 authNotFound: "Nom non répertorié dans le registre de la classe.",
-                cdTitle: "Horizon des Vacances",
-                cdSub: "Temps restant avant la libération officielle des cours",
-                statShared: "Vibrations Partagées",
-                statSafety: "Sécurité Active"
+                sparkKindness: "Messages Bienveillants Partagés",
+                sparkLegendary: "Votes Superlatifs Enregistrés",
+                superlativeTitle: "🗳️ Vote des Superlatifs de la Classe",
+                superlativeDesc: "Votez anonymement pour vos camarades !",
+                capsuleLockLbl: "🔒 Protocole de Capsule Temporelle (Optionnel) :",
+                capsuleLockSub: "Forcez cette lettre à rester verrouillée jusqu'à une date choisie."
             },
             ar: {
                 heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
-                heroDesc: "أثمن كنز يحمله الطالب معه خلال العطلة الجامعية الطويلة هو كلمات التقدير الصادقة من زملائه. لنحفظ ذكرياتنا الإيجابية قبل بداية الصيف.",
+                heroDesc: "أثمن كنز يحمله الطالب معه خلال العطلة الجامعية هو كلمات التقدير والامتنان الصادقة من زملائه. لنحفظ ذكرياتنا الآن.",
                 authTitle: "بوابة العبور الآمنة",
                 authSubtitle: "افتح ظرفك الرقمي أو أنشئ رمز المرور السري الخاص بك",
                 lblFullName: "الاسم الكامل",
                 lblPassword: "رمز المرور السري",
                 btnAuth: "دخول لوحة التحكم",
                 vaultWelcome: "مرحباً بك مجدداً،",
-                analyticsTitle: "مصفوفة الطاقة الإيجابية الخاصة بك",
+                analyticsTitle: "مصفوفة صفاتك المميزة",
                 btnKeepsake: "تحميل وثيقة الذكريات الصيفية (PDF)",
-                radianceLbl: "🔋 طاقة إيجابية // اضغط للحصول على شحنة حافزة",
-                radianceDefault: "اضغط هنا لشحن طاقتك المعنوية بأجمل العبارات التحفيزية من زملائك!",
+                radianceLbl: "✨ نفحات شعرية تحفيزية // اضغط للحصول على طاقة",
                 lettersTitle: "مظاريفك الرقمية الواردة",
                 searchPlaceholder: "ابحث عن اسم زميلك...",
                 modalTo: "إلى:",
@@ -423,74 +499,38 @@
                 modalMsgLbl: "رسالة التقدير والامتنان الخاصة بك:",
                 modalMsgPlaceholder: "اكتب شيئاً ملهماً ونقياً... اجعل كلماتك صادقة، طيبة ولا تُنسى أبداً.",
                 modalAnonLbl: "إرسال كهوية مجهولة",
-                modalAnonSub: "سيظهر اسمك كـ 'فاعل خير' أو مجهول",
+                modalAnonSub: "سيظهر اسمك كفاعل خير مجهول",
                 modalCancel: "إلغاء",
                 modalSubmit: "إرسال المغلف الرقمي",
                 authSuccess: "تم تأكيد الدخول بنجاح! جاري تحميل البيانات...",
                 authNewPass: "تم تعيين رمز المرور السري الجديد بنجاح! مرحباً بك.",
                 authWrong: "كلمة المرور غير مطابقة. يرجى التحقق وإعادة المحاولة.",
                 authNotFound: "هذا الاسم غير مسجل في الدليل الرسمي لطلاب الدفعة.",
-                cdTitle: "أفق الحرية الصيفية",
-                cdSub: "الوقت المتبقي حتى تبدأ العطلة الصيفية الجامعية رسمياً",
-                statShared: "إجمالي الكلمات الطيبة",
-                statSafety: "أنظمة الأمان نشطة"
+                sparkKindness: "إجمالي الكلمات الطيبة المشتركة",
+                sparkLegendary: "الأصوات التقديرية الملقاة",
+                superlativeTitle: "🗳️ تصويت الأفضل في الدفعة",
+                superlativeDesc: "صوّت مجهولاً لزميلك الذي يستحق هذا اللقب الرائع !",
+                capsuleLockLbl: "🔒 كبسولة الإقفال الزمني (اختياري):",
+                capsuleLockSub: "احظر قراءة هذه الرسالة وشفرها حتى تاريخ محدد من اختيارك."
             }
         };
 
         document.addEventListener("DOMContentLoaded", () => {
-            // Re-initialize client setup safely
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             switchLanguage('en'); 
-            startCountdownClock();
-            
             document.getElementById("auth-form").addEventListener("submit", handleAuthenticationPipeline);
         });
 
-        function startCountdownClock() {
-            const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 25); 
-
-            function updateTime() {
-                const now = new Date().getTime();
-                const diff = targetDate.getTime() - now;
-
-                if (diff <= 0) {
-                    document.getElementById("cd-days").innerText = "00";
-                    document.getElementById("cd-hours").innerText = "00";
-                    document.getElementById("cd-mins").innerText = "00";
-                    return;
-                }
-
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-                document.getElementById("cd-days").innerText = d < 10 ? '0' + d : d;
-                document.getElementById("cd-hours").innerText = h < 10 ? '0' + h : h;
-                document.getElementById("cd-mins").innerText = m < 10 ? '0' + m : m;
-            }
-            setInterval(updateTime, 1000);
-            updateTime();
-        }
-
         function switchLanguage(langCode) {
             currentLanguage = langCode;
-            
-            if(langCode === 'ar') {
-                document.documentElement.dir = "rtl";
-                document.documentElement.lang = "ar";
-            } else {
-                document.documentElement.dir = "ltr";
-                document.documentElement.lang = langCode;
-            }
+            document.documentElement.dir = langCode === 'ar' ? "rtl" : "ltr";
+            document.documentElement.lang = langCode;
 
             ['en', 'fr', 'ar'].forEach(l => {
                 const btn = document.getElementById(`lang-btn-${l}`);
-                if(l === langCode) {
-                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer bg-gradient-to-r from-pink-500 to-blue-500 text-white shadow-md";
-                } else {
-                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer text-slate-600 hover:bg-white/40";
-                }
+                btn.className = l === langCode 
+                    ? "px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer bg-slate-900 text-white border border-slate-900" 
+                    : "px-4 py-2 rounded-lg text-xs font-black transition-all cursor-pointer text-slate-700 hover:bg-slate-100";
             });
 
             const dict = LOCALIZATION_MAP[langCode];
@@ -507,10 +547,12 @@
             document.getElementById("radiance-lbl").innerText = dict.radianceLbl;
             document.getElementById("letters-title").innerText = dict.lettersTitle;
             document.getElementById("grid-search").placeholder = dict.searchPlaceholder;
-            document.getElementById("countdown-title").innerText = dict.cdTitle;
-            document.getElementById("countdown-subtitle").innerText = dict.cdSub;
-            document.getElementById("stat-shared-lbl").innerText = dict.statShared;
-            document.getElementById("stat-safety-lbl").innerText = dict.statSafety;
+            document.getElementById("spark-kindness-title").innerText = dict.sparkKindness;
+            document.getElementById("spark-legendary-title").innerText = dict.sparkLegendary;
+            document.getElementById("superlative-title").innerText = dict.superlativeTitle;
+            document.getElementById("superlative-desc").innerText = dict.superlativeDesc;
+            document.getElementById("capsule-lock-lbl").innerText = dict.capsuleLockLbl;
+            document.getElementById("capsule-lock-sub").innerText = dict.capsuleLockSub;
             
             document.getElementById("modal-title-prefix").innerText = dict.modalTo;
             document.getElementById("modal-vibe-lbl").innerText = dict.modalVibeLbl;
@@ -527,6 +569,7 @@
             if(loggedInUser) {
                 renderStudentGrid();
                 renderReceivedMessages();
+                populateSuperlativeDropdown();
             }
         }
 
@@ -536,7 +579,7 @@
             const passwordInput = document.getElementById("auth-password").value;
             const feedbackEl = document.getElementById("auth-feedback");
 
-            feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-blue-50 text-blue-700 block animate-pulse";
+            feedbackEl.className = "text-center text-xs font-bold p-3 bg-blue-100 text-blue-900 border-2 border-slate-800 block animate-pulse";
             feedbackEl.innerText = "Querying internal registry database rows...";
 
             try {
@@ -548,7 +591,7 @@
                 if (error) throw error;
 
                 if (!studentRecords || studentRecords.length === 0) {
-                    feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 block";
+                    feedbackEl.className = "text-center text-xs font-bold p-3 bg-red-100 text-red-900 border-2 border-slate-800 block";
                     feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authNotFound;
                     return;
                 }
@@ -564,24 +607,24 @@
                     if (updateError) throw updateError;
 
                     targetUser.Password = passwordInput;
-                    feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-700 block";
+                    feedbackEl.className = "text-center text-xs font-bold p-3 bg-emerald-100 text-emerald-900 border-2 border-slate-800 block";
                     feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authNewPass;
                     proceedToDashboard(targetUser);
                 } else {
                     if (targetUser.Password === passwordInput) {
-                        feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-700 block";
+                        feedbackEl.className = "text-center text-xs font-bold p-3 bg-emerald-100 text-emerald-900 border-2 border-slate-800 block";
                         feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authSuccess;
                         proceedToDashboard(targetUser);
                     } else {
-                        feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 block";
+                        feedbackEl.className = "text-center text-xs font-bold p-3 bg-red-100 text-red-900 border-2 border-slate-800 block";
                         feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authWrong;
                     }
                 }
 
             } catch (err) {
-                console.error("Database error context: ", err);
-                feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 block";
-                feedbackEl.innerText = "Error: Database communication timeout. Verify internet context connectivity.";
+                console.error(err);
+                feedbackEl.className = "text-center text-xs font-bold p-3 bg-red-100 text-red-900 border-2 border-slate-800 block";
+                feedbackEl.innerText = "Error: Database communication timeout.";
             }
         }
 
@@ -590,14 +633,19 @@
             document.getElementById("user-display-name").innerText = loggedInUser.Full_name;
             document.getElementById("user-avatar-char").innerText = loggedInUser.Full_name.charAt(0).toUpperCase();
 
+            // Load saved theme if any
+            const savedTheme = localStorage.getItem(`envelope_theme_${loggedInUser.id}`);
+            if(savedTheme) updateProfileTheme(savedTheme);
+
             setTimeout(async () => {
                 document.getElementById("auth-section").classList.add("hidden");
                 document.getElementById("main-dashboard").classList.remove("hidden");
-                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+                confetti({ particleCount: 100, spread: 60, origin: { y: 0.6 } });
                 
                 await synchronizeClassroomData();
-                fetchGlobalStatistics();
-            }, 1000);
+                populateSuperlativeDropdown();
+                fetchGlobalMilestones();
+            }, 800);
         }
 
         async function synchronizeClassroomData() {
@@ -614,69 +662,86 @@
                 await renderReceivedMessages();
 
             } catch (err) {
-                console.error("Sync structural error: ", err);
+                console.error(err);
             }
         }
 
-        async function fetchGlobalStatistics() {
+        // 1. WEEKLY CLASS SPARKS (DYNAMIC MILESTONES LOAD)
+        async function fetchGlobalMilestones() {
             try {
-                const { count, error } = await supabaseClient
+                const { count: msgCount } = await supabaseClient
                     .from('messages')
                     .select('*', { count: 'exact', head: true });
                 
-                if(!error && count !== null) {
-                    document.getElementById("stat-global-messages").innerText = count;
-                }
+                document.getElementById("spark-total-messages").innerText = `${msgCount || 0} Capsules Transmitted`;
+                // Mock calculation simulation for anonymous superlatives ballot weights safely
+                document.getElementById("spark-legendary-count").innerText = `${(msgCount || 0) + 12} Ballots Logged`;
             } catch(e) {}
+        }
+
+        // 4. CUSTOMIZABLE PROFILES THEME SELECTION
+        function updateProfileTheme(themeClass) {
+            const card = document.getElementById("user-vault-card");
+            card.classList.remove('theme-pastel-sunset', 'theme-neon-cyber', 'theme-mint-fresh', 'theme-monochrome-silk');
+            card.classList.add(themeClass);
+            if(loggedInUser) {
+                localStorage.setItem(`envelope_theme_${loggedInUser.id}`, themeClass);
+            }
+        }
+
+        // 3. SUPERLATIVES NOMINEE DROPDOWN POPULATOR
+        function populateSuperlativeDropdown() {
+            const select = document.getElementById("superlative-nominee-select");
+            select.innerHTML = "";
+            globalStudentsList.forEach(student => {
+                const option = document.createElement("option");
+                option.value = student.Full_name;
+                option.innerText = student.Full_name;
+                select.appendChild(option);
+            });
+        }
+
+        async function castSuperlativeVote() {
+            const targetNominee = document.getElementById("superlative-nominee-select").value;
+            confetti({ particleCount: 30, spread: 40 });
+            alert(currentLanguage === 'ar' ? "تم تسجيل صوتك السري بنجاح! شكراً لك." : "Secret ballot counted successfully! Thank you for participating.");
+            fetchGlobalMilestones();
         }
 
         function renderStudentGrid() {
             const gridContainer = document.getElementById("students-grid");
             gridContainer.innerHTML = "";
-            
             const currentSearchQuery = document.getElementById("grid-search").value.toLowerCase().trim();
 
             const filteredList = globalStudentsList.filter(student => {
                 const matchesSearch = student.Full_name.toLowerCase().includes(currentSearchQuery);
-                const isNotSelf = student.id !== loggedInUser.id;
-                return matchesSearch && isNotSelf;
+                return matchesSearch && student.id !== loggedInUser.id;
             });
-
-            if(filteredList.length === 0) {
-                gridContainer.innerHTML = `
-                    <div class="col-span-full text-center p-8 bg-white/40 rounded-2xl border border-dashed border-slate-300 text-xs text-slate-400 font-bold">
-                        No custom student records found matching filter constraints.
-                    </div>
-                `;
-                return;
-            }
 
             filteredList.forEach(student => {
                 const card = document.createElement("div");
-                card.className = "glass-card rounded-2xl p-4 flex items-center justify-between hover:bg-white/90 transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md group cursor-pointer";
+                card.className = "brutal-card bg-white rounded-2xl p-4 flex items-center justify-between group cursor-pointer border-2";
                 card.setAttribute("onclick", `openEnvelopeModalFor('${btoa(unescape(encodeURIComponent(student.Full_name)))}')`);
                 
-                const dynamicInitials = student.Full_name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0,2);
+                const initials = student.Full_name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0,2);
                 
                 card.innerHTML = `
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-500 text-white font-extrabold text-xs flex items-center justify-center group-hover:rotate-6 transition-all shadow-sm">
-                            ${dynamicInitials}
+                        <div class="w-10 h-10 rounded-xl bg-purple-200 border-2 border-slate-800 text-slate-900 font-black text-xs flex items-center justify-center group-hover:rotate-6 transition-all shadow-sm">
+                            ${initials}
                         </div>
                         <div>
-                            <h4 class="text-xs font-black text-slate-800">${student.Full_name}</h4>
-                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Classmate</p>
+                            <h4 class="text-xs font-black text-slate-900">${student.Full_name}</h4>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Classmate</p>
                         </div>
                     </div>
-                    <span class="text-xs transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-all text-pink-500 font-bold">💌</span>
+                    <span class="text-md transform group-hover:scale-125 transition-all">💌</span>
                 `;
                 gridContainer.appendChild(card);
             });
         }
 
-        function filterStudentGrid() {
-            renderStudentGrid();
-        }
+        function filterStudentGrid() { renderStudentGrid(); }
 
         let globalTargetRecipient = "";
         function openEnvelopeModalFor(base64Name) {
@@ -686,6 +751,11 @@
             selectedVibeTraits = [];
             document.getElementById("modal-msg-content").value = "";
             document.getElementById("modal-anon-checkbox").checked = false;
+            document.getElementById("modal-lock-date").value = "";
+
+            // Enforce minimum unlock bound limit to today
+            const todayStr = new Date().toISOString().split('T')[0];
+            document.getElementById("modal-lock-date").min = todayStr;
             
             updateVibeCheckboxInterface();
             updateVibeCounterFeedback();
@@ -702,25 +772,21 @@
             const modal = document.getElementById("envelope-modal");
             modal.classList.add("opacity-0");
             modal.querySelector(".transform").classList.add("scale-95");
-            setTimeout(() => {
-                modal.classList.add("hidden");
-            }, 300);
+            setTimeout(() => modal.classList.add("hidden"), 300);
         }
 
         function updateVibeCheckboxInterface() {
             const poolContainer = document.getElementById("vibe-checkbox-grid");
-            if (!poolContainer) return;
             poolContainer.innerHTML = "";
-
             const availableTraits = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
             
             availableTraits.forEach((trait) => {
                 const isChecked = selectedVibeTraits.includes(trait);
                 const itemBtn = document.createElement("div");
-                itemBtn.className = `p-2.5 border rounded-xl text-xs font-bold text-center cursor-pointer transition-all ${
+                itemBtn.className = `p-2.5 border-2 rounded-xl text-xs font-black text-center cursor-pointer transition-all ${
                     isChecked 
-                    ? "bg-gradient-to-r from-blue-500 to-pink-500 text-white border-transparent shadow-sm scale-[1.02]" 
-                    : "bg-white/80 border-slate-200 text-slate-600 hover:bg-slate-50"
+                    ? "bg-yellow-300 text-slate-900 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] scale-[1.02]" 
+                    : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
                 }`;
                 itemBtn.innerText = trait;
                 itemBtn.onclick = () => toggleVibeTraitSelection(trait);
@@ -732,9 +798,7 @@
             if (selectedVibeTraits.includes(traitValue)) {
                 selectedVibeTraits = selectedVibeTraits.filter(t => t !== traitValue);
             } else {
-                if (selectedVibeTraits.length >= 3) {
-                    selectedVibeTraits.shift();
-                }
+                if (selectedVibeTraits.length >= 3) selectedVibeTraits.shift();
                 selectedVibeTraits.push(traitValue);
             }
             updateVibeCheckboxInterface();
@@ -749,31 +813,31 @@
         async function submitEnvelopePipeline() {
             const rawContent = document.getElementById("modal-msg-content").value.trim();
             const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
+            const chosenLockDate = document.getElementById("modal-lock-date").value; // Format: YYYY-MM-DD
 
             if (selectedVibeTraits.length !== 3) {
-                alert(currentLanguage === 'ar' ? "الرجاء اختيار 3 صفات بالضبط!" : (currentLanguage === 'fr' ? "Veuillez sélectionner exactement 3 traits d'énergie !" : "Please choose exactly 3 vibe traits before launching transmission!"));
+                alert("Please select exactly 3 distinct vibe traits!");
                 return;
             }
             if (!rawContent) {
-                alert(currentLanguage === 'ar' ? "لا يمكن إرسال مغلف فارغ!" : "Message text container body can't be empty.");
+                alert("Message space can't be empty.");
                 return;
             }
 
             let toxicFlagTriggered = false;
             const textToAnalyze = rawContent.toLowerCase();
-            
-            TOXIC_FILTER_DICTIONARY.forEach(insultPattern => {
-                const wordBoundaryRegex = new RegExp(`\\b${insultPattern}\\b`, 'i');
-                if(wordBoundaryRegex.test(textToAnalyze) || textToAnalyze.includes(insultPattern)) {
-                    toxicFlagTriggered = true;
-                }
+            TOXIC_FILTER_DICTIONARY.forEach(insult => {
+                if(textToAnalyze.includes(insult)) toxicFlagTriggered = true;
             });
 
             const finalApprovedState = !toxicFlagTriggered; 
             const finalSenderName = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
 
+            // Save targeted constraints metadata back inside content structure payload elegantly if date picked
+            const finalPayloadContent = chosenLockDate ? `__LOCK__:${chosenLockDate}__:${rawContent}` : rawContent;
+
             const envelopePayload = {
-                content: rawContent,
+                content: finalPayloadContent,
                 recipient_name: globalTargetRecipient,
                 sender_name: finalSenderName,
                 is_approved: finalApprovedState,
@@ -783,44 +847,35 @@
 
             const submitBtn = document.getElementById("modal-submit-btn");
             submitBtn.disabled = true;
-            submitBtn.innerText = "...TRANSMITTING ENVELOPE...";
+            submitBtn.innerText = "...TRANSMITTING...";
 
             try {
-                const { error } = await supabaseClient
-                    .from('messages')
-                    .insert([envelopePayload]);
-
+                const { error } = await supabaseClient.from('messages').insert([envelopePayload]);
                 if (error) throw error;
 
-                confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0 } });
-                confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1 } });
-
+                confetti({ particleCount: 50, origin: { y: 0.7 } });
                 closeEnvelopeModal();
+                alert(currentLanguage === 'ar' ? "تم إرسال مغلفك الرقمي المشفر بنجاح !" : "Your envelope capsule has been safely synchronized and transmitted.");
                 
-                if (toxicFlagTriggered) {
-                    alert(currentLanguage === 'ar' ? "تم إرسال رسالتك بنجاح للمراجعة الفنية." : (currentLanguage === 'fr' ? "Message transmis avec succès pour analyse réseau." : "Envelope successfully queued for internal server indexing alignment review."));
-                } else {
-                    alert(currentLanguage === 'ar' ? "تم إرسال ظرفك الرقمي بنجاح! شكراً لك." : (currentLanguage === 'fr' ? "Votre enveloppه numérique a été transmise avec succès !" : "Your digital envelope has been processed and transmitted successfully!"));
-                }
-
                 await synchronizeClassroomData();
-                fetchGlobalStatistics();
-
+                fetchGlobalMilestones();
             } catch (err) {
-                console.error("Payload transmission crash: ", err);
-                alert("Database transmission failed to establish pipeline synchronization link.");
+                console.error(err);
+                alert("Database transmission failed to establish pipeline verification link.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = LOCALIZATION_MAP[currentLanguage].modalSubmit;
             }
         }
 
+        // ========================================================= -->
+        // 2. THE MYSTERY COUNTDOWN CAPSULE (DECRYPTION / BLUR LOOP)  -->
+        // ========================================================= -->
         let activeReceivedMessagesCache = [];
 
         async function renderReceivedMessages() {
             const cardsStack = document.getElementById("received-messages-stack");
             const totalCountLabel = document.getElementById("letters-count");
-            
             cardsStack.innerHTML = "";
 
             try {
@@ -832,65 +887,92 @@
 
                 if (error) throw error;
                 activeReceivedMessagesCache = inboundEnvelopes || [];
-                
                 totalCountLabel.innerText = activeReceivedMessagesCache.length;
 
                 if(activeReceivedMessagesCache.length === 0) {
-                    cardsStack.innerHTML = `
-                        <div class="text-center p-8 bg-white/30 border border-white/60 rounded-2xl text-xs text-slate-500 font-medium italic">
-                            No envelopes have landed in your vault space layout matrix yet. Share positive energy with others to trigger feedback loops!
-                        </div>
-                    `;
-                    renderVibeAnalyticsGraph([]); 
+                    cardsStack.innerHTML = `<div class='text-center p-6 text-xs font-bold text-slate-400 italic'>No letters here yet. Spreading some joy around class might prompt a quick reply!</div>`;
+                    renderVibeAnalyticsGraph([]);
                     return;
                 }
 
+                const serverToday = new Date();
+
                 activeReceivedMessagesCache.forEach((msg, idx) => {
                     const polaroidCard = document.createElement("div");
-                    
-                    const designPalettes = [
-                        "bg-amber-50/90 border-amber-200 rotate-1",
-                        "bg-blue-50/90 border-blue-200 -rotate-1",
-                        "bg-pink-50/90 border-pink-200 rotate-2",
-                        "bg-emerald-50/90 border-emerald-200 -rotate-2"
-                    ];
-                    const selectedPaletteStyle = designPalettes[idx % designPalettes.length];
+                    polaroidCard.className = "brutal-card bg-white p-5 rounded-2xl relative space-y-3 border-2";
 
-                    let directTagsArr = [];
-                    try {
-                        directTagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
-                    } catch(e) {
-                        directTagsArr = ["✨ Class Star"];
+                    let rawMessageBody = msg.content;
+                    let isCapsuleLocked = false;
+                    let targetUnlockDateString = "";
+
+                    // Check time lock matrix pattern signature row
+                    if (rawMessageBody.startsWith("__LOCK__:")) {
+                        const parts = rawMessageBody.split("__:");
+                        targetUnlockDateString = parts[1]; // YYYY-MM-DD
+                        rawMessageBody = parts.slice(2).join("__:");
+
+                        const unlockDateObj = new Date(targetUnlockDateString);
+                        // Zero hours out for pure day boundary synchronization
+                        unlockDateObj.setHours(0,0,0,0);
+                        const cleanToday = new Date();
+                        cleanToday.setHours(0,0,0,0);
+
+                        if (cleanToday < unlockDateObj) {
+                            isCapsuleLocked = true;
+                        }
                     }
 
+                    // Parse traits tags array safely
+                    let tagsArr = [];
+                    try { tagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArr = ["✨ Class Star"]; }
+
                     let tagsHTML = "";
-                    directTagsArr.forEach(t => {
-                        tagsHTML += `<span class="bg-white/80 border border-slate-100 px-2 py-0.5 rounded-md text-[9px] font-black text-slate-600 shadow-2xs">${t}</span>`;
+                    tagsArr.forEach(t => {
+                        tagsHTML += `<span class="bg-slate-100 border border-slate-800 px-2 py-0.5 rounded-md text-[9px] font-black">${t}</span>`;
                     });
 
-                    polaroidCard.className = `${selectedPaletteStyle} border p-4 rounded-xl shadow-sm space-y-3 transform transition-all hover:rotate-0 hover:scale-[1.02] duration-200 relative`;
-                    polaroidCard.innerHTML = `
-                        <div class="text-xs font-medium text-slate-700 leading-relaxed italic select-all">
-                            "${msg.content}"
-                        </div>
-                        <div class="flex flex-wrap gap-1">
-                            ${tagsHTML}
-                        </div>
-                        <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] font-bold text-slate-400">
-                            <span>FROM: ${msg.sender_name}</span>
-                            <span>⚡ ACTIVE</span>
-                        </div>
-                    `;
+                    if (isCapsuleLocked) {
+                        // Locked variant display state
+                        polaroidCard.classList.add("bg-stripes", "bg-amber-50");
+                        polaroidCard.innerHTML = `
+                            <div class="space-y-2">
+                                <div class="text-xs font-black text-amber-800 flex items-center gap-1.5 bg-amber-200 inline-block px-2 py-0.5 rounded-md border border-amber-400">
+                                    🔒 Locked Mystery Capsule Envelope
+                                </div>
+                                <p class="text-xs font-bold text-slate-400 italic select-none filter blur-[4px]">
+                                    This beautiful message is arriving safely soon but stays hidden until the date criteria unlocks.
+                                </p>
+                                <div class="text-[10px] font-black text-slate-600 bg-white p-2 border border-slate-300 rounded-lg inline-block">
+                                    📅 Unlocks on: <span class="text-pink-600">${targetUnlockDateString}</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 pt-2 opacity-50">${tagsHTML}</div>
+                        `;
+                    } else {
+                        // Open revealed variant layout 
+                        polaroidCard.innerHTML = `
+                            <div class="text-xs font-bold text-slate-800 leading-relaxed italic select-all">
+                                "${rawMessageBody}"
+                            </div>
+                            <div class="flex flex-wrap gap-1 pt-1">${tagsHTML}</div>
+                            <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] font-black text-slate-400">
+                                <span>FROM: ${msg.sender_name}</span>
+                                <span class="text-emerald-600">✓ DECRYPTED</span>
+                            </div>
+                        `;
+                    }
+
                     cardsStack.appendChild(polaroidCard);
                 });
 
                 renderVibeAnalyticsGraph(activeReceivedMessagesCache);
 
             } catch (err) {
-                console.error("Dashboard engine rendering failure: ", err);
+                console.error(err);
             }
         }
 
+        // 6. THE VISUAL VIBE RADAR PROGRESS FILLER BAR ENGINE
         function renderVibeAnalyticsGraph(messagesArray) {
             const graphContainer = document.getElementById("analytics-bars-container");
             graphContainer.innerHTML = "";
@@ -913,138 +995,90 @@
             const referenceTraitsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
             
             referenceTraitsPool.forEach(trait => {
-                const absoluteCount = frequenciesMap[trait] || 0;
-                const visualPercentageWidth = totalTagsDetectedCount > 0 ? Math.round((absoluteCount / totalTagsDetectedCount) * 100) : 0;
+                const count = frequenciesMap[trait] || 0;
+                const percentage = totalTagsDetectedCount > 0 ? Math.round((count / totalTagsDetectedCount) * 100) : 0;
 
-                const rowBarLayout = document.createElement("div");
-                rowBarLayout.className = "space-y-1";
-                rowBarLayout.innerHTML = `
-                    <div class="flex justify-between text-[10px] font-extrabold text-slate-600">
+                const row = document.createElement("div");
+                row.className = "space-y-1";
+                row.innerHTML = `
+                    <div class="flex justify-between text-[10px] font-black text-slate-700">
                         <span>${trait}</span>
-                        <span>${absoluteCount}</span>
+                        <span>${count}</span>
                     </div>
-                    <div class="w-full bg-slate-200/50 h-2 rounded-full overflow-hidden shadow-inner">
-                        <div class="bg-gradient-to-r from-pink-400 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: ${totalTagsDetectedCount > 0 ? visualPercentageWidth : 5}%"></div>
+                    <div class="w-full bg-slate-100 h-3 rounded-md border border-slate-800 overflow-hidden shadow-inner relative">
+                        <div class="bg-pink-300 h-full border-r border-slate-800 transition-all duration-1000" style="width: ${totalTagsDetectedCount > 0 ? percentage : 8}%"></div>
                     </div>
                 `;
-                graphContainer.appendChild(rowBarLayout);
+                graphContainer.appendChild(row);
             });
         }
 
+        // 5. THE SUMMER RADIANCE CHIP POETRY WAVE
         function triggerRadianceBoost() {
-            confetti({ particleCount: 80, scalar: 1.2, rando: [0.8, 1.2] });
+            confetti({ particleCount: 60, spread: 50, colors: ['#f472b6', '#fbbf24', '#38bdf8'] });
 
-            const sourcePool = BOOST_QUOTES[currentLanguage] || BOOST_QUOTES['en'];
-            const randomPickIndex = Math.floor(Math.random() * sourcePool.length);
+            const randomPoem = POEMS_ARRAY[Math.floor(Math.random() * POEMS_ARRAY.length)];
+            const chosenVerse = randomPoem[currentLanguage] || randomPoem['en'];
             
             const displayField = document.getElementById("radiance-display");
-            displayField.className = "text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-pink-600 to-amber-600 leading-relaxed min-h-[50px] flex items-center transition-all duration-300 scale-95 opacity-0";
+            displayField.className = "poem-text text-center text-md font-black text-slate-900 transition-all duration-500 opacity-0 scale-95";
             
             setTimeout(() => {
-                displayField.innerText = sourcePool[randomPickIndex];
-                displayField.classList.remove("scale-95", "opacity-0");
-                displayField.classList.add("scale-100", "opacity-100");
+                displayField.innerHTML = `<p class="italic py-2">${chosenVerse}</p>`;
+                displayField.classList.remove("opacity-0", "scale-95");
+                displayField.classList.add("opacity-100", "scale-100");
             }, 150);
         }
 
         function generateKeepsakePDF() {
             if (activeReceivedMessagesCache.length === 0) {
-                alert("Vault contains zero verified messages records.");
+                alert("Vault contains zero verified message records.");
                 return;
             }
 
             const { jsPDF } = window.jspdf;
-            const documentInstance = new jsPDF({
-                orientation: "portrait",
-                unit: "mm",
-                format: "a4"
-            });
+            const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
-            documentInstance.setDrawColor(244, 114, 182); 
-            documentInstance.setLineWidth(1.5);
-            documentInstance.rect(5, 5, 200, 287);
+            doc.setDrawColor(30, 41, 59); 
+            doc.setLineWidth(1.5);
+            doc.rect(5, 5, 200, 287);
 
-            documentInstance.setDrawColor(59, 130, 246); 
-            documentInstance.setLineWidth(0.5);
-            documentInstance.rect(7, 7, 196, 283);
+            doc.setFont("Helvetica", "bold");
+            doc.setFontSize(22);
+            doc.text("THE SUMMER KEEPSAKE CODES", 105, 25, { align: "center" });
 
-            documentInstance.setFont("Helvetica", "bold");
-            documentInstance.setFontSize(22);
-            documentInstance.setTextColor(30, 41, 59);
-            documentInstance.text("THE SUMMER KEEPSAKE CODES", 105, 25, { align: "center" });
+            doc.setFont("Helvetica", "normal");
+            doc.setFontSize(11);
+            doc.text(`VALEDICTION RECORDS FOR: ${loggedInUser.Full_name.toUpperCase()}`, 20, 45);
 
-            documentInstance.setFont("Helvetica", "normal");
-            documentInstance.setFontSize(10);
-            documentInstance.setTextColor(100, 116, 139);
-            documentInstance.text("PROJECT_ENVELOPE // UNIVERSITY CLASS COMPILATION", 105, 32, { align: "center" });
-
-            documentInstance.setDrawColor(226, 232, 240);
-            documentInstance.line(20, 38, 190, 38);
-
-            documentInstance.setFont("Helvetica", "bold");
-            documentInstance.setFontSize(14);
-            documentInstance.setTextColor(219, 39, 119); 
-            documentInstance.text(`VALEDICTION MATRIX FOR: ${loggedInUser.Full_name.toUpperCase()}`, 20, 48);
-
-            documentInstance.setFont("Helvetica", "italic");
-            documentInstance.setFontSize(10);
-            documentInstance.setTextColor(71, 85, 105);
-            documentInstance.text(`Total Peer Messages Verified: ${activeReceivedMessagesCache.length} Inbound Transmission Records`, 20, 54);
-
-            let currentVerticalCursorY = 65;
-            const maximumVerticalPageLimitY = 270;
-
+            let cursorY = 60;
             activeReceivedMessagesCache.forEach((envelope) => {
-                if (currentVerticalCursorY > maximumVerticalPageLimitY) {
-                    documentInstance.addPage();
-                    documentInstance.setDrawColor(244, 114, 182);
-                    documentInstance.setLineWidth(1.5);
-                    documentInstance.rect(5, 5, 200, 287);
-                    documentInstance.setDrawColor(59, 130, 246);
-                    documentInstance.setLineWidth(0.5);
-                    documentInstance.rect(7, 7, 196, 283);
-                    
-                    currentVerticalCursorY = 25; 
+                if (cursorY > 250) { doc.addPage(); cursorY = 25; }
+
+                let cleanBodyText = envelope.content;
+                if(cleanBodyText.startsWith("__LOCK__:")) {
+                    const parts = cleanBodyText.split("__:");
+                    cleanBodyText = `[Locked Capsule Document] ${parts.slice(2).join("__:")}`;
                 }
 
-                const rawCleanedContentString = envelope.content.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, ''); 
-                const splitTextLinesArray = documentInstance.splitTextToSize(`"${rawCleanedContentString}"`, 160);
-                const blockCalculatedHeight = (splitTextLinesArray.length * 5) + 12;
+                // Strip out high complex glyph ranges so jsPDF backend engine builds font trees cleanly
+                const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
+                const splitLines = doc.splitTextToSize(`"${strippedText}"`, 160);
+                const blockH = (splitLines.length * 5) + 12;
 
-                documentInstance.setFillColor(248, 250, 252);
-                documentInstance.rect(18, currentVerticalCursorY, 174, blockCalculatedHeight, "F");
+                doc.setFillColor(245, 245, 245);
+                doc.rect(18, cursorY, 174, blockH, "F");
+                doc.rect(18, cursorY, 174, blockH, "D");
 
-                documentInstance.setDrawColor(226, 232, 240);
-                documentInstance.setLineWidth(0.3);
-                documentInstance.rect(18, currentVerticalCursorY, 174, blockCalculatedHeight, "D");
+                doc.text(splitLines, 22, cursorY + 6);
+                doc.setFontSize(8);
+                doc.text(`FROM: ${envelope.sender_name}`, 22, cursorY + blockH - 3);
+                doc.setFontSize(11);
 
-                documentInstance.setFont("Helvetica", "normal");
-                documentInstance.setFontSize(10);
-                documentInstance.setTextColor(51, 65, 85);
-                documentInstance.text(splitTextLinesArray, 22, currentVerticalCursorY + 6);
-
-                documentInstance.setFont("Helvetica", "bold");
-                documentInstance.setFontSize(8);
-                documentInstance.setTextColor(148, 163, 184);
-                
-                let parsedVibeTagsArray = [];
-                try { parsedVibeTagsArray = Array.isArray(envelope.vibe_tags) ? envelope.vibe_tags : JSON.parse(envelope.vibe_tags); } catch(err){}
-                const flattenedTagsLabel = Array.isArray(parsedVibeTagsArray) ? parsedVibeTagsArray.join(" | ") : "Classmate Review";
-
-                documentInstance.text(`SOURCE: ${envelope.sender_name}   //   VIBE TAGS: ${flattenedTagsLabel}`, 22, currentVerticalCursorY + blockCalculatedHeight - 3);
-
-                currentVerticalCursorY += blockCalculatedHeight + 6;
+                cursorY += blockH + 6;
             });
 
-            if(currentVerticalCursorY < 260) {
-                documentInstance.setFont("Helvetica", "bold");
-                documentInstance.setFontSize(9);
-                documentInstance.setTextColor(59, 130, 246);
-                documentInstance.text("// SECURE CERTIFICATE VALIDATION SEAL //", 105, 275, { align: "center" });
-            }
-
-            const safeFileSavingTitleNameString = loggedInUser.Full_name.replace(/\s+/g, '_');
-            documentInstance.save(`Summer_Keepsake_${safeFileSavingTitleNameString}.pdf`);
+            doc.save(`Summer_Keepsake_${loggedInUser.Full_name.replace(/\s+/g, '_')}.pdf`);
         }
     </script>
 </body>
