@@ -26,14 +26,14 @@
         :root {
             --spring-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        
+        /* 1. FIXED EXPLICIT BROWN BACKGROUND ALWAYS */
         body {
             font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
-            background: #f0fdf4;
+            background-color: #78350f !important; /* Rich Warm Walnut Brown */
             min-height: 100vh;
-            transition: background 0.5s ease;
         }
         
-        /* 7. ESTABLISH THE NEO-BRUTALIST / PASTEL VIBE */
         .brutal-card {
             background: #ffffff;
             border: 3px solid #1e293b;
@@ -65,11 +65,13 @@
             box-shadow: 4px 4px 0px 0px #1e293b;
         }
 
-        /* Customizable Profile Theme Auras */
-        .theme-pastel-sunset { background: linear-gradient(135deg, #ffedfa 0%, #fff3e3 100%) !important; }
-        .theme-neon-cyber { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%) !important; }
-        .theme-mint-fresh { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important; }
-        .theme-monochrome-silk { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important; }
+        /* Expanded Custom Profile Vault Aura Themes */
+        .theme-green { background: linear-gradient(135deg, #f0fdf4 0%, #bbf7d0 100%) !important; }
+        .theme-cream { background: linear-gradient(135deg, #fefcbf 0%, #fef08a 100%) !important; } /* Between white and yellow */
+        .theme-pink { background: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 100%) !important; }
+        .theme-purple { background: linear-gradient(135deg, #faf5ff 0%, #e9d5ff 100%) !important; }
+        .theme-red { background: linear-gradient(135deg, #fff5f5 0%, #fecaca 100%) !important; }
+        .theme-darkred { background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%) !important; text-color: #7f1d1d; }
 
         .poem-text {
             font-family: 'Amiri', serif;
@@ -115,13 +117,13 @@
         </header>
 
         <!-- ========================================================= -->
-        <!-- 2. COOL & SECURE ACCESS GATE                              -->
+        <!-- 2. LOGIN PANEL (UPDATED NATIVELY TO PURPLE THEME)         -->
         <!-- ========================================================= -->
-        <section id="auth-section" class="brutal-card bg-white rounded-3xl p-6 md:p-10 max-w-md mx-auto space-y-6">
+        <section id="auth-section" class="brutal-card bg-purple-200 rounded-3xl p-6 md:p-10 max-w-md mx-auto space-y-6">
             <div class="text-center space-y-2">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-pink-200 border-2 border-slate-800 shadow-[3px_3px_0px_0px_#1e293b] rounded-2xl text-2xl mb-2 animate-bounce-soft">🔑</div>
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-white border-2 border-slate-800 shadow-[3px_3px_0px_0px_#1e293b] rounded-2xl text-2xl mb-2 animate-bounce-soft">🔑</div>
                 <h2 id="auth-title" class="text-xl font-black text-slate-900">Secure Access Pass</h2>
-                <p id="auth-subtitle" class="text-xs font-bold text-slate-600">Unlock your envelope or register your new summer passkey</p>
+                <p id="auth-subtitle" class="text-xs font-bold text-purple-900">Unlock your envelope or register your new summer passkey</p>
             </div>
 
             <form id="auth-form" class="space-y-4">
@@ -133,7 +135,7 @@
                     <label id="label-password" class="block text-xs font-black text-slate-800 mb-1 uppercase tracking-wider">Secret Passkey</label>
                     <input type="password" id="auth-password" required autocomplete="current-password" class="w-full px-4 py-3 bg-white brutal-input rounded-xl text-sm font-bold focus:outline-none transition" placeholder="••••••••">
                 </div>
-                <button type="submit" id="auth-submit-btn" class="w-full py-3.5 px-4 bg-pink-300 text-slate-900 brutal-btn rounded-xl text-sm font-black shadow-md cursor-pointer">
+                <button type="submit" id="auth-submit-btn" class="w-full py-3.5 px-4 bg-yellow-300 text-slate-900 brutal-btn rounded-xl text-sm font-black shadow-md cursor-pointer">
                     Unlock Dashboard
                 </button>
             </form>
@@ -143,9 +145,7 @@
         <!-- MAIN INTERACTIVE DASHBOARD CONTAINER (HIDDEN UNTIL AUTH) -->
         <main id="main-dashboard" class="space-y-8 hidden">
             
-            <!-- ========================================================= -->
-            <!-- 1. THE WEEKLY CLASS SPARKS (DYNAMIC GROUP MILESTONES)      -->
-            <!-- ========================================================= -->
+            <!-- 1. THE WEEKLY CLASS SPARKS (DYNAMIC GROUP MILESTONES) -->
             <div class="brutal-card bg-emerald-100 rounded-3xl p-6 relative overflow-hidden flex flex-col md:flex-row items-center justify-around gap-6 text-center">
                 <div class="space-y-1">
                     <span class="text-3xl">✨</span>
@@ -184,14 +184,16 @@
                             </div>
                         </div>
 
-                        <!-- 4. CUSTOMIZABLE PROFILES (THE POLAROID THEME AURA SELECTOR) -->
+                        <!-- 1. CUSTOMIZABLE PROFILES (EXPANDED TO CHOSEN PARAMETERS) -->
                         <div class="p-4 bg-white border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b] rounded-2xl space-y-2">
                             <h4 id="theme-selector-lbl" class="text-[11px] font-black uppercase text-slate-700 tracking-wider">Select Your Vault Space Theme Aura:</h4>
-                            <div class="grid grid-cols-4 gap-2">
-                                <button onclick="updateProfileTheme('theme-pastel-sunset')" class="h-8 rounded-lg border border-slate-800 theme-pastel-sunset cursor-pointer transition active:scale-90" title="Sunset Pastel"></button>
-                                <button onclick="updateProfileTheme('theme-neon-cyber')" class="h-8 rounded-lg border border-slate-800 theme-neon-cyber cursor-pointer transition active:scale-90" title="Neon Cyber"></button>
-                                <button onclick="updateProfileTheme('theme-mint-fresh')" class="h-8 rounded-lg border border-slate-800 theme-mint-fresh cursor-pointer transition active:scale-90" title="Mint Fresh"></button>
-                                <button onclick="updateProfileTheme('theme-monochrome-silk')" class="h-8 rounded-lg border border-slate-800 theme-monochrome-silk cursor-pointer transition active:scale-90" title="Monochromatic Silk"></button>
+                            <div class="grid grid-cols-6 gap-2">
+                                <button onclick="updateProfileTheme('theme-green')" class="h-8 rounded-lg border border-slate-800 theme-green cursor-pointer transition active:scale-90" title="Green"></button>
+                                <button onclick="updateProfileTheme('theme-cream')" class="h-8 rounded-lg border border-slate-800 theme-cream cursor-pointer transition active:scale-90" title="Cream"></button>
+                                <button onclick="updateProfileTheme('theme-pink')" class="h-8 rounded-lg border border-slate-800 theme-pink cursor-pointer transition active:scale-90" title="Pink"></button>
+                                <button onclick="updateProfileTheme('theme-purple')" class="h-8 rounded-lg border border-slate-800 theme-purple cursor-pointer transition active:scale-90" title="Purple"></button>
+                                <button onclick="updateProfileTheme('theme-red')" class="h-8 rounded-lg border border-slate-800 theme-red cursor-pointer transition active:scale-90" title="Red"></button>
+                                <button onclick="updateProfileTheme('theme-darkred')" class="h-8 rounded-lg border border-slate-800 theme-darkred cursor-pointer transition active:scale-90" title="Dark Red"></button>
                             </div>
                         </div>
 
@@ -226,7 +228,7 @@
                             <h3 id="superlative-title" class="text-sm font-black uppercase text-slate-900 tracking-wider">🗳️ Class Superlatives Ballot</h3>
                             <p id="superlative-desc" class="text-[11px] font-bold text-slate-600">Cast an anonymous vote! Who fits this title best?</p>
                         </div>
-                        <div class="space-y-3 bg-white p-3 border-2 border-slate-800 rounded-xl shadow-[2px_2px_0px_0px_#1e293b]">
+                        <div class="space-y-3 bg-white p-3 border-2 border-slate-800 shadow-[2px_2px_0px_0px_#1e293b]">
                             <div>
                                 <span id="superlative-question" class="text-xs font-black text-slate-800 block mb-1 bg-yellow-200 inline-block px-1 rounded">🌟 Most Inspiring Heart of the Year:</span>
                                 <select id="superlative-nominee-select" class="w-full p-2 bg-slate-50 border-2 border-slate-800 rounded-lg text-xs font-bold focus:outline-none">
@@ -279,7 +281,7 @@
     <div id="envelope-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
         <div class="brutal-card w-full max-w-xl rounded-3xl bg-white p-6 md:p-8 transform scale-95 transition-transform duration-300 space-y-6 max-h-[90vh] overflow-y-auto relative">
             
-            <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-800 hover:text-rose-600 font-black text-2xl cursor-pointer border-2 border-slate-800 w-9 h-9 flex items-center justify-center rounded-lg shadow-[2px_2px_0px_0px_#1e293b] bg-white bg-amber-150">×</button>
+            <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-800 hover:text-rose-600 font-black text-2xl cursor-pointer border-2 border-slate-800 w-9 h-9 flex items-center justify-center rounded-lg shadow-[2px_2px_0px_0px_#1e293b] bg-white">×</button>
             
             <div class="space-y-1">
                 <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-800 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
@@ -355,7 +357,6 @@
             ar: ["✨ عقل مبدع", "🔥 لا يتوقف", "🧠 عقل مدبر", "🌟 طاقة نقية", "🎨 روح مبدعة", "🚀 رؤيوي", "💎 جوهرة نادرة", "🤝 سند قوي"]
         };
 
-        // 5. 15 HIGHLY INSPIRATIONAL PROFOUND POEMS / QUOTES (NO TECH TERMS)
         const POEMS_ARRAY = [
             {
                 en: "The woods are lovely, dark and deep,<br>But I have promises to keep,<br>And miles to go before I sleep.",
@@ -371,42 +372,6 @@
                 en: "Do not go gentle into that good night,<br>Rage, rage against the dying of the light.<br>Your fire must never fade away.",
                 fr: "Ne t'abandonne pas à la nuit douce,<br>Lutte avec force pour garder ta lumière claire.<br>Ton éclat est précieux.",
                 ar: "إِذا غامَرتَ في شَرَفٍ مَرومٍ<br>فَلا تَقنَع بِما دونَ النُجومِ<br>— أبو الطيب المتنبي"
-            },
-            {
-                en: "I am the master of my fate,<br>I am the captain of my soul.<br>No storm can shake my path.",
-                fr: "Je suis le maître absolu de mon destin,<br>Je suis le capitaine de mon âme entière.<br>Aucun vent ne m'éloigne.",
-                ar: "عَلى قَدرِ أَهلِ العَزمِ تَأتي العَزائِمُ<br>وَتَأتي عَلى قَدرِ الكِرامِ المَكارِمُ<br>— أبو الطيب المتنبي"
-            },
-            {
-                en: "Hope is the thing with feathers<br>That perches in the soul,<br>And sings the tune without the words.",
-                fr: "L'espoir est cet oiseau doux et léger<br>Qui se pose au fond de notre âme,<br>Chantant sans jamais s'arrêter.",
-                ar: "أعللُ النّفْسَ بالآمالِ أَرْقُبُهَا<br>مَا أَضْيَقَ العَيْشَ لَوْلَا فُسْحَةُ الأَمَلِ<br>— الطغرائي"
-            },
-            {
-                en: "Life is a beautiful canvas of choices,<br>Paint it with courage, warmth, and grace,<br>Leave a trace that time cannot erase.",
-                fr: "La vie est une toile aux mille éclats,<br>Peins-la de courage et de douceur ici-bas,<br>Laisse une trace que le temps n'effacera pas.",
-                ar: "وليسَ يصحُّ في الفهومِ شيءٌ<br>إذا احتاجَ النّهارُ إلى دليلِ<br>— أبو الطيب المتنبي"
-            },
-            {
-                en: "The future belongs to those who believe<br>In the sheer beauty of their internal dreams.<br>Walk with confidence.",
-                fr: "L'avenir appartient à ceux qui croient<br>En la pure beauté de leurs grands rêves.<br>Avance avec certitude.",
-                ar: "وَمَا نَيْلُ الْمُطَالِبِ بِالتَّمَنِّي<br>وَلَكِنْ تُؤْخَذُ الدُّنْيَا غِلَابَا<br>— أحمد شوقي"
-            },
-            {
-                en: "Be like the flower that gives its perfume<br>Even to the hand that crushes it.<br>Pure kindness is unmatched.",
-                fr: "Sois comme la fleur qui donne son parfum<br>Même à la main qui vient la cueillir.<br>La bonté pure est une force.",
-                ar: "كُن بَلسَماً إِن صارَ دَهرُكَ أَرقَما<br>وَحَلاوَةً إِن صارَ غَيرُكَ عَلقَما<br>— إيليا أبو ماضي"
-            },
-            {
-                en: "Look at the stars instead of your shadows,<br>There is a sky waiting for your light<br>To break the dark around you.",
-                fr: "Regarde les étoiles plutôt que tes ombres,<br>Il y a un ciel immense qui attend ton éclat<br>Pour dissiper l'obscurité.",
-                ar: "أتَحْسَبُ أنّكَ جُرْمٌ صَغِيرٌ<br>وَفِيكَ انْطَوَى العَالَمُ الأكْبَرُ؟<br>— الإمام علي بن أبي طالب"
-            },
-            {
-                en: "Nothing can dim the light which shines from within.<br>Your core integrity is your power.",
-                fr: "Rien ne peut ternir la lumière intérieure.<br>Ta sincérité est ta plus grande force.",
-                ar: "لا خَيْرَ في عِلْمٍ بِغَيْرِ تَدَبُّرٍ<br>ولا خَيْرَ في قَلْبٍ بِغَيْرِ صَفَاءِ",
-                ar: "إذا ما طَمَحْتُ إلِى غَايَةٍ<br>رَكِبْتُ المُنَى وَنَسِيتُ الحَذَر<br>— أبو القاسم الشابي"
             }
         ];
 
@@ -434,14 +399,15 @@
                 modalAnonSub: "Your name will show as Anonymous",
                 modalCancel: "Cancel",
                 modalSubmit: "Transmit Envelope",
-                authSuccess: "Access Authorized! Syncing layout database vectors...",
+                authSuccess: "Access Authorized! Syncing layout...",
                 authNewPass: "New passkey established successfully! Welcome to the hub.",
                 authWrong: "Invalid configuration credentials. Check name or passkey.",
-                authNotFound: "Name not registered in the student master data directory.",
+                authNotFound: "Name not registered in the student directory.",
                 sparkKindness: "Moments Shared Generosities",
                 sparkLegendary: "Class Superlative Votes Cast",
                 superlativeTitle: "🗳️ Class Superlatives Ballot",
                 superlativeDesc: "Cast an anonymous vote! Who fits this title best?",
+                superlativeQ: "🌟 Most Inspiring Heart of the Year:",
                 capsuleLockLbl: "🔒 Time-Lock Capsule Protocol (Optional):",
                 capsuleLockSub: "Force this letter to remain locked and hidden until a specific day."
             },
@@ -468,7 +434,7 @@
                 modalAnonSub: "Votre nom apparaîtra comme Anonyme",
                 modalCancel: "Annuler",
                 modalSubmit: "Transmettre l'Enveloppe",
-                authSuccess: "Accès Autorisé ! Synchronisation des données...",
+                authSuccess: "Accès Autorisé ! Synchronisation...",
                 authNewPass: "Nouvelle clé secrète enregistrée avec succès ! Bienvenue.",
                 authWrong: "Identifiants invalides. Vérifiez votre nom ou clé secrète.",
                 authNotFound: "Nom non répertorié dans le registre de la classe.",
@@ -476,6 +442,7 @@
                 sparkLegendary: "Votes Superlatifs Enregistrés",
                 superlativeTitle: "🗳️ Vote des Superlatifs de la Classe",
                 superlativeDesc: "Votez anonymement pour vos camarades !",
+                superlativeQ: "🌟 Le cœur le plus inspirant de l'année :",
                 capsuleLockLbl: "🔒 Protocole de Capsule Temporelle (Optionnel) :",
                 capsuleLockSub: "Forcez cette lettre à rester verrouillée jusqu'à une date choisie."
             },
@@ -510,6 +477,7 @@
                 sparkLegendary: "الأصوات التقديرية الملقاة",
                 superlativeTitle: "🗳️ تصويت الأفضل في الدفعة",
                 superlativeDesc: "صوّت مجهولاً لزميلك الذي يستحق هذا اللقب الرائع !",
+                superlativeQ: "🌟 الشخصية الأكثر إلهاماً وطيبة هذا العام:",
                 capsuleLockLbl: "🔒 كبسولة الإقفال الزمني (اختياري):",
                 capsuleLockSub: "احظر قراءة هذه الرسالة وشفرها حتى تاريخ محدد من اختيارك."
             }
@@ -521,6 +489,7 @@
             document.getElementById("auth-form").addEventListener("submit", handleAuthenticationPipeline);
         });
 
+        // 2. FULL TRANSLATION IMPLEMENTATION ENGINE FOR SUPERLATIVES
         function switchLanguage(langCode) {
             currentLanguage = langCode;
             document.documentElement.dir = langCode === 'ar' ? "rtl" : "ltr";
@@ -549,8 +518,12 @@
             document.getElementById("grid-search").placeholder = dict.searchPlaceholder;
             document.getElementById("spark-kindness-title").innerText = dict.sparkKindness;
             document.getElementById("spark-legendary-title").innerText = dict.sparkLegendary;
+            
+            // Fixed Translation Injection Hooks
             document.getElementById("superlative-title").innerText = dict.superlativeTitle;
             document.getElementById("superlative-desc").innerText = dict.superlativeDesc;
+            document.getElementById("superlative-question").innerText = dict.superlativeQ;
+            
             document.getElementById("capsule-lock-lbl").innerText = dict.capsuleLockLbl;
             document.getElementById("capsule-lock-sub").innerText = dict.capsuleLockSub;
             
@@ -579,7 +552,7 @@
             const passwordInput = document.getElementById("auth-password").value;
             const feedbackEl = document.getElementById("auth-feedback");
 
-            feedbackEl.className = "text-center text-xs font-bold p-3 bg-blue-100 text-blue-900 border-2 border-slate-800 block animate-pulse";
+            feedbackEl.className = "text-center text-xs font-bold p-3 bg-white text-purple-900 border-2 border-slate-800 block animate-pulse";
             feedbackEl.innerText = "Querying internal registry database rows...";
 
             try {
@@ -633,7 +606,6 @@
             document.getElementById("user-display-name").innerText = loggedInUser.Full_name;
             document.getElementById("user-avatar-char").innerText = loggedInUser.Full_name.charAt(0).toUpperCase();
 
-            // Load saved theme if any
             const savedTheme = localStorage.getItem(`envelope_theme_${loggedInUser.id}`);
             if(savedTheme) updateProfileTheme(savedTheme);
 
@@ -666,7 +638,6 @@
             }
         }
 
-        // 1. WEEKLY CLASS SPARKS (DYNAMIC MILESTONES LOAD)
         async function fetchGlobalMilestones() {
             try {
                 const { count: msgCount } = await supabaseClient
@@ -674,22 +645,19 @@
                     .select('*', { count: 'exact', head: true });
                 
                 document.getElementById("spark-total-messages").innerText = `${msgCount || 0} Capsules Transmitted`;
-                // Mock calculation simulation for anonymous superlatives ballot weights safely
                 document.getElementById("spark-legendary-count").innerText = `${(msgCount || 0) + 12} Ballots Logged`;
             } catch(e) {}
         }
 
-        // 4. CUSTOMIZABLE PROFILES THEME SELECTION
         function updateProfileTheme(themeClass) {
             const card = document.getElementById("user-vault-card");
-            card.classList.remove('theme-pastel-sunset', 'theme-neon-cyber', 'theme-mint-fresh', 'theme-monochrome-silk');
+            card.classList.remove('theme-green', 'theme-cream', 'theme-pink', 'theme-purple', 'theme-red', 'theme-darkred');
             card.classList.add(themeClass);
             if(loggedInUser) {
                 localStorage.setItem(`envelope_theme_${loggedInUser.id}`, themeClass);
             }
         }
 
-        // 3. SUPERLATIVES NOMINEE DROPDOWN POPULATOR
         function populateSuperlativeDropdown() {
             const select = document.getElementById("superlative-nominee-select");
             select.innerHTML = "";
@@ -702,7 +670,6 @@
         }
 
         async function castSuperlativeVote() {
-            const targetNominee = document.getElementById("superlative-nominee-select").value;
             confetti({ particleCount: 30, spread: 40 });
             alert(currentLanguage === 'ar' ? "تم تسجيل صوتك السري بنجاح! شكراً لك." : "Secret ballot counted successfully! Thank you for participating.");
             fetchGlobalMilestones();
@@ -727,7 +694,7 @@
                 
                 card.innerHTML = `
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-purple-200 border-2 border-slate-800 text-slate-900 font-black text-xs flex items-center justify-center group-hover:rotate-6 transition-all shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 border-2 border-slate-800 text-slate-900 font-black text-xs flex items-center justify-center group-hover:rotate-6 transition-all shadow-sm">
                             ${initials}
                         </div>
                         <div>
@@ -753,7 +720,6 @@
             document.getElementById("modal-anon-checkbox").checked = false;
             document.getElementById("modal-lock-date").value = "";
 
-            // Enforce minimum unlock bound limit to today
             const todayStr = new Date().toISOString().split('T')[0];
             document.getElementById("modal-lock-date").min = todayStr;
             
@@ -813,7 +779,7 @@
         async function submitEnvelopePipeline() {
             const rawContent = document.getElementById("modal-msg-content").value.trim();
             const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
-            const chosenLockDate = document.getElementById("modal-lock-date").value; // Format: YYYY-MM-DD
+            const chosenLockDate = document.getElementById("modal-lock-date").value;
 
             if (selectedVibeTraits.length !== 3) {
                 alert("Please select exactly 3 distinct vibe traits!");
@@ -832,8 +798,6 @@
 
             const finalApprovedState = !toxicFlagTriggered; 
             const finalSenderName = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
-
-            // Save targeted constraints metadata back inside content structure payload elegantly if date picked
             const finalPayloadContent = chosenLockDate ? `__LOCK__:${chosenLockDate}__:${rawContent}` : rawContent;
 
             const envelopePayload = {
@@ -862,15 +826,12 @@
             } catch (err) {
                 console.error(err);
                 alert("Database transmission failed to establish pipeline verification link.");
-            } finally {
+            } finaly {
                 submitBtn.disabled = false;
                 submitBtn.innerText = LOCALIZATION_MAP[currentLanguage].modalSubmit;
             }
         }
 
-        // ========================================================= -->
-        // 2. THE MYSTERY COUNTDOWN CAPSULE (DECRYPTION / BLUR LOOP)  -->
-        // ========================================================= -->
         let activeReceivedMessagesCache = [];
 
         async function renderReceivedMessages() {
@@ -890,14 +851,12 @@
                 totalCountLabel.innerText = activeReceivedMessagesCache.length;
 
                 if(activeReceivedMessagesCache.length === 0) {
-                    cardsStack.innerHTML = `<div class='text-center p-6 text-xs font-bold text-slate-400 italic'>No letters here yet. Spreading some joy around class might prompt a quick reply!</div>`;
+                    cardsStack.innerHTML = `<div class='text-center p-6 text-xs font-bold text-slate-400 italic bg-white border-2 border-slate-800 rounded-2xl shadow-[4px_4px_0px_0px_#1e293b]'>No letters here yet. Spreading some joy around class might prompt a quick reply!</div>`;
                     renderVibeAnalyticsGraph([]);
                     return;
                 }
 
-                const serverToday = new Date();
-
-                activeReceivedMessagesCache.forEach((msg, idx) => {
+                activeReceivedMessagesCache.forEach((msg) => {
                     const polaroidCard = document.createElement("div");
                     polaroidCard.className = "brutal-card bg-white p-5 rounded-2xl relative space-y-3 border-2";
 
@@ -905,14 +864,12 @@
                     let isCapsuleLocked = false;
                     let targetUnlockDateString = "";
 
-                    // Check time lock matrix pattern signature row
                     if (rawMessageBody.startsWith("__LOCK__:")) {
                         const parts = rawMessageBody.split("__:");
-                        targetUnlockDateString = parts[1]; // YYYY-MM-DD
+                        targetUnlockDateString = parts[1]; 
                         rawMessageBody = parts.slice(2).join("__:");
 
                         const unlockDateObj = new Date(targetUnlockDateString);
-                        // Zero hours out for pure day boundary synchronization
                         unlockDateObj.setHours(0,0,0,0);
                         const cleanToday = new Date();
                         cleanToday.setHours(0,0,0,0);
@@ -922,7 +879,6 @@
                         }
                     }
 
-                    // Parse traits tags array safely
                     let tagsArr = [];
                     try { tagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArr = ["✨ Class Star"]; }
 
@@ -932,15 +888,14 @@
                     });
 
                     if (isCapsuleLocked) {
-                        // Locked variant display state
-                        polaroidCard.classList.add("bg-stripes", "bg-amber-50");
+                        polaroidCard.className = "brutal-card bg-amber-50 p-5 rounded-2xl relative space-y-3 border-2 border-dashed";
                         polaroidCard.innerHTML = `
                             <div class="space-y-2">
                                 <div class="text-xs font-black text-amber-800 flex items-center gap-1.5 bg-amber-200 inline-block px-2 py-0.5 rounded-md border border-amber-400">
                                     🔒 Locked Mystery Capsule Envelope
                                 </div>
                                 <p class="text-xs font-bold text-slate-400 italic select-none filter blur-[4px]">
-                                    This beautiful message is arriving safely soon but stays hidden until the date criteria unlocks.
+                                    This beautiful message stays hidden until the unlock parameters hit.
                                 </p>
                                 <div class="text-[10px] font-black text-slate-600 bg-white p-2 border border-slate-300 rounded-lg inline-block">
                                     📅 Unlocks on: <span class="text-pink-600">${targetUnlockDateString}</span>
@@ -949,7 +904,6 @@
                             <div class="flex flex-wrap gap-1 pt-2 opacity-50">${tagsHTML}</div>
                         `;
                     } else {
-                        // Open revealed variant layout 
                         polaroidCard.innerHTML = `
                             <div class="text-xs font-bold text-slate-800 leading-relaxed italic select-all">
                                 "${rawMessageBody}"
@@ -972,7 +926,6 @@
             }
         }
 
-        // 6. THE VISUAL VIBE RADAR PROGRESS FILLER BAR ENGINE
         function renderVibeAnalyticsGraph(messagesArray) {
             const graphContainer = document.getElementById("analytics-bars-container");
             graphContainer.innerHTML = "";
@@ -1013,7 +966,6 @@
             });
         }
 
-        // 5. THE SUMMER RADIANCE CHIP POETRY WAVE
         function triggerRadianceBoost() {
             confetti({ particleCount: 60, spread: 50, colors: ['#f472b6', '#fbbf24', '#38bdf8'] });
 
@@ -1061,7 +1013,6 @@
                     cleanBodyText = `[Locked Capsule Document] ${parts.slice(2).join("__:")}`;
                 }
 
-                // Strip out high complex glyph ranges so jsPDF backend engine builds font trees cleanly
                 const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
                 const splitLines = doc.splitTextToSize(`"${strippedText}"`, 160);
                 const blockH = (splitLines.length * 5) + 12;
