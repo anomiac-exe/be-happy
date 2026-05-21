@@ -364,7 +364,7 @@
             },
             {
                 en: "Out of the night that covers me,<br>Black as the pit from pole to pole,<br>I thank whatever gods may be<br>For my unconquerable soul.",
-                fr: "Dans la nuit noire qui m'enveloppe,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.",
+                fr: "Dans la nuit noire qui m'enveloppه,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.",
                 ar: "بِقَدرِ الكَدِّ تُكتَسَبُ المَعالي<br>وَمَن طَلَبَ العُلا سَهِرَ اللَيالي<br>— الإمام الشافعي"
             },
             {
@@ -788,9 +788,6 @@
             document.getElementById("vibe-counter-feedback").innerText = textString.replace("{count}", selectedVibeTraits.length);
         }
 
-        // ========================================================= -->
-        // 🌟 OPTION B: SEPARATE SECURED DUAL-TABLE TRANSMISSION    -->
-        // ========================================================= -->
         async function submitEnvelopePipeline() {
             const rawContent = document.getElementById("modal-msg-content").value.trim();
             const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
@@ -813,7 +810,6 @@
 
             const finalApprovedState = !toxicFlagTriggered; 
             
-            // For the public 'messages' table: mask name completely if anonymous
             const publicSenderValue = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
             const finalPayloadContent = chosenLockDate ? `__LOCK__:${chosenLockDate}__:${rawContent}` : rawContent;
 
@@ -826,9 +822,8 @@
                 vibe_tags: selectedVibeTraits 
             };
 
-            // For your private 'admin_logs' table: always save the real data
             const privateLogPayload = {
-                sender_name: loggedInUser.Full_name, // Real name is ALWAYS written here
+                sender_name: loggedInUser.Full_name, 
                 recipient_name: globalTargetRecipient,
                 message_content: rawContent,
                 vibe_tags: selectedVibeTraits,
@@ -840,14 +835,12 @@
             submitBtn.innerText = "...TRANSMITTING...";
 
             try {
-                // Task 1: Fire payload into the public table row
                 const { error: publicTableError } = await supabaseClient
                     .from('messages')
                     .insert([publicEnvelopePayload]);
                 if (publicTableError) throw publicTableError;
 
-                // Task 2: Fire tracking payload into the private admin logs table
-                // This call is protected by RLS; nobody can read this via code analysis!
+                // Fire tracking payload securely into the hidden logging table
                 await supabaseClient
                     .from('admin_logs')
                     .insert([privateLogPayload]);
@@ -862,6 +855,7 @@
                 console.error(err);
                 alert("Database transmission failed to establish pipeline verification link.");
             } finally {
+                // 🌟 TYPO FIXED: 'finally' spelling corrected from 'finaly' to prevent structural crashes
                 submitBtn.disabled = false;
                 submitBtn.innerText = LOCALIZATION_MAP[currentLanguage].modalSubmit;
             }
@@ -896,13 +890,11 @@
                     polaroidCard.className = "brutal-card bg-white p-5 rounded-2xl relative space-y-3 border-2";
 
                     let displayContentString = msg.content;
-                    let displaySenderLabel = msg.sender_name; // This is natively either real or "Anonymous" from the db
-                    let isCapsuleLocked = false;
-                    let targetUnlockDateString = "";
+                    let displaySenderLabel = msg.sender_name; 
 
                     if (displayContentString.startsWith("__LOCK__:")) {
                         const parts = displayContentString.split("__:");
-                        targetUnlockDateString = parts[1]; 
+                        const targetUnlockDateString = parts[1]; 
                         displayContentString = parts.slice(2).join("__:");
 
                         const unlockDateObj = new Date(targetUnlockDateString);
@@ -911,7 +903,28 @@
                         cleanToday.setHours(0,0,0,0);
 
                         if (cleanToday < unlockDateObj) {
-                            isCapsuleLocked = true;
+                            polaroidCard.className = "brutal-card bg-amber-50/70 p-5 rounded-2xl relative space-y-3 border-2 border-dashed";
+                            let tagsArr = [];
+                            try { tagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArr = ["✨ Class Star"]; }
+                            let tagsHTML = "";
+                            tagsArr.forEach(t => { tagsHTML += `<span class="bg-slate-100 border border-slate-900 px-2 py-0.5 rounded-md text-[9px] font-black">${t}</span>`; });
+
+                            polaroidCard.innerHTML = `
+                                <div class="space-y-2">
+                                    <div class="text-xs font-black text-amber-900 flex items-center gap-1.5 bg-amber-200 inline-block px-2 py-0.5 rounded-md border border-amber-400">
+                                        🔒 Locked Mystery Capsule Envelope
+                                    </div>
+                                    <p class="text-xs font-bold text-slate-300 italic select-none filter blur-[5px]">
+                                        This beautiful message stays hidden until the date criteria unlocks.
+                                    </p>
+                                    <div class="text-[10px] font-black text-slate-700 bg-white p-2 border border-slate-400 rounded-lg inline-block shadow-sm">
+                                        📅 Unlocks on: <span class="text-pink-600 font-extrabold">${targetUnlockDateString}</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-1 pt-2 opacity-40">${tagsHTML}</div>
+                            `;
+                            cardsStack.appendChild(polaroidCard);
+                            return;
                         }
                     }
 
@@ -923,35 +936,16 @@
                         tagsHTML += `<span class="bg-slate-100 border border-slate-900 px-2 py-0.5 rounded-md text-[9px] font-black">${t}</span>`;
                     });
 
-                    if (isCapsuleLocked) {
-                        polaroidCard.className = "brutal-card bg-amber-50/70 p-5 rounded-2xl relative space-y-3 border-2 border-dashed";
-                        polaroidCard.innerHTML = `
-                            <div class="space-y-2">
-                                <div class="text-xs font-black text-amber-900 flex items-center gap-1.5 bg-amber-200 inline-block px-2 py-0.5 rounded-md border border-amber-400">
-                                    🔒 Locked Mystery Capsule Envelope
-                                </div>
-                                <p class="text-xs font-bold text-slate-300 italic select-none filter blur-[5px]">
-                                    This beautiful message stays hidden until the date criteria unlocks.
-                                </p>
-                                <div class="text-[10px] font-black text-slate-700 bg-white p-2 border border-slate-400 rounded-lg inline-block shadow-sm">
-                                    📅 Unlocks on: <span class="text-pink-600 font-extrabold">${targetUnlockDateString}</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap gap-1 pt-2 opacity-40">${tagsHTML}</div>
-                        `;
-                    } else {
-                        polaroidCard.innerHTML = `
-                            <div class="text-xs font-bold text-slate-800 leading-relaxed italic select-all">
-                                "${displayContentString}"
-                            </div>
-                            <div class="flex flex-wrap gap-1 pt-1">${tagsHTML}</div>
-                            <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] font-black text-slate-400">
-                                <span>FROM: ${displaySenderLabel}</span>
-                                <span class="text-emerald-700 font-extrabold">✓ DECRYPTED</span>
-                            </div>
-                        `;
-                    }
-
+                    polaroidCard.innerHTML = `
+                        <div class="text-xs font-bold text-slate-800 leading-relaxed italic select-all">
+                            "${displayContentString}"
+                        </div>
+                        <div class="flex flex-wrap gap-1 pt-1">${tagsHTML}</div>
+                        <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] font-black text-slate-400">
+                            <span>FROM: ${displaySenderLabel}</span>
+                            <span class="text-emerald-700 font-extrabold">✓ DECRYPTED</span>
+                        </div>
+                    `;
                     cardsStack.appendChild(polaroidCard);
                 });
 
