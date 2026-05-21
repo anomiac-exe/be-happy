@@ -47,7 +47,6 @@
             0% { transform: translateY(0); }
             100% { transform: translateY(-8px); }
         }
-        /* Custom scrollbar for beautiful UI consistency */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -121,6 +120,22 @@
         <!-- MAIN INTERACTIVE DASHBOARD CONTAINER (HIDDEN UNTIL AUTH) -->
         <main id="main-dashboard" class="space-y-8 hidden">
             
+            <!-- FEATURE: SUMMER BREAK COUNTDOWN TIMER -->
+            <div class="glass-panel rounded-3xl p-6 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 border-l-4 border-amber-400">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">☀️</span>
+                    <div>
+                        <h3 id="countdown-title" class="text-sm font-black uppercase text-slate-700 tracking-wider">Summer Freedom Horizon</h3>
+                        <p id="countdown-subtitle" class="text-xs text-slate-400">Time remaining until university breaks officially unlock</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 text-center">
+                    <div class="bg-white/60 px-4 py-2 rounded-xl border border-white"><span id="cd-days" class="text-xl font-black text-pink-600">00</span><p class="text-[9px] font-bold uppercase text-slate-400">Days</p></div>
+                    <div class="bg-white/60 px-4 py-2 rounded-xl border border-white"><span id="cd-hours" class="text-xl font-black text-blue-600">00</span><p class="text-[9px] font-bold uppercase text-slate-400">Hours</p></div>
+                    <div class="bg-white/60 px-4 py-2 rounded-xl border border-white"><span id="cd-mins" class="text-xl font-black text-emerald-600">00</span><p class="text-[9px] font-bold uppercase text-slate-400">Mins</p></div>
+                </div>
+            </div>
+
             <!-- TWO COLUMN APP MATRIX -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
@@ -141,7 +156,7 @@
                             </div>
                         </div>
 
-                        <!-- Vibe Tag Profile Analytics Summary Graph (Tailwind Native Stack Grid) -->
+                        <!-- Vibe Tag Profile Analytics Summary Graph -->
                         <div class="bg-white/40 border border-white/60 p-4 rounded-2xl space-y-3">
                             <h3 id="analytics-title" class="text-xs font-bold uppercase tracking-wider text-slate-500">Your Vibe Energy Matrix</h3>
                             <div id="analytics-bars-container" class="space-y-2">
@@ -163,11 +178,26 @@
                             <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-pink-500"></span>
                         </div>
                         <p id="radiance-display" class="text-base font-bold text-slate-700 italic leading-relaxed min-h-[50px] flex items-center">
-                            Click here to recharge your terminal frequency with pure class adrenaline!
+                            Click here to recharge your frequency with pure class positivity!
                         </p>
                     </div>
 
-                    <!-- RECEIVED PEER reviews DISPLAY -->
+                    <!-- FEATURE: REAL-TIME GLOBAL STATS CARD -->
+                    <div class="bg-white/50 border border-white/80 rounded-3xl p-4 shadow-md flex items-center justify-around text-center">
+                        <div>
+                            <span class="text-2xl">🌍</span>
+                            <h4 id="stat-shared-lbl" class="text-[10px] font-bold text-slate-400 uppercase mt-1">Total Vibes Shared</h4>
+                            <p id="stat-global-messages" class="text-lg font-black text-slate-800">...</p>
+                        </div>
+                        <div class="w-px h-8 bg-slate-200"></div>
+                        <div>
+                            <span class="text-2xl">🛡️</span>
+                            <h4 id="stat-safety-lbl" class="text-[10px] font-bold text-slate-400 uppercase mt-1">Safety Layers Active</h4>
+                            <p class="text-lg font-black text-emerald-600">100%</p>
+                        </div>
+                    </div>
+
+                    <!-- RECEIVED PEER REVIEWS DISPLAY -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
                             <h3 id="letters-title" class="text-sm font-extrabold text-slate-700 uppercase tracking-wider">Your Digital Envelopes</h3>
@@ -220,7 +250,7 @@
             <div class="space-y-2">
                 <label id="modal-vibe-lbl" class="block text-xs font-extrabold text-slate-500 uppercase tracking-wider">Select Exactly 3 Distinct Vibe Traits:</label>
                 <div id="vibe-checkbox-grid" class="grid grid-cols-2 gap-2">
-                    <!-- Standard options injected dynamically by language architecture -->
+                    <!-- Standard options injected dynamically -->
                 </div>
                 <div id="vibe-counter-feedback" class="text-[11px] font-bold text-amber-600">Selected: 0 / 3</div>
             </div>
@@ -258,7 +288,7 @@
     <script>
         // Global State Matrix
         const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImTab24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
         
         let supabaseClient;
         let currentLanguage = 'en';
@@ -272,35 +302,35 @@
             "putain", "merde", "khra", "zbel", "bourricot", "hmar", "klb", "kalb", "rkhi6", "rkis"
         ];
 
-        // Dictionary of Vibe Tags across languages
+        // Dictionary of Vibe Tags
         const VIBE_OPTIONS_POOL = {
             en: ["✨ Brilliant", "🔥 Unstoppable", "🧠 Mastermind", "🌟 Pure Energy", "🎨 Creative Soul", "🚀 Visionary", "💎 Rare Gem", "🤝 Solid Rock"],
             fr: ["✨ Brillant", "🔥 Inarrêtable", "🧠 Mastermind", "🌟 Énergie Pure", "🎨 Âme Créative", "🚀 Visionnaire", "💎 Perle Rare", "🤝 Pilier Solide"],
             ar: ["✨ عبقري", "🔥 لا يتوقف", "🧠 عقل مدبر", "🌟 طاقة نقية", "🎨 روح مبدعة", "🚀 رؤيوي", "💎 جوهرة نادرة", "🤝 سند قوي"]
         };
 
-        // Radiance Booster Random Array Localized
+        // Simplified Non-Technical Radiance Boosters
         const BOOST_QUOTES = {
             en: [
-                "You are capable of rewriting any system error in your life.",
-                "Your energy profile scales infinitely. Keep building!",
-                "The summer is yours to conquer; debug the doubt and compile greatness.",
-                "You are the structural backbone of this team's core system architecture.",
-                "Pure talent is detected in your workspace parameters. Keep pushing limits!"
+                "You are fully capable of turning any difficult situation into a great success story.",
+                "Your positive energy changes the mood of any room you walk into. Keep sharing it!",
+                "The summer is yours to shine; clear out your doubts and celebrate how far you have come.",
+                "Your presence and kindness make a lasting impact on everyone in this class.",
+                "Incredible talent and a good heart are a rare mix, and you have both. Keep going!"
             ],
             fr: [
-                "Ton potentiel est infini, ne t'arrête jamais.",
-                "Tu es capable de réécrire n'importe quelle erreur système dans ta vie.",
-                "Une énergie incroyable se dégage de ton parcours, continue ainsi !",
-                "Tu structures l'avenir avec brio. Compile tes rêves cet été.",
-                "Aucun bug ne peut résister à la clarté de ton esprit."
+                "Tu es pleinement capable de transformer chaque moment difficile en une belle réussite.",
+                "Ton énergie positive change instantanément l'atmosphère autour de toi. Continue à la partager !",
+                "Cet été est ta saison pour briller ; oublie tes doutes et célèbre tout le chemin que tu as parcouru.",
+                "Ta gentillesse et ta présence laissent une empreinte précieuse sur toute cette classe.",
+                "Un grand talent associé à un bon cœur est une perle rare, et tu possèdes les deux. Fonce !"
             ],
             ar: [
-                "أنت شخص رائع ولديك القدرة على تحقيق المستحيل.",
-                "طاقتك فريدة من نوعها وتستطيع إعادة برمجة أي عقبة في حياتك.",
-                "أنت الركيزة الأساسية لنجاح هذا الفريق، واصل التقدم بلا خوف.",
-                "قدراتك تتجاوز الحدود والمستقبل ينتظر بصمتك المميزة.",
-                "لا تترك أي مساحة للشك، إمكانياتك غير محدودة ومثيرة للإعجاب."
+                "أنت قادر تماماً على تحويل أي موقف صعب إلى قصة نجاح رائعة.",
+                "طاقتك الإيجابية تغير أجواء أي مكان تتواجد فيه. استمر في نشرها!",
+                "هذا الصيف فرصة لتشرق من جديد؛ تخلص من كل شكوكك واحتفل بما حققته.",
+                "لطفك ووجودك يتركان أثراً جميلاً لا يُنسى في قلوب الجميع هنا.",
+                "الموهبة العالية والقلب الطيب مزيج نادر جداً، وأنت تملك الاثنين معاً. واصل تقدمك!"
             ]
         };
 
@@ -318,7 +348,7 @@
                 analyticsTitle: "Your Vibe Energy Matrix",
                 btnKeepsake: "Download My Summer Keepsake (PDF)",
                 radianceLbl: "🔋 CLICK FOR A SUMMER BOOST // طاقة إيجابية",
-                radianceDefault: "Click here to recharge your terminal frequency with pure class adrenaline!",
+                radianceDefault: "Click here to recharge your frequency with pure class positivity!",
                 lettersTitle: "Your Digital Envelopes",
                 searchPlaceholder: "Search classmate's name...",
                 modalTo: "To:",
@@ -333,7 +363,11 @@
                 authSuccess: "Access Authorized! Syncing vectors...",
                 authNewPass: "New passkey established successfully! Welcome to the hub.",
                 authWrong: "Invalid configuration credentials. Check name or passkey.",
-                authNotFound: "Name not registered in the student master data directory."
+                authNotFound: "Name not registered in the student master data directory.",
+                cdTitle: "Summer Freedom Horizon",
+                cdSub: "Time remaining until university breaks officially unlock",
+                statShared: "Total Vibes Shared",
+                statSafety: "Safety Layers Active"
             },
             fr: {
                 heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
@@ -362,7 +396,11 @@
                 authSuccess: "Accès Autorisé ! Synchronisation des données...",
                 authNewPass: "Nouvelle clé secrète enregistrée avec succès ! Bienvenue.",
                 authWrong: "Identifiants invalides. Vérifiez votre nom ou clé secrète.",
-                authNotFound: "Nom non répertorié dans le registre de la classe."
+                authNotFound: "Nom non répertorié dans le registre de la classe.",
+                cdTitle: "Horizon des Vacances",
+                cdSub: "Temps restant avant la libération officielle des cours",
+                statShared: "Vibrations Partagées",
+                statSafety: "Sécurité Active"
             },
             ar: {
                 heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
@@ -391,23 +429,54 @@
                 authSuccess: "تم تأكيد الدخول بنجاح! جاري تحميل البيانات...",
                 authNewPass: "تم تعيين رمز المرور السري الجديد بنجاح! مرحباً بك.",
                 authWrong: "كلمة المرور غير مطابقة. يرجى التحقق وإعادة المحاولة.",
-                authNotFound: "هذا الاسم غير مسجل في الدليل الرسمي لطلاب الدفعة."
+                authNotFound: "هذا الاسم غير مسجل في الدليل الرسمي لطلاب الدفعة.",
+                cdTitle: "أفق الحرية الصيفية",
+                cdSub: "الوقت المتبقي حتى تبدأ العطلة الصيفية الجامعية رسمياً",
+                statShared: "إجمالي الكلمات الطيبة",
+                statSafety: "أنظمة الأمان نشطة"
             }
         };
 
-        // Initialize Supabase and global event attachment handlers
         document.addEventListener("DOMContentLoaded", () => {
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            switchLanguage('en'); // Boot with Default language English
+            switchLanguage('en'); 
+            startCountdownClock();
             
             document.getElementById("auth-form").addEventListener("submit", handleAuthenticationPipeline);
         });
+
+        // Countdown Timer Logic
+        function startCountdownClock() {
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 25); // Dynamic target: 25 days out
+
+            function updateTime() {
+                const now = new Date().getTime();
+                const diff = targetDate.getTime() - now;
+
+                if (diff <= 0) {
+                    document.getElementById("cd-days").innerText = "00";
+                    document.getElementById("cd-hours").innerText = "00";
+                    document.getElementById("cd-mins").innerText = "00";
+                    return;
+                }
+
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById("cd-days").innerText = d < 10 ? '0' + d : d;
+                document.getElementById("cd-hours").innerText = h < 10 ? '0' + h : h;
+                document.getElementById("cd-mins").innerText = m < 10 ? '0' + m : m;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+        }
 
         // 1. LANGUAGE STATE UPDATER & TAB MANAGER
         function switchLanguage(langCode) {
             currentLanguage = langCode;
             
-            // Set document direction logic based on choice
             if(langCode === 'ar') {
                 document.documentElement.dir = "rtl";
                 document.documentElement.lang = "ar";
@@ -416,7 +485,6 @@
                 document.documentElement.lang = langCode;
             }
 
-            // Highlight chosen tab layout visually
             ['en', 'fr', 'ar'].forEach(l => {
                 const btn = document.getElementById(`lang-btn-${l}`);
                 if(l === langCode) {
@@ -426,7 +494,6 @@
                 }
             });
 
-            // Localize text components
             const dict = LOCALIZATION_MAP[langCode];
             document.getElementById("hero-title").innerText = dict.heroTitle;
             document.getElementById("hero-desc").innerText = dict.heroDesc;
@@ -441,8 +508,11 @@
             document.getElementById("radiance-lbl").innerText = dict.radianceLbl;
             document.getElementById("letters-title").innerText = dict.lettersTitle;
             document.getElementById("grid-search").placeholder = dict.searchPlaceholder;
+            document.getElementById("countdown-title").innerText = dict.cdTitle;
+            document.getElementById("countdown-subtitle").innerText = dict.cdSub;
+            document.getElementById("stat-shared-lbl").innerText = dict.statShared;
+            document.getElementById("stat-safety-lbl").innerText = dict.statSafety;
             
-            // Localize modal subcomponents safely
             document.getElementById("modal-title-prefix").innerText = dict.modalTo;
             document.getElementById("modal-vibe-lbl").innerText = dict.modalVibeLbl;
             document.getElementById("modal-msg-lbl").innerText = dict.modalMsgLbl;
@@ -455,7 +525,6 @@
             updateVibeCheckboxInterface();
             updateVibeCounterFeedback();
 
-            // Refresh runtime lists rendering if user logged in
             if(loggedInUser) {
                 renderStudentGrid();
                 renderReceivedMessages();
@@ -473,7 +542,6 @@
             feedbackEl.innerText = "Querying internal registry database rows...";
 
             try {
-                // Fetch student metadata from database
                 const { data: studentRecords, error } = await supabaseClient
                     .from('Students')
                     .select('*')
@@ -489,9 +557,7 @@
 
                 const targetUser = studentRecords[0];
 
-                // Check password cell matrix criteria
                 if (!targetUser.Password || targetUser.Password.trim() === "") {
-                    // Scenario A: Missing passkey. Save current entered input string securely as permanent secret passkey
                     const { error: updateError } = await supabaseClient
                         .from('Students')
                         .update({ Password: passwordInput })
@@ -504,7 +570,6 @@
                     feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authNewPass;
                     proceedToDashboard(targetUser);
                 } else {
-                    // Scenario B: Password row filled. Match verification check
                     if (targetUser.Password === passwordInput) {
                         feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-700 block";
                         feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authSuccess;
@@ -522,28 +587,23 @@
             }
         }
 
-        // Shift view screens instantly upon authentication success
         async function proceedToDashboard(userRecord) {
             loggedInUser = userRecord;
-            
-            // Set display parameters
             document.getElementById("user-display-name").innerText = loggedInUser.Full_name;
             document.getElementById("user-avatar-char").innerText = loggedInUser.Full_name.charAt(0).toUpperCase();
 
-            // Animate transition visibility out/in
             setTimeout(async () => {
                 document.getElementById("auth-section").classList.add("hidden");
                 document.getElementById("main-dashboard").classList.remove("hidden");
                 confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
                 
                 await synchronizeClassroomData();
+                fetchGlobalStatistics();
             }, 1000);
         }
 
-        // Universal async data pipeline pull engine
         async function synchronizeClassroomData() {
             try {
-                // Fetch complete active classmates grid row records
                 const { data: allStudents, error: studentErr } = await supabaseClient
                     .from('Students')
                     .select('id, Full_name')
@@ -560,6 +620,18 @@
             }
         }
 
+        async function fetchGlobalStatistics() {
+            try {
+                const { count, error } = await supabaseClient
+                    .from('messages')
+                    .select('*', { count: 'exact', head: true });
+                
+                if(!error && count !== null) {
+                    document.getElementById("stat-global-messages").innerText = count;
+                }
+            } catch(e) {}
+        }
+
         // 3. THE SEARCHABLE STUDENT GRID RENDER PIPELINE
         function renderStudentGrid() {
             const gridContainer = document.getElementById("students-grid");
@@ -567,7 +639,6 @@
             
             const currentSearchQuery = document.getElementById("grid-search").value.toLowerCase().trim();
 
-            // Filter out current logged user so they don't send letters to themselves
             const filteredList = globalStudentsList.filter(student => {
                 const matchesSearch = student.Full_name.toLowerCase().includes(currentSearchQuery);
                 const isNotSelf = student.id !== loggedInUser.id;
@@ -588,7 +659,6 @@
                 card.className = "glass-card rounded-2xl p-4 flex items-center justify-between hover:bg-white/90 transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md group cursor-pointer";
                 card.setAttribute("onclick", `openEnvelopeModalFor('${btoa(unescape(encodeURIComponent(student.Full_name)))}')`);
                 
-                // Fancy layout profile avatar circle structure inside grid
                 const dynamicInitials = student.Full_name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0,2);
                 
                 card.innerHTML = `
@@ -611,7 +681,6 @@
             renderStudentGrid();
         }
 
-        // Checkbox interface building engine matching active localization matrix strings
         let globalTargetRecipient = "";
         function openEnvelopeModalFor(base64Name) {
             globalTargetRecipient = decodeURIComponent(escape(atob(base64Name)));
@@ -648,7 +717,7 @@
 
             const availableTraits = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
             
-            availableTraits.forEach((trait, index) => {
+            availableTraits.forEach((trait) => {
                 const isChecked = selectedVibeTraits.includes(trait);
                 const itemBtn = document.createElement("div");
                 itemBtn.className = `p-2.5 border rounded-xl text-xs font-bold text-center cursor-pointer transition-all ${
@@ -667,7 +736,6 @@
                 selectedVibeTraits = selectedVibeTraits.filter(t => t !== traitValue);
             } else {
                 if (selectedVibeTraits.length >= 3) {
-                    // Shift pool structure pop oldest to enforce limit of exactly 3 tags
                     selectedVibeTraits.shift();
                 }
                 selectedVibeTraits.push(traitValue);
@@ -697,35 +765,32 @@
                 return;
             }
 
-            // Client interceptor verification scans against blockdictionary block list
             let toxicFlagTriggered = false;
             const textToAnalyze = rawContent.toLowerCase();
             
             TOXIC_FILTER_DICTIONARY.forEach(insultPattern => {
-                // Regex boundary checking matching high frequency words natively
                 const wordBoundaryRegex = new RegExp(`\\b${insultPattern}\\b`, 'i');
                 if(wordBoundaryRegex.test(textToAnalyze) || textToAnalyze.includes(insultPattern)) {
                     toxicFlagTriggered = true;
                 }
             });
 
-            // Enforce silent rules criteria structures
             const finalApprovedState = !toxicFlagTriggered; 
             const finalSenderName = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
 
-            // Prepare Supabase transmission payloads format
+            // FIX Applied: Passing selectedVibeTraits directly as an array structure
             const envelopePayload = {
                 content: rawContent,
                 recipient_name: globalTargetRecipient,
                 sender_name: finalSenderName,
                 is_approved: finalApprovedState,
                 toxic_flag: toxicFlagTriggered,
-                vibe_tags: JSON.stringify(selectedVibeTraits)
+                vibe_tags: selectedVibeTraits 
             };
 
             const submitBtn = document.getElementById("modal-submit-btn");
             submitBtn.disabled = true;
-            submitBtn.innerText = "...TRANSFORMING FREQUENCIES...";
+            submitBtn.innerText = "...TRANSMITTING ENVELOPE...";
 
             try {
                 const { error } = await supabaseClient
@@ -734,13 +799,11 @@
 
                 if (error) throw error;
 
-                // Fire animation success signals
                 confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0 } });
                 confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1 } });
 
                 closeEnvelopeModal();
                 
-                // Show a clean user validation prompt notice context
                 if (toxicFlagTriggered) {
                     alert(currentLanguage === 'ar' ? "تم إرسال رسالتك بنجاح للمراجعة الفنية." : (currentLanguage === 'fr' ? "Message transmis avec succès pour analyse réseau." : "Envelope successfully queued for internal server indexing alignment review."));
                 } else {
@@ -748,6 +811,7 @@
                 }
 
                 await synchronizeClassroomData();
+                fetchGlobalStatistics();
 
             } catch (err) {
                 console.error("Payload transmission crash: ", err);
@@ -770,7 +834,6 @@
             cardsStack.innerHTML = "";
 
             try {
-                // Pull incoming items where matching Recipient full name string and filter toxicity out
                 const { data: inboundEnvelopes, error } = await supabaseClient
                     .from('messages')
                     .select('*')
@@ -788,15 +851,13 @@
                             No envelopes have landed in your vault space layout matrix yet. Share positive energy with others to trigger feedback loops!
                         </div>
                     `;
-                    renderVibeAnalyticsGraph([]); // Render empty graph configuration block
+                    renderVibeAnalyticsGraph([]); 
                     return;
                 }
 
-                // Loop through polaroid design matrices configurations
                 activeReceivedMessagesCache.forEach((msg, idx) => {
                     const polaroidCard = document.createElement("div");
                     
-                    // Soft color generation layout arrays rotations mapping indexing loops
                     const designPalettes = [
                         "bg-amber-50/90 border-amber-200 rotate-1",
                         "bg-blue-50/90 border-blue-200 -rotate-1",
@@ -805,10 +866,9 @@
                     ];
                     const selectedPaletteStyle = designPalettes[idx % designPalettes.length];
 
-                    // Process dynamic subcomponents parsing array string arrays models inside cells
                     let directTagsArr = [];
                     try {
-                        directTagsArr = JSON.parse(msg.vibe_tags);
+                        directTagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
                     } catch(e) {
                         directTagsArr = ["✨ Class Star"];
                     }
@@ -841,18 +901,16 @@
             }
         }
 
-        // Native HTML/CSS Graph Component Builder Pipeline 
         function renderVibeAnalyticsGraph(messagesArray) {
             const graphContainer = document.getElementById("analytics-bars-container");
             graphContainer.innerHTML = "";
 
-            // Flatten all tags counts metrics counters mapping tracking indexes
             const frequenciesMap = {};
             let totalTagsDetectedCount = 0;
 
             messagesArray.forEach(msg => {
                 try {
-                    const tags = JSON.parse(msg.vibe_tags);
+                    const tags = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
                     if(Array.isArray(tags)) {
                         tags.forEach(t => {
                             frequenciesMap[t] = (frequenciesMap[t] || 0) + 1;
@@ -862,12 +920,10 @@
                 } catch(e){}
             });
 
-            // Enforce minimum base fallback elements metrics layout options pool mapping if map values empty
             const referenceTraitsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
             
             referenceTraitsPool.forEach(trait => {
                 const absoluteCount = frequenciesMap[trait] || 0;
-                // Safe calculation to avoid zero divisions
                 const visualPercentageWidth = totalTagsDetectedCount > 0 ? Math.round((absoluteCount / totalTagsDetectedCount) * 100) : 0;
 
                 const rowBarLayout = document.createElement("div");
@@ -885,11 +941,8 @@
             });
         }
 
-        // ========================================================= -->
-        // 4. THE SUMMER RADIANCE GENERATOR ENGINE                   -->
-        // ========================================================= -->
+        // 4. THE SUMMER RADIANCE GENERATOR ENGINE
         function triggerRadianceBoost() {
-            // Explode visual canvas vectors
             confetti({ particleCount: 80, scalar: 1.2, rando: [0.8, 1.2] });
 
             const sourcePool = BOOST_QUOTES[currentLanguage] || BOOST_QUOTES['en'];
@@ -905,9 +958,7 @@
             }, 150);
         }
 
-        // ========================================================= -->
-        // 5. JSPDF CUSTOM KEEPSAKE CERTIFICATE GENERATION LAYER     -->
-        // ========================================================= -->
+        // 5. KEEPSAKE CERTIFICATE GENERATION LAYER
         function generateKeepsakePDF() {
             if (activeReceivedMessagesCache.length === 0) {
                 alert("Vault contains zero verified messages records. Generate peer rows synchronization vectors first.");
@@ -915,23 +966,20 @@
             }
 
             const { jsPDF } = window.jspdf;
-            // Create standard A4 portrait layout document matrix bounds units
             const documentInstance = new jsPDF({
                 orientation: "portrait",
                 unit: "mm",
                 format: "a4"
             });
 
-            // Set beautiful gradient simulation page bounding boxes anchors borders configuration
-            documentInstance.setDrawColor(244, 114, 182); // Pink stroke boundaries border line context
+            documentInstance.setDrawColor(244, 114, 182); 
             documentInstance.setLineWidth(1.5);
             documentInstance.rect(5, 5, 200, 287);
 
-            documentInstance.setDrawColor(59, 130, 246); // Blue internal subline frame link alignment
+            documentInstance.setDrawColor(59, 130, 246); 
             documentInstance.setLineWidth(0.5);
             documentInstance.rect(7, 7, 196, 283);
 
-            // Document Header Block Text Injecting Matrix
             documentInstance.setFont("Helvetica", "bold");
             documentInstance.setFontSize(22);
             documentInstance.setTextColor(30, 41, 59);
@@ -940,16 +988,14 @@
             documentInstance.setFont("Helvetica", "normal");
             documentInstance.setFontSize(10);
             documentInstance.setTextColor(100, 116, 139);
-            documentInstance.text("PROJECT_ENVELOPE // UNIVERSITY CLASS COMPILATION VERBAL SPECTRUMS", 105, 32, { align: "center" });
+            documentInstance.text("PROJECT_ENVELOPE // UNIVERSITY CLASS COMPILATION", 105, 32, { align: "center" });
 
-            // Horizontal Separator Line
             documentInstance.setDrawColor(226, 232, 240);
             documentInstance.line(20, 38, 190, 38);
 
-            // Recipient Section Block Parameters Mapping Title Data Blocks Configuration Labels 
             documentInstance.setFont("Helvetica", "bold");
             documentInstance.setFontSize(14);
-            documentInstance.setTextColor(219, 39, 119); // Hot Pink dynamic tracking labels highlight color
+            documentInstance.setTextColor(219, 39, 119); 
             documentInstance.text(`VALEDICTION MATRIX FOR: ${loggedInUser.Full_name.toUpperCase()}`, 20, 48);
 
             documentInstance.setFont("Helvetica", "italic");
@@ -957,15 +1003,12 @@
             documentInstance.setTextColor(71, 85, 105);
             documentInstance.text(`Total Peer Messages Verified: ${activeReceivedMessagesCache.length} Inbound Transmission Records`, 20, 54);
 
-            // Draw dynamic grid content entries block list loops
             let currentVerticalCursorY = 65;
             const maximumVerticalPageLimitY = 270;
 
-            activeReceivedMessagesCache.forEach((envelope, index) => {
-                // Safeguard boundaries checking against overflow heights to append split tracking pages frames automatically
+            activeReceivedMessagesCache.forEach((envelope) => {
                 if (currentVerticalCursorY > maximumVerticalPageLimitY) {
                     documentInstance.addPage();
-                    // Redraw page frames parameters configurations links on next sheet sequence structures safely
                     documentInstance.setDrawColor(244, 114, 182);
                     documentInstance.setLineWidth(1.5);
                     documentInstance.rect(5, 5, 200, 287);
@@ -973,15 +1016,13 @@
                     documentInstance.setLineWidth(0.5);
                     documentInstance.rect(7, 7, 196, 283);
                     
-                    currentVerticalCursorY = 25; // Reset tracking index layout position coordinates cursor heights
+                    currentVerticalCursorY = 25; 
                 }
 
-                // Parse message string text fields configuration bounding boxes margins limitations wrapping splits context blocks
-                const rawCleanedContentString = envelope.content.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, ''); // Clear complex graphic sequences out before pdf drawing layers rendering safely
+                const rawCleanedContentString = envelope.content.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, ''); 
                 const splitTextLinesArray = documentInstance.splitTextToSize(`"${rawCleanedContentString}"`, 160);
                 const blockCalculatedHeight = (splitTextLinesArray.length * 5) + 12;
 
-                // Box shading panel blueprint context
                 documentInstance.setFillColor(248, 250, 252);
                 documentInstance.rect(18, currentVerticalCursorY, 174, blockCalculatedHeight, "F");
 
@@ -989,38 +1030,33 @@
                 documentInstance.setLineWidth(0.3);
                 documentInstance.rect(18, currentVerticalCursorY, 174, blockCalculatedHeight, "D");
 
-                // Text details printing execution row index tracking lines
                 documentInstance.setFont("Helvetica", "normal");
                 documentInstance.setFontSize(10);
                 documentInstance.setTextColor(51, 65, 85);
                 documentInstance.text(splitTextLinesArray, 22, currentVerticalCursorY + 6);
 
-                // Meta metadata tracing footer data alignments inside element item containers blocks grids links layout rows
                 documentInstance.setFont("Helvetica", "bold");
                 documentInstance.setFontSize(8);
                 documentInstance.setTextColor(148, 163, 184);
                 
                 let parsedVibeTagsArray = [];
-                try { parsedVibeTagsArray = JSON.parse(envelope.vibe_tags); } catch(err){}
+                try { parsedVibeTagsArray = Array.isArray(envelope.vibe_tags) ? envelope.vibe_tags : JSON.parse(envelope.vibe_tags); } catch(err){}
                 const flattenedTagsLabel = Array.isArray(parsedVibeTagsArray) ? parsedVibeTagsArray.join(" | ") : "Classmate Review";
 
                 documentInstance.text(`SOURCE: ${envelope.sender_name}   //   VIBE TAGS: ${flattenedTagsLabel}`, 22, currentVerticalCursorY + blockCalculatedHeight - 3);
 
-                // Increment universal tracker spacing vectors mapping coordinates for spacing intervals safely
                 currentVerticalCursorY += blockCalculatedHeight + 6;
             });
 
-            // Universal Document Security Footprint Signatures Seal Stamp
             if(currentVerticalCursorY < 260) {
                 documentInstance.setFont("Helvetica", "bold");
                 documentInstance.setFontSize(9);
                 documentInstance.setTextColor(59, 130, 246);
-                documentInstance.text("// SECURE CRYPTOGRAPHIC END-OF-TRANSMISSION VALIDATION LINK SEAL //", 105, 275, { align: "center" });
+                documentInstance.text("// SECURE CERTIFICATE VALIDATION SEAL //", 105, 275, { align: "center" });
             }
 
-            // Save and prompt download file pipeline link interface layer triggers action context safely
             const safeFileSavingTitleNameString = loggedInUser.Full_name.replace(/\s+/g, '_');
-            documentInstance.save(`Summer_Keepsake_Matrix_${safeFileSavingTitleNameString}.pdf`);
+            documentInstance.save(`Summer_Keepsake_${safeFileSavingTitleNameString}.pdf`);
         }
     </script>
 </body>
