@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Supabase JS Client v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #fef08a 0%, #f472b6 50%, #3b82f6 100%);
+            min-height: 100vh;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .animate-bounce-soft {
+            animation: bounceSoft 3s infinite alternate;
+        }
+        @keyframes bounceSoft {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+        /* Custom scrollbar for beautiful UI consistency */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(244, 114, 182, 0.5);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(244, 114, 182, 0.8);
+        }
+    </style>
+</head>
+<body class="p-3 md:p-8 antialiased text-slate-800 selection:bg-pink-300 selection:text-pink-900">
+
+    <div class="max-w-6xl mx-auto space-y-8">
+        
+        <!-- ========================================================= -->
+        <!-- 1. HERO WELCOME HUB & LANGUAGE SELECTOR                   -->
+        <!-- ========================================================= -->
+        <header class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-yellow-300 rounded-full blur-3xl opacity-50"></div>
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-400 rounded-full blur-3xl opacity-50"></div>
+            
+            <div class="space-y-3 relative z-10 text-center md:text-left rtl:text-right max-w-2xl">
+                <h1 id="hero-title" class="text-2xl md:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-pink-600 to-amber-500 animate-pulse">
+                    ✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨
+                </h1>
+                <p id="hero-desc" class="text-sm md:text-base font-medium text-slate-600 leading-relaxed">
+                    <!-- Dynamic Translation Inject -->
+                </p>
+            </div>
+
+            <!-- Language Tabs Switches -->
+            <div class="flex items-center bg-white/50 p-1.5 rounded-2xl border border-white/60 shadow-inner shrink-0 relative z-10">
+                <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer">EN</button>
+                <button onclick="switchLanguage('fr')" id="lang-btn-fr" class="px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer">FR</button>
+                <button onclick="switchLanguage('ar')" id="lang-btn-ar" class="px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer">العربية</button>
+            </div>
+        </header>
+
+        <!-- ========================================================= -->
+        <!-- 2. COOL & SECURE ACCESS GATE                              -->
+        <!-- ========================================================= -->
+        <section id="auth-section" class="glass-panel rounded-3xl p-6 md:p-10 shadow-xl max-w-md mx-auto space-y-6 transform transition-all duration-500">
+            <div class="text-center space-y-2">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-pink-100 rounded-2xl text-2xl shadow-md mb-2 animate-bounce-soft">🔑</div>
+                <h2 id="auth-title" class="text-xl font-extrabold text-slate-800">Secure Access Pass</h2>
+                <p id="auth-subtitle" class="text-xs text-slate-500">Unlock your envelope or register your new summer passkey</p>
+            </div>
+
+            <form id="auth-form" class="space-y-4">
+                <div>
+                    <label id="label-fullname" class="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Full Name</label>
+                    <input type="text" id="auth-fullname" required autocomplete="name" class="w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition" placeholder="e.g., Mohamed Amine">
+                </div>
+                <div>
+                    <label id="label-password" class="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Secret Passkey</label>
+                    <input type="password" id="auth-password" required autocomplete="current-password" class="w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition" placeholder="••••••••">
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full py-3.5 px-4 bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white rounded-2xl text-sm font-bold shadow-lg shadow-pink-200 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+                    Unlock Dashboard
+                </button>
+            </form>
+            <div id="auth-feedback" class="text-center text-xs font-semibold hidden p-3 rounded-xl"></div>
+        </section>
+
+        <!-- MAIN INTERACTIVE DASHBOARD CONTAINER (HIDDEN UNTIL AUTH) -->
+        <main id="main-dashboard" class="space-y-8 hidden">
+            
+            <!-- TWO COLUMN APP MATRIX -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- LEFT PANEL: USER VAULT & BOOST (5 COLUMNS) -->
+                <div class="lg:col-span-5 space-y-8">
+                    
+                    <!-- 5. THE USER VAULT -->
+                    <div class="glass-panel rounded-3xl p-6 shadow-xl space-y-6 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-3 bg-blue-500/10 rounded-bl-3xl font-mono text-[10px] text-blue-600 font-bold tracking-widest">VAULT CORE</div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-tr from-amber-400 to-pink-500 rounded-2xl flex items-center justify-center text-2xl shadow-md text-white font-black" id="user-avatar-char">
+                                ?
+                            </div>
+                            <div>
+                                <p id="vault-welcome-tag" class="text-xs font-bold text-slate-400 uppercase tracking-widest">Welcome Back,</p>
+                                <h2 id="user-display-name" class="text-xl font-black text-slate-800">Student Name</h2>
+                            </div>
+                        </div>
+
+                        <!-- Vibe Tag Profile Analytics Summary Graph (Tailwind Native Stack Grid) -->
+                        <div class="bg-white/40 border border-white/60 p-4 rounded-2xl space-y-3">
+                            <h3 id="analytics-title" class="text-xs font-bold uppercase tracking-wider text-slate-500">Your Vibe Energy Matrix</h3>
+                            <div id="analytics-bars-container" class="space-y-2">
+                                <!-- Bars dynamically loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Download Keepsake Action Button -->
+                        <button onclick="generateKeepsakePDF()" class="w-full py-3 px-4 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                            <span>📥</span> <span id="btn-keepsake-txt">Download My Summer Keepsake (PDF)</span>
+                        </button>
+                    </div>
+
+                    <!-- 4. THE SUMMER RADIANCE GENERATOR -->
+                    <div onclick="triggerRadianceBoost()" class="glass-panel rounded-3xl p-6 shadow-xl relative overflow-hidden cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group border-2 border-pink-300/40 hover:border-pink-400">
+                        <div class="absolute -right-8 -bottom-8 text-8xl opacity-10 group-hover:opacity-20 group-hover:rotate-12 transition-all">🔋</div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 id="radiance-lbl" class="text-xs font-black uppercase tracking-widest text-pink-600 bg-pink-100 px-2.5 py-1 rounded-full">🔋 CLICK FOR A SUMMER BOOST // طاقة إيجابية</h3>
+                            <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-pink-500"></span>
+                        </div>
+                        <p id="radiance-display" class="text-base font-bold text-slate-700 italic leading-relaxed min-h-[50px] flex items-center">
+                            Click here to recharge your terminal frequency with pure class adrenaline!
+                        </p>
+                    </div>
+
+                    <!-- RECEIVED PEER reviews DISPLAY -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 id="letters-title" class="text-sm font-extrabold text-slate-700 uppercase tracking-wider">Your Digital Envelopes</h3>
+                            <span id="letters-count" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-0.5 rounded-full">0</span>
+                        </div>
+                        <div id="received-messages-stack" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                            <!-- Dynamic sticky notes or polaroids populate here -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT PANEL: SEARCHABLE GRID & INTERACTION PIPELINE (7 COLUMNS) -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- SEARCH MATRIX -->
+                    <div class="glass-panel rounded-3xl p-4 shadow-lg flex items-center gap-3">
+                        <span class="text-lg pl-2">🔍</span>
+                        <input type="text" id="grid-search" oninput="filterStudentGrid()" class="w-full bg-transparent border-none text-sm font-medium focus:outline-none placeholder:text-slate-400" placeholder="Search classmate's name...">
+                    </div>
+
+                    <!-- 3. THE SEARCHABLE STUDENT GRID -->
+                    <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[720px] overflow-y-auto p-1">
+                        <!-- Student Profile Cards Populate Here Dynamically -->
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ASYMMETRIC MODAL POPUP WINDOW FOR WRITING ENVELOPES      -->
+    <!-- ========================================================= -->
+    <div id="envelope-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-xl rounded-3xl shadow-2xl p-6 md:p-8 transform scale-95 transition-transform duration-300 space-y-6 max-h-[90vh] overflow-y-auto relative">
+            
+            <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-400 hover:text-slate-600 font-bold text-xl cursor-pointer p-2 bg-white/50 rounded-full w-8 h-8 flex items-center justify-center shadow-sm">×</button>
+            
+            <div class="space-y-1">
+                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-blue-600 bg-blue-100 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
+                <h3 class="text-xl font-black text-slate-800 flex items-center gap-2">
+                    <span id="modal-title-prefix">To:</span> <span id="modal-recipient-name" class="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-600">Student Name</span>
+                </h3>
+            </div>
+
+            <!-- VIBE CHECKBOXES SELECTOR CONTAINER (EXACTLY 3 REQUIRED) -->
+            <div class="space-y-2">
+                <label id="modal-vibe-lbl" class="block text-xs font-extrabold text-slate-500 uppercase tracking-wider">Select Exactly 3 Distinct Vibe Traits:</label>
+                <div id="vibe-checkbox-grid" class="grid grid-cols-2 gap-2">
+                    <!-- Standard options injected dynamically by language architecture -->
+                </div>
+                <div id="vibe-counter-feedback" class="text-[11px] font-bold text-amber-600">Selected: 0 / 3</div>
+            </div>
+
+            <!-- MESSAGE INPUT FIELD -->
+            <div class="space-y-2">
+                <label id="modal-msg-lbl" class="block text-xs font-extrabold text-slate-500 uppercase tracking-wider">Your Message of Appreciation:</label>
+                <textarea id="modal-msg-content" rows="4" class="w-full p-4 bg-white/80 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none" placeholder="Write something inspiring... Keep it genuine, kind, and unforgettable."></textarea>
+            </div>
+
+            <!-- INLINE ANONYMOUS SLIDER SWITCH -->
+            <div class="flex items-center justify-between p-3 bg-white/50 border border-white/80 rounded-2xl">
+                <div class="space-y-0.5">
+                    <span id="anon-toggle-lbl" class="text-xs font-bold text-slate-700 block">Send Anonymously</span>
+                    <span id="anon-toggle-sub" class="text-[10px] text-slate-400 block">Your name will show as Anonymous</span>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="modal-anon-checkbox" class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-500"></div>
+                </label>
+            </div>
+
+            <!-- CONTROLS CONTAINER -->
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button onclick="closeEnvelopeModal()" id="modal-cancel-btn" class="px-5 py-3 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100 transition cursor-pointer">Cancel</button>
+                <button onclick="submitEnvelopePipeline()" id="modal-submit-btn" class="px-6 py-3 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-pink-600 hover:from-blue-700 hover:to-pink-700 text-white shadow-lg transition transform active:scale-95 cursor-pointer">Transmit Envelope</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- CLIENT SIDE ARCHITECTURE CONFIGURATION SYSTEM             -->
+    <!-- ========================================================= -->
+    <script>
+        // Global State Matrix
+        const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
+        
+        let supabaseClient;
+        let currentLanguage = 'en';
+        let loggedInUser = null; 
+        let globalStudentsList = [];
+        let selectedVibeTraits = [];
+
+        // 6. TRILINGUAL TOXICITY BLOCKDICTIONARY
+        const TOXIC_FILTER_DICTIONARY = [
+            "hmar", "rekhis", "kavi", "moche", "con", "connard", "salope", "fuck", "bitch", "asshole", 
+            "putain", "merde", "khra", "zbel", "bourricot", "hmar", "klb", "kalb", "rkhi6", "rkis"
+        ];
+
+        // Dictionary of Vibe Tags across languages
+        const VIBE_OPTIONS_POOL = {
+            en: ["✨ Brilliant", "🔥 Unstoppable", "🧠 Mastermind", "🌟 Pure Energy", "🎨 Creative Soul", "🚀 Visionary", "💎 Rare Gem", "🤝 Solid Rock"],
+            fr: ["✨ Brillant", "🔥 Inarrêtable", "🧠 Mastermind", "🌟 Énergie Pure", "🎨 Âme Créative", "🚀 Visionnaire", "💎 Perle Rare", "🤝 Pilier Solide"],
+            ar: ["✨ عبقري", "🔥 لا يتوقف", "🧠 عقل مدبر", "🌟 طاقة نقية", "🎨 روح مبدعة", "🚀 رؤيوي", "💎 جوهرة نادرة", "🤝 سند قوي"]
+        };
+
+        // Radiance Booster Random Array Localized
+        const BOOST_QUOTES = {
+            en: [
+                "You are capable of rewriting any system error in your life.",
+                "Your energy profile scales infinitely. Keep building!",
+                "The summer is yours to conquer; debug the doubt and compile greatness.",
+                "You are the structural backbone of this team's core system architecture.",
+                "Pure talent is detected in your workspace parameters. Keep pushing limits!"
+            ],
+            fr: [
+                "Ton potentiel est infini, ne t'arrête jamais.",
+                "Tu es capable de réécrire n'importe quelle erreur système dans ta vie.",
+                "Une énergie incroyable se dégage de ton parcours, continue ainsi !",
+                "Tu structures l'avenir avec brio. Compile tes rêves cet été.",
+                "Aucun bug ne peut résister à la clarté de ton esprit."
+            ],
+            ar: [
+                "أنت شخص رائع ولديك القدرة على تحقيق المستحيل.",
+                "طاقتك فريدة من نوعها وتستطيع إعادة برمجة أي عقبة في حياتك.",
+                "أنت الركيزة الأساسية لنجاح هذا الفريق، واصل التقدم بلا خوف.",
+                "قدراتك تتجاوز الحدود والمستقبل ينتظر بصمتك المميزة.",
+                "لا تترك أي مساحة للشك، إمكانياتك غير محدودة ومثيرة للإعجاب."
+            ]
+        };
+
+        // Trilingual Localization Configuration Matrix
+        const LOCALIZATION_MAP = {
+            en: {
+                heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
+                heroDesc: "The most valuable treasure a student carries over long university breaks is genuine words of appreciation from their peers. Let's lock in memories before summer takes over.",
+                authTitle: "Secure Access Pass",
+                authSubtitle: "Unlock your envelope or register your new summer passkey",
+                lblFullName: "Full Name",
+                lblPassword: "Secret Passkey",
+                btnAuth: "Unlock Dashboard",
+                vaultWelcome: "Welcome Back,",
+                analyticsTitle: "Your Vibe Energy Matrix",
+                btnKeepsake: "Download My Summer Keepsake (PDF)",
+                radianceLbl: "🔋 CLICK FOR A SUMMER BOOST // طاقة إيجابية",
+                radianceDefault: "Click here to recharge your terminal frequency with pure class adrenaline!",
+                lettersTitle: "Your Digital Envelopes",
+                searchPlaceholder: "Search classmate's name...",
+                modalTo: "To:",
+                modalVibeLbl: "Select Exactly 3 Distinct Vibe Traits:",
+                modalVibeCounter: "Selected: {count} / 3",
+                modalMsgLbl: "Your Message of Appreciation:",
+                modalMsgPlaceholder: "Write something inspiring... Keep it genuine, kind, and unforgettable.",
+                modalAnonLbl: "Send Anonymously",
+                modalAnonSub: "Your name will show as Anonymous",
+                modalCancel: "Cancel",
+                modalSubmit: "Transmit Envelope",
+                authSuccess: "Access Authorized! Syncing vectors...",
+                authNewPass: "New passkey established successfully! Welcome to the hub.",
+                authWrong: "Invalid configuration credentials. Check name or passkey.",
+                authNotFound: "Name not registered in the student master data directory."
+            },
+            fr: {
+                heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
+                heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances universitaires est l'ensemble des mots sincères d'appréciation de ses pairs. Gravons nos souvenirs.",
+                authTitle: "Pass d'Accès Sécurisé",
+                authSubtitle: "Ouvrez votre enveloppe ou enregistrez votre clé secrète d'été",
+                lblFullName: "Nom Complet",
+                lblPassword: "Clé Secrète",
+                btnAuth: "Déverrouiller le Tableau de Bord",
+                vaultWelcome: "Bon retour,",
+                analyticsTitle: "Votre Matrice d'Énergie",
+                btnKeepsake: "Télécharger mon Souvenir d'Été (PDF)",
+                radianceLbl: "🔋 CLIQUEZ POUR UN BOOST D'ÉTÉ // طاقة إيجابية",
+                radianceDefault: "Cliquez ici pour recharger vos fréquences de pure énergie positive !",
+                lettersTitle: "Vos Enveloppes Numériques",
+                searchPlaceholder: "Rechercher un camarade de classe...",
+                modalTo: "À :",
+                modalVibeLbl: "Sélectionnez exactement 3 traits d'énergie :",
+                modalVibeCounter: "Sélectionné : {count} / 3",
+                modalMsgLbl: "Votre message d'appréciation :",
+                modalMsgPlaceholder: "Écrivez quelque chose d'inspirant... Sincère, bienveillant et inoubliable.",
+                modalAnonLbl: "Envoyer anonymement",
+                modalAnonSub: "Votre nom apparaîtra comme Anonyme",
+                modalCancel: "Annuler",
+                modalSubmit: "Transmettre l'Enveloppe",
+                authSuccess: "Accès Autorisé ! Synchronisation des données...",
+                authNewPass: "Nouvelle clé secrète enregistrée avec succès ! Bienvenue.",
+                authWrong: "Identifiants invalides. Vérifiez votre nom ou clé secrète.",
+                authNotFound: "Nom non répertorié dans le registre de la classe."
+            },
+            ar: {
+                heroTitle: "✨ PROJECT_ENVELOPE // THE SUMMER CODES ✨",
+                heroDesc: "أثمن كنز يحمله الطالب معه خلال العطلة الجامعية الطويلة هو كلمات التقدير الصادقة من زملائه. لنحفظ ذكرياتنا الإيجابية قبل بداية الصيف.",
+                authTitle: "بوابة العبور الآمنة",
+                authSubtitle: "افتح ظرفك الرقمي أو أنشئ رمز المرور السري الخاص بك",
+                lblFullName: "الاسم الكامل",
+                lblPassword: "رمز المرور السري",
+                btnAuth: "دخول لوحة التحكم",
+                vaultWelcome: "مرحباً بك مجدداً،",
+                analyticsTitle: "مصفوفة الطاقة الإيجابية الخاصة بك",
+                btnKeepsake: "تحميل وثيقة الذكريات الصيفية (PDF)",
+                radianceLbl: "🔋 طاقة إيجابية // اضغط للحصول على شحنة حافزة",
+                radianceDefault: "اضغط هنا لشحن طاقتك المعنوية بأجمل العبارات التحفيزية من زملائك!",
+                lettersTitle: "مظاريفك الرقمية الواردة",
+                searchPlaceholder: "ابحث عن اسم زميلك...",
+                modalTo: "إلى:",
+                modalVibeLbl: "اختر 3 صفات مميزة بالضبط:",
+                modalVibeCounter: "تم اختيار: {count} / 3",
+                modalMsgLbl: "رسالة التقدير والامتنان الخاصة بك:",
+                modalMsgPlaceholder: "اكتب شيئاً ملهماً ونقياً... اجعل كلماتك صادقة، طيبة ولا تُنسى أبداً.",
+                modalAnonLbl: "إرسال كهوية مجهولة",
+                modalAnonSub: "سيظهر اسمك كـ 'فاعل خير' أو مجهول",
+                modalCancel: "إلغاء",
+                modalSubmit: "إرسال المغلف الرقمي",
+                authSuccess: "تم تأكيد الدخول بنجاح! جاري تحميل البيانات...",
+                authNewPass: "تم تعيين رمز المرور السري الجديد بنجاح! مرحباً بك.",
+                authWrong: "كلمة المرور غير مطابقة. يرجى التحقق وإعادة المحاولة.",
+                authNotFound: "هذا الاسم غير مسجل في الدليل الرسمي لطلاب الدفعة."
+            }
+        };
+
+        // Initialize Supabase and global event attachment handlers
+        document.addEventListener("DOMContentLoaded", () => {
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            switchLanguage('en'); // Boot with Default language English
+            
+            document.getElementById("auth-form").addEventListener("submit", handleAuthenticationPipeline);
+        });
+
+        // 1. LANGUAGE STATE UPDATER & TAB MANAGER
+        function switchLanguage(langCode) {
+            currentLanguage = langCode;
+            
+            // Set document direction logic based on choice
+            if(langCode === 'ar') {
+                document.documentElement.dir = "rtl";
+                document.documentElement.lang = "ar";
+            } else {
+                document.documentElement.dir = "ltr";
+                document.documentElement.lang = langCode;
+            }
+
+            // Highlight chosen tab layout visually
+            ['en', 'fr', 'ar'].forEach(l => {
+                const btn = document.getElementById(`lang-btn-${l}`);
+                if(l === langCode) {
+                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer bg-gradient-to-r from-pink-500 to-blue-500 text-white shadow-md";
+                } else {
+                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer text-slate-600 hover:bg-white/40";
+                }
+            });
+
+            // Localize text components
+            const dict = LOCALIZATION_MAP[langCode];
+            document.getElementById("hero-title").innerText = dict.heroTitle;
+            document.getElementById("hero-desc").innerText = dict.heroDesc;
+            document.getElementById("auth-title").innerText = dict.authTitle;
+            document.getElementById("auth-subtitle").innerText = dict.authSubtitle;
+            document.getElementById("label-fullname").innerText = dict.lblFullName;
+            document.getElementById("label-password").innerText = dict.lblPassword;
+            document.getElementById("auth-submit-btn").innerText = dict.btnAuth;
+            document.getElementById("vault-welcome-tag").innerText = dict.vaultWelcome;
+            document.getElementById("analytics-title").innerText = dict.analyticsTitle;
+            document.getElementById("btn-keepsake-txt").innerText = dict.btnKeepsake;
+            document.getElementById("radiance-lbl").innerText = dict.radianceLbl;
+            document.getElementById("letters-title").innerText = dict.lettersTitle;
+            document.getElementById("grid-search").placeholder = dict.searchPlaceholder;
+            
+            // Localize modal subcomponents safely
+            document.getElementById("modal-title-prefix").innerText = dict.modalTo;
+            document.getElementById("modal-vibe-lbl").innerText = dict.modalVibeLbl;
+            document.getElementById("modal-msg-lbl").innerText = dict.modalMsgLbl;
+            document.getElementById("modal-msg-content").placeholder = dict.modalMsgPlaceholder;
+            document.getElementById("anon-toggle-lbl").innerText = dict.modalAnonLbl;
+            document.getElementById("anon-toggle-sub").innerText = dict.modalAnonSub;
+            document.getElementById("modal-cancel-btn").innerText = dict.modalCancel;
+            document.getElementById("modal-submit-btn").innerText = dict.modalSubmit;
+
+            updateVibeCheckboxInterface();
+            updateVibeCounterFeedback();
+
+            // Refresh runtime lists rendering if user logged in
+            if(loggedInUser) {
+                renderStudentGrid();
+                renderReceivedMessages();
+            }
+        }
+
+        // 2. COOL & SECURE ACCESS GATE ENGINE
+        async function handleAuthenticationPipeline(e) {
+            e.preventDefault();
+            const fullNameInput = document.getElementById("auth-fullname").value.trim();
+            const passwordInput = document.getElementById("auth-password").value;
+            const feedbackEl = document.getElementById("auth-feedback");
+
+            feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-blue-50 text-blue-700 block animate-pulse";
+            feedbackEl.innerText = "Querying internal registry database rows...";
+
+            try {
+                // Fetch student metadata from database
+                const { data: studentRecords, error } = await supabaseClient
+                    .from('Students')
+                    .select('*')
+                    .eq('Full_name', fullNameInput);
+
+                if (error) throw error;
+
+                if (!studentRecords || studentRecords.length === 0) {
+                    feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 block";
+                    feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authNotFound;
+                    return;
+                }
+
+                const targetUser = studentRecords[0];
+
+                // Check password cell matrix criteria
+                if (!targetUser.Password || targetUser.Password.trim() === "") {
+                    // Scenario A: Missing passkey. Save current entered input string securely as permanent secret passkey
+                    const { error: updateError } = await supabaseClient
+                        .from('Students')
+                        .update({ Password: passwordInput })
+                        .eq('id', targetUser.id);
+
+                    if (updateError) throw updateError;
+
+                    targetUser.Password = passwordInput;
+                    feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-700 block";
+                    feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authNewPass;
+                    proceedToDashboard(targetUser);
+                } else {
+                    // Scenario B: Password row filled. Match verification check
+                    if (targetUser.Password === passwordInput) {
+                        feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-700 block";
+                        feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authSuccess;
+                        proceedToDashboard(targetUser);
+                    } else {
+                        feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 block";
+                        feedbackEl.innerText = LOCALIZATION_MAP[currentLanguage].authWrong;
+                    }
+                }
+
+            } catch (err) {
+                console.error("Database connection failure context: ", err);
+                feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 block";
+                feedbackEl.innerText = "Error: Database communication timeout. Verify internet context connectivity.";
+            }
+        }
+
+        // Shift view screens instantly upon authentication success
+        async function proceedToDashboard(userRecord) {
+            loggedInUser = userRecord;
+            
+            // Set display parameters
+            document.getElementById("user-display-name").innerText = loggedInUser.Full_name;
+            document.getElementById("user-avatar-char").innerText = loggedInUser.Full_name.charAt(0).toUpperCase();
+
+            // Animate transition visibility out/in
+            setTimeout(async () => {
+                document.getElementById("auth-section").classList.add("hidden");
+                document.getElementById("main-dashboard").classList.remove("hidden");
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+                
+                await synchronizeClassroomData();
+            }, 1000);
+        }
+
+        // Universal async data pipeline pull engine
+        async function synchronizeClassroomData() {
+            try {
+                // Fetch complete active classmates grid row records
+                const { data: allStudents, error: studentErr } = await supabaseClient
+                    .from('Students')
+                    .select('id, Full_name')
+                    .order('Full_name', { ascending: true });
+
+                if (studentErr) throw studentErr;
+                globalStudentsList = allStudents || [];
+
+                renderStudentGrid();
+                await renderReceivedMessages();
+
+            } catch (err) {
+                console.error("Sync structural error: ", err);
+            }
+        }
+
+        // 3. THE SEARCHABLE STUDENT GRID RENDER PIPELINE
+        function renderStudentGrid() {
+            const gridContainer = document.getElementById("students-grid");
+            gridContainer.innerHTML = "";
+            
+            const currentSearchQuery = document.getElementById("grid-search").value.toLowerCase().trim();
+
+            // Filter out current logged user so they don't send letters to themselves
+            const filteredList = globalStudentsList.filter(student => {
+                const matchesSearch = student.Full_name.toLowerCase().includes(currentSearchQuery);
+                const isNotSelf = student.id !== loggedInUser.id;
+                return matchesSearch && isNotSelf;
+            });
+
+            if(filteredList.length === 0) {
+                gridContainer.innerHTML = `
+                    <div class="col-span-full text-center p-8 bg-white/40 rounded-2xl border border-dashed border-slate-300 text-xs text-slate-400 font-bold">
+                        No custom student records found matching filter constraints.
+                    </div>
+                `;
+                return;
+            }
+
+            filteredList.forEach(student => {
+                const card = document.createElement("div");
+                card.className = "glass-card rounded-2xl p-4 flex items-center justify-between hover:bg-white/90 transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md group cursor-pointer";
+                card.setAttribute("onclick", `openEnvelopeModalFor('${btoa(unescape(encodeURIComponent(student.Full_name)))}')`);
+                
+                // Fancy layout profile avatar circle structure inside grid
+                const dynamicInitials = student.Full_name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0,2);
+                
+                card.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-500 text-white font-extrabold text-xs flex items-center justify-center group-hover:rotate-6 transition-all shadow-sm">
+                            ${dynamicInitials}
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-black text-slate-800">${student.Full_name}</h4>
+                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Classmate</p>
+                        </div>
+                    </div>
+                    <span class="text-xs transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-all text-pink-500 font-bold">💌</span>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        function filterStudentGrid() {
+            renderStudentGrid();
+        }
+
+        // Checkbox interface building engine matching active localization matrix strings
+        let globalTargetRecipient = "";
+        function openEnvelopeModalFor(base64Name) {
+            globalTargetRecipient = decodeURIComponent(escape(atob(base64Name)));
+            document.getElementById("modal-recipient-name").innerText = globalTargetRecipient;
+            
+            selectedVibeTraits = [];
+            document.getElementById("modal-msg-content").value = "";
+            document.getElementById("modal-anon-checkbox").checked = false;
+            
+            updateVibeCheckboxInterface();
+            updateVibeCounterFeedback();
+
+            const modal = document.getElementById("envelope-modal");
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                modal.classList.remove("opacity-0");
+                modal.querySelector(".transform").classList.remove("scale-95");
+            }, 10);
+        }
+
+        function closeEnvelopeModal() {
+            const modal = document.getElementById("envelope-modal");
+            modal.classList.add("opacity-0");
+            modal.querySelector(".transform").classList.add("scale-95");
+            setTimeout(() => {
+                modal.classList.add("hidden");
+            }, 300);
+        }
+
+        function updateVibeCheckboxInterface() {
+            const poolContainer = document.getElementById("vibe-checkbox-grid");
+            if (!poolContainer) return;
+            poolContainer.innerHTML = "";
+
+            const availableTraits = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
+            
+            availableTraits.forEach((trait, index) => {
+                const isChecked = selectedVibeTraits.includes(trait);
+                const itemBtn = document.createElement("div");
+                itemBtn.className = `p-2.5 border rounded-xl text-xs font-bold text-center cursor-pointer transition-all ${
+                    isChecked 
+                    ? "bg-gradient-to-r from-blue-500 to-pink-500 text-white border-transparent shadow-sm scale-[1.02]" 
+                    : "bg-white/80 border-slate-200 text-slate-600 hover:bg-slate-50"
+                }`;
+                itemBtn.innerText = trait;
+                itemBtn.onclick = () => toggleVibeTraitSelection(trait);
+                poolContainer.appendChild(itemBtn);
+            });
+        }
+
+        function toggleVibeTraitSelection(traitValue) {
+            if (selectedVibeTraits.includes(traitValue)) {
+                selectedVibeTraits = selectedVibeTraits.filter(t => t !== traitValue);
+            } else {
+                if (selectedVibeTraits.length >= 3) {
+                    // Shift pool structure pop oldest to enforce limit of exactly 3 tags
+                    selectedVibeTraits.shift();
+                }
+                selectedVibeTraits.push(traitValue);
+            }
+            updateVibeCheckboxInterface();
+            updateVibeCounterFeedback();
+        }
+
+        function updateVibeCounterFeedback() {
+            const textString = LOCALIZATION_MAP[currentLanguage].modalVibeCounter;
+            document.getElementById("vibe-counter-feedback").innerText = textString.replace("{count}", selectedVibeTraits.length);
+        }
+
+        // ========================================================= -->
+        // 6. SAFETY PROTOCOL LAYER & SUPABASE MESSAGE INSERT PIPELINE -->
+        // ========================================================= -->
+        async function submitEnvelopePipeline() {
+            const rawContent = document.getElementById("modal-msg-content").value.trim();
+            const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
+
+            if (selectedVibeTraits.length !== 3) {
+                alert(currentLanguage === 'ar' ? "الرجاء اختيار 3 صفات بالضبط!" : (currentLanguage === 'fr' ? "Veuillez sélectionner exactement 3 traits d'énergie !" : "Please choose exactly 3 vibe traits before launching transmission!"));
+                return;
+            }
+            if (!rawContent) {
+                alert(currentLanguage === 'ar' ? "لا يمكن إرسال مغلف فارغ!" : "Message text container body can't be empty.");
+                return;
+            }
+
+            // Client interceptor verification scans against blockdictionary block list
+            let toxicFlagTriggered = false;
+            const textToAnalyze = rawContent.toLowerCase();
+            
+            TOXIC_FILTER_DICTIONARY.forEach(insultPattern => {
+                // Regex boundary checking matching high frequency words natively
+                const wordBoundaryRegex = new RegExp(`\\b${insultPattern}\\b`, 'i');
+                if(wordBoundaryRegex.test(textToAnalyze) || textToAnalyze.includes(insultPattern)) {
+                    toxicFlagTriggered = true;
+                }
+            });
+
+            // Enforce silent rules criteria structures
+            const finalApprovedState = !toxicFlagTriggered; 
+            const finalSenderName = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
+
+            // Prepare Supabase transmission payloads format
+            const envelopePayload = {
+                content: rawContent,
+                recipient_name: globalTargetRecipient,
+                sender_name: finalSenderName,
+                is_approved: finalApprovedState,
+                toxic_flag: toxicFlagTriggered,
+                vibe_tags: JSON.stringify(selectedVibeTraits)
+            };
+
+            const submitBtn = document.getElementById("modal-submit-btn");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "...TRANSFORMING FREQUENCIES...";
+
+            try {
+                const { error } = await supabaseClient
+                    .from('messages')
+                    .insert([envelopePayload]);
+
+                if (error) throw error;
+
+                // Fire animation success signals
+                confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0 } });
+                confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1 } });
+
+                closeEnvelopeModal();
+                
+                // Show a clean user validation prompt notice context
+                if (toxicFlagTriggered) {
+                    alert(currentLanguage === 'ar' ? "تم إرسال رسالتك بنجاح للمراجعة الفنية." : (currentLanguage === 'fr' ? "Message transmis avec succès pour analyse réseau." : "Envelope successfully queued for internal server indexing alignment review."));
+                } else {
+                    alert(currentLanguage === 'ar' ? "تم إرسال ظرفك الرقمي بنجاح! شكراً لك." : (currentLanguage === 'fr' ? "Votre enveloppe numérique a été transmise avec succès !" : "Your digital envelope has been processed and transmitted successfully!"));
+                }
+
+                await synchronizeClassroomData();
+
+            } catch (err) {
+                console.error("Payload transmission crash: ", err);
+                alert("Database transmission failed to establish pipeline synchronization link.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = LOCALIZATION_MAP[currentLanguage].modalSubmit;
+            }
+        }
+
+        // ========================================================= -->
+        // 5. THE USER VAULT ENGINE (DASHBOARD & INCOMING CARDS)    -->
+        // ========================================================= -->
+        let activeReceivedMessagesCache = [];
+
+        async function renderReceivedMessages() {
+            const cardsStack = document.getElementById("received-messages-stack");
+            const totalCountLabel = document.getElementById("letters-count");
+            
+            cardsStack.innerHTML = "";
+
+            try {
+                // Pull incoming items where matching Recipient full name string and filter toxicity out
+                const { data: inboundEnvelopes, error } = await supabaseClient
+                    .from('messages')
+                    .select('*')
+                    .eq('recipient_name', loggedInUser.Full_name)
+                    .eq('is_approved', true);
+
+                if (error) throw error;
+                activeReceivedMessagesCache = inboundEnvelopes || [];
+                
+                totalCountLabel.innerText = activeReceivedMessagesCache.length;
+
+                if(activeReceivedMessagesCache.length === 0) {
+                    cardsStack.innerHTML = `
+                        <div class="text-center p-8 bg-white/30 border border-white/60 rounded-2xl text-xs text-slate-500 font-medium italic">
+                            No envelopes have landed in your vault space layout matrix yet. Share positive energy with others to trigger feedback loops!
+                        </div>
+                    `;
+                    renderVibeAnalyticsGraph([]); // Render empty graph configuration block
+                    return;
+                }
+
+                // Loop through polaroid design matrices configurations
+                activeReceivedMessagesCache.forEach((msg, idx) => {
+                    const polaroidCard = document.createElement("div");
+                    
+                    // Soft color generation layout arrays rotations mapping indexing loops
+                    const designPalettes = [
+                        "bg-amber-50/90 border-amber-200 rotate-1",
+                        "bg-blue-50/90 border-blue-200 -rotate-1",
+                        "bg-pink-50/90 border-pink-200 rotate-2",
+                        "bg-emerald-50/90 border-emerald-200 -rotate-2"
+                    ];
+                    const selectedPaletteStyle = designPalettes[idx % designPalettes.length];
+
+                    // Process dynamic subcomponents parsing array string arrays models inside cells
+                    let directTagsArr = [];
+                    try {
+                        directTagsArr = JSON.parse(msg.vibe_tags);
+                    } catch(e) {
+                        directTagsArr = ["✨ Class Star"];
+                    }
+
+                    let tagsHTML = "";
+                    directTagsArr.forEach(t => {
+                        tagsHTML += `<span class="bg-white/80 border border-slate-100 px-2 py-0.5 rounded-md text-[9px] font-black text-slate-600 shadow-2xs">${t}</span>`;
+                    });
+
+                    polaroidCard.className = `${selectedPaletteStyle} border p-4 rounded-xl shadow-sm space-y-3 transform transition-all hover:rotate-0 hover:scale-[1.02] duration-200 relative`;
+                    polaroidCard.innerHTML = `
+                        <div class="text-xs font-medium text-slate-700 leading-relaxed italic select-all">
+                            "${msg.content}"
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            ${tagsHTML}
+                        </div>
+                        <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] font-bold text-slate-400">
+                            <span>FROM: ${msg.sender_name}</span>
+                            <span>⚡ ACTIVE</span>
+                        </div>
+                    `;
+                    cardsStack.appendChild(polaroidCard);
+                });
+
+                renderVibeAnalyticsGraph(activeReceivedMessagesCache);
+
+            } catch (err) {
+                console.error("Dashboard engine rendering failure: ", err);
+            }
+        }
+
+        // Native HTML/CSS Graph Component Builder Pipeline 
+        function renderVibeAnalyticsGraph(messagesArray) {
+            const graphContainer = document.getElementById("analytics-bars-container");
+            graphContainer.innerHTML = "";
+
+            // Flatten all tags counts metrics counters mapping tracking indexes
+            const frequenciesMap = {};
+            let totalTagsDetectedCount = 0;
+
+            messagesArray.forEach(msg => {
+                try {
+                    const tags = JSON.parse(msg.vibe_tags);
+                    if(Array.isArray(tags)) {
+                        tags.forEach(t => {
+                            frequenciesMap[t] = (frequenciesMap[t] || 0) + 1;
+                            totalTagsDetectedCount++;
+                        });
+                    }
+                } catch(e){}
+            });
+
+            // Enforce minimum base fallback elements metrics layout options pool mapping if map values empty
+            const referenceTraitsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
+            
+            referenceTraitsPool.forEach(trait => {
+                const absoluteCount = frequenciesMap[trait] || 0;
+                // Safe calculation to avoid zero divisions
+                const visualPercentageWidth = totalTagsDetectedCount > 0 ? Math.round((absoluteCount / totalTagsDetectedCount) * 100) : 0;
+
+                const rowBarLayout = document.createElement("div");
+                rowBarLayout.className = "space-y-1";
+                rowBarLayout.innerHTML = `
+                    <div class="flex justify-between text-[10px] font-extrabold text-slate-600">
+                        <span>${trait}</span>
+                        <span>${absoluteCount}</span>
+                    </div>
+                    <div class="w-full bg-slate-200/50 h-2 rounded-full overflow-hidden shadow-inner">
+                        <div class="bg-gradient-to-r from-pink-400 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: ${totalTagsDetectedCount > 0 ? visualPercentageWidth : 5}%"></div>
+                    </div>
+                `;
+                graphContainer.appendChild(rowBarLayout);
+            });
+        }
+
+        // ========================================================= -->
+        // 4. THE SUMMER RADIANCE GENERATOR ENGINE                   -->
+        // ========================================================= -->
+        function triggerRadianceBoost() {
+            // Explode visual canvas vectors
+            confetti({ particleCount: 80, scalar: 1.2, rando: [0.8, 1.2] });
+
+            const sourcePool = BOOST_QUOTES[currentLanguage] || BOOST_QUOTES['en'];
+            const randomPickIndex = Math.floor(Math.random() * sourcePool.length);
+            
+            const displayField = document.getElementById("radiance-display");
+            displayField.className = "text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-pink-600 to-amber-600 leading-relaxed min-h-[50px] flex items-center transition-all duration-300 scale-95 opacity-0";
+            
+            setTimeout(() => {
+                displayField.innerText = sourcePool[randomPickIndex];
+                displayField.classList.remove("scale-95", "opacity-0");
+                displayField.classList.add("scale-100", "opacity-100");
+            }, 150);
+        }
+
+        // ========================================================= -->
+        // 5. JSPDF CUSTOM KEEPSAKE CERTIFICATE GENERATION LAYER     -->
+        // ========================================================= -->
+        function generateKeepsakePDF() {
+            if (activeReceivedMessagesCache.length === 0) {
+                alert("Vault contains zero verified messages records. Generate peer rows synchronization vectors first.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            // Create standard A4 portrait layout document matrix bounds units
+            const documentInstance = new jsPDF({
+                orientation: "portrait",
+                unit: "mm",
+                format: "a4"
+            });
+
+            // Set beautiful gradient simulation page bounding boxes anchors borders configuration
+            documentInstance.setDrawColor(244, 114, 182); // Pink stroke boundaries border line context
+            documentInstance.setLineWidth(1.5);
+            documentInstance.rect(5, 5, 200, 287);
+
+            documentInstance.setDrawColor(59, 130, 246); // Blue internal subline frame link alignment
+            documentInstance.setLineWidth(0.5);
+            documentInstance.rect(7, 7, 196, 283);
+
+            // Document Header Block Text Injecting Matrix
+            documentInstance.setFont("Helvetica", "bold");
+            documentInstance.setFontSize(22);
+            documentInstance.setTextColor(30, 41, 59);
+            documentInstance.text("THE SUMMER KEEPSAKE CODES", 105, 25, { align: "center" });
+
+            documentInstance.setFont("Helvetica", "normal");
+            documentInstance.setFontSize(10);
+            documentInstance.setTextColor(100, 116, 139);
+            documentInstance.text("PROJECT_ENVELOPE // UNIVERSITY CLASS COMPILATION VERBAL SPECTRUMS", 105, 32, { align: "center" });
+
+            // Horizontal Separator Line
+            documentInstance.setDrawColor(226, 232, 240);
+            documentInstance.line(20, 38, 190, 38);
+
+            // Recipient Section Block Parameters Mapping Title Data Blocks Configuration Labels 
+            documentInstance.setFont("Helvetica", "bold");
+            documentInstance.setFontSize(14);
+            documentInstance.setTextColor(219, 39, 119); // Hot Pink dynamic tracking labels highlight color
+            documentInstance.text(`VALEDICTION MATRIX FOR: ${loggedInUser.Full_name.toUpperCase()}`, 20, 48);
+
+            documentInstance.setFont("Helvetica", "italic");
+            documentInstance.setFontSize(10);
+            documentInstance.setTextColor(71, 85, 105);
+            documentInstance.text(`Total Peer Messages Verified: ${activeReceivedMessagesCache.length} Inbound Transmission Records`, 20, 54);
+
+            // Draw dynamic grid content entries block list loops
+            let currentVerticalCursorY = 65;
+            const maximumVerticalPageLimitY = 270;
+
+            activeReceivedMessagesCache.forEach((envelope, index) => {
+                // Safeguard boundaries checking against overflow heights to append split tracking pages frames automatically
+                if (currentVerticalCursorY > maximumVerticalPageLimitY) {
+                    documentInstance.addPage();
+                    // Redraw page frames parameters configurations links on next sheet sequence structures safely
+                    documentInstance.setDrawColor(244, 114, 182);
+                    documentInstance.setLineWidth(1.5);
+                    documentInstance.rect(5, 5, 200, 287);
+                    documentInstance.setDrawColor(59, 130, 246);
+                    documentInstance.setLineWidth(0.5);
+                    documentInstance.rect(7, 7, 196, 283);
+                    
+                    currentVerticalCursorY = 25; // Reset tracking index layout position coordinates cursor heights
+                }
+
+                // Parse message string text fields configuration bounding boxes margins limitations wrapping splits context blocks
+                const rawCleanedContentString = envelope.content.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, ''); // Clear complex graphic sequences out before pdf drawing layers rendering safely
+                const splitTextLinesArray = documentInstance.splitTextToSize(`"${rawCleanedContentString}"`, 160);
+                const blockCalculatedHeight = (splitTextLinesArray.length * 5) + 12;
+
+                // Box shading panel blueprint context
+                documentInstance.setFillColor(248, 250, 252);
+                documentInstance.rect(18, currentVerticalCursorY, 174, blockCalculatedHeight, "F");
+
+                documentInstance.setDrawColor(226, 232, 240);
+                documentInstance.setLineWidth(0.3);
+                documentInstance.rect(18, currentVerticalCursorY, 174, blockCalculatedHeight, "D");
+
+                // Text details printing execution row index tracking lines
+                documentInstance.setFont("Helvetica", "normal");
+                documentInstance.setFontSize(10);
+                documentInstance.setTextColor(51, 65, 85);
+                documentInstance.text(splitTextLinesArray, 22, currentVerticalCursorY + 6);
+
+                // Meta metadata tracing footer data alignments inside element item containers blocks grids links layout rows
+                documentInstance.setFont("Helvetica", "bold");
+                documentInstance.setFontSize(8);
+                documentInstance.setTextColor(148, 163, 184);
+                
+                let parsedVibeTagsArray = [];
+                try { parsedVibeTagsArray = JSON.parse(envelope.vibe_tags); } catch(err){}
+                const flattenedTagsLabel = Array.isArray(parsedVibeTagsArray) ? parsedVibeTagsArray.join(" | ") : "Classmate Review";
+
+                documentInstance.text(`SOURCE: ${envelope.sender_name}   //   VIBE TAGS: ${flattenedTagsLabel}`, 22, currentVerticalCursorY + blockCalculatedHeight - 3);
+
+                // Increment universal tracker spacing vectors mapping coordinates for spacing intervals safely
+                currentVerticalCursorY += blockCalculatedHeight + 6;
+            });
+
+            // Universal Document Security Footprint Signatures Seal Stamp
+            if(currentVerticalCursorY < 260) {
+                documentInstance.setFont("Helvetica", "bold");
+                documentInstance.setFontSize(9);
+                documentInstance.setTextColor(59, 130, 246);
+                documentInstance.text("// SECURE CRYPTOGRAPHIC END-OF-TRANSMISSION VALIDATION LINK SEAL //", 105, 275, { align: "center" });
+            }
+
+            // Save and prompt download file pipeline link interface layer triggers action context safely
+            const safeFileSavingTitleNameString = loggedInUser.Full_name.replace(/\s+/g, '_');
+            documentInstance.save(`Summer_Keepsake_Matrix_${safeFileSavingTitleNameString}.pdf`);
+        }
+    </script>
+</body>
+</html>
