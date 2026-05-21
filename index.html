@@ -204,7 +204,7 @@
                             <span id="letters-count" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-0.5 rounded-full">0</span>
                         </div>
                         <div id="received-messages-stack" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                            <!-- Dynamic sticky notes or polaroids populate here -->
+                            <!-- Dynamic sticky notes populate here -->
                         </div>
                     </div>
 
@@ -286,9 +286,9 @@
     <!-- CLIENT SIDE ARCHITECTURE CONFIGURATION SYSTEM             -->
     <!-- ========================================================= -->
     <script>
-        // Global State Matrix
+        // Global State Matrix - FIXED ANON KEY RESTORED 
         const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImTab24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
         
         let supabaseClient;
         let currentLanguage = 'en';
@@ -438,6 +438,7 @@
         };
 
         document.addEventListener("DOMContentLoaded", () => {
+            // Re-initialize client setup safely
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             switchLanguage('en'); 
             startCountdownClock();
@@ -445,10 +446,9 @@
             document.getElementById("auth-form").addEventListener("submit", handleAuthenticationPipeline);
         });
 
-        // Countdown Timer Logic
         function startCountdownClock() {
             const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 25); // Dynamic target: 25 days out
+            targetDate.setDate(targetDate.getDate() + 25); 
 
             function updateTime() {
                 const now = new Date().getTime();
@@ -473,7 +473,6 @@
             updateTime();
         }
 
-        // 1. LANGUAGE STATE UPDATER & TAB MANAGER
         function switchLanguage(langCode) {
             currentLanguage = langCode;
             
@@ -531,7 +530,6 @@
             }
         }
 
-        // 2. COOL & SECURE ACCESS GATE ENGINE
         async function handleAuthenticationPipeline(e) {
             e.preventDefault();
             const fullNameInput = document.getElementById("auth-fullname").value.trim();
@@ -581,7 +579,7 @@
                 }
 
             } catch (err) {
-                console.error("Database connection failure context: ", err);
+                console.error("Database error context: ", err);
                 feedbackEl.className = "text-center text-xs font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 block";
                 feedbackEl.innerText = "Error: Database communication timeout. Verify internet context connectivity.";
             }
@@ -632,7 +630,6 @@
             } catch(e) {}
         }
 
-        // 3. THE SEARCHABLE STUDENT GRID RENDER PIPELINE
         function renderStudentGrid() {
             const gridContainer = document.getElementById("students-grid");
             gridContainer.innerHTML = "";
@@ -749,9 +746,6 @@
             document.getElementById("vibe-counter-feedback").innerText = textString.replace("{count}", selectedVibeTraits.length);
         }
 
-        // ========================================================= -->
-        // 6. SAFETY PROTOCOL LAYER & SUPABASE MESSAGE INSERT PIPELINE -->
-        // ========================================================= -->
         async function submitEnvelopePipeline() {
             const rawContent = document.getElementById("modal-msg-content").value.trim();
             const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
@@ -778,7 +772,6 @@
             const finalApprovedState = !toxicFlagTriggered; 
             const finalSenderName = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
 
-            // FIX Applied: Passing selectedVibeTraits directly as an array structure
             const envelopePayload = {
                 content: rawContent,
                 recipient_name: globalTargetRecipient,
@@ -807,7 +800,7 @@
                 if (toxicFlagTriggered) {
                     alert(currentLanguage === 'ar' ? "تم إرسال رسالتك بنجاح للمراجعة الفنية." : (currentLanguage === 'fr' ? "Message transmis avec succès pour analyse réseau." : "Envelope successfully queued for internal server indexing alignment review."));
                 } else {
-                    alert(currentLanguage === 'ar' ? "تم إرسال ظرفك الرقمي بنجاح! شكراً لك." : (currentLanguage === 'fr' ? "Votre enveloppe numérique a été transmise avec succès !" : "Your digital envelope has been processed and transmitted successfully!"));
+                    alert(currentLanguage === 'ar' ? "تم إرسال ظرفك الرقمي بنجاح! شكراً لك." : (currentLanguage === 'fr' ? "Votre enveloppه numérique a été transmise avec succès !" : "Your digital envelope has been processed and transmitted successfully!"));
                 }
 
                 await synchronizeClassroomData();
@@ -822,9 +815,6 @@
             }
         }
 
-        // ========================================================= -->
-        // 5. THE USER VAULT ENGINE (DASHBOARD & INCOMING CARDS)    -->
-        // ========================================================= -->
         let activeReceivedMessagesCache = [];
 
         async function renderReceivedMessages() {
@@ -941,7 +931,6 @@
             });
         }
 
-        // 4. THE SUMMER RADIANCE GENERATOR ENGINE
         function triggerRadianceBoost() {
             confetti({ particleCount: 80, scalar: 1.2, rando: [0.8, 1.2] });
 
@@ -958,10 +947,9 @@
             }, 150);
         }
 
-        // 5. KEEPSAKE CERTIFICATE GENERATION LAYER
         function generateKeepsakePDF() {
             if (activeReceivedMessagesCache.length === 0) {
-                alert("Vault contains zero verified messages records. Generate peer rows synchronization vectors first.");
+                alert("Vault contains zero verified messages records.");
                 return;
             }
 
