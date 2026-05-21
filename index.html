@@ -482,7 +482,7 @@
                 modalSubmit: "إرسال المغلف الرقمي",
                 authSuccess: "تم تأكيد الدخول بنجاح! جاري تحميل البيانات...",
                 authNewPass: "تم تعيين رمز المرور السري الجديد بنجاح! مرحباً بك.",
-                authWrong: "كلمة المرور غير مطابقة. يرجى التحقق وإعادة المحاولة.",
+                authWrong: "كلمة المرور غير مطابقة. يرجير التحقق وإعادة المحاولة.",
                 authNotFound: "هذا الاسم غير مسجل في الدليل الرسمي لطلاب الدفعة.",
                 sparkKindness: "إجمالي الكلمات الطيبة المشتركة",
                 sparkLegendary: "الأصوات التقديرية الملقاة",
@@ -794,6 +794,9 @@
             document.getElementById("vibe-counter-feedback").innerText = textString.replace("{count}", selectedVibeTraits.length);
         }
 
+        // ========================================================= -->
+        // FIXED PIPELINE: PRESERVES REAL SENDER IN THE BACKGROUND   -->
+        // ========================================================= -->
         async function submitEnvelopePipeline() {
             const rawContent = document.getElementById("modal-msg-content").value.trim();
             const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
@@ -815,13 +818,23 @@
             });
 
             const finalApprovedState = !toxicFlagTriggered; 
-            const finalSenderName = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
-            const finalPayloadContent = chosenLockDate ? `__LOCK__:${chosenLockDate}__:${rawContent}` : rawContent;
+            
+            // 🌟 CRITICAL FIX: Always pass the real sender name to your Supabase log records.
+            const databaseLoggedSenderName = loggedInUser.Full_name;
+            
+            // 🌟 CRITICAL FIX: Pack anonymity metadata right inside the content string rather than destroying the sender column.
+            let finalPayloadContent = rawContent;
+            if (isAnonymous) {
+                finalPayloadContent = `__ANON__:${finalPayloadContent}`;
+            }
+            if (chosenLockDate) {
+                finalPayloadContent = `__LOCK__:${chosenLockDate}__:${finalPayloadContent}`;
+            }
 
             const envelopePayload = {
                 content: finalPayloadContent,
                 recipient_name: globalTargetRecipient,
-                sender_name: finalSenderName,
+                sender_name: databaseLoggedSenderName, // Always tracked clearly in dashboard row counters
                 is_approved: finalApprovedState,
                 toxic_flag: toxicFlagTriggered,
                 vibe_tags: selectedVibeTraits 
@@ -878,14 +891,16 @@
                     const polaroidCard = document.createElement("div");
                     polaroidCard.className = "brutal-card bg-white p-5 rounded-2xl relative space-y-3 border-2";
 
-                    let rawMessageBody = msg.content;
+                    let displayContentString = msg.content;
+                    let displaySenderLabel = msg.sender_name;
                     let isCapsuleLocked = false;
                     let targetUnlockDateString = "";
 
-                    if (rawMessageBody.startsWith("__LOCK__:")) {
-                        const parts = rawMessageBody.split("__:");
+                    // Step A: Parse time lock markers if attached
+                    if (displayContentString.startsWith("__LOCK__:")) {
+                        const parts = displayContentString.split("__:");
                         targetUnlockDateString = parts[1]; 
-                        rawMessageBody = parts.slice(2).join("__:");
+                        displayContentString = parts.slice(2).join("__:");
 
                         const unlockDateObj = new Date(targetUnlockDateString);
                         unlockDateObj.setHours(0,0,0,0);
@@ -895,6 +910,12 @@
                         if (cleanToday < unlockDateObj) {
                             isCapsuleLocked = true;
                         }
+                    }
+
+                    // Step B: Parse anonymity conditional checks from the content string string signature
+                    if (displayContentString.startsWith("__ANON__:")) {
+                        displaySenderLabel = "Anonymous";
+                        displayContentString = displayContentString.replace("__ANON__:", "");
                     }
 
                     let tagsArr = [];
@@ -913,7 +934,7 @@
                                     🔒 Locked Mystery Capsule Envelope
                                 </div>
                                 <p class="text-xs font-bold text-slate-300 italic select-none filter blur-[5px]">
-                                    This beautiful message is arriving safely soon but stays hidden until the date criteria unlocks.
+                                    This beautiful message stays hidden until the date criteria unlocks.
                                 </p>
                                 <div class="text-[10px] font-black text-slate-700 bg-white p-2 border border-slate-400 rounded-lg inline-block shadow-sm">
                                     📅 Unlocks on: <span class="text-pink-600 font-extrabold">${targetUnlockDateString}</span>
@@ -924,11 +945,11 @@
                     } else {
                         polaroidCard.innerHTML = `
                             <div class="text-xs font-bold text-slate-800 leading-relaxed italic select-all">
-                                "${rawMessageBody}"
+                                "${displayContentString}"
                             </div>
                             <div class="flex flex-wrap gap-1 pt-1">${tagsHTML}</div>
                             <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] font-black text-slate-400">
-                                <span>FROM: ${msg.sender_name}</span>
+                                <span>FROM: ${displaySenderLabel}</span>
                                 <span class="text-emerald-700 font-extrabold">✓ DECRYPTED</span>
                             </div>
                         `;
@@ -1026,9 +1047,15 @@
                 if (cursorY > 250) { doc.addPage(); cursorY = 25; }
 
                 let cleanBodyText = envelope.content;
-                if(cleanBodyText.startsWith("__LOCK__:")) {
+                let displaySender = envelope.sender_name;
+
+                if (cleanBodyText.includes("__LOCK__:")) {
                     const parts = cleanBodyText.split("__:");
-                    cleanBodyText = `[Locked Capsule Document] ${parts.slice(2).join("__:")}`;
+                    cleanBodyText = parts.slice(2).join("__:");
+                }
+                if (cleanBodyText.startsWith("__ANON__:")) {
+                    displaySender = "Anonymous";
+                    cleanBodyText = cleanBodyText.replace("__ANON__:", "");
                 }
 
                 const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
@@ -1041,7 +1068,7 @@
 
                 doc.text(splitLines, 22, cursorY + 6);
                 doc.setFontSize(8);
-                doc.text(`FROM: ${envelope.sender_name}`, 22, cursorY + blockH - 3);
+                doc.text(`FROM: ${displaySender}`, 22, cursorY + blockH - 3);
                 doc.setFontSize(11);
 
                 cursorY += blockH + 6;
