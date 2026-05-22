@@ -125,7 +125,7 @@
     <div class="max-w-6xl mx-auto space-y-8">
         
         <!-- ========================================================= -->
-        <!-- SYSTEM NAVIGATION & HEADER INTERFACE                      -->
+        <!-- HEADER CORE CONTAINER                                     -->
         <!-- ========================================================= -->
         <header class="arcade-card bg-[#eddcd2] rounded-3xl p-6 md:p-8 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-2 text-center md:text-left rtl:text-right max-w-2xl">
@@ -135,8 +135,9 @@
                 <p id="hero-desc" class="text-sm md:text-base font-bold text-slate-800 dark-target-text"></p>
             </div>
 
+            <!-- Global Action Switches Panels -->
             <div class="flex flex-wrap items-center gap-3 shrink-0 z-10">
-                <button onclick="toggleNightModeState()" id="night-toggle-btn" class="px-4 py-2 bg-slate-900 text-white border-2 border-slate-900 rounded-xl text-xs font-black brutal-btn cursor-pointer shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all">
+                <button onclick="toggleNightModeState()" id="night-toggle-btn" class="px-4 py-2 bg-slate-900 text-white border-2 border-slate-900 rounded-xl text-xs font-black arcade-btn cursor-pointer shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all">
                     🌙 Night Mode
                 </button>
 
@@ -149,7 +150,7 @@
         </header>
 
         <!-- ========================================================= -->
-        <!-- 1. THE WELCOME ENGINE (AUTOCOMPLETE GATING PORTAL)       -->
+        <!-- ACCESS GATING ENGINE GATEWAY CONTROL                      -->
         <!-- ========================================================= -->
         <section id="auth-section" class="arcade-card bg-[#f3e5f5] rounded-3xl p-6 md:p-10 max-w-md mx-auto space-y-6 border-4">
             <div class="text-center space-y-2">
@@ -405,7 +406,6 @@
             ar: ["🧠 الأكثر عبقرية", "⚡ طاقة نقية", "🔥 لا يتوقف", "🎨 عقل مبدع", "🚀 رؤيوي", "💎 جوهرة نادرة", "🤝 سند قوي", "🌻 طيب القلب"]
         };
 
-        // 1. REVISED ROTATING ARCHIVE (TRUE OPEN FALLBACK DESCRIPTION TEXT)
         const SUPERLATIVE_TIMELINE_PHASES = [
             {
                 prompt: { en: "🌟 Most Inspiring Heart of the Year:", fr: "🌟 Le cœur le plus inspirant de l'année :", ar: "🌟 الشخصية الأكثر إلهاماً وطيبة هذا العام:" },
@@ -439,10 +439,116 @@
             }
         ];
 
+        // 🌟 RESTORED: Added full dynamic localized key structures for descriptions
+        const LOCALIZATION_MAP = {
+            en: {
+                heroDesc: "The most valuable treasure a student carries over long university breaks is genuine words of appreciation from their peers. Let's lock in real memories before summer takes over.",
+                authSubtitle: "Unlock your envelope space or establish your secret summer passkey row.",
+                lblFullName: "Select Your Identity",
+                lblPassword: "Secret Passkey",
+                btnAuth: "Initialize Profile Dashboard",
+                vaultWelcome: "Welcome Back,",
+                analyticsTitle: "Your Dominant Traits Radar",
+                btnKeepsake: "Download My Summer Keepsake (PDF)",
+                lettersTitle: "Your Digital Envelopes",
+                searchPlaceholder: "Search classmate's name...",
+                modalTo: "To:",
+                modalVibeLbl: "Select Exactly 3 Distinct Vibe Traits:",
+                modalVibeCounter: "Selected: {count} / 3",
+                modalMsgLbl: "Your Message of Appreciation:",
+                modalMsgPlaceholder: "Write something inspiring... Keep it genuine, kind, and unforgettable.",
+                modalAnonLbl: "Send Anonymously",
+                modalAnonSub: "Your name will show as Anonymous",
+                modalCancel: "Cancel",
+                modalSubmit: "Transmit Envelope",
+                authNotFound: "Selected student name record not found in register directory.",
+                authSuccess: "Access authorized! Syncing dashboard dimensions...",
+                authNewPass: "New passkey established successfully! Welcome to the hub.",
+                authWrong: "Invalid configuration credentials. Check passkey match.",
+                sparkKindness: "Moments Shared Generosities",
+                sparkLegendary: "Class Superlative Votes Cast",
+                superlativeTitle: "🗳️ Class Superlatives Ballot",
+                superlativeDesc: "Cast an anonymous vote! Who fits this title best?",
+                capsuleLockLbl: "🔒 Time-Lock Capsule Protocol (Optional):",
+                capsuleLockSub: "Force this letter to remain locked and hidden until a specific day.",
+                themeSelectorLbl: "Select Your Vault Space Theme Aura:",
+                quickActionHeadline: "⚡ DROP A QUICK VIBE (ONE-CLICK LAUNCH)",
+                leaderboardTitle: "🕹️ CLASS ARCHETYPE SCOREBOARD"
+            },
+            fr: {
+                heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances universitaires est l'ensemble des mots sincères d'appréciation de ses pairs. Gravons nos souvenirs.",
+                authSubtitle: "Ouvrez votre enveloppe ou enregistrez votre clé secrète d'été.",
+                lblFullName: "Sélectionnez Votre Identité",
+                lblPassword: "Clé Secrète",
+                btnAuth: "Déverrouiller le Tableau de Bord",
+                vaultWelcome: "Bon retour,",
+                analyticsTitle: "Votre Radar de Traits Dominants",
+                btnKeepsake: "Télécharger mon Souvenir d'Été (PDF)",
+                lettersTitle: "Vos Enveloppes Numériques",
+                searchPlaceholder: "Rechercher un camarade de classe...",
+                modalTo: "À :",
+                modalVibeLbl: "Sélectionnez exactement 3 traits d'énergie :",
+                modalVibeCounter: "Sélectionné : {count} / 3",
+                modalMsgLbl: "Votre message d'appréciation :",
+                modalMsgPlaceholder: "Écrivez quelque chose d'inspirant... Sincère, bienveillant et inoubliable.",
+                modalAnonLbl: "Envoyer anonymement",
+                modalAnonSub: "Votre nom apparaîtra comme Anonyme",
+                modalCancel: "Annuler",
+                modalSubmit: "Transmettre l'Enveloppe",
+                authNotFound: "Nom sélectionné introuvable dans le registre.",
+                authSuccess: "Accès Autorisé ! Synchronisation des données...",
+                authNewPass: "Nouvelle clé secrète enregistrée avec succès ! Bienvenue.",
+                authWrong: "Identifiants invalides. Vérifiez la clé secrète.",
+                sparkKindness: "Messages Bienveillants Partagés",
+                sparkLegendary: "Votes Superlatifs Enregistrés",
+                superlativeTitle: "🗳️ Vote des Superlatifs de la Classe",
+                superlativeDesc: "Votez anonymement pour vos camarades !",
+                capsuleLockLbl: "🔒 Protocole de Capsule Temporelle (Optionnel) :",
+                capsuleLockSub: "Forcez cette lettre à rester verrouillée jusqu'à une date choisie.",
+                themeSelectorLbl: "Sélectionnez l'Aura Thématique de votre Espace :",
+                quickActionHeadline: "⚡ TRANSMISSION RAPIDE (UN SEUL CLIC)",
+                leaderboardTitle: "🕹️ SCOREBOARD DES ARCHÉTYPES DE CLASSE"
+            },
+            ar: {
+                heroDesc: "أثمن كنز يحمله الطالب معه خلال العطلة الجامعية الطويلة هو كلمات التقدير والامتنان الصادقة من زملائه. لنحفظ ذكرياتنا الإيجابية قبل بداية الصيف.",
+                authSubtitle: "افتح ظرفك الرقمي أو أنشئ رمز المرور السري الخاص بك للمتابعة.",
+                lblFullName: "اختر اسمك الكامل من القائمة",
+                lblPassword: "رمز المرور السري",
+                btnAuth: "دخول لوحة التحكم",
+                vaultWelcome: "مرحباً بك مجدداً،",
+                analyticsTitle: "مصفوفة صفاتك المميزة",
+                btnKeepsake: "تحميل وثيقة الذكريات الصيفية (PDF)",
+                lettersTitle: "مظاريفك الرقمية الواردة",
+                searchPlaceholder: "ابحث عن اسم زميلك...",
+                modalTo: "إلى:",
+                modalVibeLbl: "اختر 3 صفات مميزة بالضبط:",
+                modalVibeCounter: "تم اختيار: {count} / 3",
+                modalMsgLbl: "رسالة التقدير والامتنان الخاصة بك:",
+                modalMsgPlaceholder: "اكتب شيئاً ملهماً ونقياً... اجعل كلماتك صادقة، طيبة ولا تُنسى أبداً.",
+                modalAnonLbl: "إرسال كهوية مجهولة",
+                modalAnonSub: "سيظهر اسمك كفاعل خير مجهول",
+                modalCancel: "إلغاء",
+                modalSubmit: "إرسال المغلف الرقمي",
+                authNotFound: "الاسم المختار غير مسجل في الدليل الرسمي للطلاب.",
+                authSuccess: "تم تأكيد الدخول بنجاح! جاري تحميل لوحة البيانات...",
+                authNewPass: "تم تعيين رمز المرور السري الجديد بنجاح! مرحباً بك.",
+                authWrong: "رمز المرور السري غير مطابق. يرجى إعادة المحاولة.",
+                sparkKindness: "إجمالي الكلمات الطيبة المشتركة",
+                sparkLegendary: "الأصوات التقديرية الملقاة",
+                superlativeTitle: "🗳️ تصويت الأفضل في الدفعة",
+                superlativeDesc: "صوّت مجهولاً لزميلك الذي يستحق هذا اللقب الرائع !",
+                capsuleLockLbl: "🔒 كبسولة الإقفال الزمني (اختياري):",
+                capsuleLockSub: "احظر قراءة هذه الرسالة وشفرها حتى تاريخ محدد من اختيارك.",
+                themeSelectorLbl: "اختر لون وهالة لوحة التحكم الخاصة بك:",
+                quickActionHeadline: "⚡ إرسال سريع بضغطة زر واحدة بدون كتابة",
+                leaderboardTitle: "🕹️ قائمة الشرف والتميز لأبطال الدفعة"
+            }
+        };
+
         document.addEventListener("DOMContentLoaded", async () => {
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             
-            // 🌟 CRITICAL SEQUENCING REPAIR: Fetch metadata into cache FIRST before applying switch language dropdown mappings
+            // 🌟 SEQUENCING REPAIR: Fetch metadata into variables BEFORE running translation strings setup
             await fetchAllStudentsMetadata();
             switchLanguage('en'); 
             
@@ -504,8 +610,8 @@
             ['en', 'fr', 'ar'].forEach(l => {
                 const btn = document.getElementById(`lang-btn-${l}`);
                 btn.className = l === langCode 
-                    ? "px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer bg-slate-950 text-white border-2 border-slate-950" 
-                    : "px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer text-slate-800 hover:bg-white/60";
+                    ? "px-3 py-1.5 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer bg-slate-950 text-white border-2 border-slate-950" 
+                    : "px-3 py-1.5 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer text-slate-800 hover:bg-white/60";
             });
 
             updateVibeCheckboxInterface();
@@ -529,12 +635,18 @@
             if(activeCalculatedPhaseIndex < 0) activeCalculatedPhaseIndex = 0;
             
             const targetPhaseObject = SUPERLATIVE_TIMELINE_PHASES[activeCalculatedPhaseIndex % SUPERLATIVE_TIMELINE_PHASES.length];
-            document.getElementById("superlative-question").innerText = targetPhaseObject.prompt[currentLanguage] || targetPhaseObject.prompt['en'];
+            const displayQuestionEl = document.getElementById("superlative-question");
+            if(displayQuestionEl) {
+                displayQuestionEl.innerText = targetPhaseObject.prompt[currentLanguage] || targetPhaseObject.prompt['en'];
+            }
             
             const historicalArchivedPhaseIndex = (activeCalculatedPhaseIndex - 1 + SUPERLATIVE_TIMELINE_PHASES.length) % SUPERLATIVE_TIMELINE_PHASES.length;
             const historicalArchiveObject = SUPERLATIVE_TIMELINE_PHASES[historicalArchivedPhaseIndex];
             
-            document.getElementById("superlative-archive-content").innerText = historicalArchiveObject.archive[currentLanguage] || historicalArchiveObject.archive['en'];
+            const archiveContentEl = document.getElementById("superlative-archive-content");
+            if(archiveContentEl) {
+                archiveContentEl.innerText = historicalArchiveObject.archive[currentLanguage] || historicalArchiveObject.archive['en'];
+            }
         }
 
         async function fetchAllStudentsMetadata() {
@@ -547,13 +659,14 @@
                 if (!error && data) {
                     globalStudentsList = data;
                     handleAutocompleteSearch("");
-                    populateSuperlativeDropdown(); // Pre-build selector components lists targets perfectly on load
+                    populateSuperlativeDropdown(); 
                 }
             } catch (err) { console.error(err); }
         }
 
         function handleAutocompleteSearch(query) {
             const dropdown = document.getElementById("autocomplete-dropdown");
+            if(!dropdown) return;
             dropdown.innerHTML = "";
             const txt = query.toLowerCase().trim();
             const matchingRows = globalStudentsList.filter(s => s.Full_name.toLowerCase().includes(txt));
@@ -658,6 +771,7 @@
 
         async function runGlobalLeaderboardEngine() {
             const podiumsContainer = document.getElementById("leaderboard-podiums-container");
+            if(!podiumsContainer) return;
             podiumsContainer.innerHTML = "";
 
             try {
@@ -769,7 +883,7 @@
                 
                 await synchronizeClassroomData();
                 await runGlobalLeaderboardEngine();
-            } catch(e) { alert("Transmission setup synchronization error."); }
+            } catch(e) { alert("Transmission setup error."); }
         }
 
         function triggerFortuneCookieGame() {
@@ -853,6 +967,7 @@
 
         function renderStudentGrid() {
             const gridContainer = document.getElementById("students-grid");
+            if(!gridContainer) return;
             gridContainer.innerHTML = "";
             const searchQuery = document.getElementById("grid-search").value.toLowerCase().trim();
 
@@ -915,7 +1030,6 @@
             setTimeout(() => modal.classList.add("hidden"), 300);
         }
 
-        // 1. REBUILT SELECTION INJECTOR KEY FIXES (PREVENTS SUBMIT BLOCKS)
         function updateVibeCheckboxInterface() {
             const poolContainer = document.getElementById("vibe-checkbox-grid");
             if(!poolContainer) return; 
@@ -955,7 +1069,6 @@
             feedbackTextNode.innerText = textString.replace("{count}", selectedVibeTraits.length);
         }
 
-        // 1. BALLOT ENGINE CAST TRIGGER
         function populateSuperlativeDropdown() {
             const select = document.getElementById("superlative-nominee-select");
             if(!select) return;
@@ -971,10 +1084,7 @@
 
         function castSuperlativeVote() {
             const chosenNominee = document.getElementById("superlative-nominee-select").value;
-            if(!chosenNominee) {
-                alert("Please select a student name option record from the dropdown first!");
-                return;
-            }
+            if(!chosenNominee) return;
             confetti({ particleCount: 35, spread: 45 });
             alert(currentLanguage === 'ar' ? "تم تسجيل صوتك السري بنجاح! شكرًا لك." : "Secret ballot superlative entry cataloged perfectly!");
         }
@@ -982,6 +1092,7 @@
         async function renderReceivedMessages() {
             const cardsStack = document.getElementById("received-messages-stack");
             const totalCountLabel = document.getElementById("letters-count");
+            if(!cardsStack) return;
             cardsStack.innerHTML = "";
 
             try {
@@ -1068,6 +1179,7 @@
 
         function renderVibeAnalyticsGraph(messagesArray) {
             const graphContainer = document.getElementById("analytics-bars-container");
+            if(!graphContainer) return;
             graphContainer.innerHTML = "";
             const frequenciesMap = {};
             let totalTagsDetectedCount = 0;
@@ -1106,6 +1218,7 @@
 
         function updateProfileTheme(themeClass) {
             const card = document.getElementById("user-vault-card");
+            if(!card) return;
             card.className = "arcade-card rounded-3xl p-6 space-y-6 relative overflow-hidden transition-all duration-300";
             card.classList.add(themeClass);
             if(loggedInUser) { localStorage.setItem(`envelope_theme_${loggedInUser.id}`, themeClass); }
@@ -1126,7 +1239,7 @@
                 if (cursorY > 250) { doc.addPage(); cursorY = 25; }
                 let cleanBodyText = envelope.content;
                 if (cleanBodyText.includes("__LOCK__:")) {
-                    cleanBodyText = cleanBodyText.split("__:").slice(2).join("__:");
+                    cleanBodyText = cleanBodyText.split(" biographies:").slice(2).join("__:");
                 }
                 const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
                 const splitLines = doc.splitTextToSize(`"${strippedText}"`, 160);
