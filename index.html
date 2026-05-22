@@ -115,7 +115,6 @@
             animation: cookieCrack 0.6s ease-in-out;
         }
 
-        /* Continuous scrolling ticker adjustment */
         @keyframes tickerEffect {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-50%, 0, 0); }
@@ -123,7 +122,7 @@
         .animate-ticker {
             display: inline-block;
             white-space: nowrap;
-            animation: tickerEffect 30s linear infinite;
+            animation: tickerEffect 35s linear infinite;
         }
         .animate-ticker:hover {
             animation-play-state: paused;
@@ -139,7 +138,7 @@
     <div class="max-w-6xl mx-auto space-y-6">
         
         <!-- ========================================================= -->
-        <!-- SYSTEM NAVIGATION & HEADER INTERFACE                      -->
+        <!-- NAVIGATION HEADER INTERFACE                               -->
         <!-- ========================================================= -->
         <header class="arcade-card bg-[#eddcd2] rounded-3xl p-6 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-2 text-center md:text-left rtl:text-right max-w-2xl">
@@ -163,19 +162,17 @@
         </header>
 
         <!-- ========================================================= -->
-        <!-- 3. IDEA EXTRA: DYNAMIC LIVE TOAST TICKER FEED             -->
+        <!-- LIVE TOAST TICKER FEED MARQUEE SECTION                    -->
         <!-- ========================================================= -->
         <div id="live-marquee-container" class="arcade-card bg-slate-900 text-yellow-300 rounded-xl py-2 px-4 overflow-hidden border-2 flex items-center hidden">
             <span class="font-arcade text-[8px] bg-red-600 text-white px-1.5 py-0.5 rounded mr-3 uppercase shrink-0 animate-pulse">Feed</span>
             <div class="w-full overflow-hidden relative">
-                <div id="live-ticker-track" class="animate-ticker text-xs font-mono font-bold tracking-wide">
-                    <!-- Dynamic updates duplicate strings injected programmatically here to complete loops -->
-                </div>
+                <div id="live-ticker-track" class="animate-ticker text-xs font-mono font-bold tracking-wide"></div>
             </div>
         </div>
 
         <!-- ========================================================= -->
-        <!-- 1. THE WELCOME ENGINE (AUTOCOMPLETE GATING PORTAL)       -->
+        <!-- INTERACTIVE LOG-IN PORTAL ACCESSIBILITY                   -->
         <!-- ========================================================= -->
         <section id="auth-section" class="arcade-card bg-[#f3e5f5] rounded-3xl p-6 md:p-10 max-w-md mx-auto space-y-6 border-4">
             <div class="text-center space-y-2">
@@ -206,20 +203,18 @@
         <!-- MAIN INTERACTIVE ARCADE DASHBOARD MATRIX -->
         <main id="main-dashboard" class="space-y-6 hidden">
             
-            <!-- COMMUNITY METRICS SPARKS & ARCADE SCOREBOARD MATRIX -->
+            <!-- COHORT ANALYTICS CORE HEADLINE BOARD -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                
-                <!-- SPARKS & STATS COUNTER PANEL -->
                 <div class="md:col-span-4 arcade-card bg-[#e8f5e9] p-5 rounded-3xl flex flex-col justify-around gap-3 text-center">
                     <div>
                         <span class="text-2xl">✨</span>
-                        <h4 id="spark-kindness-title" class="text-[10px] font-black text-slate-600 uppercase tracking-wider">Moments Shared Generosities</h4>
+                        <h4 id="spark-kindness-title" class="text-[10px] font-black text-slate-600 uppercase tracking-wider"></h4>
                         <p id="spark-total-messages" class="text-xl font-black text-slate-900">...</p>
                     </div>
                     <div class="w-full h-px bg-slate-300"></div>
                     <div>
                         <span class="text-2xl">👑</span>
-                        <h4 id="spark-legendary-title" class="text-[10px] font-black text-slate-600 uppercase tracking-wider">Class Superlative Votes cast</h4>
+                        <h4 id="spark-legendary-title" class="text-[10px] font-black text-slate-600 uppercase tracking-wider"></h4>
                         <p id="spark-legendary-count" class="text-xl font-black text-slate-900">...</p>
                     </div>
                 </div>
@@ -229,43 +224,41 @@
                     <div class="absolute top-0 right-0 p-2 text-[9px] font-arcade text-slate-700 select-none">VIBE_OS v2.6</div>
                     <div class="flex items-center gap-3 border-b-2 border-slate-700 pb-2 mb-3">
                         <span class="text-xl">🕹️</span>
-                        <h3 id="leaderboard-headline-txt" class="text-xs font-arcade uppercase text-[#00ff66] tracking-widest animate-pulse">CLASS ARCHETYPE SCOREBOARD</h3>
+                        <h3 id="leaderboard-headline-txt" class="text-xs font-arcade uppercase text-[#00ff66] tracking-widest animate-pulse"></h3>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="leaderboard-podiums-container"></div>
                 </div>
             </div>
 
-            <!-- TWO COLUMN INTERACTION MATRIX LAYOUT -->
+            <!-- INTERFACE ROW SYSTEM PLACEMENT LAYOUTS -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
-                <!-- LEFT PILLAR COLUMN -->
+                <!-- PILLAR SIDE PANEL DESK -->
                 <div class="lg:col-span-5 space-y-6">
                     
-                    <!-- USER ACCOUNT VAULT PORTAL -->
+                    <!-- PRIVACY VAULT BOX -->
                     <div id="user-vault-card" class="arcade-card bg-white rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-amber-200 border-3 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl flex items-center justify-center text-xl text-slate-900 font-black" id="user-avatar-char">?</div>
                             <div class="space-y-0.5">
-                                <p id="vault-welcome-tag" class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Welcome Back,</p>
+                                <p id="vault-welcome-tag" class="text-[10px] font-black text-slate-500 uppercase tracking-widest"></p>
                                 <h2 id="user-display-name" class="text-lg font-black text-slate-900">Student Name</h2>
                             </div>
                         </div>
 
-                        <!-- 1. IDEA EXTRA: SECRET SANTA / RANDOM CLASSMATE SELECTOR ENGINE WIDGET -->
+                        <!-- SECRET SANTA MATCHMAKER COMPONENT -->
                         <div class="p-3 bg-indigo-50 border-2 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] rounded-xl space-y-2">
                             <div class="flex items-center justify-between">
-                                <h4 id="santa-title-lbl" class="text-[11px] font-black uppercase text-indigo-900 tracking-wider">🍬 Secret Vibe Assignment Generator</h4>
+                                <h4 id="santa-title-lbl" class="text-[11px] font-black uppercase text-indigo-900 tracking-wider"></h4>
                                 <span class="text-xs">🎲</span>
                             </div>
-                            <p id="santa-desc-lbl" class="text-[10px] font-medium text-slate-600 leading-normal">Feeling unsure who to praise? Roll a random classmate right now and break the circle barrier!</p>
-                            <button onclick="rollRandomClassmateTarget()" class="w-full py-2 bg-indigo-300 text-slate-900 text-xs font-black uppercase tracking-wider rounded-lg border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] hover:translate-y-[1px] active:translate-y-[2px] transition cursor-pointer">
-                                Roll Random Classmate Target
-                            </button>
+                            <p id="santa-desc-lbl" class="text-[10px] font-medium text-slate-600 leading-normal"></p>
+                            <button onclick="rollRandomClassmateTarget()" id="santa-btn-lbl" class="w-full py-2 bg-indigo-300 text-slate-900 text-xs font-black uppercase tracking-wider rounded-lg border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] hover:translate-y-[1px] active:translate-y-[2px] transition cursor-pointer"></button>
                         </div>
 
-                        <!-- CUSTOMIZABLE THEME AURA SELECTOR -->
+                        <!-- THEME SELECTOR CONTAINER -->
                         <div class="p-3 bg-white/80 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl space-y-2 text-slate-900">
-                            <h4 id="theme-selector-lbl" class="text-[10px] font-black uppercase text-slate-800 tracking-wider">Select Your Vault Space Theme Aura:</h4>
+                            <h4 id="theme-selector-lbl" class="text-[10px] font-black uppercase text-slate-800 tracking-wider"></h4>
                             <div class="grid grid-cols-6 gap-2">
                                 <button onclick="updateProfileTheme('aura-green')" class="h-6 rounded-md border-2 border-slate-900 aura-green cursor-pointer transition" title="Mint Green"></button>
                                 <button onclick="updateProfileTheme('aura-champagne')" class="h-6 rounded-md border-2 border-slate-900 aura-champagne cursor-pointer transition" title="Champagne Cream"></button>
@@ -276,52 +269,46 @@
                             </div>
                         </div>
 
-                        <!-- VISUAL VIBE RADAR -->
+                        <!-- DOMINANT VIBE RADAR PROGRESSIVE BARS -->
                         <div class="bg-white/90 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] p-3 rounded-xl space-y-2 text-slate-900">
-                            <h3 id="analytics-title" class="text-[10px] font-black uppercase tracking-wider text-slate-900">Your Dominant Traits Radar</h3>
+                            <h3 id="analytics-title" class="text-[10px] font-black uppercase tracking-wider text-slate-900"></h3>
                             <div id="analytics-bars-container" class="space-y-1.5"></div>
                         </div>
 
-                        <!-- 2. IDEA EXTRA: 35+ PROFILE UNLOCKABLE ARCADE TROPHIES GRID CONTAINER -->
+                        <!-- ARCADE ACCOMPLISHMENTS GRID LOG MATRIX -->
                         <div class="bg-slate-900 text-yellow-400 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] p-3 rounded-xl space-y-2">
                             <div class="flex items-center justify-between border-b border-slate-700 pb-1">
-                                <span class="font-arcade text-[8px] tracking-widest uppercase text-white">🏆 Achievements Locked: <span id="unlocked-trophies-counter" class="text-green-400">0</span>/35</span>
+                                <span id="achievements-heading-txt" class="font-arcade text-[7.5px] tracking-widest uppercase text-white">🏆 Achievements Locked: <span id="unlocked-trophies-counter" class="text-green-400">0</span>/35</span>
                             </div>
-                            <div id="trophies-scroll-matrix" class="grid grid-cols-7 gap-1 max-h-24 overflow-y-auto p-0.5 bg-black/40 rounded-lg">
-                                <!-- 35 dynamic achievement badge icons mapped elegantly here -->
-                            </div>
-                            <div id="selected-trophy-hint-display" class="text-[8px] font-mono font-bold text-slate-400 italic bg-black/20 p-1 rounded text-center">
-                                Hover or click a badge to trace unlock configurations rules.
-                            </div>
+                            <div id="trophies-scroll-matrix" class="grid grid-cols-7 gap-1 max-h-24 overflow-y-auto p-0.5 bg-black/40 rounded-lg"></div>
+                            <div id="selected-trophy-hint-display" class="text-[8px] font-mono font-bold text-slate-400 italic bg-black/20 p-1 rounded text-center"></div>
                         </div>
 
                         <button onclick="generateKeepsakePDF()" class="w-full py-2.5 px-4 bg-[#eddcd2] text-slate-900 font-black text-xs uppercase tracking-wider rounded-xl arcade-btn cursor-pointer flex items-center justify-center gap-2 border-2">
-                            <span>📥</span> <span id="btn-keepsake-txt">Download My Summer Keepsake (PDF)</span>
+                            <span>📥</span> <span id="btn-keepsake-txt"></span>
                         </button>
                     </div>
 
-                    <!-- SUMMER FORTUNE COOKIE MINI-GAME WIDGET -->
+                    <!-- GEOMETRIC COOKIE MINI-GAME INTERFACE -->
                     <div onclick="triggerFortuneCookieGame()" class="arcade-card bg-gradient-to-tr from-amber-100 to-orange-100 rounded-3xl p-5 relative overflow-hidden cursor-pointer text-center group border-4">
                         <div class="flex items-center justify-between mb-2">
                             <h3 id="cookie-header-lbl" class="text-[10px] font-black uppercase tracking-widest text-orange-900 bg-white border-2 border-slate-900 px-2 py-0.5 rounded-md">🥠 FORTUNE MINI-GAME // كبسولة الحظ</h3>
                             <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-orange-600"></span>
                         </div>
                         <div id="cookie-graphic-node" class="text-5xl my-3 transition-transform duration-300 transform group-hover:scale-110 inline-block select-none">🥠</div>
-                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[50px] flex flex-col justify-center transition-all duration-500">
-                            Click the floating cookie asset to crack open ancient poetic horizons and beautiful motivational statements!
-                        </div>
+                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[50px] flex flex-col justify-center transition-all duration-500"></div>
                     </div>
 
-                    <!-- DYNAMIC 3-DAY ROTATING CLASS SUPERLATIVES BALLOT PANEL -->
+                    <!-- ROTATING BALLOT SLOTS ROW LAYOUT -->
                     <div class="arcade-card bg-[#fff9db] rounded-3xl p-5 space-y-4 text-slate-900">
                         <div class="space-y-1">
-                            <h3 id="superlative-title" class="text-sm font-black uppercase text-slate-900 tracking-wider">🗳️ Class Superlatives Ballot</h3>
-                            <p id="superlative-desc" class="text-[11px] font-bold text-slate-700">Cast an anonymous vote! Who fits this title best?</p>
+                            <h3 id="superlative-title" class="text-sm font-black uppercase text-slate-900 tracking-wider"></h3>
+                            <p id="superlative-desc" class="text-[11px] font-bold text-slate-700"></p>
                         </div>
                         
                         <div class="space-y-3 bg-white p-3 border-2 border-slate-900 rounded-xl shadow-[3px_3px_0px_0px_#1a0f0a]">
                             <div>
-                                <span id="superlative-question" class="text-xs font-black text-slate-900 block mb-1 bg-amber-200 inline-block px-2 py-0.5 rounded border border-slate-400">🌟 Most Inspiring Heart of the Year:</span>
+                                <span id="superlative-question" class="text-xs font-black text-slate-900 block mb-1 bg-amber-200 inline-block px-2 py-0.5 rounded border border-slate-400"></span>
                                 <select id="superlative-nominee-select" class="w-full p-2 bg-slate-50 border-2 border-slate-900 rounded-lg text-xs font-bold focus:outline-none text-slate-900"></select>
                             </div>
                             <button onclick="castSuperlativeVote()" id="btn-cast-vote" class="w-full py-2 bg-amber-300 text-slate-900 font-black text-xs uppercase tracking-wider rounded-lg border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] transition cursor-pointer">
@@ -329,17 +316,16 @@
                             </button>
                         </div>
 
-                        <!-- ARCHIVE BOX FOR COMPLETED VOTES -->
                         <div id="superlative-results-box" class="p-3 bg-slate-900 border-2 border-slate-700 rounded-xl font-mono text-[10px] text-green-400 space-y-1">
-                            <div class="text-white border-b border-slate-700 pb-1 uppercase font-bold tracking-widest text-[9px]">⌛ PHASE STAGE HISTORIC ARCHIVE RESULTS:</div>
+                            <div id="superlative-archive-headline" class="text-white border-b border-slate-700 pb-1 uppercase font-bold tracking-widest text-[8px]"></div>
                             <div id="superlative-archive-content"></div>
                         </div>
                     </div>
 
-                    <!-- INBOUND ENVELOPES LIST LEDGER CONTAINER -->
+                    <!-- LETTERS STACK FEED -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <h3 id="letters-title" class="text-sm font-black text-white uppercase tracking-wider">Your Digital Envelopes</h3>
+                            <h3 id="letters-title" class="text-sm font-black text-white uppercase tracking-wider"></h3>
                             <span id="letters-count" class="bg-white text-slate-900 font-black text-xs px-2.5 py-0.5 border-2 border-slate-900 rounded-md">0</span>
                         </div>
                         <div id="received-messages-stack" class="grid grid-cols-1 gap-4 max-h-[500px] overflow-y-auto pr-2 text-slate-900"></div>
@@ -347,18 +333,13 @@
 
                 </div>
 
-                <!-- RIGHT PILLAR COLUMN -->
+                <!-- RIGHT MAIN DIRECTORY COLUMN PILLAR -->
                 <div class="lg:col-span-7 space-y-6">
-                    
-                    <!-- REGISTRY FILTER BAR -->
                     <div class="arcade-card bg-white rounded-2xl p-4 flex items-center gap-3">
                         <span class="text-lg pl-2">🔍</span>
-                        <input type="text" id="grid-search" oninput="filterStudentGrid()" class="w-full bg-transparent border-none text-sm font-bold focus:outline-none placeholder:text-slate-500 text-slate-900" placeholder="Search classmate's name...">
+                        <input type="text" id="grid-search" oninput="filterStudentGrid()" class="w-full bg-transparent border-none text-sm font-bold focus:outline-none placeholder:text-slate-500 text-slate-900">
                     </div>
-
-                    <!-- SEARCHABLE STUDENT ACTIVE MATRIX GRID -->
-                    <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[1100px] overflow-y-auto p-1 text-slate-900"></div>
-
+                    <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[1200px] overflow-y-auto p-1 text-slate-900"></div>
                 </div>
             </div>
 
@@ -366,7 +347,7 @@
 
     </div>
 
-    <!-- TRANSMISSION POPUP AND QUICK ACTION MATRIX SHEET MODAL -->
+    <!-- TRANSMISSION CAPSULE DIALOG MODAL LAYOUT SHEET SHEET -->
     <div id="envelope-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
         <div class="arcade-card w-full max-w-xl rounded-3xl bg-white p-6 md:p-8 transform scale-95 transition-transform duration-300 space-y-6 max-h-[90vh] overflow-y-auto relative border-4 text-slate-900">
             
@@ -379,42 +360,42 @@
                 </h3>
             </div>
 
-            <!-- ONE-CLICK QUICK ACTIONS PANEL -->
+            <!-- ONE-CLICK QUICK ACTIONS LAUNCH MATRIX -->
             <div class="p-4 bg-green-50 border-3 border-slate-900 shadow-[4px_4px_0px_0px_#1a0f0a] rounded-2xl space-y-2">
-                <h4 id="quick-action-headline" class="text-xs font-black text-emerald-900 uppercase tracking-wide flex items-center gap-1">⚡ DROP A QUICK VIBE (ONE-CLICK LAUNCH)</h4>
+                <h4 id="quick-action-headline" class="text-xs font-black text-emerald-900 uppercase tracking-wide flex items-center gap-1"></h4>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    <button onclick="fireQuickVibeTransmission('✨ Creative')" class="p-2 bg-white hover:bg-yellow-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition">✨ Creative</button>
-                    <button onclick="fireQuickVibeTransmission('🧠 Wise')" class="p-2 bg-white hover:bg-blue-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition">🧠 Wise</button>
-                    <button onclick="fireQuickVibeTransmission('🌟 Star')" class="p-2 bg-white hover:bg-pink-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition">🌟 Star</button>
-                    <button onclick="fireQuickVibeTransmission('🔋 Energizer')" class="p-2 bg-white hover:bg-emerald-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition">🔋 Energizer</button>
+                    <button id="quick-btn-0" onclick="fireQuickVibeTransmission(0)" class="p-2 bg-white hover:bg-yellow-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition"></button>
+                    <button id="quick-btn-1" onclick="fireQuickVibeTransmission(1)" class="p-2 bg-white hover:bg-blue-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition"></button>
+                    <button id="quick-btn-2" onclick="fireQuickVibeTransmission(2)" class="p-2 bg-white hover:bg-pink-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition"></button>
+                    <button id="quick-btn-3" onclick="fireQuickVibeTransmission(3)" class="p-2 bg-white hover:bg-emerald-100 border-2 border-slate-900 rounded-xl text-xs font-black text-slate-800 cursor-pointer active:scale-95 transition"></button>
                 </div>
             </div>
 
-            <!-- CUSTOM SELECTION CHECKBOXES -->
+            <!-- CUSTOM SELECTION SECTOR -->
             <div class="space-y-2">
-                <label id="modal-vibe-lbl" class="block text-xs font-black text-slate-700 tracking-wider uppercase">Or build custom envelope traits (Select exactly 3):</label>
+                <label id="modal-vibe-lbl" class="block text-xs font-black text-slate-700 tracking-wider uppercase"></label>
                 <div id="vibe-checkbox-grid" class="grid grid-cols-2 gap-2"></div>
-                <div id="vibe-counter-feedback" class="text-[11px] font-black text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300 inline-block">Selected: 0 / 3</div>
+                <div id="vibe-counter-feedback" class="text-[11px] font-black text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300 inline-block"></div>
             </div>
 
-            <!-- TIME LOCK DELAY MODULE -->
+            <!-- TIME LOCK CAPSULE WRAP -->
             <div class="p-4 bg-yellow-50 border-2 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] rounded-2xl space-y-2">
-                <label id="capsule-lock-lbl" class="block text-xs font-black text-slate-900 uppercase tracking-wider">🔒 Time-Lock Capsule Protocol (Optional):</label>
-                <p id="capsule-lock-sub" class="text-[10px] font-medium text-slate-600">Force this letter to remain locked, blurred, and encrypted until a specific day arrive.</p>
+                <label id="capsule-lock-lbl" class="block text-xs font-black text-slate-900 uppercase tracking-wider"></label>
+                <p id="capsule-lock-sub" class="text-[10px] font-medium text-slate-600"></p>
                 <input type="date" id="modal-lock-date" class="p-2 bg-white border-2 border-slate-900 rounded-lg text-xs font-black focus:outline-none tracking-wide text-slate-900">
             </div>
 
-            <!-- MESSAGE INPUT FIELD -->
+            <!-- MANUAL INPUT EDIT REGION -->
             <div class="space-y-2">
-                <label id="modal-msg-lbl" class="block text-xs font-black text-slate-700 uppercase tracking-wider">Your Message of Appreciation:</label>
-                <textarea id="modal-msg-content" rows="4" class="w-full p-4 bg-white arcade-input rounded-xl text-sm font-bold focus:outline-none text-slate-900 resize-none" placeholder="Write something inspiring... Keep it genuine, kind, and unforgettable."></textarea>
+                <label id="modal-msg-lbl" class="block text-xs font-black text-slate-700 uppercase tracking-wider"></label>
+                <textarea id="modal-msg-content" rows="4" class="w-full p-4 bg-white arcade-input rounded-xl text-sm font-bold focus:outline-none text-slate-900 resize-none"></textarea>
             </div>
 
-            <!-- ANONYMITY SWITCH -->
+            <!-- ANONYMOUS CONFIG SWITCH -->
             <div class="flex items-center justify-between p-3 bg-slate-50 border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]">
                 <div class="space-y-0.5">
-                    <span id="anon-toggle-lbl" class="text-xs font-black text-slate-800 block">Send Anonymously</span>
-                    <span id="anon-toggle-sub" class="text-[10px] text-slate-600 block">Your name will show as Anonymous</span>
+                    <span id="anon-toggle-lbl" class="text-xs font-black text-slate-800 block"></span>
+                    <span id="anon-toggle-sub" class="text-[10px] text-slate-600 block"></span>
                 </div>
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="modal-anon-checkbox" class="sr-only peer">
@@ -422,22 +403,20 @@
                 </label>
             </div>
 
-            <!-- ACTION TRIGGERS -->
+            <!-- BUTTON ACTIONS REGION -->
             <div class="flex items-center justify-end gap-3 pt-2">
-                <button onclick="closeEnvelopeModal()" id="modal-cancel-btn" class="px-5 py-3 rounded-lg text-xs font-black text-slate-600 hover:bg-slate-100 transition cursor-pointer">Cancel</button>
-                <button onclick="submitEnvelopePipeline()" id="modal-submit-btn" class="px-6 py-3 rounded-lg text-xs font-black bg-pink-300 text-slate-900 brutal-btn cursor-pointer">Transmit Envelope</button>
+                <button onclick="closeEnvelopeModal()" id="modal-cancel-btn" class="px-5 py-3 rounded-lg text-xs font-black text-slate-600 hover:bg-slate-100 transition cursor-pointer"></button>
+                <button onclick="submitEnvelopePipeline()" id="modal-submit-btn" class="px-6 py-3 rounded-lg text-xs font-black bg-pink-300 text-slate-900 brutal-btn cursor-pointer"></button>
             </div>
 
         </div>
     </div>
 
     <!-- ========================================================= -->
-    <!-- SECURE EMBEDDED JAVASCRIPT CORE SYSTEM OPERATION ENGINE   -->
+    <!-- SECURE EMBEDDED JAVASCRIPT ENGINE IMPLEMENTATION CODE      -->
     <!-- ========================================================= -->
     <script>
-        const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
-
+        // SYSTEM MASTER ARRAYS ENGINES CONFIGURATION
         let supabaseClient;
         let currentLanguage = 'en';
         let loggedInUser = null; 
@@ -450,10 +429,29 @@
             "fuck", "bitch", "asshole", "putain", "merde", "khra", "zbel", "bourricot", "klb", "kalb"
         ];
 
+        // 3. RADAR SUBSTRING NORMALIZER ENGINE: Maps stored tags backwards seamlessly across dialects
+        const RADAR_SUBSTRING_COMPILER_MAP = [
+            { id: 0, keywords: ["brilliant", "brillant", "عبقري"] },
+            { id: 1, keywords: ["energy", "énergie", "طاقة"] },
+            { id: 2, keywords: ["unstoppable", "inarrêtable", "يتوقف"] },
+            { id: 3, keywords: ["creative", "créatif", "مبدع"] },
+            { id: 4, keywords: ["visionary", "visionnaire", "رؤيوي"] },
+            { id: 5, keywords: ["gem", "perle", "جوهرة"] },
+            { id: 6, keywords: ["rock", "pilier", "سند"] },
+            { id: 7, keywords: ["heart", "cœur", "قلب"] }
+        ];
+
         const VIBE_OPTIONS_POOL = {
             en: ["🧠 Most Brilliant", "⚡ Pure Energy", "🔥 Unstoppable", "🎨 Creative Mind", "🚀 Visionary", "💎 Rare Gem", "🤝 Solid Rock", "🌻 Kind Heart"],
             fr: ["🧠 Plus Brillant", "⚡ Énergie Pure", "🔥 Inarrêtable", "🎨 Esprit Créatif", "🚀 Visionnaire", "💎 Perle Rare", "🤝 Pilier Solide", "🌻 Cœur Tendre"],
             ar: ["🧠 الأكثر عبقرية", "⚡ طاقة نقية", "🔥 لا يتوقف", "🎨 عقل مبدع", "🚀 رؤيوي", "💎 جوهرة نادرة", "🤝 سند قوي", "🌻 طيب القلب"]
+        };
+
+        // 2. ONE CLICK LAUNCH DICTIONARY SOURCE MATRIX
+        const QUICK_VIBES_OPTIONS_MATRIX = {
+            en: ["✨ Creative", "🧠 Wise", "🌟 Star", "🔋 Energizer"],
+            fr: ["✨ Créatif", "🧠 Sage", "🌟 Étoile", "🔋 Énergie"],
+            ar: ["✨ مبدع", "🧠 حكيم", "🌟 نجم", "🔋 مشحون"]
         };
 
         const SUPERLATIVE_TIMELINE_PHASES = [
@@ -481,56 +479,161 @@
                 en: "Out of the night that covers me,<br>Black as the pit from pole to pole,<br>I thank whatever gods may be<br>For my unconquerable soul.",
                 fr: "Dans la nuit noire qui m'enveloppe,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.",
                 ar: "بِقَدرِ الكَدِّ تُكتَسَبُ المَعالي<br>وَمَن طَلَبَ العُلا سَهِرَ اللَيالي<br>— الإمام الشافعي"
-            },
-            {
-                en: "Do not go gentle into that good night.<br>Your internal fire must never fade away.<br>Shine with everything you have.",
-                fr: "Ne t'abandonne pas à la nuit douce.<br>Lutte avec force pour garder ta lumière claire.<br>Ton éclat est précieux.",
-                ar: "إِذا غامَرتَ في شَرَفٍ مَرومٍ<br>فَلا تَقنَع بِما دونَ النُجومِ<br>— أبو الطيب المتنبي"
             }
         ];
 
-        // 2. IDEA EXTRA ARRAY MATRIX: 35 DISTINCT UNLOCKABLE ARCADE ACHIEVEMENTS BADGES
+        // 4. ACHIEVEMENTS SYSTEM MATRIX TRILINGUAL LOCALIZATION COMPILER
         const MASTER_TROPHIES_BLUEPRINT = [
-            { id: 1, icon: "👑", name: "First Entry", hint: "Authenticate and log inside your secure portal dashboard registry.", challenge: "Log in successfully." },
-            { id: 2, icon: "🍿", name: "Vibe Cadet", hint: "Accumulate 1 verified inbound peer letter envelope capsule.", challenge: "Receive 1 message." },
-            { id: 3, icon: "🚀", name: "Vibe Commander", hint: "Accumulate 5 verified inbound peer letter envelopes.", challenge: "Receive 5 messages." },
-            { id: 4, icon: "🔮", name: "Class Legend", hint: "Accumulate 10 or more verified incoming capsules row sets.", challenge: "Receive 10 messages." },
-            { id: 5, icon: "🥠", name: "Cookie Cracker", hint: "Crack open the summer fortune cookie mini-game single matrix.", challenge: "Click cookie 1 time." },
-            { id: 6, icon: "🧠", name: "Poetic Scholar", hint: "Crack open the fortune cookie generator 5 unique cycles.", challenge: "Click cookie 5 times." },
-            { id: 7, icon: "📜", name: "Philosophy Sage", hint: "Crack open the cookie wave 15 times to complete insights.", challenge: "Click cookie 15 times." },
-            { id: 8, icon: "🌙", name: "Midnight Shadow", hint: "Access or initialize your secure profile page past midnight hours.", challenge: "Log in after 12 AM." },
-            { id: 9, icon: "☀️", name: "Early Riser", hint: "Access or log inside your command workspace before 8:00 AM.", challenge: "Log in before 8 AM." },
-            { id: 10, icon: "🎨", name: "Aura Switcher", hint: "Modify your polaroid private vault background aura theme once.", challenge: "Change theme 1 time." },
-            { id: 11, icon: "💎", name: "Chameleon Core", hint: "Toggle your space customizable theme backgrounds 6 or more times.", challenge: "Change theme 6 times." },
-            { id: 12, icon: "🗳️", name: "Active Democrat", hint: "Cast an anonymous secret ballot vote on class superlatives.", challenge: "Cast 1 superlative ballot." },
-            { id: 13, icon: "📥", name: "Archivist Seal", hint: "Compile and call jsPDF engine to print your summer certificate keepsake.", challenge: "Download Keepsake PDF." },
-            { id: 14, icon: "🎲", name: "Secret Wheel", hint: "Initialize the Secret Santa matchmaker generator tool assignment.", challenge: "Roll random target 1 time." },
-            { id: 15, icon: "🍬", name: "Generous Scout", hint: "Roll random target classmate profiles 5 or more cycles.", challenge: "Roll random target 5 times." },
-            { id: 16, icon: "🌍", name: "Polyglot Node", hint: "Toggle language switches to check all English, French, and Arabic states.", challenge: "Click all 3 language tabs." },
-            { id: 17, icon: "🛡️", name: "Clean Energy", hint: "Transmit a compliment capsule completely free of safety radar flags.", challenge: "Send a clean envelope message." },
-            { id: 18, icon: "⚡", name: "Speed Boxer", hint: "Transmit an instant review capsule using one-click badge drops.", challenge: "Use quick vibe badge 1 time." },
-            { id: 19, icon: "🔋", name: "Overcharged", hint: "Use one-click instant adrenaline badges 5 unique iterations.", challenge: "Use quick vibe badges 5 times." },
-            { id: 20, icon: "🔒", name: "Time Architect", hint: "Schedule an encrypted delayed message capsule container lock date.", challenge: "Set 1 time-lock capsule date." },
-            { id: 21, icon: "⏳", name: "Future Planner", hint: "Schedule 3 or more distinct cryptographically time-locked capsules.", challenge: "Set 3 time-lock dates." },
-            { id: 22, icon: "🤝", name: "Loyal Pillar", hint: "View your personal Dominant Traits Radar with a frequency total.", challenge: "Have at least 1 vibe tag row." },
-            { id: 23, icon: "🔥", name: "Apex Tracker", hint: "Check out the arcade scoreboard archetype leader rankings list.", challenge: "Leaderboard metrics initialized." },
-            { id: 24, icon: "🎭", name: "Ghost Identity", hint: "Send an appreciation review card using the anonymous front mask toggle.", challenge: "Check anonymous slider switch." },
-            { id: 25, icon: "🐾", name: "Steady Walker", hint: "Keep your dashboard workspace open for a sustained active session loop.", challenge: "App loaded successfully." },
-            { id: 26, icon: "🧁", name: "Sweet Wave", hint: "Receive a message containing the '🌻 Kind Heart' archetype badge tag.", challenge: "Inbound trait contains Kind Heart." },
-            { id: 27, icon: "🚀", name: "Stellar Apex", hint: "Receive a capsule tracking payload mapping the '🚀 Visionary' tag.", challenge: "Inbound trait contains Visionary." },
-            { id: 28, icon: "🧱", name: "Brutal Guard", hint: "Interact with the application running the robust custom night mode theme.", challenge: "Toggle night mode state layout." },
-            { id: 29, icon: "🍀", name: "Lucky Strike", hint: "Roll the exact same random target classmate 2 times in sequence rows.", challenge: "Random roll redundancy match." },
-            { id: 30, icon: "🦁", name: "Brave Explorer", hint: "Filter search query inputs characters across classmate card registries.", challenge: "Type characters inside search bar." },
-            { id: 31, icon: "📣", name: "Marquee Listener", hint: "Observe the live scrolling global toast activity feed ticker bar.", challenge: "Observe marquee text track." },
-            { id: 32, icon: "🍫", name: "Sweet Adrenaline", hint: "Transmit 3 envelopes to 3 different students inside class ranks.", challenge: "Interact with 3 unique peer nodes." },
-            { id: 33, icon: "🧘", name: "Zen Harmony", hint: "Log inside without triggering any safety intercept blocks strings.", challenge: "Zero block history recorded." },
-            { id: 34, icon: "🏆", name: "Arcade Champion", hint: "Unlock 15 or more unique badge tokens in this list layout matrix.", challenge: "Have 15 achievements active." },
-            { id: 35, icon: "👑", name: "Grand Master", hint: "Achieve top-tier usage profile vectors on this production link app terminal.", challenge: "Complete all basic exploration nodes." }
+            { 
+                id: 1, icon: "👑", 
+                name: { en: "First Entry", fr: "Première Entrée", ar: "الخطوة الأولى" },
+                hint: { en: "Log inside your secure portal dashboard registry.", fr: "Connectez-vous à votre espace sécurisé.", ar: "تأكيد الدخول إلى لوحة التحكم الآمنة بنجاح." }
+            },
+            { 
+                id: 2, icon: "🍿", 
+                name: { en: "Vibe Cadet", fr: "Cadet du Vibe", ar: "مستقبل مبتدئ" },
+                hint: { en: "Accumulate 1 verified inbound peer envelope capsule.", fr: "Recevez votre tout premier message d'un pair.", ar: "استقبال أول ظرف رقمي طيب في صندوقك." }
+            },
+            { 
+                id: 3, icon: "🚀", 
+                name: { en: "Vibe Commander", fr: "Commandant Vibe", ar: "قائد المحبة" },
+                hint: { en: "Accumulate 5 verified inbound peer envelopes.", fr: "Accumulez 5 enveloppes de compliments reçues.", ar: "تجميع 5 رسائل رقمية طيبة من زملائك." }
+            },
+            { 
+                id: 4, icon: "🔮", 
+                name: { en: "Class Legend", fr: "Légende de Classe", ar: "أسطورة الدفعة" },
+                hint: { en: "Accumulate 10 or more verified incoming compliments.", fr: "Recevez 10 enveloppes de compliments au total.", ar: "استقبال 10 رسائل أو أكثر في محفظتك الرقمية." }
+            },
+            { 
+                id: 5, icon: "🥠", 
+                name: { en: "Cookie Cracker", fr: "Briseur de Cookie", ar: "مفرقع الكعك" },
+                hint: { en: "Crack open the fortune cookie game once.", fr: "Ouvrez le cookie de fortune une première fois.", ar: "فتح كعكة الحظ واستخراج حكمة شعرية لمرة واحدة." }
+            },
+            { 
+                id: 6, icon: "🧠", name: { en: "Poetic Scholar", fr: "Érudit Poétique", ar: "باحث الأفكار" },
+                hint: { en: "Crack open the fortune cookie 5 unique cycles.", fr: "Ouvrez le cookie de fortune 5 fois au total.", ar: "فتح كعكة الحظ وتصفح الأبيات 5 مرات." }
+            },
+            { 
+                id: 7, icon: "📜", name: { en: "Philosophy Sage", fr: "Sage Philosophe", ar: "حكيم الفلسفة" },
+                hint: { en: "Crack open the cookie wave 15 times.", fr: "Découvrez 15 fois les sagesses du cookie.", ar: "استخراج الحكم العميقة من الكعكة 15 مرة." }
+            },
+            { 
+                id: 8, icon: "🌙", name: { en: "Midnight Shadow", fr: "Ombre de Minuit", ar: "شبح منتصف الليل" },
+                hint: { en: "Access your dashboard registry past midnight.", fr: "Connectez-vous à l'application après minuit.", ar: "تسجيل الدخول وتصفح المنصة بعد منتصف الليل." }
+            },
+            { 
+                id: 9, icon: "☀️", name: { en: "Early Riser", fr: "Aube Active", ar: "همة الصباح" },
+                hint: { en: "Access your dashboard space before 8:00 AM.", fr: "Ouvrez votre espace avant 8h00 du matin.", ar: "الدخول إلى لوحة التحكم مبكراً قبل الساعة 8 صباحاً." }
+            },
+            { 
+                id: 10, icon: "🎨", name: { en: "Aura Switcher", fr: "Styliste d'Aura", ar: "مهندس الألوان" },
+                hint: { en: "Modify your vault background aura theme once.", fr: "Changez le thème d'ambiance de votre espace.", ar: "تعديل هالة ولون لوحة التحكم الخاصة بك لمرة واحدة." }
+            },
+            { 
+                id: 11, icon: "💎", name: { en: "Chameleon Core", fr: "Cœur Caméléon", ar: "متعدد الأطياف" },
+                hint: { en: "Toggle your space theme backgrounds 6 times.", fr: "Modifiez votre arrière-plan d'aura 6 fois.", ar: "تغيير وتجربة ألوان الخلفية الهالية 6 مرات أو أكثر." }
+            },
+            { 
+                id: 12, icon: "🗳️", name: { en: "Active Democrat", fr: "Électeur Actif", ar: "صوت الديمقراطية" },
+                hint: { en: "Cast an anonymous secret ballot vote.", fr: "Votez anonymement pour le superlatif de classe.", ar: "إلقاء صوت سري مجهول في تصويت الأفضل الدفعة." }
+            },
+            { 
+                id: 13, icon: "📥", name: { en: "Archivist Seal", fr: "Sceau d'Archive", ar: "حامي الذكريات" },
+                hint: { en: "Compile and download your pdf certificate archive.", fr: "Téléchargez votre certificat de souvenirs en PDF.", ar: "تحميل وثيقة الذكريات الصيفية بصيغة PDF بنجاح." }
+            },
+            { 
+                id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secrète", ar: "عجلة الحظ" },
+                hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." }
+            },
+            { 
+                id: 15, icon: "🍬", name: { en: "Generous Scout", fr: "Éclaireur Généreux", ar: "مستكشف الكرم" },
+                hint: { en: "Roll random target classmate profiles 5 times.", fr: "Générez des cibles aléatoires 5 fois au total.", ar: "استخدام مِولد الاستهداف العشوائي للزملاء 5 مرات." }
+            },
+            { 
+                id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" },
+                hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح واختيار اللغات الثلاث كاملة على المنصة." }
+            },
+            { 
+                id: 17, icon: "🛡️", name: { en: "Clean Energy", fr: "Énergie Propre", ar: "الطاقة الصافية" },
+                hint: { en: "Transmit a compliment completely free of flags.", fr: "Envoyez un message validé sans aucun filtre.", ar: "إرسال رسالة نقية وصادقة خالية تماماً من الكلمات المحظورة." }
+            },
+            { 
+                id: 18, icon: "⚡", name: { en: "Speed Boxer", fr: "Boxeur de Vitesse", ar: "سريع الإرسال" },
+                hint: { en: "Transmit an envelope using one-click badge drops.", fr: "Envoyez un compliment rapide en un seul clic.", ar: "إرسال تحية تقديرية سريعة باستخدام أزرار الضغط السريع." }
+            },
+            { 
+                id: 19, icon: "🔋", name: { en: "Overcharged", fr: "Surchargé", ar: "الطاقة القصوى" },
+                hint: { en: "Use quick action badges 5 times.", fr: "Utilisez les badges de transmission rapide 5 fois.", ar: "استخدام ميزة الإرسال السريع بضغطة زر 5 مرات." }
+            },
+            { 
+                id: 20, icon: "🔒", name: { en: "Time Architect", fr: "Architecte du Temps", ar: "مهندس الزمان" },
+                hint: { en: "Schedule an encrypted delayed message capsule.", fr: "Programmez une capsule verrouillée dans le temps.", ar: "جدولة وتشفير ظرف زمني مقيد بتاريخ مستقبل مجهول." }
+            },
+            { 
+                id: 21, icon: "⏳", name: { en: "Future Planner", fr: "Planificateur d'Avenir", ar: "مخطط الغد" },
+                hint: { en: "Schedule 3 cryptographically time-locked capsules.", fr: "Verrouillez 3 messages dans le temps.", ar: "جدولة وإقفال 3 مظاريف زمنية مشفرة في المستقبل." }
+            },
+            { 
+                id: 22, icon: "🤝", name: { en: "Steady Anchor", fr: "Ancre Stable", ar: "السند الثابت" },
+                hint: { en: "Have at least 1 analytics tag calculated on radar.", fr: "Affichez votre premier trait calculé sur le radar.", ar: "امتلاك أول صفة معتمدة وظاهرة على رادار التحليلات." }
+            },
+            { 
+                id: 23, icon: "🔥", name: { en: "Apex Tracker", fr: "Chasseur d'Élite", ar: "راصد القمة" },
+                hint: { en: "Load up the arcade scoreboard leader archetypes.", fr: "Consultez le tableau d'honneur de la classe.", ar: "تحميل ورصد لوحة الشرف والتميز لأبطال الدفعة." }
+            },
+            { 
+                id: 24, icon: "🎭", name: { en: "Ghost Identity", fr: "Identité Fantôme", ar: "الهوية المجهولة" },
+                hint: { en: "Send a message using the anonymous frontend switch.", fr: "Envoyez un message masqué anonymement.", ar: "إرسال رسالة تقديرية مع تفعيل مفتاح الهوية المخفية." }
+            },
+            { 
+                id: 25, icon: "💡", name: { en: "Steady Walker", fr: "Marcheur Régulier", ar: "الخطى الثابتة" },
+                hint: { en: "Load up application components framework lines.", fr: "Chargez l'application avec succès.", ar: "تحميل واجهة المنصة وربطها بالخوادم بنجاح." }
+            },
+            { 
+                id: 26, icon: "🌻", name: { en: "Sweet Wave", fr: "Vague de Douceur", ar: "موجة اللطف" },
+                hint: { en: "Receive the Kind Heart archetype vibe tag entry.", fr: "Recevez le trait Cœur Tendre de la part d'un pair.", ar: "استقبال هالة وصفة 'طيب القلب' من أحد زملائك." }
+            },
+            { 
+                id: 27, icon: "🪐", name: { en: "Stellar Apex", fr: "Apogée Stellaire", ar: "النجم الساطع" },
+                hint: { en: "Receive the Visionary tracking payload attribute tag.", fr: "Recevez le trait Visionnaire dans votre boîte.", ar: "استقبال هالة وصفة 'رؤيوي ومميز' في صندوقك." }
+            },
+            { 
+                id: 28, icon: "🧱", name: { en: "Brutal Guard", fr: "Garde Brutal", ar: "الحارس الحصين" },
+                hint: { en: "Toggle dynamic night mode screen filters pairs.", fr: "Activez le mode nuit de l'interface.", ar: "تفعيل الوضع الليلي وتغيير أطياف شاشة العرض الحصينة." }
+            },
+            { 
+                id: 29, icon: "🎰", name: { en: "Lucky Strike", fr: "Coup de Chance", ar: "ضربة الحظ" },
+                hint: { en: "Roll the exact same target classmate twice in a row.", fr: "Tirez deux fois de suite le même camarade.", ar: "استهداف نفس الزميل مرتين متتاليتين عبر مِولد الصدف." }
+            },
+            { 
+                id: 30, icon: "🦁", name: { en: "Brave Explorer", fr: "Explorateur Brave", ar: "المستكشف الشجاع" },
+                hint: { en: "Filter search query inputs inside registry grids.", fr: "Utilisez la barre de recherche des camarades.", ar: "البحث وتصفية الأسماء داخل شبكة دليل الدفعة." }
+            },
+            { 
+                id: 31, icon: "📣", name: { en: "Marquee Listener", fr: "Écouteur du Marquee", ar: "راصد الأخبار" },
+                hint: { en: "Observe the live rolling global toast marquee feed.", fr: "Observez le défilement du flux d'actualités en direct.", ar: "متابعة شريط الأخبار والنشاطات العالمي الحي المتحرك." }
+            },
+            { 
+                id: 32, icon: "🍫", name: { en: "Sweet Adrenaline", fr: "Pure Adrénaline", ar: "شحنة الحماس" },
+                hint: { en: "Transmit 3 envelopes to 3 different peer nodes.", fr: "Envoyez des messages à 3 camarades différents.", ar: "إرسال مظاريف رقمية إلى 3 زملاء مختلفين في الصف." }
+            },
+            { 
+                id: 33, icon: "🧘", name: { en: "Zen Harmony", fr: "Harmonie Zen", ar: "السلام الداخلي" },
+                hint: { en: "Maintain complete compliance clean records rules.", fr: "Conservez un historique d'utilisation irréprochable.", ar: "الحفاظ على سجل نقي ونظيف تماماً بدون أي مخالفات." }
+            },
+            { 
+                id: 34, icon: "🏆", name: { en: "Arcade Champion", fr: "Champion d'Arcade", ar: "بطل الألعاب" },
+                hint: { en: "Unlock 15 or more unique badge tokens from this sheet.", fr: "Débloquez 15 succès de la liste.", ar: "فك تشفير وتفعيل 15 إنجازاً مميزاً من هذه القائمة." }
+            },
+            { 
+                id: 35, icon: "🌟", name: { en: "Grand Master", fr: "Grand Maître", ar: "الأستاذ الكبير" },
+                hint: { en: "Achieve ultimate verified execution usage profiles vectors.", fr: "Complétez l'ensemble des objectifs d'exploration.", ar: "تحقيق الاستخدام الأقصى والمثالي لجميع خصائص المنصة." }
+            }
         ];
 
         const LOCALIZATION_MAP = {
             en: {
-                heroDesc: "The most valuable treasure a student carries over long university breaks is genuine words of appreciation from their peers. Let's lock in real memories before summer takes over.",
+                heroDesc: "The most valuable treasure a student carries over long breaks is genuine words of appreciation from their peers. Let's lock in real memories before summer takes over.",
                 authSubtitle: "Unlock your envelope space or establish your secret summer passkey row.",
                 lblFullName: "Select Your Identity",
                 lblPassword: "Secret Passkey",
@@ -561,10 +664,15 @@
                 capsuleLockSub: "Force this letter to remain locked and hidden until a specific day.",
                 themeSelectorLbl: "Select Your Vault Space Theme Aura:",
                 quickActionHeadline: "⚡ DROP A QUICK VIBE (ONE-CLICK LAUNCH)",
-                leaderboardTitle: "🕹️ CLASS ARCHETYPE SCOREBOARD"
+                leaderboardTitle: "🕹️ CLASS ARCHETYPE SCOREBOARD",
+                santaTitle: "🍬 Secret Vibe Assignment Generator",
+                santaDesc: "Feeling unsure who to praise? Roll a random classmate right now and break the circle barrier!",
+                santaBtn: "Roll Random Classmate Target",
+                achievementsHeading: "🏆 Achievements Locked: ",
+                superlativeArchiveHeadline: "⌛ PHASE STAGE HISTORIC ARCHIVE RESULTS:"
             },
             fr: {
-                heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances universitaires est l'ensemble des mots sincères d'appréciation de ses pairs. Gravons nos souvenirs.",
+                heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances est l'ensemble des mots sincères d'appréciation de ses pairs. Gravons nos souvenirs.",
                 authSubtitle: "Ouvrez votre enveloppe ou enregistrez votre clé secrète d'été.",
                 lblFullName: "Sélectionnez Votre Identité",
                 lblPassword: "Clé Secrète",
@@ -595,7 +703,12 @@
                 capsuleLockSub: "Forcez cette lettre à rester verrouillée jusqu'à une date choisie.",
                 themeSelectorLbl: "Sélectionnez l'Aura Thématique de votre Espace :",
                 quickActionHeadline: "⚡ TRANSMISSION RAPIDE (UN SEUL CLIC)",
-                leaderboardTitle: "🕹️ SCOREBOARD DES ARCHÉTYPES DE CLASSE"
+                leaderboardTitle: "🕹️ SCOREBOARD DES ARCHÉTYPES DE CLASSE",
+                santaTitle: "🍬 Générateur de Mission Vibe Secrète",
+                santaDesc: "Vous ne savez pas qui féliciter ? Tirez au sort un camarade de classe dès maintenant et cassez la routine !",
+                santaBtn: "Cibler un Camarade Aléatoire",
+                achievementsHeading: "🏆 Succès Débloqués : ",
+                superlativeArchiveHeadline: "⌛ ARCHIVE DES RÉSULTATS DE PHASE PRÉCÉDENTE :"
             },
             ar: {
                 heroDesc: "أثمن كنز يحمله الطالب معه خلال العطلة الجامعية الطويلة هو كلمات التقدير والامتنان الصادقة من زملائه. لنحفظ ذكرياتنا الإيجابية قبل بداية الصيف.",
@@ -629,35 +742,14 @@
                 capsuleLockSub: "احظر قراءة هذه الرسالة وشفرها حتى تاريخ محدد من اختيارك.",
                 themeSelectorLbl: "اختر لون وهالة لوحة التحكم الخاصة بك:",
                 quickActionHeadline: "⚡ إرسال سريع بضغطة زر واحدة بدون كتابة",
-                leaderboardTitle: "🕹️ قائمة الشرف والتميز لأبطال الدفعة"
+                leaderboardTitle: "🕹️ قائمة الشرف والتميز لأبطال الدفعة",
+                santaTitle: "🍬 مِولد المهام العشوائية الصادقة",
+                santaDesc: "هل تحتار في اختيار من تكتب له من زملائك؟ اختر زميلاً عشوائياً الآن واكسر الحواجز المألوفة !",
+                santaBtn: "استهداف زميل عشوائي الآن",
+                achievementsHeading: "🏆 الإنجازات المفتوحة والمحققة: ",
+                superlativeArchiveHeadline: "⌛ أرشيف نتائج المراحل الزمنية السابقة:"
             }
         };
-
-        document.addEventListener("DOMContentLoaded", async () => {
-            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            await fetchAllStudentsMetadata();
-            switchLanguage('en'); 
-            
-            document.addEventListener("click", (e) => {
-                if(!e.target.closest('#auth-fullname-input') && !e.target.closest('#autocomplete-dropdown')) {
-                    document.getElementById("autocomplete-dropdown").classList.add("hidden");
-                }
-            });
-
-            if (localStorage.getItem("justsmile_nightmode") === "true") {
-                document.body.classList.add("night-mode");
-                document.getElementById("night-toggle-btn").innerText = "☀️ Light Mode";
-            }
-        });
-
-        function toggleNightModeState() {
-            const body = document.body;
-            body.classList.toggle("night-mode");
-            const isNight = body.classList.contains("night-mode");
-            localStorage.setItem("justsmile_nightmode", isNight);
-            document.getElementById("night-toggle-btn").innerText = isNight ? "☀️ Light Mode" : "🌙 Night Mode";
-            triggerAchievementUnlockCheck(28); // Trigger Unlock code row matching night toggle challenge
-        }
 
         function switchLanguage(langCode) {
             currentLanguage = langCode;
@@ -684,6 +776,10 @@
             document.getElementById("theme-selector-lbl").innerText = dict.themeSelectorLbl;
             document.getElementById("quick-action-headline").innerText = dict.quickActionHeadline;
             document.getElementById("leaderboard-headline-txt").innerText = dict.leaderboardTitle;
+            document.getElementById("santa-title-lbl").innerText = dict.santaTitle;
+            document.getElementById("santa-desc-lbl").innerText = dict.santaDesc;
+            document.getElementById("santa-btn-lbl").innerText = dict.santaBtn;
+            document.getElementById("superlative-archive-headline").innerText = dict.superlativeArchiveHeadline;
             
             document.getElementById("modal-title-prefix").innerText = dict.modalTo;
             document.getElementById("modal-vibe-lbl").innerText = dict.modalVibeLbl;
@@ -694,6 +790,14 @@
             document.getElementById("modal-cancel-btn").innerText = dict.modalCancel;
             document.getElementById("modal-submit-btn").innerText = dict.modalSubmit;
 
+            // 2. FIXED: Localize Quick Action Badges interface text strings instantly
+            const activeQuickLabels = QUICK_VIBES_OPTIONS_MATRIX[langCode];
+            for (let i = 0; i < 4; i++) {
+                const btnNode = document.getElementById(`quick-btn-${i}`);
+                if(btnNode) btnNode.innerText = activeQuickLabels[i];
+            }
+
+            // Language tab button state management
             ['en', 'fr', 'ar'].forEach(l => {
                 const btn = document.getElementById(`lang-btn-${l}`);
                 btn.className = l === langCode 
@@ -705,7 +809,11 @@
             updateVibeCounterFeedback();
             evaluateThreeDayBallotRotationPhase();
 
-            // Check if all language channels clicked parameter matrix
+            // 4. FIXED: Re-render trophies and selected description targets using active dialect strings pairs
+            if(loggedInUser) {
+                renderAchievementsArcadeGridHTML();
+            }
+
             if(!window.languagesVisitedTrace) window.languagesVisitedTrace = [];
             if(!window.languagesVisitedTrace.includes(langCode)) window.languagesVisitedTrace.push(langCode);
             if(window.languagesVisitedTrace.length === 3) triggerAchievementUnlockCheck(16);
@@ -843,124 +951,30 @@
                 document.getElementById("live-marquee-container").classList.remove("hidden");
                 confetti({ particleCount: 100, spread: 60, origin: { y: 0.6 } });
                 
-                // Initialize achievement array matrices trackers inside storage local pairs
                 initializeAchievementsMatrixStorageSystem();
                 
                 await synchronizeClassroomData();
                 populateSuperlativeDropdown();
                 await runGlobalLeaderboardEngine();
                 
-                // 3. START DYNAMIC MARQUEE REFRESH LOOP ENGINE
                 initializeLiveMarqueeBroadcastFeed();
 
-                triggerAchievementUnlockCheck(1); // Unlock Code 1 for successfully logging in
+                triggerAchievementUnlockCheck(1); 
                 
-                // Hour boundary tracking check routines metrics logic values
                 const currentHour = new Date().getHours();
                 if(currentHour >= 0 && currentHour < 5) triggerAchievementUnlockCheck(8);
                 if(currentHour >= 5 && currentHour < 8) triggerAchievementUnlockCheck(9);
-
             }, 800);
         }
 
-        async function synchronizeClassroomData() {
-            try {
-                const { data, error } = await supabaseClient
-                    .from('Students')
-                    .select('id, Full_name')
-                    .order('Full_name', { ascending: true });
-
-                if (!error && data) { globalStudentsList = data; }
-                renderStudentGrid();
-                await renderReceivedMessages();
-            } catch (e) { console.error(e); }
-        }
-
-        async function runGlobalLeaderboardEngine() {
-            const podiumsContainer = document.getElementById("leaderboard-podiums-container");
-            if(!podiumsContainer) return;
-            podiumsContainer.innerHTML = "";
-
-            try {
-                const { data: messages, error } = await supabaseClient
-                    .from('messages')
-                    .select('recipient_name, vibe_tags')
-                    .eq('is_approved', true);
-
-                if (error) throw error;
-
-                const userTraitsMatrix = {};
-                globalStudentsList.forEach(s => {
-                    userTraitsMatrix[s.Full_name] = { "Brilliant": 0, "Energy": 0, "Unstoppable": 0, "Total": 0 };
-                });
-
-                messages.forEach(msg => {
-                    const name = msg.recipient_name;
-                    if(!userTraitsMatrix[name]) return;
-
-                    let tagsArray = [];
-                    try { tagsArray = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArray = []; }
-
-                    if(Array.isArray(tagsArray)) {
-                        tagsArray.forEach(tag => {
-                            userTraitsMatrix[name].Total++;
-                            const rawStr = tag.toLowerCase();
-                            if(rawStr.includes("brilliant") || rawStr.includes("عبقري") || rawStr.includes("esprit")) userTraitsMatrix[name]["Brilliant"]++;
-                            if(rawStr.includes("energy") || rawStr.includes("طاقة") || rawStr.includes("énergie")) userTraitsMatrix[name]["Energy"]++;
-                            if(rawStr.includes("unstoppable") || rawStr.includes("يتوقف") || rawStr.includes("inarrêtable")) userTraitsMatrix[name]["Unstoppable"]++;
-                        });
-                    }
-                });
-
-                const getTopLeaderForArchetype = (key) => {
-                    return Object.keys(userTraitsMatrix).map(name => ({
-                        name: name,
-                        count: userTraitsMatrix[name][key]
-                    })).sort((a, b) => b.count - a.count)[0];
-                };
-
-                const archetypesList = [
-                    { title: "🧠 Most Brilliant", key: "Brilliant", color: "text-amber-400", bg: "bg-slate-800" },
-                    { title: "⚡ Pure Energy", key: "Energy", color: "text-cyan-400", bg: "bg-slate-800" },
-                    { title: "🔥 Unstoppable", key: "Unstoppable", color: "text-rose-400", bg: "bg-slate-800" }
-                ];
-
-                archetypesList.forEach(arc => {
-                    const topScorer = getTopLeaderForArchetype(arc.key);
-                    const scoreboardBlock = document.createElement("div");
-                    scoreboardBlock.className = `${arc.bg} p-3 rounded-xl border-2 border-slate-700 font-arcade text-[9px] space-y-1.5 flex flex-col justify-between`;
-                    
-                    const scoreCountDisplay = topScorer && topScorer.count > 0 ? `${topScorer.count} PTS` : "0 PTS";
-                    const scoreNameDisplay = topScorer && topScorer.count > 0 ? topScorer.name : "No Record Yet";
-
-                    scoreboardBlock.innerHTML = `
-                        <div class="text-white font-bold tracking-wider">${arc.title}</div>
-                        <div class="${arc.color} font-black text-xs truncate my-0.5">${scoreNameDisplay}</div>
-                        <div class="text-slate-500 text-right font-bold">${scoreCountDisplay}</div>
-                    `;
-                    podiumsContainer.appendChild(scoreboardBlock);
-                });
-
-                document.getElementById("spark-total-messages").innerText = `${messages.length} Envelopes Drops`;
-                document.getElementById("spark-legendary-count").innerText = `${messages.length + 32} Secret Ballots`;
-                
-                triggerAchievementUnlockCheck(23); // Archetype loaded successfully check logic
-
-            } catch (err) { console.error(err); }
-        }
-
-        // ========================================================= -->
-        // 1. IDEA EXTRA: SECRET SANTA / RANDOM PICK WORKSPACE ENGINE-->
-        // ========================================================= -->
+        // 5. FIXED: Roll random classmate challenges text string localizes safely on trigger alert
         function rollRandomClassmateTarget() {
-            // Filter out self name parameters matching directories lists anchors lengths strings
             const validTargetsList = globalStudentsList.filter(s => s.Full_name !== loggedInUser.Full_name);
             if(validTargetsList.length === 0) return;
 
             const randomClassmateIndex = Math.floor(Math.random() * validTargetsList.length);
             const rolledTargetStudent = validTargetsList[randomClassmateIndex];
 
-            // Achievement logic calculation trackers incrementation
             let SantaRollsCounter = parseInt(localStorage.getItem(`santa_rolls_${loggedInUser.id}`) || "0");
             SantaRollsCounter++;
             localStorage.setItem(`santa_rolls_${loggedInUser.id}`, SantaRollsCounter);
@@ -968,64 +982,62 @@
             if(SantaRollsCounter >= 1) triggerAchievementUnlockCheck(14);
             if(SantaRollsCounter >= 5) triggerAchievementUnlockCheck(15);
 
-            // Lucky redundancy match challenge validator check block logic parameters tracking anchors
             const lastRolledName = localStorage.getItem(`last_rolled_name_${loggedInUser.id}`);
             if(lastRolledName === rolledTargetStudent.Full_name) {
                 triggerAchievementUnlockCheck(29);
             }
             localStorage.setItem(`last_rolled_name_${loggedInUser.id}`, rolledTargetStudent.Full_name);
 
-            // Pop modal sheet instantly configured for this target recipient node 
             openEnvelopeModalFor(btoa(unescape(encodeURIComponent(rolledTargetStudent.Full_name))));
         }
 
-        // ========================================================= -->
-        // 3. IDEA EXTRA: DYNAMIC BROADCAST SYSTEM GENERATOR FEED   -->
-        // ========================================================= -->
+        // 1. FIXED: Trilingual dynamic marquee broadcast text feeds compilation parameters mapping
         async function initializeLiveMarqueeBroadcastFeed() {
             const track = document.getElementById("live-ticker-track");
             if(!track) return;
 
-            const updateTickerContent = async () => {
-                try {
-                    // Fetch latest 5 elements records from the cloud layout directly to build marquee streams text configurations
-                    const { data: latestFeeds, error } = await supabaseClient
-                        .from('messages')
-                        .select('sender_name, recipient_name, created_at, vibe_tags')
-                        .order('created_at', { ascending: false })
-                        .limit(5);
+            try {
+                const { data: latestFeeds, error } = await supabaseClient
+                    .from('messages')
+                    .select('sender_name, recipient_name, created_at, vibe_tags')
+                    .order('created_at', { ascending: false })
+                    .limit(5);
 
-                    if(!error && latestFeeds && latestFeeds.length > 0) {
-                        let textStreamConcat = "";
-                        latestFeeds.forEach(item => {
-                            let tagsArray = [];
-                            try { tagsArray = Array.isArray(item.vibe_tags) ? item.vibe_tags : JSON.parse(item.vibe_tags); } catch(e){}
-                            const badgeSnippet = tagsArray.length > 0 ? tagsArray[0] : "💌 Card";
-                            
-                            // Obfuscate sender completely if database row logs it masked as Anonymous text literal row string
-                            const cleanSender = item.sender_name === 'Anonymous' ? "Someone" : item.sender_name;
-                            textStreamConcat += ` 🔥 [${badgeSnippet}] transmitted from ${cleanSender} to ${item.recipient_name} successfully! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
-                        });
+                if(!error && latestFeeds && latestFeeds.length > 0) {
+                    let textStreamConcat = "";
+                    latestFeeds.forEach(item => {
+                        let tagsArray = [];
+                        try { tagsArray = Array.isArray(item.vibe_tags) ? item.vibe_tags : JSON.parse(item.vibe_tags); } catch(e){}
+                        const badgeSnippet = tagsArray.length > 0 ? tagsArray[0] : "💌";
+                        
+                        let cleanSender = item.sender_name;
+                        if (item.sender_name === 'Anonymous') {
+                            cleanSender = currentLanguage === 'ar' ? "فاعل خير مجهول" : (currentLanguage === 'fr' ? "Anonyme" : "Someone");
+                        }
 
-                        // Duplicate string arrays to complete fluid endless layout animations loop anchors natively
-                        track.innerHTML = textStreamConcat + textStreamConcat;
-                        triggerAchievementUnlockCheck(31);
-                    } else {
-                        const genericMsg = " ✨ Share appreciation loops across the class matrix! True anonymity protocols are completely green. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                        track.innerHTML = genericMsg + genericMsg;
-                    }
-                } catch(e){}
-            };
+                        // Localized sentence tree building explicitly to prevent breaking layout arrays in Arabic
+                        let templateSnippetText = "";
+                        if (currentLanguage === 'ar') {
+                            templateSnippetText = ` 🔥 تم إرسال مغلف [ ${badgeSnippet} ] بنجاح من ${cleanSender} إلى الزميل(ة) ${item.recipient_name}! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        } else if (currentLanguage === 'fr') {
+                            templateSnippetText = ` 🔥 Enveloppe [ ${badgeSnippet} ] transmise avec succès de la part de ${cleanSender} à ${item.recipient_name} ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        } else {
+                            templateSnippetText = ` 🔥 Envelope [ ${badgeSnippet} ] transmitted from ${cleanSender} to ${item.recipient_name} successfully! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        }
+                        textStreamConcat += templateSnippetText;
+                    });
 
-            // Run marquee update checks periodically
-            if(globalMarqueeIntervalInstance) clearInterval(globalMarqueeIntervalInstance);
-            await updateTickerContent();
-            globalMarqueeIntervalInstance = setInterval(updateTickerContent, 12000);
+                    track.innerHTML = textStreamConcat + textStreamConcat;
+                    triggerAchievementUnlockCheck(31);
+                } else {
+                    const fallbackDefaultMarqueeTxt = currentLanguage === 'ar' 
+                        ? " ✨ انشر الكلمات الطيبة والتقدير بين زملائك في الدفعة الآن! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" 
+                        : (currentLanguage === 'fr' ? " ✨ Partagez des ondes positives avec vos camarades de classe dès maintenant ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : " ✨ Share appreciation loops across the class matrix! True anonymity protocols are completely green. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                    track.innerHTML = fallbackDefaultMarqueeTxt + fallbackDefaultMarqueeTxt;
+                }
+            } catch(e){ console.error(e); }
         }
 
-        // ========================================================= -->
-        // 2. IDEA EXTRA: 35+ UNLOCKABLE ARCHIEVEMENTS ENGINE CORDS  -->
-        // ========================================================= -->
         function initializeAchievementsMatrixStorageSystem() {
             const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
             if(!localStorage.getItem(trackingKey)) {
@@ -1040,25 +1052,21 @@
             let currentUnlockedArray = [];
             try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
 
-            if(currentUnlockedArray.includes(achievementID)) return; // Already unlocked loop breaker check
+            if(currentUnlockedArray.includes(achievementID)) return; 
 
-            // Append new unlocked entry record tracking IDs
             currentUnlockedArray.push(achievementID);
             localStorage.setItem(trackingKey, JSON.stringify(currentUnlockedArray));
 
-            // Run level limits checking values
             if(currentUnlockedArray.length >= 15) triggerAchievementUnlockCheck(34);
-
-            // Pop clean spring visual canvas feedback cues natively matching games environments design maps
             confetti({ particleCount: 30, scalar: 1.1, colors: ['#ffeb3b', '#673ab7'] });
-            
-            // Re-render display screen matrices elements update
             renderAchievementsArcadeGridHTML();
         }
 
+        // 4. FIXED: Achievement Grid system renders names/descriptions matching active current language dynamically
         function renderAchievementsArcadeGridHTML() {
             const grid = document.getElementById("trophies-scroll-matrix");
             const counter = document.getElementById("unlocked-trophies-counter");
+            const headingNode = document.getElementById("achievements-heading-txt");
             if(!grid || !counter) return;
 
             const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
@@ -1066,6 +1074,9 @@
             try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
 
             counter.innerText = currentUnlockedArray.length;
+            if (headingNode) {
+                headingNode.innerHTML = `🏆 ${LOCALIZATION_MAP[currentLanguage].achievementsHeading || "Achievements Locked: "} <span class="text-green-400">${currentUnlockedArray.length}</span>/35`;
+            }
             grid.innerHTML = "";
 
             MASTER_TROPHIES_BLUEPRINT.forEach(trophy => {
@@ -1074,36 +1085,45 @@
                 
                 cell.className = `w-7 h-7 md:w-8 md:h-8 rounded-lg border flex items-center justify-center text-xs md:text-sm cursor-pointer transition-all duration-300 select-none ${
                     isUnlocked 
-                    ? "bg-gradient-to-br from-yellow-300 to-amber-500 border-yellow-600 grayscale-0 opacity-100 scale-100 animate-pulse" 
+                    ? "bg-gradient-to-br from-yellow-300 to-amber-500 border-yellow-600 scale-100 animate-pulse" 
                     : "bg-slate-800/80 border-slate-700 grayscale opacity-40 hover:opacity-70"
                 }`;
                 cell.innerText = trophy.icon;
                 
-                // Attach details hints description text view hover clicks listeners pairs
                 const updateHintDisplay = () => {
-                    const statusText = isUnlocked ? "🔓 UNLOCKED" : "🔒 LOCKED";
-                    document.getElementById("selected-trophy-hint-display").innerHTML = `<span class='text-yellow-400 font-bold'>[${statusText}] ${trophy.name}:</span> ${trophy.hint}`;
+                    const statusText = isUnlocked 
+                        ? (currentLanguage === 'ar' ? "🔓 تم الإنجاز" : (currentLanguage === 'fr' ? "🔓 DÉBLOQUÉ" : "🔓 UNLOCKED")) 
+                        : (currentLanguage === 'ar' ? "🔒 مقفل" : (currentLanguage === 'fr' ? "🔒 VERROUILLÉ" : "🔒 LOCKED"));
+                    
+                    const localizedTrophyName = trophy.name[currentLanguage] || trophy.name['en'];
+                    const localizedTrophyHint = trophy.hint[currentLanguage] || trophy.hint['en'];
+
+                    document.getElementById("selected-trophy-hint-display").innerHTML = `<span class='text-yellow-400 font-bold'>[${statusText}] ${localizedTrophyName}:</span> ${localizedTrophyHint}`;
                 };
 
                 cell.onmouseover = updateHintDisplay;
                 cell.onclick = updateHintDisplay;
-
                 grid.appendChild(cell);
             });
         }
 
-        async function fireQuickVibeTransmission(chosenBadgeString) {
+        // 2. FIXED: Transmit One-Click Launch parameters fetching corresponding index language values array blocks
+        async function fireQuickVibeTransmission(badgeIndexInteger) {
+            const indexTargetedTagEnglish = QUICK_VIBES_OPTIONS_MATRIX['en'][badgeIndexInteger];
+            
             const standardQuickCommentsPool = {
-                en: "Dropped an instant burst of appreciation your way! Have an amazing summer break!",
-                fr: "Je t'envoie un élan d'énergie positive en un clic ! Passe un excellent été !",
-                ar: "أرسلت لك تحية تقديرية سريعة بضغطة زر! أتمنى لك عطلة صيفية ممتعة وسعيدة جداً!"
+                en: `Dropped an instant burst of appreciation your way! Attaching the ${indexTargetedTagEnglish} trait badge. Have an amazing break!`,
+                fr: `Je t'envoie un élan d'énergie positive en un clic ! Mention spéciale pour le trait ${QUICK_VIBES_OPTIONS_MATRIX['fr'][badgeIndexInteger]}. Passe un excellent été !`,
+                ar: `أرسلت لك تحية تقديرية سريعة بضغطة زر واحدة! تمنياتي لك بعطلة رائعة مليئة بصفة: ${QUICK_VIBES_OPTIONS_MATRIX['ar'][badgeIndexInteger]}.`
             };
 
             const autoGeneratedCommentText = standardQuickCommentsPool[currentLanguage] || standardQuickCommentsPool['en'];
+            
+            // Build the exact trilingual payload tracking tags for array indexing matching validation checks constraints
             const localizedVibeArrayPayload = [
-                chosenBadgeString,
-                currentLanguage === 'ar' ? "🤝 سند قوي" : (currentLanguage === 'fr' ? "🤝 Pilier Solide" : "🤝 Solid Rock"),
-                currentLanguage === 'ar' ? "🌻 طيب القلب" : (currentLanguage === 'fr' ? "🌻 Cœur Tendre" : "🌻 Kind Heart")
+                QUICK_VIBES_OPTIONS_MATRIX['en'][badgeIndexInteger], 
+                QUICK_VIBES_OPTIONS_MATRIX['fr'][badgeIndexInteger], 
+                QUICK_VIBES_OPTIONS_MATRIX['ar'][badgeIndexInteger]
             ];
 
             const quickActionPayload = {
@@ -1131,9 +1151,8 @@
 
                 confetti({ particleCount: 40, origin: { y: 0.6 } });
                 closeEnvelopeModal();
-                alert("Quick vibe capsule transmitted immediately!");
+                alert(currentLanguage === 'ar' ? "تم إرسال التحية السريعة بنجاح بنظام ضغطة الزر!" : "Quick vibe capsule transmitted immediately!");
                 
-                // Track usage challenges logs increments entries counts
                 let quickCount = parseInt(localStorage.getItem(`quick_vibe_count_${loggedInUser.id}`) || "0");
                 quickCount++;
                 localStorage.setItem(`quick_vibe_count_${loggedInUser.id}`, quickCount);
@@ -1141,7 +1160,6 @@
                 if(quickCount >= 1) triggerAchievementUnlockCheck(18);
                 if(quickCount >= 5) triggerAchievementUnlockCheck(19);
 
-                // Check interactions with unique classmate nodes parameters arrays records metrics 
                 let uniqueInteractedNodesList = [];
                 try { uniqueInteractedNodesList = JSON.parse(localStorage.getItem(`unique_nodes_interacted_${loggedInUser.id}`)) || []; } catch(e){}
                 if(!uniqueInteractedNodesList.includes(globalTargetRecipient)) {
@@ -1165,7 +1183,6 @@
             const verseContentText = chosenRandomPick[currentLanguage] || chosenRandomPick['en'];
             const textDisplayNode = document.getElementById("radiance-display");
 
-            // Track usage count states variables matrices fields links checks
             let cookieClicksTotalCount = parseInt(localStorage.getItem(`cookie_clicks_total_${loggedInUser.id}`) || "0");
             cookieClicksTotalCount++;
             localStorage.setItem(`cookie_clicks_total_${loggedInUser.id}`, cookieClicksTotalCount);
@@ -1180,6 +1197,9 @@
             }, 300);
         }
 
+        // ========================================================= -->
+        // MODERATION FILTER LAYER & ENVELOPE TRANSMISSION           -->
+        // ========================================================= -->
         async function submitEnvelopePipeline() {
             const rawContent = document.getElementById("modal-msg-content").value.trim();
             const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
@@ -1232,9 +1252,8 @@
 
                 confetti({ particleCount: 40 });
                 closeEnvelopeModal();
-                alert("Your capsule matrix transmission channel has completed sync pipelines.");
+                alert(currentLanguage === 'ar' ? "تم إرسال مغلفك الرقمي بنجاح!" : "Your capsule matrix transmission channel has completed sync pipelines.");
                 
-                // Track achievement logs conditions configurations 
                 if(!toxicFlagTriggered) triggerAchievementUnlockCheck(17);
                 if(chosenLockDate) triggerAchievementUnlockCheck(20);
                 
@@ -1389,7 +1408,6 @@
                 activeReceivedMessagesCache = data || [];
                 totalCountLabel.innerText = activeReceivedMessagesCache.length;
 
-                // Challenge triggers matching message quantities ranges parameters counters
                 if(activeReceivedMessagesCache.length >= 1) triggerAchievementUnlockCheck(2);
                 if(activeReceivedMessagesCache.length >= 5) triggerAchievementUnlockCheck(3);
                 if(activeReceivedMessagesCache.length >= 10) triggerAchievementUnlockCheck(4);
@@ -1424,12 +1442,6 @@
 
                     let tagsArr = [];
                     try { tagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArr = ["✨ Class Star"]; }
-
-                    // Challenge triggers based on specific incoming trait badges parameters matches values
-                    tagsArr.forEach(t => {
-                        if(t.includes("Kind Heart") || t.includes("طيب القلب") || t.includes("Tendre")) triggerAchievementUnlockCheck(26);
-                        if(t.includes("Visionary") || t.includes("رؤيوي") || t.includes("Visionnaire")) triggerAchievementUnlockCheck(27);
-                    });
 
                     let tagsHTML = "";
                     tagsArr.forEach(t => {
@@ -1472,43 +1484,61 @@
             } catch (err) { console.error(err); }
         }
 
+        // ========================================================= -->
+        // 3. FIXED: Rebuilt Dominant Radar Matrix Aggregator Loop   -->
+        // ========================================================= -->
         function renderVibeAnalyticsGraph(messagesArray) {
             const graphContainer = document.getElementById("analytics-bars-container");
             if(!graphContainer) return;
             graphContainer.innerHTML = "";
-            const frequenciesMap = {};
-            let totalTagsDetectedCount = 0;
+            
+            // Substring counter arrays allocation mapping
+            const numericalFrequenciesAccumulator = [0, 0, 0, 0, 0, 0, 0, 0];
+            let rawTotalTagsAnalyzedCount = 0;
 
             messagesArray.forEach(msg => {
                 try {
-                    const tags = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
-                    if(Array.isArray(tags)) {
-                        tags.forEach(t => {
-                            frequenciesMap[t] = (frequenciesMap[t] || 0) + 1;
-                            totalTagsDetectedCount++;
+                    const parsedTagsList = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
+                    if(Array.isArray(parsedTagsList)) {
+                        parsedTagsList.forEach(singleTagString => {
+                            const normalizedText = singleTagString.toLowerCase();
+                            
+                            // Scan normalized keyword profiles arrays across multilingual dialects definitions
+                            for (let i = 0; i < RADAR_SUBSTRING_COMPILER_MAP.length; i++) {
+                                const mappingObj = RADAR_SUBSTRING_COMPILER_MAP[i];
+                                const patternMatched = mappingObj.keywords.some(keyword => normalizedText.includes(keyword));
+                                
+                                if(patternMatched) {
+                                    numericalFrequenciesAccumulator[mappingObj.id]++;
+                                    rawTotalTagsAnalyzedCount++;
+                                    break; // Skip matching current word redundancy structures safely
+                                }
+                            }
                         });
                     }
-                } catch(e){}
+                } catch(e){ console.error("Radar compilation failure item state: ", e); }
             });
 
-            const referenceTraitsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
-            referenceTraitsPool.forEach(trait => {
-                const count = frequenciesMap[trait] || 0;
-                const percentage = totalTagsDetectedCount > 0 ? Math.round((count / totalTagsDetectedCount) * 100) : 0;
+            const currentActiveLabelsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
+            
+            // Generate progress pills natively into DOM layout strings pairs
+            for (let i = 0; i < 8; i++) {
+                const countValue = numericalFrequenciesAccumulator[i];
+                const dynamicPercentageWidth = rawTotalTagsAnalyzedCount > 0 ? Math.round((countValue / rawTotalTagsAnalyzedCount) * 100) : 0;
 
-                const row = document.createElement("div");
-                row.className = "space-y-1";
-                row.innerHTML = `
+                const progressRowMarkup = document.createElement("div");
+                progressRowMarkup.className = "space-y-1";
+                progressRowMarkup.innerHTML = `
                     <div class="flex justify-between text-[10px] font-black text-slate-700">
-                        <span>${trait}</span>
-                        <span>${count}</span>
+                        <span>${currentActiveLabelsPool[i]}</span>
+                        <span>${countValue}</span>
                     </div>
                     <div class="w-full bg-slate-100 h-3 rounded-md border border-slate-900 overflow-hidden shadow-inner relative">
-                        <div class="bg-pink-400 h-full border-r border-slate-900 transition-all duration-1000" style="width: ${totalTagsDetectedCount > 0 ? percentage : 8}%"></div>
+                        <div class="bg-pink-400 h-full border-r border-slate-900 transition-all duration-1000" style="width: ${rawTotalTagsAnalyzedCount > 0 ? dynamicPercentageWidth : 5}%"></div>
                     </div>
                 `;
-                graphContainer.appendChild(row);
-            });
+                graphContainer.appendChild(progressRowMarkup);
+            }
         }
 
         function updateProfileTheme(themeClass) {
@@ -1517,7 +1547,6 @@
             card.className = "arcade-card rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300";
             card.classList.add(themeClass);
             
-            // Track theme swap counters challenges parameters configurations logs natively 
             let auraChangesCount = parseInt(localStorage.getItem(`aura_theme_swaps_${loggedInUser.id}`) || "0");
             auraChangesCount++;
             localStorage.setItem(`aura_theme_swaps_${loggedInUser.id}`, auraChangesCount);
@@ -1546,7 +1575,7 @@
             if(!chosenNominee) return;
             confetti({ particleCount: 35, spread: 45 });
             alert(currentLanguage === 'ar' ? "تم تسجيل صوتك السري بنجاح! شكرًا لك." : "Secret ballot superlative entry cataloged perfectly!");
-            triggerAchievementUnlockCheck(12); // Ballot cast successfully achievement trigger code index match configuration
+            triggerAchievementUnlockCheck(12); 
         }
 
         function generateKeepsakePDF() {
@@ -1576,7 +1605,7 @@
             });
             
             doc.save("Just_Smile_Keepsake.pdf");
-            triggerAchievementUnlockCheck(13); // PDF compile achievement trigger parameter confirmation loop
+            triggerAchievementUnlockCheck(13); 
         }
     </script>
 </body>
