@@ -30,7 +30,7 @@
         }
         
         body.night-mode {
-            --bg-color: #0d0705 !important;
+            --bg-color: #0d0705;
         }
         body {
             font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
@@ -46,10 +46,10 @@
             transition: var(--spring-transition);
         }
         body.night-mode .arcade-card {
-            background: #1e120c !important;
-            border-color: #ffb703 !important;
-            box-shadow: 6px 6px 0px 0px #ffb703 !important;
-            color: #f8fafc !important;
+            background: #1e120c;
+            border-color: #ffb703;
+            box-shadow: 6px 6px 0px 0px #ffb703;
+            color: #f8fafc;
         }
         .arcade-card:hover {
             transform: translate(-2px, -2px);
@@ -63,10 +63,10 @@
             transition: var(--spring-transition);
         }
         body.night-mode .arcade-btn {
-            border-color: #ffb703 !important;
-            box-shadow: 3px 3px 0px 0px #ffb703 !important;
-            background-color: #2b1810 !important;
-            color: #fff !important;
+            border-color: #ffb703;
+            box-shadow: 3px 3px 0px 0px #ffb703;
+            background-color: #2b1810;
+            color: #fff;
         }
         .arcade-btn:hover {
             transform: translate(-1px, -1px);
@@ -83,9 +83,9 @@
             box-shadow: 3px 3px 0px 0px rgba(26, 15, 10, 0.15);
         }
         body.night-mode .arcade-input {
-            border-color: #ffb703 !important;
-            background-color: #2b1810 !important;
-            color: #fff !important;
+            border-color: #ffb703;
+            background-color: #2b1810;
+            color: #fff;
         }
 
         .aura-green { background: linear-gradient(135deg, #e6f4ea 0%, #baf3cd 100%) !important; color: #0f5132 !important; }
@@ -138,7 +138,7 @@
     <div class="max-w-6xl mx-auto space-y-6">
         
         <!-- ========================================================= -->
-        <!-- SYSTEM NAVIGATION HEADER INTERFACE                        -->
+        <!-- NAVIGATION HEADER INTERFACE                               -->
         <!-- ========================================================= -->
         <header class="arcade-card bg-[#eddcd2] rounded-3xl p-6 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-2 text-center md:text-left rtl:text-right max-w-2xl">
@@ -154,14 +154,16 @@
                 </button>
 
                 <div class="flex items-center bg-white p-1.5 rounded-xl border-3 border-[#1a0f0a] shadow-[3px_3px_0px_0px_#1a0f0a] id-lang-wrap">
-                    <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-3 py-1.5 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer">EN</button>
-                    <button onclick="switchLanguage('fr')" id="lang-btn-fr" class="px-3 py-1.5 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer">FR</button>
-                    <button onclick="switchLanguage('ar')" id="lang-btn-ar" class="px-3 py-1.5 rounded-lg text-xs font-black transition-all duration-300 cursor-pointer">العربية</button>
+                    <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer">EN</button>
+                    <button onclick="switchLanguage('fr')" id="lang-btn-fr" class="px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer">FR</button>
+                    <button onclick="switchLanguage('ar')" id="lang-btn-ar" class="px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer">العربية</button>
                 </div>
             </div>
         </header>
 
-        <!-- LIVE TOAST TICKER FEED MARQUEE SECTION -->
+        <!-- ========================================================= -->
+        <!-- LIVE TOAST TICKER FEED MARQUEE SECTION                    -->
+        <!-- ========================================================= -->
         <div id="live-marquee-container" class="arcade-card bg-slate-900 text-yellow-300 rounded-xl py-2 px-4 overflow-hidden border-2 flex items-center hidden">
             <span class="font-arcade text-[8px] bg-red-600 text-white px-1.5 py-0.5 rounded mr-3 uppercase shrink-0 animate-pulse">Feed</span>
             <div class="w-full overflow-hidden relative">
@@ -170,7 +172,7 @@
         </div>
 
         <!-- ========================================================= -->
-        <!-- INTERACTIVE WELCOME ENGINE LOG-IN PORTAL                  -->
+        <!-- INTERACTIVE LOG-IN PORTAL ACCESSIBILITY                   -->
         <!-- ========================================================= -->
         <section id="auth-section" class="arcade-card bg-[#f3e5f5] rounded-3xl p-6 md:p-10 max-w-md mx-auto space-y-6 border-4">
             <div class="text-center space-y-2">
@@ -222,16 +224,16 @@
                     <div class="absolute top-0 right-0 p-2 text-[9px] font-arcade text-slate-700 select-none">VIBE_OS v2.6</div>
                     <div class="flex items-center gap-3 border-b-2 border-slate-700 pb-2 mb-3">
                         <span class="text-xl">🕹️</span>
-                        <h3 id="leaderboard-headline-txt" class="text-xs md:text-sm font-arcade uppercase text-[#00ff66] tracking-widest animate-pulse"></h3>
+                        <h3 id="leaderboard-headline-txt" class="text-xs font-arcade uppercase text-[#00ff66] tracking-widest animate-pulse"></h3>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="leaderboard-podiums-container"></div>
                 </div>
             </div>
 
-            <!-- TWO COLUMN INTERACTION MATRIX LAYOUT -->
+            <!-- INTERFACE ROW SYSTEM PLACEMENT LAYOUTS -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
-                <!-- LEFT PILLAR COLUMN -->
+                <!-- PILLAR SIDE PANEL DESK -->
                 <div class="lg:col-span-5 space-y-6">
                     
                     <!-- PRIVACY VAULT BOX -->
@@ -267,7 +269,7 @@
                             </div>
                         </div>
 
-                        <!-- DOMINANT VIBE RADAR -->
+                        <!-- DOMINANT VIBE RADAR PROGRESSIVE BARS -->
                         <div class="bg-white/90 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] p-3 rounded-xl space-y-2 text-slate-900">
                             <h3 id="analytics-title" class="text-[10px] font-black uppercase tracking-wider text-slate-900"></h3>
                             <div id="analytics-bars-container" class="space-y-1.5"></div>
@@ -276,7 +278,7 @@
                         <!-- ARCADE ACCOMPLISHMENTS GRID LOG MATRIX -->
                         <div class="bg-slate-900 text-yellow-400 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] p-3 rounded-xl space-y-2">
                             <div class="flex items-center justify-between border-b border-slate-700 pb-1">
-                                <span id="achievements-heading-txt" class="font-arcade text-[7.5px] tracking-widest uppercase text-white"></span>
+                                <span id="achievements-heading-txt" class="font-arcade text-[7.5px] tracking-widest uppercase text-white">🏆 Achievements Locked: <span id="unlocked-trophies-counter" class="text-green-400">0</span>/35</span>
                             </div>
                             <div id="trophies-scroll-matrix" class="grid grid-cols-7 gap-1 max-h-24 overflow-y-auto p-0.5 bg-black/40 rounded-lg"></div>
                             <div id="selected-trophy-hint-display" class="text-[8px] font-mono font-bold text-slate-400 italic bg-black/20 p-1 rounded text-center"></div>
@@ -290,14 +292,14 @@
                     <!-- GEOMETRIC COOKIE MINI-GAME INTERFACE -->
                     <div onclick="triggerFortuneCookieGame()" class="arcade-card bg-gradient-to-tr from-amber-100 to-orange-100 rounded-3xl p-5 relative overflow-hidden cursor-pointer text-center group border-4">
                         <div class="flex items-center justify-between mb-2">
-                            <h3 id="cookie-header-lbl" class="text-[10px] font-black uppercase tracking-widest text-orange-900 bg-white border-2 border-slate-900 px-2 py-0.5 rounded-md"></h3>
+                            <h3 id="cookie-header-lbl" class="text-[10px] font-black uppercase tracking-widest text-orange-900 bg-white border-2 border-slate-900 px-2 py-0.5 rounded-md">🥠 FORTUNE MINI-GAME // كبسولة الحظ</h3>
                             <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-orange-600"></span>
                         </div>
                         <div id="cookie-graphic-node" class="text-5xl my-3 transition-transform duration-300 transform group-hover:scale-110 inline-block select-none">🥠</div>
-                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[50px] flex flex-col justify-center transition-all duration-500"></div>
+                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[60px] flex flex-col justify-center transition-all duration-500"></div>
                     </div>
 
-                    <!-- ROTATING BALLOT PANEL -->
+                    <!-- ROTATING BALLOT SLOTS ROW LAYOUT -->
                     <div class="arcade-card bg-[#fff9db] rounded-3xl p-5 space-y-4 text-slate-900">
                         <div class="space-y-1">
                             <h3 id="superlative-title" class="text-sm font-black uppercase text-slate-900 tracking-wider"></h3>
@@ -345,14 +347,14 @@
 
     </div>
 
-    <!-- TRANSMISSION CAPSULE DIALOG MODAL LAYOUT SHEET -->
+    <!-- TRANSMISSION CAPSULE DIALOG MODAL LAYOUT SHEET SHEET -->
     <div id="envelope-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
         <div class="arcade-card w-full max-w-xl rounded-3xl bg-white p-6 md:p-8 transform scale-95 transition-transform duration-300 space-y-6 max-h-[90vh] overflow-y-auto relative border-4 text-slate-900">
             
             <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-800 hover:text-rose-600 font-black text-2xl cursor-pointer border-2 border-slate-900 w-9 h-9 flex items-center justify-center rounded-lg bg-white">×</button>
             
             <div class="space-y-1">
-                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-800 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
+                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-900 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
                 <h3 class="text-xl font-black text-slate-900">
                     <span id="modal-title-prefix">To:</span> <span id="modal-recipient-name" class="underline decoration-wavy decoration-pink-500">Student Name</span>
                 </h3>
@@ -411,24 +413,30 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- CORE OPERATION CONTROL SYSTEM SCRIPTS MATRIX              -->
+    <!-- SECURE EMBEDDED JAVASCRIPT GLOBAL RUNTIME ARCHITECTURE     -->
     <!-- ========================================================= -->
     <script>
-        // GLOBAL DATA BLUEPRINTS
+        // Global variables initialized outside block enclosures to resolve handler lookups immediately
+        let currentLanguage = 'en';
+        let loggedInUser = null; 
+        let globalStudentsList = [];
+        let selectedVibeTraits = [];
+        let globalMarqueeIntervalInstance = null;
+        
         const TOXIC_FILTER_DICTIONARY = [
             "hmar", "rekhis", "kavi", "moche", "con", "connard", "salope", "tahan", "kelba", "hmara",
             "fuck", "bitch", "asshole", "putain", "merde", "khra", "zbel", "bourricot", "klb", "kalb"
         ];
 
         const RADAR_SUBSTRING_COMPILER_MAP = [
-            { id: 0, keywords: ["brilliant", "brillant", "عبقري", "الأكثر عبقرية"] },
-            { id: 1, keywords: ["energy", "énergie", "طاقة", "طاقة نقية"] },
-            { id: 2, keywords: ["unstoppable", "inarrêtable", "يتوقف", "لا يتوقف"] },
-            { id: 3, keywords: ["creative", "créatif", "مبدع", "عقل مبدع", "روح مبدعة"] },
+            { id: 0, keywords: ["brilliant", "brillant", "عبقري"] },
+            { id: 1, keywords: ["energy", "énergie", "طاقة"] },
+            { id: 2, keywords: ["unstoppable", "inarrêtable", "يتوقف"] },
+            { id: 3, keywords: ["creative", "créatif", "مبدع"] },
             { id: 4, keywords: ["visionary", "visionnaire", "رؤيوي"] },
-            { id: 5, keywords: ["gem", "perle", "جوهرة", "جوهرة نادرة"] },
-            { id: 6, keywords: ["rock", "pilier", "سند", "سند قوي"] },
-            { id: 7, keywords: ["heart", "cœur", "قلب", "طيب القلب", "تنيفر"] }
+            { id: 5, keywords: ["gem", "perle", "جوهرة"] },
+            { id: 6, keywords: ["rock", "pilier", "سند"] },
+            { id: 7, keywords: ["heart", "cœur", "قلب"] }
         ];
 
         const VIBE_OPTIONS_POOL = {
@@ -487,7 +495,7 @@
             { id: 13, icon: "📥", name: { en: "Archivist Seal", fr: "Sceau d'Archive", ar: "حامي الذكريات" }, hint: { en: "Compile and download your pdf certificate archive.", fr: "Téléchargez votre certificat de souvenirs en PDF.", ar: "تحميل وثيقة الذكريات الصيفية بصيغة PDF بنجاح." } },
             { id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secrète", ar: "عجلة الحظ" }, hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." } },
             { id: 15, icon: "🍬", name: { en: "Generous Scout", fr: "Éclaireur Généreux", ar: "مستكشف الكرم" }, hint: { en: "Roll random target classmate profiles 5 times.", fr: "Générez des cibles aléatoires 5 fois au total.", ar: "استخدام مِولد الاستهداف العشوائي للزملاء 5 مرات." } },
-            { id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" }, hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح واختيار اللغات الثلاث كاملة على المنصة." } },
+            { id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" }, hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح وااختيار اللغات الثلاث كاملة على المنصة." } },
             { id: 17, icon: "🛡️", name: { en: "Clean Energy", fr: "Énergie Propre", ar: "الطاقة الصافية" }, hint: { en: "Transmit a compliment completely free of flags.", fr: "Envoyez un message validé sans aucun filtre.", ar: "إرسال رسالة نقية وصادقة خالية تماماً من الكلمات المحظورة." } },
             { id: 18, icon: "⚡", name: { en: "Speed Boxer", fr: "Boxeur de Vitesse", ar: "سريع الإرسال" }, hint: { en: "Transmit an envelope using one-click badge drops.", fr: "Envoyez un compliment rapide en un seul clic.", ar: "إرسال تحية تقديرية سريعة باستخدام أزرار الضغط السريع." } },
             { id: 19, icon: "🔋", name: { en: "Overcharged", fr: "Surchargé", ar: "الطاقة القصوى" }, hint: { en: "Use quick action badges 5 times.", fr: "Utilisez les badges de transmission rapide 5 fois.", ar: "استخدام ميزة الإرسال السريع بضغطة زر 5 مرات." } },
@@ -497,10 +505,10 @@
             { id: 23, icon: "🔥", name: { en: "Apex Tracker", fr: "Chasseur d'Élite", ar: "راصد القمة" }, hint: { en: "Load up the arcade scoreboard leader archetypes.", fr: "Consultez le tableau d'honneur de la classe.", ar: "تحميل ورصد لوحة الشرف والتميز لأبطال الدفعة." } },
             { id: 24, icon: "🎭", name: { en: "Ghost Identity", fr: "Identité Fantôme", ar: "الهوية المجهولة" }, hint: { en: "Send a message using the anonymous frontend switch.", fr: "Envoyez un message masqué anonymement.", ar: "إرسال رسالة تقديرية مع تفعيل مفتاح الهوية المخفية." } },
             { id: 25, icon: "💡", name: { en: "Steady Walker", fr: "Marcheur Régulier", ar: "الخطى الثابتة" }, hint: { en: "Load up application components framework lines.", fr: "Chargez l'application avec succès.", ar: "تحميل واجهة المنصة وربطها بالخوادم بنجاح." } },
-            { id: 26, icon: "🌻", name: { en: "Sweet Wave", fr: "Vague de Douceur", ar: "موجة اللطف" }, hint: { en: "Receive the Kind Heart archetype vibe tag entry.", fr: "Recevez le trait Cœur Tendre de la part d'un pair.", ar: "استقبال هالة وصفة 'طيب القلب' من أحد زملائك." } },
+            { id: 26, icon: "🌻", name: { en: "Sweet Wave", fr: "Vague de Douceur", ar: "موجة اللطف" }, hint: { en: "Receive the Kind Heart archetype vibe tag entry.", fr: "Recevez le trait Cœur Tendre de la part d'un pair.", ar: "استقبل هالة وصفة 'طيب القلب' من أحد زملائك." } },
             { id: 27, icon: "🪐", name: { en: "Stellar Apex", fr: "Apogée Stellaire", ar: "النجم الساطع" }, hint: { en: "Receive the Visionary tracking payload attribute tag.", fr: "Recevez le trait Visionnaire dans votre boîte.", ar: "استقبال هالة وصفة 'رؤيوي ومميز' في صندوقك." } },
             { id: 28, icon: "🧱", name: { en: "Brutal Guard", fr: "Garde Brutal", ar: "الحارس الحصين" }, hint: { en: "Toggle dynamic night mode screen filters pairs.", fr: "Activez le mode nuit de l'interface.", ar: "تفعيل الوضع الليلي وتغيير أطياف شاشة العرض الحصينة." } },
-            { id: 29, icon: "🎰", name: { en: "Lucky Strike", fr: "Coup de Chance", ar: "ضربة الحظ" }, hint: { en: "Roll the exact same target classmate twice in a row.", fr: "Tirez deux fois de suite le même camarade.", ar: "استهدف نفس الزميل مرتين متتاليتين عبر مِولد الصدف." } },
+            { id: 29, icon: "🎰", name: { en: "Lucky Strike", fr: "Coup de Chance", ar: "ضربة الحظ" }, hint: { en: "Roll the exact same target classmate twice in a row.", fr: "Tirez deux fois de suite le même camarade.", ar: "استهداف نفس الزميل مرتين متتاليتين عبر مِولد الصدف." } },
             { id: 30, icon: "🦁", name: { en: "Brave Explorer", fr: "Explorateur Brave", ar: "المستكشف الشجاع" }, hint: { en: "Filter search query inputs inside registry grids.", fr: "Utilisez la barre de recherche des camarades.", ar: "البحث وتصفية الأسماء داخل شبكة دليل الدفعة." } },
             { id: 31, icon: "📣", name: { en: "Marquee Listener", fr: "Écouteur du Marquee", ar: "راصد الأخبار" }, hint: { en: "Observe the live rolling global toast marquee feed.", fr: "Observez le défilement du flux d'actualités en direct.", ar: "متابعة شريط الأخبار والنشاطات العالمي الحي المتحرك." } },
             { id: 32, icon: "🍫", name: { en: "Sweet Adrenaline", fr: "Pure Adrénaline", ar: "شحنة الحماس" }, hint: { en: "Transmit 3 envelopes to 3 different peer nodes.", fr: "Envoyez des messages à 3 camarades différents.", ar: "إرسال مظاريف رقمية إلى 3 زملاء مختلفين في الصف." } },
@@ -603,7 +611,7 @@
                 modalVibeLbl: "اختر 3 صفات مميزة بالضبط:",
                 modalVibeCounter: "تم اختيار: {count} / 3",
                 modalMsgLbl: "رسالة التقدير والامتنان الخاصة بك:",
-                modalMsgPlaceholder: "اكتب شيئاً ملهماً ونقياً... اجعل كلماتك صادقة، طيبة ولا تُنسى أبداً.",
+                modalMsgPlaceholder: "اجعل كلماتك صادقة، طيبة ولا تُنسى أبداً.",
                 modalAnonLbl: "إرسال كهوية مجهولة",
                 modalAnonSub: "سيظهر اسمك كفاعل خير مجهول",
                 modalCancel: "إلغاء",
@@ -629,98 +637,111 @@
             }
         };
 
-        // ========================================================= -->
-        // RUNTIME ENGINES AND COORD BOOTSTRAPPERS                   -->
-        // ========================================================= -->
-        const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
-
-        // 🌟 FIX 2: Restored early language strings binding configuration directly during DOM generation
-        window.addEventListener("DOMContentLoaded", async () => {
-            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            
-            // Render text layouts instantly before async pipeline fetches start
-            switchLanguage('en'); 
-            
-            // Run background metadata cache sync loop
-            await fetchAllStudentsMetadata();
-            
-            // Attach dropdown close handler
-            document.addEventListener("click", (e) => {
-                if(!e.target.closest('#auth-fullname-input') && !e.target.closest('#autocomplete-dropdown')) {
-                    document.getElementById("autocomplete-dropdown").classList.add("hidden");
-                }
-            });
-
-            if (localStorage.getItem("justsmile_nightmode") === "true") {
-                document.body.classList.add("night-mode");
-                document.getElementById("night-toggle-btn").innerText = "☀️ Light Mode";
-            }
-        });
-
-        // 🌟 FIX 1: Clean dynamic CSS class injection directly onto the body nodes structure
-        function toggleNightModeState() {
+        // 1. FIX TRIGGER: Night mode handler defined cleanly in global scope window tree explicitly
+        window.toggleNightModeState = function() {
             const body = document.body;
             body.classList.toggle("night-mode");
             const isNight = body.classList.contains("night-mode");
-            localStorage.setItem("justsmile_nightmode", isNight ? "true" : "false");
-            
+            localStorage.setItem("justsmile_nightmode", isNight);
             document.getElementById("night-toggle-btn").innerText = isNight ? "☀️ Light Mode" : "🌙 Night Mode";
             triggerAchievementUnlockCheck(28); 
-        }
+        };
 
-        async function fetchAllStudentsMetadata() {
-            try {
-                const { data, error } = await supabaseClient
-                    .from('Students')
-                    .select('id, Full_name, Password')
-                    .order('Full_name', { ascending: true });
+        window.switchLanguage = function(langCode) {
+            currentLanguage = langCode;
+            document.documentElement.dir = langCode === 'ar' ? "rtl" : "ltr";
+            document.documentElement.lang = langCode;
 
-                if (!error && data) {
-                    globalStudentsList = data;
-                    // Pre-bind nominee values immediately to prevent dropdown crashes
-                    populateSuperlativeDropdown(); 
-                } else if (error) {
-                    console.error("Supabase engine connection fault logic trace:", error);
-                }
-            } catch (err) { console.error(err); }
-        }
+            const dict = LOCALIZATION_MAP[langCode];
+            document.getElementById("hero-desc").innerText = dict.heroDesc;
+            document.getElementById("auth-subtitle").innerText = dict.authSubtitle;
+            document.getElementById("label-fullname").innerText = dict.lblFullName;
+            document.getElementById("label-password").innerText = dict.lblPassword;
+            document.getElementById("auth-submit-btn").innerText = dict.btnAuth;
+            document.getElementById("vault-welcome-tag").innerText = dict.vaultWelcome;
+            document.getElementById("analytics-title").innerText = dict.analyticsTitle;
+            document.getElementById("btn-keepsake-txt").innerText = dict.btnKeepsake;
+            document.getElementById("letters-title").innerText = dict.lettersTitle;
+            document.getElementById("grid-search").placeholder = dict.searchPlaceholder;
+            document.getElementById("spark-kindness-title").innerText = dict.sparkKindness;
+            document.getElementById("spark-legendary-title").innerText = dict.sparkLegendary;
+            document.getElementById("superlative-title").innerText = dict.superlativeTitle;
+            document.getElementById("superlative-desc").innerText = dict.superlativeDesc;
+            document.getElementById("capsule-lock-lbl").innerText = dict.capsuleLockLbl;
+            document.getElementById("capsule-lock-sub").innerText = dict.capsuleLockSub;
+            document.getElementById("theme-selector-lbl").innerText = dict.themeSelectorLbl;
+            document.getElementById("quick-action-headline").innerText = dict.quickActionHeadline;
+            document.getElementById("leaderboard-headline-txt").innerText = dict.leaderboardTitle;
+            document.getElementById("santa-title-lbl").innerText = dict.santaTitle;
+            document.getElementById("santa-desc-lbl").innerText = dict.santaDesc;
+            document.getElementById("santa-btn-lbl").innerText = dict.santaBtn;
+            document.getElementById("superlative-archive-headline").innerText = dict.superlativeArchiveHeadline;
+            
+            document.getElementById("modal-title-prefix").innerText = dict.modalTo;
+            document.getElementById("modal-vibe-lbl").innerText = dict.modalVibeLbl;
+            document.getElementById("modal-msg-lbl").innerText = dict.modalMsgLbl;
+            document.getElementById("modal-msg-content").placeholder = dict.modalMsgPlaceholder;
+            document.getElementById("anon-toggle-lbl").innerText = dict.modalAnonLbl;
+            document.getElementById("anon-toggle-sub").innerText = dict.modalAnonSub;
+            document.getElementById("modal-cancel-btn").innerText = dict.modalCancel;
+            document.getElementById("modal-submit-btn").innerText = dict.modalSubmit;
 
-        // 🌟 FIX 3: Fully responsive search autocomplete dropdown gating portal built natively
-        function handleAutocompleteSearch(queryValue) {
+            const activeQuickLabels = QUICK_VIBES_OPTIONS_MATRIX[langCode];
+            for (let i = 0; i < 4; i++) {
+                const btnNode = document.getElementById(`quick-btn-${i}`);
+                if(btnNode) btnNode.innerText = activeQuickLabels[i];
+            }
+
+            ['en', 'fr', 'ar'].forEach(l => {
+                const btn = document.getElementById(`lang-btn-${l}`);
+                btn.className = l === langCode 
+                    ? "px-3 py-1.5 rounded-lg text-xs font-black transition-all bg-slate-950 text-white border-2 border-slate-950" 
+                    : "px-3 py-1.5 rounded-lg text-xs font-black transition-all text-slate-800 hover:bg-white/60";
+            });
+
+            updateVibeCheckboxInterface();
+            updateVibeCounterFeedback();
+            evaluateThreeDayBallotRotationPhase();
+
+            if(loggedInUser) {
+                renderAchievementsArcadeGridHTML();
+                renderStudentGrid();
+                renderReceivedMessages();
+                populateSuperlativeDropdown();
+            }
+
+            if(!window.languagesVisitedTrace) window.languagesVisitedTrace = [];
+            if(!window.languagesVisitedTrace.includes(langCode)) window.languagesVisitedTrace.push(langCode);
+            if(window.languagesVisitedTrace.length === 3) triggerAchievementUnlockCheck(16);
+        };
+
+        window.handleAutocompleteSearch = function(query) {
             const dropdown = document.getElementById("autocomplete-dropdown");
             if(!dropdown) return;
-            
             dropdown.innerHTML = "";
-            const textQuery = queryValue.toLowerCase().trim();
-            
-            // If empty, display all registered students, otherwise slice matching substrings arrays
-            const matchingStudents = textQuery === "" 
-                ? globalStudentsList 
-                : globalStudentsList.filter(s => s.Full_name.toLowerCase().includes(textQuery));
+            const txt = query.toLowerCase().trim();
+            const matchingRows = globalStudentsList.filter(s => s.Full_name.toLowerCase().includes(txt));
 
-            if(matchingStudents.length === 0) {
+            if(matchingRows.length === 0) {
                 dropdown.classList.add("hidden");
                 return;
             }
 
-            matchingStudents.forEach(student => {
+            matchingRows.forEach(student => {
                 const rowItem = document.createElement("div");
-                rowItem.className = "px-4 py-2.5 hover:bg-purple-100 font-bold text-xs text-slate-900 cursor-pointer border-b border-slate-100 transition-colors";
+                rowItem.className = "px-4 py-2.5 hover:bg-purple-100 font-bold text-xs text-slate-800 cursor-pointer border-b border-slate-100 transition-colors";
                 rowItem.innerText = student.Full_name;
-                rowItem.onclick = () => {
+                rowItem.onclick = function() {
                     document.getElementById("auth-fullname-input").value = student.Full_name;
                     dropdown.classList.add("hidden");
                 };
                 dropdown.appendChild(rowItem);
             });
-            
             dropdown.classList.remove("hidden");
-        }
+        };
 
-        async function handleAuthenticationPipeline(event) {
+        window.handleAuthenticationPipeline = async function(event) {
             event.preventDefault(); 
-            
             const fullNameInput = document.getElementById("auth-fullname-input").value.trim();
             const passwordInput = document.getElementById("auth-password").value;
             const feedbackEl = document.getElementById("auth-feedback");
@@ -728,7 +749,6 @@
             feedbackEl.className = "text-center text-xs font-bold p-3 bg-purple-100 text-purple-900 border-3 border-slate-900 block animate-pulse";
             feedbackEl.innerText = "Querying credentials registry matrix checks...";
 
-            // Case-Insensitive safe lookup scanner sequence over localized cached rows structures
             const matchedUserRecord = globalStudentsList.find(s => s.Full_name.toLowerCase() === fullNameInput.toLowerCase());
 
             if (!matchedUserRecord) {
@@ -765,6 +785,164 @@
                 feedbackEl.className = "text-center text-xs font-bold p-3 bg-rose-100 text-rose-900 border-3 border-slate-900 block";
                 feedbackEl.innerText = "Database sync failed.";
             }
+        };
+
+        window.rollRandomClassmateTarget = function() {
+            const validTargetsList = globalStudentsList.filter(s => s.Full_name !== loggedInUser.Full_name);
+            if(validTargetsList.length === 0) return;
+
+            const randomClassmateIndex = Math.floor(Math.random() * validTargetsList.length);
+            const rolledTargetStudent = validTargetsList[randomClassmateIndex];
+
+            let SantaRollsCounter = parseInt(localStorage.getItem(`santa_rolls_${loggedInUser.id}`) || "0");
+            SantaRollsCounter++;
+            localStorage.setItem(`santa_rolls_${loggedInUser.id}`, SantaRollsCounter);
+            
+            if(SantaRollsCounter >= 1) triggerAchievementUnlockCheck(14);
+            if(SantaRollsCounter >= 5) triggerAchievementUnlockCheck(15);
+
+            const lastRolledName = localStorage.getItem(`last_rolled_name_${loggedInUser.id}`);
+            if(lastRolledName === rolledTargetStudent.Full_name) {
+                triggerAchievementUnlockCheck(29);
+            }
+            localStorage.setItem(`last_rolled_name_${loggedInUser.id}`, rolledTargetStudent.Full_name);
+
+            openEnvelopeModalFor(btoa(unescape(encodeURIComponent(rolledTargetStudent.Full_name))));
+        };
+
+        window.updateProfileTheme = function(themeClass) {
+            const card = document.getElementById("user-vault-card");
+            if(!card) return;
+            card.className = "arcade-card rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300";
+            card.classList.add(themeClass);
+            
+            let auraChangesCount = parseInt(localStorage.getItem(`aura_theme_swaps_${loggedInUser.id}`) || "0");
+            auraChangesCount++;
+            localStorage.setItem(`aura_theme_swaps_${loggedInUser.id}`, auraChangesCount);
+            
+            if(auraChangesCount > 1) triggerAchievementUnlockCheck(10);
+            if(auraChangesCount >= 6) triggerAchievementUnlockCheck(11);
+
+            if(loggedInUser) { localStorage.setItem(`envelope_theme_${loggedInUser.id}`, themeClass); }
+        };
+
+        window.castSuperlativeVote = function() {
+            const chosenNominee = document.getElementById("superlative-nominee-select").value;
+            if(!chosenNominee) return;
+            confetti({ particleCount: 35, spread: 45 });
+            alert(currentLanguage === 'ar' ? "تم تسجيل صوتك السري بنجاح! شكرًا لك." : "Secret ballot superlative entry cataloged perfectly!");
+            triggerAchievementUnlockCheck(12); 
+        };
+
+        window.triggerFortuneCookieGame = function() {
+            const cookieAsset = document.getElementById("cookie-graphic-node");
+            cookieAsset.classList.add("animate-crack");
+            confetti({ particleCount: 50, spread: 45 });
+
+            const chosenRandomPick = POEMS_ARRAY[Math.floor(Math.random() * POEMS_ARRAY.length)];
+            const verseContentText = chosenRandomPick[currentLanguage] || chosenRandomPick['en'];
+            const textDisplayNode = document.getElementById("radiance-display");
+
+            let cookieClicksTotalCount = parseInt(localStorage.getItem(`cookie_clicks_total_${loggedInUser.id}`) || "0");
+            cookieClicksTotalCount++;
+            localStorage.setItem(`cookie_clicks_total_${loggedInUser.id}`, cookieClicksTotalCount);
+
+            if(cookieClicksTotalCount >= 1) triggerAchievementUnlockCheck(5);
+            if(cookieClicksTotalCount >= 5) triggerAchievementUnlockCheck(6);
+            if(cookieClicksTotalCount >= 15) triggerAchievementUnlockCheck(7);
+
+            setTimeout(() => {
+                textDisplayNode.innerHTML = `<div class='bg-white text-slate-900 p-3 border-2 border-slate-900 rounded-xl shadow-[3px_3px_0px_0px_#1a0f0a] italic font-medium'>${verseContentText}</div>`;
+                cookieAsset.classList.remove("animate-crack");
+            }, 300);
+        };
+
+        window.closeEnvelopeModal = function() {
+            const modal = document.getElementById("envelope-modal");
+            modal.classList.add("opacity-0");
+            modal.querySelector(".transform").classList.add("scale-95");
+            setTimeout(() => modal.classList.add("hidden"), 300);
+        };
+
+        window.filterStudentGrid = function() { renderStudentGrid(); };
+
+        window.generateKeepsakePDF = function() {
+            if (activeReceivedMessagesCache.length === 0) return;
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+
+            doc.rect(5, 5, 200, 287);
+            doc.setFont("Helvetica", "bold");
+            doc.setFontSize(22);
+            doc.text("JUST SMILE // KEEPSAKE ARCHIVE", 105, 25, { align: "center" });
+
+            let cursorY = 60;
+            activeReceivedMessagesCache.forEach((envelope) => {
+                if (cursorY > 250) { doc.addPage(); cursorY = 25; }
+                let cleanBodyText = envelope.content;
+                if (cleanBodyText.includes("__LOCK__:")) {
+                    cleanBodyText = cleanBodyText.split("__:").slice(2).join("__:");
+                }
+                const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
+                const splitLines = doc.splitTextToSize(`"${strippedText}"`, 160);
+                const blockH = (splitLines.length * 5) + 12;
+
+                doc.rect(18, cursorY, 174, blockH);
+                doc.text(splitLines, 22, cursorY + 6);
+                cursorY += blockH + 6;
+            });
+            
+            doc.save("Just_Smile_Keepsake.pdf");
+            triggerAchievementUnlockCheck(13); 
+        };
+
+        // ========================================================= -->
+        // DYNAMIC LOCALIZED RENDER HANDLERS ENGINE CONTROLS         -->
+        // ========================================================= -->
+        function evaluateThreeDayBallotRotationPhase() {
+            const baseDeploymentAnchorTimestamp = 1779472800000; 
+            const activeLiveTimestampNow = Date.now();
+            const elapsedMillisecondsCount = activeLiveTimestampNow - baseDeploymentAnchorTimestamp;
+            
+            const threeDaysInMilliseconds = 3 * 24 * 60 * 60 * 1000;
+            let activeCalculatedPhaseIndex = Math.floor(elapsedMillisecondsCount / threeDaysInMilliseconds);
+            if(activeCalculatedPhaseIndex < 0) activeCalculatedPhaseIndex = 0;
+            
+            const targetPhaseObject = SUPERLATIVE_TIMELINE_PHASES[activeCalculatedPhaseIndex % SUPERLATIVE_TIMELINE_PHASES.length];
+            const displayQuestionEl = document.getElementById("superlative-question");
+            if(displayQuestionEl) {
+                displayQuestionEl.innerText = targetPhaseObject.prompt[currentLanguage] || targetPhaseObject.prompt['en'];
+            }
+            
+            const historicalArchivedPhaseIndex = (activeCalculatedPhaseIndex - 1 + SUPERLATIVE_TIMELINE_PHASES.length) % SUPERLATIVE_TIMELINE_PHASES.length;
+            const historicalArchiveObject = SUPERLATIVE_TIMELINE_PHASES[historicalArchivedPhaseIndex];
+            
+            const archiveContentEl = document.getElementById("superlative-archive-content");
+            if(archiveContentEl) {
+                archiveContentEl.innerText = historicalArchiveObject.archive[currentLanguage] || historicalArchiveObject.archive['en'];
+            }
+        }
+
+        // 2. FIXED TRIGGER: Autocomplete initialization matrix loads fully inside main lifecycle block
+        async function fetchAllStudentsMetadata() {
+            try {
+                // Initialize configuration parameters mappings manually to defeat network response delay blocks
+                const targetProjectUrl = "https://bezeiovjxafgzmjwuomy.supabase.co";
+                const targetAnonApiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
+                
+                supabaseClient = supabase.createClient(targetProjectUrl, targetAnonApiKey);
+
+                const { data, error } = await supabaseClient
+                    .from('Students')
+                    .select('id, Full_name, Password')
+                    .order('Full_name', { ascending: true });
+
+                if (!error && data) {
+                    globalStudentsList = data;
+                    handleAutocompleteSearch("");
+                    populateSuperlativeDropdown(); 
+                }
+            } catch (err) { console.error("Critical Registry Read Timeout Context: ", err); }
         }
 
         function proceedToDashboard(userRecord) {
@@ -883,27 +1061,182 @@
             } catch (err) { console.error(err); }
         }
 
-        function triggerFortuneCookieGame() {
-            const cookieAsset = document.getElementById("cookie-graphic-node");
-            cookieAsset.classList.add("animate-crack");
-            confetti({ particleCount: 50, spread: 45 });
+        async function initializeLiveMarqueeBroadcastFeed() {
+            const track = document.getElementById("live-ticker-track");
+            if(!track) return;
 
-            const chosenRandomPick = POEMS_ARRAY[Math.floor(Math.random() * POEMS_ARRAY.length)];
-            const verseContentText = chosenRandomPick[currentLanguage] || chosenRandomPick['en'];
-            const textDisplayNode = document.getElementById("radiance-display");
+            try {
+                const { data: latestFeeds, error } = await supabaseClient
+                    .from('messages')
+                    .select('sender_name, recipient_name, created_at, vibe_tags')
+                    .order('created_at', { ascending: false })
+                    .limit(5);
 
-            let cookieClicksTotalCount = parseInt(localStorage.getItem(`cookie_clicks_total_${loggedInUser.id}`) || "0");
-            cookieClicksTotalCount++;
-            localStorage.setItem(`cookie_clicks_total_${loggedInUser.id}`, cookieClicksTotalCount);
+                if(!error && latestFeeds && latestFeeds.length > 0) {
+                    let textStreamConcat = "";
+                    latestFeeds.forEach(item => {
+                        let tagsArray = [];
+                        try { tagsArray = Array.isArray(item.vibe_tags) ? item.vibe_tags : JSON.parse(item.vibe_tags); } catch(e){}
+                        const badgeSnippet = tagsArray.length > 0 ? tagsArray[0] : "💌";
+                        
+                        let cleanSender = item.sender_name;
+                        if (item.sender_name === 'Anonymous') {
+                            cleanSender = currentLanguage === 'ar' ? "فاعل خير مجهول" : (currentLanguage === 'fr' ? "Anonyme" : "Someone");
+                        }
 
-            if(cookieClicksTotalCount >= 1) triggerAchievementUnlockCheck(5);
-            if(cookieClicksTotalCount >= 5) triggerAchievementUnlockCheck(6);
-            if(cookieClicksTotalCount >= 15) triggerAchievementUnlockCheck(7);
+                        let templateSnippetText = "";
+                        if (currentLanguage === 'ar') {
+                            templateSnippetText = ` 🔥 تم إرسال مغلف [ ${badgeSnippet} ] بنجاح من ${cleanSender} إلى الزميل(ة) ${item.recipient_name}! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        } else if (currentLanguage === 'fr') {
+                            templateSnippetText = ` 🔥 Enveloppe [ ${badgeSnippet} ] transmise avec succès de la part de ${cleanSender} à ${item.recipient_name} ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        } else {
+                            templateSnippetText = ` 🔥 Envelope [ ${badgeSnippet} ] transmitted from ${cleanSender} to ${item.recipient_name} successfully! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        }
+                        textStreamConcat += templateSnippetText;
+                    });
 
-            setTimeout(() => {
-                textDisplayNode.innerHTML = `<div class='bg-white text-slate-900 p-3 border-2 border-slate-900 rounded-xl shadow-[3px_3px_0px_0px_#1a0f0a] italic font-medium'>${verseContentText}</div>`;
-                cookieAsset.classList.remove("animate-crack");
-            }, 300);
+                    track.innerHTML = textStreamConcat + textStreamConcat;
+                    triggerAchievementUnlockCheck(31);
+                } else {
+                    const fallbackDefaultMarqueeTxt = currentLanguage === 'ar' 
+                        ? " ✨ انشر الكلمات الطيبة والتقدير بين زملائك في الدفعة الآن! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" 
+                        : (currentLanguage === 'fr' ? " ✨ Partagez des ondes positives avec vos camarades de classe dès maintenant ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : " ✨ Share appreciation loops across the class matrix! True anonymity protocols are completely green. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                    track.innerHTML = fallbackDefaultMarqueeTxt + fallbackDefaultMarqueeTxt;
+                }
+            } catch(e){ console.error(e); }
+        }
+
+        function initializeAchievementsMatrixStorageSystem() {
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            if(!localStorage.getItem(trackingKey)) {
+                localStorage.setItem(trackingKey, JSON.stringify([]));
+            }
+            renderAchievementsArcadeGridHTML();
+        }
+
+        function triggerAchievementUnlockCheck(achievementID) {
+            if(!loggedInUser) return;
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            let currentUnlockedArray = [];
+            try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
+
+            if(currentUnlockedArray.includes(achievementID)) return; 
+
+            currentUnlockedArray.push(achievementID);
+            localStorage.setItem(trackingKey, JSON.stringify(currentUnlockedArray));
+
+            if(currentUnlockedArray.length >= 15) triggerAchievementUnlockCheck(34);
+            confetti({ particleCount: 30, scalar: 1.1, colors: ['#ffeb3b', '#673ab7'] });
+            renderAchievementsArcadeGridHTML();
+        }
+
+        function renderAchievementsArcadeGridHTML() {
+            const grid = document.getElementById("trophies-scroll-matrix");
+            const counter = document.getElementById("unlocked-trophies-counter");
+            const headingNode = document.getElementById("achievements-heading-txt");
+            if(!grid || !counter) return;
+
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            let currentUnlockedArray = [];
+            try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
+
+            counter.innerText = currentUnlockedArray.length;
+            if (headingNode) {
+                headingNode.innerHTML = `🏆 ${LOCALIZATION_MAP[currentLanguage].achievementsHeading || "Achievements Locked: "} <span class="text-green-400">${currentUnlockedArray.length}</span>/35`;
+            }
+            grid.innerHTML = "";
+
+            MASTER_TROPHIES_BLUEPRINT.forEach(trophy => {
+                const isUnlocked = currentUnlockedArray.includes(trophy.id);
+                const cell = document.createElement("div");
+                
+                cell.className = `w-7 h-7 md:w-8 md:h-8 rounded-lg border flex items-center justify-center text-xs md:text-sm cursor-pointer transition-all duration-300 select-none ${
+                    isUnlocked 
+                    ? "bg-gradient-to-br from-yellow-300 to-amber-500 border-yellow-600 scale-100 animate-pulse" 
+                    : "bg-slate-800/80 border-slate-700 grayscale opacity-40 hover:opacity-70"
+                }`;
+                cell.innerText = trophy.icon;
+                
+                const updateHintDisplay = () => {
+                    const statusText = isUnlocked 
+                        ? (currentLanguage === 'ar' ? "🔓 تم الإنجاز" : (currentLanguage === 'fr' ? "🔓 DÉBLOQUÉ" : "🔓 UNLOCKED")) 
+                        : (currentLanguage === 'ar' ? "🔒 مقفل" : (currentLanguage === 'fr' ? "🔒 VERROUILLÉ" : "🔒 LOCKED"));
+                    
+                    const localizedTrophyName = trophy.name[currentLanguage] || trophy.name['en'];
+                    const localizedTrophyHint = trophy.hint[currentLanguage] || trophy.hint['en'];
+
+                    document.getElementById("selected-trophy-hint-display").innerHTML = `<span class='text-yellow-400 font-bold'>[${statusText}] ${localizedTrophyName}:</span> ${localizedTrophyHint}`;
+                };
+
+                cell.onmouseover = updateHintDisplay;
+                cell.onclick = updateHintDisplay;
+                grid.appendChild(cell);
+            });
+        }
+
+        async function fireQuickVibeTransmission(badgeIndexInteger) {
+            const indexTargetedTagEnglish = QUICK_VIBES_OPTIONS_MATRIX['en'][badgeIndexInteger];
+            
+            const standardQuickCommentsPool = {
+                en: `Dropped an instant burst of appreciation your way! Attaching the ${indexTargetedTagEnglish} trait badge. Have an amazing break!`,
+                fr: `Je t'envoie un élan d'énergie positive en un clic ! Mention spéciale pour le trait ${QUICK_VIBES_OPTIONS_MATRIX['fr'][badgeIndexInteger]}. Passe un excellent été !`,
+                ar: `أرسلت لك تحية تقديرية سريعة بضغطة زر واحدة! تمنياتي لك بعطلة رائعة مليئة بصفة: ${QUICK_VIBES_OPTIONS_MATRIX['ar'][badgeIndexInteger]}.`
+            };
+
+            const autoGeneratedCommentText = standardQuickCommentsPool[currentLanguage] || standardQuickCommentsPool['en'];
+            
+            const localizedVibeArrayPayload = [
+                QUICK_VIBES_OPTIONS_MATRIX['en'][badgeIndexInteger], 
+                QUICK_VIBES_OPTIONS_MATRIX['fr'][badgeIndexInteger], 
+                QUICK_VIBES_OPTIONS_MATRIX['ar'][badgeIndexInteger]
+            ];
+
+            const quickActionPayload = {
+                content: autoGeneratedCommentText,
+                recipient_name: globalTargetRecipient,
+                sender_name: loggedInUser.Full_name, 
+                is_approved: true,
+                toxic_flag: false,
+                vibe_tags: localizedVibeArrayPayload
+            };
+
+            const backupPrivateLogPayload = {
+                sender_name: loggedInUser.Full_name,
+                recipient_name: globalTargetRecipient,
+                message_content: `[⚡ QUICK VIBE BADGE]: ${autoGeneratedCommentText}`,
+                vibe_tags: localizedVibeArrayPayload,
+                is_anonymous_on_frontend: false
+            };
+
+            try {
+                const { error: publicErr } = await supabaseClient.from('messages').insert([quickActionPayload]);
+                if (publicErr) throw publicErr;
+
+                await supabaseClient.from('admin_logs').insert([backupPrivateLogPayload]);
+
+                confetti({ particleCount: 40, origin: { y: 0.6 } });
+                closeEnvelopeModal();
+                alert(currentLanguage === 'ar' ? "تم إرسال التحية السريعة بنجاح بنظام ضغطة الزر!" : "Quick vibe capsule transmitted immediately!");
+                
+                let quickCount = parseInt(localStorage.getItem(`quick_vibe_count_${loggedInUser.id}`) || "0");
+                quickCount++;
+                localStorage.setItem(`quick_vibe_count_${loggedInUser.id}`, quickCount);
+                
+                if(quickCount >= 1) triggerAchievementUnlockCheck(18);
+                if(quickCount >= 5) triggerAchievementUnlockCheck(19);
+
+                let uniqueInteractedNodesList = [];
+                try { uniqueInteractedNodesList = JSON.parse(localStorage.getItem(`unique_nodes_interacted_${loggedInUser.id}`)) || []; } catch(e){}
+                if(!uniqueInteractedNodesList.includes(globalTargetRecipient)) {
+                    uniqueInteractedNodesList.push(globalTargetRecipient);
+                    localStorage.setItem(`unique_nodes_interacted_${loggedInUser.id}`, JSON.stringify(uniqueInteractedNodesList));
+                }
+                if(uniqueInteractedNodesList.length >= 3) triggerAchievementUnlockCheck(32);
+
+                await synchronizeClassroomData();
+                await runGlobalLeaderboardEngine();
+                await initializeLiveMarqueeBroadcastFeed();
+            } catch(e) { alert("Transmission setup error."); }
         }
 
         async function submitEnvelopePipeline() {
@@ -1026,43 +1359,66 @@
             });
         }
 
-        function filterStudentGrid() { renderStudentGrid(); }
-
-        function updateProfileTheme(themeClass) {
-            const card = document.getElementById("user-vault-card");
-            if(!card) return;
-            card.className = "arcade-card rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300";
-            card.classList.add(themeClass);
+        function openEnvelopeModalFor(base64Name) {
+            globalTargetRecipient = decodeURIComponent(escape(atob(base64Name)));
+            document.getElementById("modal-recipient-name").innerText = globalTargetRecipient;
             
-            let auraChangesCount = parseInt(localStorage.getItem(`aura_theme_swaps_${loggedInUser.id}`) || "0");
-            auraChangesCount++;
-            localStorage.setItem(`aura_theme_swaps_${loggedInUser.id}`, auraChangesCount);
-            
-            if(auraChangesCount > 1) triggerAchievementUnlockCheck(10);
-            if(auraChangesCount >= 6) triggerAchievementUnlockCheck(11);
+            selectedVibeTraits = [];
+            document.getElementById("modal-msg-content").value = "";
+            document.getElementById("modal-anon-checkbox").checked = false;
+            document.getElementById("modal-lock-date").value = "";
 
-            if(loggedInUser) { localStorage.setItem(`envelope_theme_${loggedInUser.id}`, themeClass); }
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("modal-lock-date").min = today;
+            
+            updateVibeCheckboxInterface();
+            updateVibeCounterFeedback();
+
+            const modal = document.getElementById("envelope-modal");
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                modal.classList.remove("opacity-0");
+                modal.querySelector(".transform").classList.remove("scale-95");
+            }, 10);
         }
 
-        function populateSuperlativeDropdown() {
-            const select = document.getElementById("superlative-nominee-select");
-            if(!select) return;
-            select.innerHTML = "";
+        function updateVibeCheckboxInterface() {
+            const poolContainer = document.getElementById("vibe-checkbox-grid");
+            if(!poolContainer) return; 
+            poolContainer.innerHTML = "";
             
-            globalStudentsList.forEach(student => {
-                const option = document.createElement("option");
-                option.value = student.Full_name;
-                option.innerText = student.Full_name;
-                select.appendChild(option);
+            const availableTraits = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
+            
+            availableTraits.forEach((trait) => {
+                const isChecked = selectedVibeTraits.includes(trait);
+                const itemBtn = document.createElement("div");
+                itemBtn.className = `p-2.5 border-2 rounded-xl text-xs font-black text-center cursor-pointer transition-all ${
+                    isChecked 
+                    ? "bg-amber-300 text-slate-900 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] scale-[1.02]" 
+                    : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
+                }`;
+                itemBtn.innerText = trait;
+                itemBtn.onclick = () => toggleVibeTraitSelection(trait);
+                poolContainer.appendChild(itemBtn);
             });
         }
 
-        function castSuperlativeVote() {
-            const chosenNominee = document.getElementById("superlative-nominee-select").value;
-            if(!chosenNominee) return;
-            confetti({ particleCount: 35, spread: 45 });
-            alert(currentLanguage === 'ar' ? "تم تسجيل صوتك السري بنجاح! شكرًا لك." : "Secret ballot superlative entry cataloged perfectly!");
-            triggerAchievementUnlockCheck(12); 
+        function toggleVibeTraitSelection(traitValue) {
+            if (selectedVibeTraits.includes(traitValue)) {
+                selectedVibeTraits = selectedVibeTraits.filter(t => t !== traitValue);
+            } else {
+                if (selectedVibeTraits.length >= 3) selectedVibeTraits.shift();
+                selectedVibeTraits.push(traitValue);
+            }
+            updateVibeCheckboxInterface();
+            updateVibeCounterFeedback();
+        }
+
+        function updateVibeCounterFeedback() {
+            const feedbackTextNode = document.getElementById("vibe-counter-feedback");
+            if(!feedbackTextNode) return;
+            const textString = LOCALIZATION_MAP[currentLanguage].modalVibeCounter;
+            feedbackTextNode.innerText = textString.replace("{count}", selectedVibeTraits.length);
         }
 
         async function renderReceivedMessages() {
@@ -1163,35 +1519,75 @@
             } catch (err) { console.error(err); }
         }
 
-        function generateKeepsakePDF() {
-            if (activeReceivedMessagesCache.length === 0) return;
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-
-            doc.rect(5, 5, 200, 287);
-            doc.setFont("Helvetica", "bold");
-            doc.setFontSize(22);
-            doc.text("JUST SMILE // KEEPSAKE ARCHIVE", 105, 25, { align: "center" });
-
-            let cursorY = 60;
-            activeReceivedMessagesCache.forEach((envelope) => {
-                if (cursorY > 250) { doc.addPage(); cursorY = 25; }
-                let cleanBodyText = envelope.content;
-                if (cleanBodyText.includes("__LOCK__:")) {
-                    cleanBodyText = cleanBodyText.split("__:").slice(2).join("__:");
-                }
-                const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
-                const splitLines = doc.splitTextToSize(`"${strippedText}"`, 160);
-                const blockH = (splitLines.length * 5) + 12;
-
-                doc.rect(18, cursorY, 174, blockH);
-                doc.text(splitLines, 22, cursorY + 6);
-                cursorY += blockH + 6;
-            });
+        function renderVibeAnalyticsGraph(messagesArray) {
+            const graphContainer = document.getElementById("analytics-bars-container");
+            if(!graphContainer) return;
+            graphContainer.innerHTML = "";
             
-            doc.save("Just_Smile_Keepsake.pdf");
-            triggerAchievementUnlockCheck(13); 
+            const numericalFrequenciesAccumulator = [0, 0, 0, 0, 0, 0, 0, 0];
+            let rawTotalTagsAnalyzedCount = 0;
+
+            messagesArray.forEach(msg => {
+                try {
+                    const parsedTagsList = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
+                    if(Array.isArray(parsedTagsList)) {
+                        parsedTagsList.forEach(singleTagString => {
+                            const normalizedText = singleTagString.toLowerCase();
+                            
+                            for (let i = 0; i < RADAR_SUBSTRING_COMPILER_MAP.length; i++) {
+                                const mappingObj = RADAR_SUBSTRING_COMPILER_MAP[i];
+                                const patternMatched = mappingObj.keywords.some(keyword => normalizedText.includes(keyword));
+                                
+                                if(patternMatched) {
+                                    numericalFrequenciesAccumulator[mappingObj.id]++;
+                                    rawTotalTagsAnalyzedCount++;
+                                    break; 
+                                }
+                            }
+                        });
+                    }
+                } catch(e){ console.error(e); }
+            });
+
+            const currentActiveLabelsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
+            
+            for (let i = 0; i < 8; i++) {
+                const countValue = numericalFrequenciesAccumulator[i];
+                const dynamicPercentageWidth = rawTotalTagsAnalyzedCount > 0 ? Math.round((countValue / rawTotalTagsAnalyzedCount) * 100) : 0;
+
+                const progressRowMarkup = document.createElement("div");
+                progressRowMarkup.className = "space-y-1";
+                progressRowMarkup.innerHTML = `
+                    <div class="flex justify-between text-[10px] font-black text-slate-700">
+                        <span>${currentActiveLabelsPool[i]}</span>
+                        <span>${countValue}</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-3 rounded-md border border-slate-900 overflow-hidden shadow-inner relative">
+                        <div class="bg-pink-400 h-full border-r border-slate-900 transition-all duration-1000" style="width: ${rawTotalTagsAnalyzedCount > 0 ? dynamicPercentageWidth : 5}%"></div>
+                    </div>
+                `;
+                graphContainer.appendChild(progressRowMarkup);
+            }
         }
+
+        function populateSuperlativeDropdown() {
+            const select = document.getElementById("superlative-nominee-select");
+            if(!select) return;
+            select.innerHTML = "";
+            
+            globalStudentsList.forEach(student => {
+                const option = document.createElement("option");
+                option.value = student.Full_name;
+                option.innerText = student.Full_name;
+                select.appendChild(option);
+            });
+        }
+
+        // Global Execution Lifecycle Core Trigger
+        window.addEventListener("DOMContentLoaded", async () => {
+            await fetchAllStudentsMetadata();
+            triggerAchievementUnlockCheck(25); 
+        });
     </script>
 </body>
 </html>
