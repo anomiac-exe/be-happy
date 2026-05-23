@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Just Smile ✨</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;900&family=Amiri:ital@1&family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <!-- Supabase JS Client v2 -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
-    <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
@@ -146,9 +141,6 @@
 
     <div class="max-w-6xl mx-auto space-y-6">
         
-        <!-- ========================================================= -->
-        <!-- NAVIGATION HEADER INTERFACE                               -->
-        <!-- ========================================================= -->
         <header class="arcade-card bg-[#eddcd2] rounded-3xl p-6 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-2 text-center md:text-left rtl:text-right max-w-2xl">
                 <h1 id="hero-title" class="text-3xl md:text-5xl font-black tracking-tight text-[#1a0f0a] dark-target-text">
@@ -170,9 +162,6 @@
             </div>
         </header>
 
-        <!-- ========================================================= -->
-        <!-- LIVE TOAST TICKER FEED MARQUEE SECTION                    -->
-        <!-- ========================================================= -->
         <div id="live-marquee-container" class="arcade-card bg-slate-900 text-yellow-300 rounded-xl py-2 px-4 overflow-hidden border-2 flex items-center hidden">
             <span class="font-arcade text-[8px] bg-red-600 text-white px-1.5 py-0.5 rounded mr-3 uppercase shrink-0 animate-pulse">Feed</span>
             <div class="w-full overflow-hidden relative">
@@ -180,9 +169,6 @@
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- INTERACTIVE LOG-IN PORTAL ACCESSIBILITY                   -->
-        <!-- ========================================================= -->
         <section id="auth-section" class="arcade-card bg-[#f3e5f5] rounded-3xl p-6 md:p-10 max-w-md mx-auto space-y-6 border-4">
             <div class="text-center space-y-2">
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-[#ce93d8] border-3 border-[#1a0f0a] shadow-[4px_4px_0px_0px_#1a0f0a] rounded-2xl text-2xl mb-2 animate-bounce-soft">✨</div>
@@ -209,10 +195,8 @@
             <div id="auth-feedback" class="text-center text-xs font-bold hidden p-3 border-3 border-slate-800 rounded-xl"></div>
         </section>
 
-        <!-- MAIN INTERACTIVE ARCADE DASHBOARD MATRIX -->
         <main id="main-dashboard" class="space-y-6 hidden">
             
-            <!-- COHORT ANALYTICS CORE HEADLINE BOARD -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <div class="md:col-span-4 arcade-card bg-[#e8f5e9] p-5 rounded-3xl flex flex-col justify-around gap-3 text-center">
                     <div>
@@ -228,7 +212,6 @@
                     </div>
                 </div>
 
-                <!-- CLASS ARCHETYPE SCOREBOARD -->
                 <div class="md:col-span-8 arcade-card bg-slate-900 text-green-400 p-5 rounded-3xl relative border-4 shadow-2xl overflow-hidden">
                     <div class="absolute top-0 right-0 p-2 text-[9px] font-arcade text-slate-700 select-none">VIBE_OS v2.6</div>
                     <div class="flex items-center gap-3 border-b-2 border-slate-700 pb-2 mb-3">
@@ -239,7 +222,6 @@
                 </div>
             </div>
 
-            <!-- CLASS CHRONICLES HUB INTERFACE ELEMENT -->
             <div class="arcade-card bg-amber-50 rounded-3xl p-6 border-4 space-y-4 text-slate-900">
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-slate-900 pb-3 gap-2">
                     <div class="flex items-center gap-2">
@@ -251,7 +233,7 @@
 
                 <div class="p-4 bg-white border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-2xl">
                     <span id="chronicles-prompt-badge" class="text-[9px] font-black uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">Active Break Prompt:</span>
-                    <p id="chronicles-active-question-text" class="text-sm font-extrabold text-slate-800 mt-1">Quelle est la pire dinguerie ou l'histoire la plus drôle qui s'est passée en cours ce semestre ?</p>
+                    <p id="chronicles-active-question-text" class="text-sm font-extrabold text-slate-800 mt-1">Quelle est la pire dinguerie ou l''histoire la plus drôle qui s''est passée en cours ce semestre ?</p>
                 </div>
 
                 <form onsubmit="submitChronicleStoryPipeline(event)" class="space-y-3">
@@ -266,13 +248,10 @@
                 </div>
             </div>
 
-            <!-- INTERFACE ROW SYSTEM PLACEMENT LAYOUTS -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
-                <!-- PILLAR SIDE PANEL DESK -->
                 <div class="lg:col-span-5 space-y-6">
                     
-                    <!-- PRIVACY VAULT BOX -->
                     <div id="user-vault-card" class="arcade-card bg-white rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-amber-200 border-3 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl flex items-center justify-center text-xl text-slate-900 font-black" id="user-avatar-char">?</div>
@@ -282,7 +261,6 @@
                             </div>
                         </div>
 
-                        <!-- SECRET SANTA MATCHMAKER COMPONENT -->
                         <div class="p-3 bg-indigo-50 border-2 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] rounded-xl space-y-2">
                             <div class="flex items-center justify-between">
                                 <h4 id="santa-title-lbl" class="text-[11px] font-black uppercase text-indigo-900 tracking-wider"></h4>
@@ -292,7 +270,6 @@
                             <button onclick="rollRandomClassmateTarget()" id="santa-btn-lbl" class="w-full py-2 bg-indigo-300 text-slate-900 text-xs font-black uppercase tracking-wider rounded-lg border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] hover:translate-y-[1px] active:translate-y-[2px] transition cursor-pointer"></button>
                         </div>
 
-                        <!-- THEME SELECTOR CONTAINER -->
                         <div class="p-3 bg-white/80 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl space-y-2 text-slate-900">
                             <h4 id="theme-selector-lbl" class="text-[10px] font-black uppercase text-slate-800 tracking-wider"></h4>
                             <div class="grid grid-cols-6 gap-2">
@@ -305,13 +282,11 @@
                             </div>
                         </div>
 
-                        <!-- DOMINANT VIBE RADAR PROGRESSIVE BARS -->
                         <div class="bg-white/90 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] p-3 rounded-xl space-y-2 text-slate-900">
                             <h3 id="analytics-title" class="text-[10px] font-black uppercase tracking-wider text-slate-900"></h3>
                             <div id="analytics-bars-container" class="space-y-1.5"></div>
                         </div>
 
-                        <!-- ARCADE ACCOMPLISHMENTS GRID LOG MATRIX -->
                         <div class="bg-slate-900 text-yellow-400 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] p-3 rounded-xl space-y-2">
                             <div class="flex items-center justify-between border-b border-slate-700 pb-1">
                                 <span id="achievements-heading-txt" class="font-arcade text-[7.5px] tracking-widest uppercase text-white">🏆 Achievements Locked: <span id="unlocked-trophies-counter" class="text-green-400">0</span>/35</span>
@@ -325,7 +300,6 @@
                         </button>
                     </div>
 
-                    <!-- GEOMETRIC COOKIE MINI-GAME INTERFACE -->
                     <div onclick="triggerFortuneCookieGame()" class="arcade-card bg-gradient-to-tr from-amber-100 to-orange-100 rounded-3xl p-5 relative overflow-hidden cursor-pointer text-center group border-4">
                         <div class="flex items-center justify-between mb-2">
                             <h3 id="cookie-header-lbl" class="text-[10px] font-black uppercase tracking-widest text-orange-900 bg-white border-2 border-slate-900 px-2 py-0.5 rounded-md">🥠 FORTUNE MINI-GAME // كبسولة الحظ</h3>
@@ -335,7 +309,6 @@
                         <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[60px] flex flex-col justify-center transition-all duration-500"></div>
                     </div>
 
-                    <!-- ROTATING BALLOT SLOTS ROW LAYOUT -->
                     <div class="arcade-card bg-[#fff9db] rounded-3xl p-5 space-y-4 text-slate-900">
                         <div class="space-y-1">
                             <h3 id="superlative-title" class="text-sm font-black uppercase text-slate-900 tracking-wider"></h3>
@@ -358,7 +331,6 @@
                         </div>
                     </div>
 
-                    <!-- LETTERS STACK FEED -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
                             <h3 id="letters-title" class="text-sm font-black text-white uppercase tracking-wider"></h3>
@@ -369,7 +341,6 @@
 
                 </div>
 
-                <!-- RIGHT MAIN DIRECTORY COLUMN PILLAR -->
                 <div class="lg:col-span-7 space-y-6">
                     <div class="arcade-card bg-white rounded-2xl p-4 flex items-center gap-3">
                         <span class="text-lg pl-2">🔍</span>
@@ -383,7 +354,6 @@
 
     </div>
 
-    <!-- TRANSMISSION CAPSULE DIALOG MODAL LAYOUT SHEET SHEET -->
     <div id="envelope-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
         <div class="arcade-card w-full max-w-xl rounded-3xl bg-white p-6 md:p-8 transform scale-95 transition-transform duration-300 space-y-6 max-h-[90vh] overflow-y-auto relative border-4 text-slate-900">
             
@@ -396,7 +366,6 @@
                 </h3>
             </div>
 
-            <!-- ONE-CLICK QUICK ACTIONS LAUNCH MATRIX -->
             <div class="p-4 bg-green-50 border-3 border-slate-900 shadow-[4px_4px_0px_0px_#1a0f0a] rounded-2xl space-y-2">
                 <h4 id="quick-action-headline" class="text-xs font-black text-emerald-900 uppercase tracking-wide flex items-center gap-1"></h4>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -407,27 +376,23 @@
                 </div>
             </div>
 
-            <!-- CUSTOM SELECTION SECTOR -->
             <div class="space-y-2">
                 <label id="modal-vibe-lbl" class="block text-xs font-black text-slate-700 tracking-wider uppercase"></label>
                 <div id="vibe-checkbox-grid" class="grid grid-cols-2 gap-2"></div>
                 <div id="vibe-counter-feedback" class="text-[11px] font-black text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300 inline-block"></div>
             </div>
 
-            <!-- TIME LOCK CAPSULE WRAP -->
             <div class="p-4 bg-yellow-50 border-2 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] rounded-2xl space-y-2">
                 <label id="capsule-lock-lbl" class="block text-xs font-black text-slate-900 uppercase tracking-wider"></label>
                 <p id="capsule-lock-sub" class="text-[10px] font-medium text-slate-600"></p>
                 <input type="date" id="modal-lock-date" class="p-2 bg-white border-2 border-slate-900 rounded-lg text-xs font-black focus:outline-none tracking-wide text-slate-900">
             </div>
 
-            <!-- MESSAGE INPUT FIELD -->
             <div class="space-y-2">
                 <label id="modal-msg-lbl" class="block text-xs font-black text-slate-700 uppercase tracking-wider"></label>
                 <textarea id="modal-msg-content" rows="4" class="w-full p-4 bg-white arcade-input rounded-xl text-sm font-bold focus:outline-none text-slate-900 resize-none"></textarea>
             </div>
 
-            <!-- ANONYMOUS CONFIG SWITCH -->
             <div class="flex items-center justify-between p-3 bg-slate-50 border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]">
                 <div class="space-y-0.5">
                     <span id="anon-toggle-lbl" class="text-xs font-black text-slate-800 block"></span>
@@ -439,7 +404,6 @@
                 </label>
             </div>
 
-            <!-- BUTTON ACTIONS REGION -->
             <div class="flex items-center justify-end gap-3 pt-2">
                 <button onclick="closeEnvelopeModal()" id="modal-cancel-btn" class="px-5 py-3 rounded-lg text-xs font-black text-slate-600 hover:bg-slate-100 transition cursor-pointer"></button>
                 <button onclick="submitEnvelopePipeline()" id="modal-submit-btn" class="px-6 py-3 rounded-lg text-xs font-black bg-pink-300 text-slate-900 brutal-btn cursor-pointer"></button>
@@ -448,9 +412,6 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- SECURE EMBEDDED JAVASCRIPT GLOBAL RUNTIME ARCHITECTURE     -->
-    <!-- ========================================================= -->
     <script>
         // Global variables initialized outside block enclosures to resolve handler lookups immediately
         const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
@@ -536,7 +497,7 @@
             { id: 11, icon: "💎", name: { en: "Chameleon Core", fr: "Cœur Caméléon", ar: "متعدد الأطياف" }, hint: { en: "Toggle your space theme backgrounds 6 times.", fr: "Modifiez votre arrière-plan d'aura 6 fois.", ar: "تغيير وتجربة ألوان الخلفية الهالية 6 مرات أو أكثر." } },
             { id: 12, icon: "🗳️", name: { en: "Active Democrat", fr: "Électeur Actif", ar: "صوت الديمقراطية" }, hint: { en: "Cast an anonymous secret ballot vote.", fr: "Votez anonymement pour le superlatif de classe.", ar: "إلقاء صوت سري مجهول في تصويت الأفضل الدفعة." } },
             { id: 13, icon: "📥", name: { en: "Archivist Seal", fr: "Sceau d'Archive", ar: "حامي الذكريات" }, hint: { en: "Compile and download your pdf certificate archive.", fr: "Téléchargez votre certificat de souvenirs en PDF.", ar: "تحميل وثيقة الذكريات الصيفية بصيغة PDF بنجاح." } },
-            { id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secrète", ar: "عجلة الحظ" }, hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." } },
+            { id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secرية", ar: "عجلة الحظ" }, hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." } },
             { id: 15, icon: "🍬", name: { en: "Generous Scout", fr: "Éclaireur Généreux", ar: "مستكشف الكرم" }, hint: { en: "Roll random target classmate profiles 5 times.", fr: "Générez des cibles aléatoires 5 fois au total.", ar: "استخدام مِولد الاستهداف العشوائي للزملاء 5 مرات." } },
             { id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" }, hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح واختيار اللغات الثلاث كاملة على المنصة." } },
             { id: 17, icon: "🛡️", name: { en: "Clean Energy", fr: "Énergie Propre", ar: "الطاقة الصافية" }, hint: { en: "Transmit a compliment completely free of flags.", fr: "Envoyez un message validé sans aucun filtre.", ar: "إرسال رسالة نقية وصادقة خالية تماماً من الكلمات المحظورة." } },
@@ -555,7 +516,7 @@
             { id: 30, icon: "🦁", name: { en: "Brave Explorer", fr: "Explorateur Brave", ar: "المستكشف الشجاع" }, hint: { en: "Filter search query inputs inside registry grids.", fr: "Utilisez la barre de recherche des camarades.", ar: "البحث وتصفية الأسماء داخل شبكة دليل الدفعة." } },
             { id: 31, icon: "📣", name: { en: "Marquee Listener", fr: "Écouteur du Marquee", ar: "راصد الأخبار" }, hint: { en: "Observe the live rolling global toast marquee feed.", fr: "Observez le défilement du flux d'actualités en direct.", ar: "متابعة شريط الأخبار والنشاطات العالمي الحي المتحرك." } },
             { id: 32, icon: "🍫", name: { en: "Sweet Adrenaline", fr: "Pure Adrénaline", ar: "شحنة الحماس" }, hint: { en: "Transmit 3 envelopes to 3 different peer nodes.", fr: "Envoyez des messages à 3 camarades différents.", ar: "إرسال مظاريف رقمية إلى 3 زملاء مختلفين في الصف." } },
-            { id: 33, icon: "🧘", name: { en: "Zen Harmony", fr: "Harmonie Zen", ar: "السلام الداخلي" }, hint: { en: "Maintain complete compliance clean records rules.", fr: "Conservez un historique d'utilisation irréprochable.", ar: "الحفاظ على سجل نقي ونظيف تماماً بدون أي مخالفات." } },
+            { id: 33, icon: "🧘", name: { en: "Zen Harmony", fr: "Harmonie Zen", ar: "السلام الداخلي" }, hint: { en: "Maintain complete compliance clean records rules.", fr: "Conservez un historique d'utilisation irréprochable.", ar: "الحفاظ على سجل نكي ونظيف تماماً بدون أي مخالفات." } },
             { id: 34, icon: "🏆", name: { en: "Arcade Champion", fr: "Champion d'Arcade", ar: "بطل الألعاب" }, hint: { en: "Unlock 15 or more unique badge tokens from this sheet.", fr: "Débloquez 15 succès de la liste.", ar: "فك تشفير وتفعيل 15 إنجازاً مميزاً من هذه القائمة." } },
             { id: 35, icon: "🌟", name: { en: "Grand Master", fr: "Grand Maître", ar: "الأستاذ الكبير" }, hint: { en: "Achieve ultimate verified execution usage profiles vectors.", fr: "Complétez l'ensemble des objectifs d'exploration.", ar: "تحقيق الاستخدام الأقصى والمثالي لجميع خصائص المنصة." } }
         ];
@@ -806,6 +767,7 @@
             dropdown.classList.remove("hidden");
         };
 
+        // 🌟 CASE SENSITIVITY FIX: Evaluates 'Full_name' token tracking structures accurately matching your dashboard screenshot view
         window.handleAuthenticationPipeline = async function(event) {
             event.preventDefault(); 
             const fullNameInput = document.getElementById("auth-fullname-input").value.trim();
@@ -982,6 +944,7 @@
                 return;
             }
 
+            // 🌟 CASE SENSITIVITY FIX: Automatically logs author data under 'Full_name' schema key match
             const storyPayload = {
                 author_name: loggedInUser.Full_name, 
                 story_text: rawStoryText,
@@ -1430,6 +1393,7 @@
             }
         }
 
+        // 🌟 CASE SENSITIVITY FIX: Updates data references from 'Full_name' property models
         function renderStudentGrid() {
             const gridContainer = document.getElementById("students-grid");
             if(!gridContainer) return;
@@ -1544,10 +1508,6 @@
                 activeReceivedMessagesCache = data || [];
                 totalCountLabel.innerText = activeReceivedMessagesCache.length;
 
-                if(activeReceivedMessagesCache.length >= 1) triggerAchievementUnlockCheck(2);
-                if(activeReceivedMessagesCache.length >= 5) triggerAchievementUnlockCheck(3);
-                if(activeReceivedMessagesCache.length >= 10) triggerAchievementUnlockCheck(4);
-
                 if(activeReceivedMessagesCache.length === 0) {
                     cardsStack.innerHTML = `<div class='text-center p-6 text-xs font-bold text-slate-400 italic'>No letters here yet. Spreading some joy around class might prompt a quick reply!</div>`;
                     renderVibeAnalyticsGraph([]);
@@ -1579,12 +1539,7 @@
                     let tagsArr = [];
                     try { tagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArr = ["✨ Class Star"]; }
 
-                    tagsArr.forEach(t => {
-                        if(t.includes("Kind Heart") || t.includes("طيب القلب") || t.includes("Tendre")) triggerAchievementUnlockCheck(26);
-                        if(t.includes("Visionary") || t.includes("رؤيوي") || t.includes("Visionnaire")) triggerAchievementUnlockCheck(27);
-                    });
-
-                    let tagsHTML = "";
+                    tagsHTML = "";
                     tagsArr.forEach(t => {
                         tagsHTML += `<span class="bg-slate-100 border border-slate-900 px-2 py-0.5 rounded-md text-[9px] font-black">${t}</span>`;
                     });
@@ -1621,7 +1576,6 @@
                 });
 
                 renderVibeAnalyticsGraph(activeReceivedMessagesCache);
-                if(activeReceivedMessagesCache.length > 0) triggerAchievementUnlockCheck(22);
             } catch (err) { console.error(err); }
         }
 
@@ -1676,30 +1630,25 @@
             }
         }
 
-        function updateProfileTheme(themeClass) {
-            const card = document.getElementById("user-vault-card");
-            if(!card) return;
-            card.className = "arcade-card rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300";
-            card.classList.add(themeClass);
+        function populateSuperlativeDropdown() {
+            const select = document.getElementById("superlative-nominee-select");
+            if(!select) return;
+            select.innerHTML = "";
             
-            let auraChangesCount = parseInt(localStorage.getItem(`aura_theme_swaps_${loggedInUser.id}`) || "0");
-            auraChangesCount++;
-            localStorage.setItem(`aura_theme_swaps_${loggedInUser.id}`, auraChangesCount);
-            
-            if(auraChangesCount > 1) triggerAchievementUnlockCheck(10);
-            if(auraChangesCount >= 6) triggerAchievementUnlockCheck(11);
-
-            if(loggedInUser) { localStorage.setItem(`envelope_theme_${loggedInUser.id}`, themeClass); }
+            globalStudentsList.forEach(student => {
+                const option = document.createElement("option");
+                option.value = student.Full_name;
+                option.innerText = student.Full_name;
+                select.appendChild(option);
+            });
         }
 
-        // ========================================================= -->
-        // 🌟 SYNCHRONIZED SEQUENTIAL RUNTIME LIFE CYCLES INITIALIZER🌟-->
-        // ========================================================= -->
+        // 🌟 SEQUENTIAL RESTRUCTURING: Ensures configuration client hooks read database tables cleanly before initializing text nodes
         async function fetchAllStudentsMetadata() {
             try {
-                // Initialize configuration properties FIRST before running string replacements loops
                 supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+                // Target correct PostgreSQL case-sensitive field 'Full_name'
                 const { data, error } = await supabaseClient
                     .from('Students')
                     .select('id, Full_name, Password')
@@ -1708,23 +1657,20 @@
                 if (!error && data) {
                     globalStudentsList = data;
                     
-                    // Pop elements logs lists fully inside cache arrays
                     handleAutocompleteSearch("");
                     populateSuperlativeDropdown(); 
                     
-                    // Trigger language switch text maps rendering safely SECOND
                     switchLanguage('en'); 
                 } else {
                     if(error) throw error;
                 }
             } catch (err) { 
-                console.error("Initialization layer failure mapping context: ", err); 
+                console.error(err); 
                 document.getElementById("auth-feedback").className = "text-center text-xs font-bold p-3 bg-rose-100 text-rose-900 border-3 border-slate-900 block";
                 document.getElementById("auth-feedback").innerText = "Connection link error. Check Supabase RLS panel permissions.";
             }
         }
 
-        // Run master layout operations directly in document context tree shell
         window.addEventListener("DOMContentLoaded", async () => {
             await fetchAllStudentsMetadata();
             triggerAchievementUnlockCheck(25); 
