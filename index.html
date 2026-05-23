@@ -252,7 +252,7 @@
                 
                 <div class="lg:col-span-5 space-y-6">
                     
-                    <div id="user-vault-card" class="arcade-card bg-white rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300">
+                    <div id="user-vault-card" class="arcade-card rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-amber-200 border-3 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl flex items-center justify-center text-xl text-slate-900 font-black" id="user-avatar-char">?</div>
                             <div class="space-y-0.5">
@@ -360,7 +360,7 @@
             <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-800 hover:text-rose-600 font-black text-2xl cursor-pointer border-2 border-slate-900 w-9 h-9 flex items-center justify-center rounded-lg bg-white">×</button>
             
             <div class="space-y-1">
-                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-800 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
+                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-900 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
                 <h3 class="text-xl font-black text-slate-900">
                     <span id="modal-title-prefix">To:</span> <span id="modal-recipient-name" class="underline decoration-wavy decoration-pink-500">Student Name</span>
                 </h3>
@@ -413,7 +413,6 @@
     </div>
 
     <script>
-        // Global variables initialized outside block enclosures to resolve handler lookups immediately
         const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
 
@@ -478,7 +477,7 @@
             },
             {
                 en: "Out of the night that covers me,<br>Black as the pit from pole to pole,<br>I thank whatever gods may be<br>For my unconquerable soul.",
-                fr: "Dans la nuit noire qui m'enveloppe,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.",
+                fr: "Dans la nuit noire qui m'enveloppه,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.",
                 ar: "بِقَدرِ الكَدِّ تُكتَسَبُ المَعالي<br>وَمَن طَلَبَ العُلا سَهِرَ اللَيالي<br>— الإمام الشافعي"
             }
         ];
@@ -497,7 +496,7 @@
             { id: 11, icon: "💎", name: { en: "Chameleon Core", fr: "Cœur Caméléon", ar: "متعدد الأطياف" }, hint: { en: "Toggle your space theme backgrounds 6 times.", fr: "Modifiez votre arrière-plan d'aura 6 fois.", ar: "تغيير وتجربة ألوان الخلفية الهالية 6 مرات أو أكثر." } },
             { id: 12, icon: "🗳️", name: { en: "Active Democrat", fr: "Électeur Actif", ar: "صوت الديمقراطية" }, hint: { en: "Cast an anonymous secret ballot vote.", fr: "Votez anonymement pour le superlatif de classe.", ar: "إلقاء صوت سري مجهول في تصويت الأفضل الدفعة." } },
             { id: 13, icon: "📥", name: { en: "Archivist Seal", fr: "Sceau d'Archive", ar: "حامي الذكريات" }, hint: { en: "Compile and download your pdf certificate archive.", fr: "Téléchargez votre certificat de souvenirs en PDF.", ar: "تحميل وثيقة الذكريات الصيفية بصيغة PDF بنجاح." } },
-            { id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secرية", ar: "عجلة الحظ" }, hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." } },
+            { id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secrète", ar: "عجلة الحظ" }, hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." } },
             { id: 15, icon: "🍬", name: { en: "Generous Scout", fr: "Éclaireur Généreux", ar: "مستكشف الكرم" }, hint: { en: "Roll random target classmate profiles 5 times.", fr: "Générez des cibles aléatoires 5 fois au total.", ar: "استخدام مِولد الاستهداف العشوائي للزملاء 5 مرات." } },
             { id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" }, hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح واختيار اللغات الثلاث كاملة على المنصة." } },
             { id: 17, icon: "🛡️", name: { en: "Clean Energy", fr: "Énergie Propre", ar: "الطاقة الصافية" }, hint: { en: "Transmit a compliment completely free of flags.", fr: "Envoyez un message validé sans aucun filtre.", ar: "إرسال رسالة نقية وصادقة خالية تماماً من الكلمات المحظورة." } },
@@ -520,144 +519,6 @@
             { id: 34, icon: "🏆", name: { en: "Arcade Champion", fr: "Champion d'Arcade", ar: "بطل الألعاب" }, hint: { en: "Unlock 15 or more unique badge tokens from this sheet.", fr: "Débloquez 15 succès de la liste.", ar: "فك تشفير وتفعيل 15 إنجازاً مميزاً من هذه القائمة." } },
             { id: 35, icon: "🌟", name: { en: "Grand Master", fr: "Grand Maître", ar: "الأستاذ الكبير" }, hint: { en: "Achieve ultimate verified execution usage profiles vectors.", fr: "Complétez l'ensemble des objectifs d'exploration.", ar: "تحقيق الاستخدام الأقصى والمثالي لجميع خصائص المنصة." } }
         ];
-
-        const LOCALIZATION_MAP = {
-            en: {
-                heroDesc: "The most valuable treasure a student carries over long university breaks is genuine words of appreciation from their peers. Let's lock in real memories before summer takes over.",
-                authSubtitle: "Unlock your envelope space or establish your secret summer passkey row.",
-                lblFullName: "Select Your Identity",
-                lblPassword: "Secret Passkey",
-                btnAuth: "Initialize Profile Dashboard",
-                vaultWelcome: "Welcome Back,",
-                analyticsTitle: "Your Dominant Traits Radar",
-                btnKeepsake: "Download My Summer Keepsake (PDF)",
-                lettersTitle: "Your Digital Envelopes",
-                searchPlaceholder: "Search classmate's name...",
-                modalTo: "To:",
-                modalVibeLbl: "Select Exactly 3 Distinct Vibe Traits:",
-                modalVibeCounter: "Selected: {count} / 3",
-                modalMsgLbl: "Your Message of Appreciation:",
-                modalMsgPlaceholder: "Write something inspiring... Keep it genuine, kind, and unforgettable.",
-                modalAnonLbl: "Send Anonymously",
-                modalAnonSub: "Your name will show as Anonymous",
-                modalCancel: "Cancel",
-                modalSubmit: "Transmit Envelope",
-                authNotFound: "Selected student name record not found in register directory.",
-                authSuccess: "Access authorized! Syncing dashboard dimensions...",
-                authNewPass: "New passkey established successfully! Welcome to the hub.",
-                authWrong: "Invalid configuration credentials. Check passkey match.",
-                sparkKindness: "Moments Shared Generosities",
-                sparkLegendary: "Class Superlative Votes Cast",
-                superlativeTitle: "🗳️ Class Superlatives Ballot",
-                superlativeDesc: "Cast an anonymous vote! Who fits this title best?",
-                capsuleLockLbl: "🔒 Time-Lock Capsule Protocol (Optional):",
-                capsuleLockSub: "Force this letter to remain locked and hidden until a specific day.",
-                themeSelectorLbl: "Select Your Vault Space Theme Aura:",
-                quickActionHeadline: "⚡ DROP A QUICK VIBE (ONE-CLICK LAUNCH)",
-                leaderboardTitle: "🕹️ CLASS ARCHETYPE SCOREBOARD",
-                santaTitle: "🍬 Secret Vibe Assignment Generator",
-                santaDesc: "Feeling unsure who to praise? Roll a random classmate right now and break the circle barrier!",
-                santaBtn: "Roll Random Classmate Target",
-                achievementsHeading: "🏆 Achievements Locked: ",
-                superlativeArchiveHeadline: "⌛ PHASE STAGE HISTORIC ARCHIVE RESULTS:",
-                chroniclesHeadline: "🎬 THE CLASS CHRONICLES // LES DOSSIERS 🍿",
-                chroniclesPromptBadge: "Active Break Prompt:",
-                chroniclesTextareaPlaceholder: "Write your account of the event here... Keep it real, funny, and respectful! Your full name will be pinned as the author.",
-                chroniclesSubmitBtn: "Publish to Class Feed",
-                voteCrownBtn: "👑 Vote for King",
-                alreadyVotedAlert: "Security parameters check: You have already cast a validation vote for this chronicle story entry!"
-            },
-            fr: {
-                heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances universitaires est l'ensemble des mots sincères d'appréciation de ses pairs. Gravons nos souvenirs.",
-                authSubtitle: "Ouvrez votre enveloppe ou enregistrez votre clé secrète d'été.",
-                lblFullName: "Sélectionnez Votre Identité",
-                lblPassword: "Clé Secrète",
-                btnAuth: "Déverrouiller le Tableau de Bord",
-                vaultWelcome: "Bon retour,",
-                analyticsTitle: "Votre Radar de Traits Dominants",
-                btnKeepsake: "Télécharger mon Souvenir d'Été (PDF)",
-                lettersTitle: "Vos Enveloppes Numériques",
-                searchPlaceholder: "Rechercher un camarade de classe...",
-                modalTo: "À :",
-                modalVibeLbl: "Sélectionnez exactement 3 traits d'énergie :",
-                modalVibeCounter: "Sélectionné : {count} / 3",
-                modalMsgLbl: "Votre message d'appréciation :",
-                modalMsgPlaceholder: "Écrivez quelque chose d'inspirant... Sincère, bienveillant et inoubliable.",
-                modalAnonLbl: "Envoyer anonymement",
-                modalAnonSub: "Votre nom apparaîtra comme Anonyme",
-                modalCancel: "Annuler",
-                modalSubmit: "Transmettre l'Enveloppe",
-                authNotFound: "Nom sélectionné introuvable dans le registre.",
-                authSuccess: "Accès Autorisé ! Synchronisation des données...",
-                authNewPass: "Nouvelle clé secrète enregistrée avec succès ! Bienvenue.",
-                authWrong: "Identifiants invalides. Vérifiez la clé secrète.",
-                sparkKindness: "Messages Bienveillants Partagés",
-                sparkLegendary: "Votes Superlatifs Enregistrés",
-                superlativeTitle: "🗳️ Vote des Superlatifs de la Classe",
-                superlativeDesc: "Votez anonymement pour vos camarades !",
-                capsuleLockLbl: "🔒 Protocole de Capsule Temporelle (Optionnel) :",
-                capsuleLockSub: "Forcez cette lettre à rester verrouillée jusqu'à une date choisie.",
-                themeSelectorLbl: "Sélectionnez l'Aura Thématique de votre Espace :",
-                quickActionHeadline: "⚡ TRANSMISSION RAPIDE (UN SEUL CLIC)",
-                leaderboardTitle: "🕹️ SCOREBOARD DES ARCHÉTYPES DE CLASSE",
-                santaTitle: "🍬 Générateur de Mission Vibe Secrète",
-                santaDesc: "Vous ne savez pas qui féliciter ? Tirez au sort un camarade de classe dès maintenant et cassez la routine !",
-                santaBtn: "Cibler un Camarade Aléatoire",
-                achievementsHeading: "🏆 Succès Débloqués : ",
-                superlativeArchiveHeadline: "⌛ ARCHIVE DES RÉSULTATS DE PHASE PRÉCÉDENTE :",
-                chroniclesHeadline: "🎬 THE CLASS CHRONICLES // LES DOSSIERS 🍿",
-                chroniclesPromptBadge: "Sujet Actif du Semestre :",
-                chroniclesTextareaPlaceholder: "Racontez ce dossier ici... Soyez drôle, vrai et respectueux ! Votre nom complet sera affiché publiquement.",
-                chroniclesSubmitBtn: "Publier dans les Dossiers",
-                voteCrownBtn: "👑 Voter pour le Roi",
-                alreadyVotedAlert: "Vérification de sécurité : Vous avez déjà voté pour cette histoire !"
-            },
-            ar: {
-                heroDesc: "أثمن كنز يحمله الطالب معه خلال العطلة الجامعية الطويلة هو كلمات التقدير والامتنان الصادقة من زملائه. لنحفظ ذكرياتنا الإيجابية قبل بداية الصيف.",
-                authSubtitle: "افتح ظرفك الرقمي أو أنشئ رمز المرور السري الخاص بك للمتابعة.",
-                lblFullName: "اختر اسمك الكامل من القائمة",
-                lblPassword: "رمز المرور السري",
-                btnAuth: "دخول لوحة التحكم",
-                vaultWelcome: "مرحباً بك مجدداً،",
-                analyticsTitle: "مصفوفة صفاتك المميزة",
-                btnKeepsake: "تحميل وثيقة الذكريات الصيفية (PDF)",
-                lettersTitle: "مظاريفك الرقمية الواردة",
-                searchPlaceholder: "ابحث عن اسم زميلك...",
-                modalTo: "إلى:",
-                modalVibeLbl: "اختر 3 صفات مميزة بالضبط:",
-                modalVibeCounter: "تم اختيار: {count} / 3",
-                modalMsgLbl: "رسالة التقدير والامتنان الخاصة بك:",
-                modalMsgPlaceholder: "اجعل كلماتك صادقة، طيبة ولا تُنسى أبداً.",
-                modalAnonLbl: "إرسال كهوية مجهولة",
-                modalAnonSub: "سيظهر اسمك كفاعل خير مجهول",
-                modalCancel: "إلغاء",
-                modalSubmit: "إرسال المغلف الرقمي",
-                authNotFound: "الاسم المختار غير مسجل في الدليل الرسمي للطلاب.",
-                authSuccess: "تم تأكيد الدخول بنجاح! جاري تحميل لوحة البيانات...",
-                authNewPass: "تم تعيين رمز المرور السري الجديد بنجاح! مرحباً بك.",
-                authWrong: "رمز المرور السري غير مطابق. يرجى إعادة المحاولة.",
-                sparkKindness: "إجمالي الكلمات الطيبة المشتركة",
-                sparkLegendary: "الأصوات التقديرية الملقاة",
-                superlativeTitle: "🗳️ تصويت الأفضل في الدفعة",
-                superlativeDesc: "صوّت مجهولاً لزميلك الذي يستحق هذا اللقب الرائع !",
-                capsuleLockLbl: "🔒 كبسولة الإقفال الزمني (اختياري):",
-                capsuleLockSub: "احظر قراءة هذه الرسالة وشفرها حتى تاريخ محدد من اختيارك.",
-                themeSelectorLbl: "اختر لون وهالة لوحة التحكم الخاصة بك:",
-                quickActionHeadline: "⚡ إرسال سريع بضغطة زر واحدة بدون كتابة",
-                leaderboardTitle: "🕹️ قائمة الشرف والتميز لأبطال الدفعة",
-                santaTitle: "🍬 مِولد المهام العشوائية الصادقة",
-                santaDesc: "هل تحتار في اختيار من تكتب له من زملائك؟ اختر زميلاً عشوائياً الآن واكسر الحواجز المألوفة !",
-                santaBtn: "استهداف زميل عشوائي الآن",
-                achievementsHeading: "🏆 الإنجازات المفتوحة والمحققة: ",
-                superlativeArchiveHeadline: "⌛ أرشيف نتائج المراحل الزمنية السابقة:",
-                chroniclesHeadline: "🎬 أرشيف قصص وذكريات الدفعة المشتركة 🍿",
-                chroniclesPromptBadge: "السؤال الحركي الحالي للموسم:",
-                chroniclesTextareaPlaceholder: "اكتب تفاصيل القصة أو الموقف المضحك هنا... اجعل أسلوبك فكاهياً ولطيفاً! سيتم إرفاق اسمك الكامل علناً ككاتب للقصة.",
-                chroniclesSubmitBtn: "نشر القصة في سجل الدفعة",
-                voteCrownBtn: "👑 تصويت لملك القصة",
-                alreadyVotedAlert: "مؤشر الأمان: لقد قمت بالتصويت مسبقاً لصالح هذه القصة الطريفة !"
-            }
-        };
 
         window.toggleNightModeState = function() {
             const body = document.body;
@@ -767,7 +628,7 @@
             dropdown.classList.remove("hidden");
         };
 
-        // 🌟 CASE SENSITIVITY FIX: Evaluates 'Full_name' token tracking structures accurately matching your dashboard screenshot view
+        // 🌟 CASE SENSITIVE SECURITY AUDIT MATRIX: Matches 'Full_name' property directly
         window.handleAuthenticationPipeline = async function(event) {
             event.preventDefault(); 
             const fullNameInput = document.getElementById("auth-fullname-input").value.trim();
@@ -944,7 +805,6 @@
                 return;
             }
 
-            // 🌟 CASE SENSITIVITY FIX: Automatically logs author data under 'Full_name' schema key match
             const storyPayload = {
                 author_name: loggedInUser.Full_name, 
                 story_text: rawStoryText,
@@ -1285,115 +1145,6 @@
             } catch(e) { alert("Transmission setup error."); }
         }
 
-        function triggerFortuneCookieGame() {
-            const cookieAsset = document.getElementById("cookie-graphic-node");
-            cookieAsset.classList.add("animate-crack");
-            confetti({ particleCount: 50, spread: 45 });
-
-            const chosenRandomPick = POEMS_ARRAY[Math.floor(Math.random() * POEMS_ARRAY.length)];
-            const verseContentText = chosenRandomPick[currentLanguage] || chosenRandomPick['en'];
-            const textDisplayNode = document.getElementById("radiance-display");
-
-            let cookieClicksTotalCount = parseInt(localStorage.getItem(`cookie_clicks_total_${loggedInUser.id}`) || "0");
-            cookieClicksTotalCount++;
-            localStorage.setItem(`cookie_clicks_total_${loggedInUser.id}`, cookieClicksTotalCount);
-
-            if(cookieClicksTotalCount >= 1) triggerAchievementUnlockCheck(5);
-            if(cookieClicksTotalCount >= 5) triggerAchievementUnlockCheck(6);
-            if(cookieClicksTotalCount >= 15) triggerAchievementUnlockCheck(7);
-
-            setTimeout(() => {
-                textDisplayNode.innerHTML = `<div class='bg-white text-slate-900 p-3 border-2 border-slate-900 rounded-xl shadow-[3px_3px_0px_0px_#1a0f0a] italic font-medium'>${verseContentText}</div>`;
-                cookieAsset.classList.remove("animate-crack");
-            }, 300);
-        }
-
-        async function submitEnvelopePipeline() {
-            const rawContent = document.getElementById("modal-msg-content").value.trim();
-            const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
-            const chosenLockDate = document.getElementById("modal-lock-date").value;
-
-            if (selectedVibeTraits.length !== 3) {
-                alert("Please select exactly 3 distinct vibe traits option badges!");
-                return;
-            }
-            if (!rawContent) {
-                alert("Message text space cannot be empty.");
-                return;
-            }
-
-            let toxicFlagTriggered = false;
-            const textToAnalyze = rawContent.toLowerCase();
-            TOXIC_FILTER_DICTIONARY.forEach(slurPattern => {
-                if (textToAnalyze.includes(slurPattern)) toxicFlagTriggered = true;
-            });
-
-            const databaseApprovedState = !toxicFlagTriggered;
-            const publicSenderValue = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
-            const finalProcessedPayloadContent = chosenLockDate ? `__LOCK__:${chosenLockDate}__:${rawContent}` : rawContent;
-
-            const publicEnvelopePayload = {
-                content: finalProcessedPayloadContent,
-                recipient_name: globalTargetRecipient,
-                sender_name: publicSenderValue,
-                is_approved: databaseApprovedState,
-                toxic_flag: toxicFlagTriggered,
-                vibe_tags: selectedVibeTraits
-            };
-
-            const privateLogPayload = {
-                sender_name: loggedInUser.Full_name,
-                recipient_name: globalTargetRecipient,
-                message_content: rawContent,
-                vibe_tags: selectedVibeTraits,
-                is_anonymous_on_frontend: isAnonymous
-            };
-
-            const submitBtn = document.getElementById("modal-submit-btn");
-            submitBtn.disabled = true;
-
-            try {
-                const { error: publicErr } = await supabaseClient.from('messages').insert([publicEnvelopePayload]);
-                if (publicErr) throw publicErr;
-
-                await supabaseClient.from('admin_logs').insert([privateLogPayload]);
-
-                confetti({ particleCount: 40 });
-                closeEnvelopeModal();
-                alert(currentLanguage === 'ar' ? "تم إرسال مغلفك الرقمي بنجاح!" : "Your capsule matrix transmission channel has completed sync pipelines.");
-                
-                if(!toxicFlagTriggered) triggerAchievementUnlockCheck(17);
-                if(chosenLockDate) triggerAchievementUnlockCheck(20);
-                
-                let timeLocksSavedCount = parseInt(localStorage.getItem(`timelocks_count_${loggedInUser.id}`) || "0");
-                if(chosenLockDate) {
-                    timeLocksSavedCount++;
-                    localStorage.setItem(`timelocks_count_${loggedInUser.id}`, timeLocksSavedCount);
-                    if(timeLocksSavedCount >= 3) triggerAchievementUnlockCheck(21);
-                }
-
-                if(isAnonymous) triggerAchievementUnlockCheck(24);
-
-                let uniqueInteractedNodesList = [];
-                try { uniqueInteractedNodesList = JSON.parse(localStorage.getItem(`unique_nodes_interacted_${loggedInUser.id}`)) || []; } catch(e){}
-                if(!uniqueInteractedNodesList.includes(globalTargetRecipient)) {
-                    uniqueInteractedNodesList.push(globalTargetRecipient);
-                    localStorage.setItem(`unique_nodes_interacted_${loggedInUser.id}`, JSON.stringify(uniqueInteractedNodesList));
-                }
-                if(uniqueInteractedNodesList.length >= 3) triggerAchievementUnlockCheck(32);
-
-                await synchronizeClassroomData();
-                await runGlobalLeaderboardEngine();
-                await initializeLiveMarqueeBroadcastFeed();
-            } catch (err) {
-                alert("Database transmission failed.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = LOCALIZATION_MAP[currentLanguage].modalSubmit;
-            }
-        }
-
-        // 🌟 CASE SENSITIVITY FIX: Updates data references from 'Full_name' property models
         function renderStudentGrid() {
             const gridContainer = document.getElementById("students-grid");
             if(!gridContainer) return;
@@ -1630,20 +1381,15 @@
             }
         }
 
-        function populateSuperlativeDropdown() {
-            const select = document.getElementById("superlative-nominee-select");
-            if(!select) return;
-            select.innerHTML = "";
-            
-            globalStudentsList.forEach(student => {
-                const option = document.createElement("option");
-                option.value = student.Full_name;
-                option.innerText = student.Full_name;
-                select.appendChild(option);
-            });
+        function initializeAchievementsMatrixStorageSystem() {
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            if(!localStorage.getItem(trackingKey)) {
+                localStorage.setItem(trackingKey, JSON.stringify([]));
+            }
+            renderAchievementsArcadeGridHTML();
         }
 
-        // 🌟 SEQUENTIAL RESTRUCTURING: Ensures configuration client hooks read database tables cleanly before initializing text nodes
+        // 🌟 SEQUENTIAL RESOLUTION TRIGGER: Securely instantiates client connection parameters lines first before evaluation loops execution
         async function fetchAllStudentsMetadata() {
             try {
                 supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
