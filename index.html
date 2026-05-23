@@ -128,6 +128,15 @@
             animation-play-state: paused;
         }
 
+        @keyframes crownGlow {
+            0% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 2px #ffb703); }
+            50% { transform: scale(1.2) rotate(8deg); filter: drop-shadow(0 0 10px #ffea00); }
+            100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 2px #ffb703); }
+        }
+        .king-crown-animation {
+            animation: crownGlow 1.5s infinite ease-in-out;
+        }
+
         ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: #1a0f0a; }
         ::-webkit-scrollbar-thumb { background: #d4a373; border: 3px solid #1a0f0a; border-radius: 6px; }
@@ -184,7 +193,7 @@
             <form id="auth-form" class="space-y-4" onsubmit="handleAuthenticationPipeline(event)">
                 <div class="relative">
                     <label id="label-fullname" class="block text-xs font-black text-[#4a148c] id-purple-lbl mb-1 uppercase tracking-wider">Select Your Identity</label>
-                    <input type="text" id="auth-fullname-input" autocomplete="off" onfocus="handleAutocompleteSearch(this.value)" oninput="handleAutocompleteSearch(this.value)" class="w-full px-4 py-3 bg-white arcade-input rounded-xl text-sm font-bold focus:outline-none transition border-3 text-slate-900" placeholder="Type or click to choose your name...">
+                    <input type="text" id="auth-fullname-input" autocomplete="off" onfocus="handleAutocompleteSearch(this.value)" class="w-full px-4 py-3 bg-white arcade-input rounded-xl text-sm font-bold focus:outline-none transition border-3 text-slate-900" placeholder="Type or click to choose your name...">
                     <div id="autocomplete-dropdown" class="absolute left-0 right-0 mt-2 max-h-48 bg-white border-3 border-slate-900 rounded-xl overflow-y-auto hidden z-50 shadow-lg text-slate-900"></div>
                 </div>
                 
@@ -230,6 +239,40 @@
                 </div>
             </div>
 
+            <!-- ========================================================= -->
+            <!-- 1. THE CLASS CHRONICLES HUB INTERFACE ELEMENT              -->
+            <!-- ========================================================= -->
+            <div class="arcade-card bg-amber-50 rounded-3xl p-6 border-4 space-y-4 text-slate-900">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-slate-900 pb-3 gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🎬</span>
+                        <h2 id="chronicles-headline-lbl" class="text-lg md:text-xl font-black tracking-tight text-amber-950">🎬 THE CLASS CHRONICLES // LES DOSSIERS 🍿</h2>
+                    </div>
+                    <span class="font-mono text-[10px] font-bold bg-amber-200 border border-amber-400 px-2 py-0.5 rounded uppercase tracking-wider">Public Shared Stories</span>
+                </div>
+
+                <!-- Active Topic Headline Question -->
+                <div class="p-4 bg-white border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-2xl">
+                    <span id="chronicles-prompt-badge" class="text-[9px] font-black uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">Active Break Prompt:</span>
+                    <p id="chronicles-active-question-text" class="text-sm font-extrabold text-slate-800 mt-1">Quelle est la pire dinguerie ou l'histoire la plus drôle qui s'est passée en cours ce semestre ?</p>
+                </div>
+
+                <!-- Submission Form Area -->
+                <form onsubmit="submitChronicleStoryPipeline(event)" class="space-y-3">
+                    <textarea id="chronicle-textarea-input" rows="3" required class="w-full p-4 bg-white border-3 border-slate-900 rounded-2xl text-xs font-bold text-slate-900 focus:outline-none focus:ring-0 placeholder:text-slate-400 shadow-sm" placeholder="Write your account of the event here... Keep it real, funny, and respectful! Your full name will be pinned as the author."></textarea>
+                    <div class="flex justify-end">
+                        <button type="submit" id="chronicles-submit-btn-lbl" class="px-6 py-2.5 bg-amber-300 text-slate-900 font-black text-xs uppercase tracking-wider rounded-xl border-3 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] hover:translate-y-[1px] active:translate-y-[3px] transition cursor-pointer">Publish to Class Feed</button>
+                    </div>
+                </form>
+
+                <!-- 2. THE CHRONICLES FEED CARD GRID -->
+                <div class="pt-4 border-t-2 border-slate-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="chronicles-stories-feed-grid">
+                        <!-- Loaded smoothly via async script loops in real-time -->
+                    </div>
+                </div>
+            </div>
+
             <!-- INTERFACE ROW SYSTEM PLACEMENT LAYOUTS -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
@@ -239,7 +282,7 @@
                     <!-- PRIVACY VAULT BOX -->
                     <div id="user-vault-card" class="arcade-card bg-white rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-amber-200 border-3 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl flex items-center justify-center text-xl text-slate-900 font-black" id="user-avatar-char">?</div>
+                            <div class="w-14 h-14 bg-amber-200 border-3 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl flex items-center justify-center text-xl text-slate-900 font-black" id="user-avatar-char">?</div>
                             <div class="space-y-0.5">
                                 <p id="vault-welcome-tag" class="text-[10px] font-black text-slate-500 uppercase tracking-widest"></p>
                                 <h2 id="user-display-name" class="text-lg font-black text-slate-900">Student Name</h2>
@@ -296,7 +339,7 @@
                             <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-orange-600"></span>
                         </div>
                         <div id="cookie-graphic-node" class="text-5xl my-3 transition-transform duration-300 transform group-hover:scale-110 inline-block select-none">🥠</div>
-                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[60px] flex flex-col justify-center transition-all duration-500"></div>
+                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[50px] flex flex-col justify-center transition-all duration-500"></div>
                     </div>
 
                     <!-- ROTATING BALLOT SLOTS ROW LAYOUT -->
@@ -354,7 +397,7 @@
             <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-800 hover:text-rose-600 font-black text-2xl cursor-pointer border-2 border-slate-900 w-9 h-9 flex items-center justify-center rounded-lg bg-white">×</button>
             
             <div class="space-y-1">
-                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-900 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
+                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-800 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
                 <h3 class="text-xl font-black text-slate-900">
                     <span id="modal-title-prefix">To:</span> <span id="modal-recipient-name" class="underline decoration-wavy decoration-pink-500">Student Name</span>
                 </h3>
@@ -416,13 +459,16 @@
     <!-- SECURE EMBEDDED JAVASCRIPT GLOBAL RUNTIME ARCHITECTURE     -->
     <!-- ========================================================= -->
     <script>
-        // Global variables initialized outside block enclosures to resolve handler lookups immediately
         let currentLanguage = 'en';
         let loggedInUser = null; 
         let globalStudentsList = [];
         let selectedVibeTraits = [];
         let globalMarqueeIntervalInstance = null;
         
+        // 1. CHRONICLES APP MATRIX STORAGE VARIABLES
+        let activeChroniclesCache = [];
+        let globalCrownedKingStudentName = "";
+
         const TOXIC_FILTER_DICTIONARY = [
             "hmar", "rekhis", "kavi", "moche", "con", "connard", "salope", "tahan", "kelba", "hmara",
             "fuck", "bitch", "asshole", "putain", "merde", "khra", "zbel", "bourricot", "klb", "kalb"
@@ -495,7 +541,7 @@
             { id: 13, icon: "📥", name: { en: "Archivist Seal", fr: "Sceau d'Archive", ar: "حامي الذكريات" }, hint: { en: "Compile and download your pdf certificate archive.", fr: "Téléchargez votre certificat de souvenirs en PDF.", ar: "تحميل وثيقة الذكريات الصيفية بصيغة PDF بنجاح." } },
             { id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secrète", ar: "عجلة الحظ" }, hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." } },
             { id: 15, icon: "🍬", name: { en: "Generous Scout", fr: "Éclaireur Généreux", ar: "مستكشف الكرم" }, hint: { en: "Roll random target classmate profiles 5 times.", fr: "Générez des cibles aléatoires 5 fois au total.", ar: "استخدام مِولد الاستهداف العشوائي للزملاء 5 مرات." } },
-            { id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" }, hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح وااختيار اللغات الثلاث كاملة على المنصة." } },
+            { id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" }, hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح واختيار اللغات الثلاث كاملة على المنصة." } },
             { id: 17, icon: "🛡️", name: { en: "Clean Energy", fr: "Énergie Propre", ar: "الطاقة الصافية" }, hint: { en: "Transmit a compliment completely free of flags.", fr: "Envoyez un message validé sans aucun filtre.", ar: "إرسال رسالة نقية وصادقة خالية تماماً من الكلمات المحظورة." } },
             { id: 18, icon: "⚡", name: { en: "Speed Boxer", fr: "Boxeur de Vitesse", ar: "سريع الإرسال" }, hint: { en: "Transmit an envelope using one-click badge drops.", fr: "Envoyez un compliment rapide en un seul clic.", ar: "إرسال تحية تقديرية سريعة باستخدام أزرار الضغط السريع." } },
             { id: 19, icon: "🔋", name: { en: "Overcharged", fr: "Surchargé", ar: "الطاقة القصوى" }, hint: { en: "Use quick action badges 5 times.", fr: "Utilisez les badges de transmission rapide 5 fois.", ar: "استخدام ميزة الإرسال السريع بضغطة زر 5 مرات." } },
@@ -555,7 +601,13 @@
                 santaDesc: "Feeling unsure who to praise? Roll a random classmate right now and break the circle barrier!",
                 santaBtn: "Roll Random Classmate Target",
                 achievementsHeading: "🏆 Achievements Locked: ",
-                superlativeArchiveHeadline: "⌛ PHASE STAGE HISTORIC ARCHIVE RESULTS:"
+                superlativeArchiveHeadline: "⌛ PHASE STAGE HISTORIC ARCHIVE RESULTS:",
+                chroniclesHeadline: "🎬 THE CLASS CHRONICLES // LES DOSSIERS 🍿",
+                chroniclesPromptBadge: "Active Break Prompt:",
+                chroniclesTextareaPlaceholder: "Write your account of the event here... Keep it real, funny, and respectful! Your full name will be pinned as the author.",
+                chroniclesSubmitBtn: "Publish to Class Feed",
+                voteCrownBtn: "👑 Vote for King",
+                alreadyVotedAlert: "Security parameters check: You have already cast a validation vote for this chronicle story entry!"
             },
             fr: {
                 heroDesc: "Le trésor le plus précieux qu'un étudiant emporte pendant les grandes vacances universitaires est l'ensemble des mots sincères d'appréciation de ses pairs. Gravons nos souvenirs.",
@@ -594,7 +646,13 @@
                 santaDesc: "Vous ne savez pas qui féliciter ? Tirez au sort un camarade de classe dès maintenant et cassez la routine !",
                 santaBtn: "Cibler un Camarade Aléatoire",
                 achievementsHeading: "🏆 Succès Débloqués : ",
-                superlativeArchiveHeadline: "⌛ ARCHIVE DES RÉSULTATS DE PHASE PRÉCÉDENTE :"
+                superlativeArchiveHeadline: "⌛ ARCHIVE DES RÉSULTATS DE PHASE PRÉCÉDENTE :",
+                chroniclesHeadline: "🎬 THE CLASS CHRONICLES // LES DOSSIERS 🍿",
+                chroniclesPromptBadge: "Sujet Actif du Semestre :",
+                chroniclesTextareaPlaceholder: "Racontez ce dossier ici... Soyez drôle, vrai et respectueux ! Votre nom complet sera affiché publiquement.",
+                chroniclesSubmitBtn: "Publier dans les Dossiers",
+                voteCrownBtn: "👑 Voter pour le Roi",
+                alreadyVotedAlert: "Vérification de sécurité : Vous avez déjà voté pour cette histoire !"
             },
             ar: {
                 heroDesc: "أثمن كنز يحمله الطالب معه خلال العطلة الجامعية الطويلة هو كلمات التقدير والامتنان الصادقة من زملائه. لنحفظ ذكرياتنا الإيجابية قبل بداية الصيف.",
@@ -633,11 +691,16 @@
                 santaDesc: "هل تحتار في اختيار من تكتب له من زملائك؟ اختر زميلاً عشوائياً الآن واكسر الحواجز المألوفة !",
                 santaBtn: "استهداف زميل عشوائي الآن",
                 achievementsHeading: "🏆 الإنجازات المفتوحة والمحققة: ",
-                superlativeArchiveHeadline: "⌛ أرشيف نتائج المراحل الزمنية السابقة:"
+                superlativeArchiveHeadline: "⌛ أرشيف نتائج المراحل الزمنية السابقة:",
+                chroniclesHeadline: "🎬 أرشيف قصص وذكريات الدفعة المشتركة 🍿",
+                chroniclesPromptBadge: "السؤال الحركي الحالي للموسم:",
+                chroniclesTextareaPlaceholder: "اكتب تفاصيل القصة أو الموقف المضحك هنا... اجعل أسلوبك فكاهياً ولطيفاً! سيتم إرفاق اسمك الكامل علناً ككاتب للقصة.",
+                chroniclesSubmitBtn: "نشر القصة في سجل الدفعة",
+                voteCrownBtn: "👑 تصويت لملك القصة",
+                alreadyVotedAlert: "مؤشر الأمان: لقد قمت بالتصويت مسبقاً لصالح هذه القصة الطريفة !"
             }
         };
 
-        // 1. FIX TRIGGER: Night mode handler defined cleanly in global scope window tree explicitly
         window.toggleNightModeState = function() {
             const body = document.body;
             body.classList.toggle("night-mode");
@@ -677,6 +740,12 @@
             document.getElementById("santa-btn-lbl").innerText = dict.santaBtn;
             document.getElementById("superlative-archive-headline").innerText = dict.superlativeArchiveHeadline;
             
+            // Localize Chronicles Section Components Dynamically
+            document.getElementById("chronicles-headline-lbl").innerText = dict.chroniclesHeadline;
+            document.getElementById("chronicles-prompt-badge").innerText = dict.chroniclesPromptBadge;
+            document.getElementById("chronicle-textarea-input").placeholder = dict.chroniclesTextareaPlaceholder;
+            document.getElementById("chronicles-submit-btn-lbl").innerText = dict.chroniclesSubmitBtn;
+
             document.getElementById("modal-title-prefix").innerText = dict.modalTo;
             document.getElementById("modal-vibe-lbl").innerText = dict.modalVibeLbl;
             document.getElementById("modal-msg-lbl").innerText = dict.modalMsgLbl;
@@ -708,6 +777,7 @@
                 renderStudentGrid();
                 renderReceivedMessages();
                 populateSuperlativeDropdown();
+                renderChroniclesStoriesFeedGridHTML(); // Refresh story lists elements strings
             }
 
             if(!window.languagesVisitedTrace) window.languagesVisitedTrace = [];
@@ -897,53 +967,204 @@
         };
 
         // ========================================================= -->
-        // DYNAMIC LOCALIZED RENDER HANDLERS ENGINE CONTROLS         -->
+        // 1. THE CLASS CHRONICLES HUB SUBMISSION PIPELINE            -->
         // ========================================================= -->
-        function evaluateThreeDayBallotRotationPhase() {
-            const baseDeploymentAnchorTimestamp = 1779472800000; 
-            const activeLiveTimestampNow = Date.now();
-            const elapsedMillisecondsCount = activeLiveTimestampNow - baseDeploymentAnchorTimestamp;
-            
-            const threeDaysInMilliseconds = 3 * 24 * 60 * 60 * 1000;
-            let activeCalculatedPhaseIndex = Math.floor(elapsedMillisecondsCount / threeDaysInMilliseconds);
-            if(activeCalculatedPhaseIndex < 0) activeCalculatedPhaseIndex = 0;
-            
-            const targetPhaseObject = SUPERLATIVE_TIMELINE_PHASES[activeCalculatedPhaseIndex % SUPERLATIVE_TIMELINE_PHASES.length];
-            const displayQuestionEl = document.getElementById("superlative-question");
-            if(displayQuestionEl) {
-                displayQuestionEl.innerText = targetPhaseObject.prompt[currentLanguage] || targetPhaseObject.prompt['en'];
-            }
-            
-            const historicalArchivedPhaseIndex = (activeCalculatedPhaseIndex - 1 + SUPERLATIVE_TIMELINE_PHASES.length) % SUPERLATIVE_TIMELINE_PHASES.length;
-            const historicalArchiveObject = SUPERLATIVE_TIMELINE_PHASES[historicalArchivedPhaseIndex];
-            
-            const archiveContentEl = document.getElementById("superlative-archive-content");
-            if(archiveContentEl) {
-                archiveContentEl.innerText = historicalArchiveObject.archive[currentLanguage] || historicalArchiveObject.archive['en'];
-            }
-        }
+        window.submitChronicleStoryPipeline = async function(event) {
+            event.preventDefault();
+            const textarea = document.getElementById("chronicle-textarea-input");
+            const rawStoryText = textarea.value.trim();
+            const activePromptText = document.getElementById("chronicles-active-question-text").innerText;
 
-        // 2. FIXED TRIGGER: Autocomplete initialization matrix loads fully inside main lifecycle block
-        async function fetchAllStudentsMetadata() {
+            if(!rawStoryText) return;
+
+            // Run anti-bullying verification scans matching standard filter criteria rows
+            let storyFlaggedToxic = false;
+            const textToAnalyze = rawStoryText.toLowerCase();
+            TOXIC_FILTER_DICTIONARY.forEach(insult => {
+                if(textToAnalyze.includes(insult)) storyFlaggedToxic = true;
+            });
+
+            // Suppress entirely from showing up on screen nodes if flagged toxic
+            if(storyFlaggedToxic) {
+                alert("Story submission processed. Pending internal moderation vector link alignment.");
+                textarea.value = "";
+                return;
+            }
+
+            // Build payload mapping columns targets securely
+            const storyPayload = {
+                author_name: loggedInUser.Full_name, // Real authenticated name bound as author
+                story_text: rawStoryText,
+                prompt_question: activePromptText,
+                is_approved: true
+            };
+
             try {
-                // Initialize configuration parameters mappings manually to defeat network response delay blocks
-                const targetProjectUrl = "https://bezeiovjxafgzmjwuomy.supabase.co";
-                const targetAnonApiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
+                const { error } = await supabaseClient
+                    .from('stories')
+                    .insert([storyPayload]);
+
+                if(error) throw error;
+
+                confetti({ particleCount: 30, spread: 40 });
+                textarea.value = "";
                 
-                supabaseClient = supabase.createClient(targetProjectUrl, targetAnonApiKey);
+                // Refresh local grid updates seamlessly
+                await renderChroniclesStoriesFeedGridHTML();
 
-                const { data, error } = await supabaseClient
-                    .from('Students')
-                    .select('id, Full_name, Password')
-                    .order('Full_name', { ascending: true });
+            } catch(err) {
+                console.error(err);
+                alert("Chronicle submission failed communication parameters layers.");
+            }
+        };
 
-                if (!error && data) {
-                    globalStudentsList = data;
-                    handleAutocompleteSearch("");
-                    populateSuperlativeDropdown(); 
+        // ========================================================= -->
+        // 2. THE CHRONICLES FEED CARD GRID & LIVE CROWN LOOP ENGINE -->
+        // ========================================================= -->
+        window.renderChroniclesStoriesFeedGridHTML = async function() {
+            const feedGrid = document.getElementById("chronicles-stories-feed-grid");
+            if(!feedGrid) return;
+            feedGrid.innerHTML = "";
+
+            try {
+                // Pull approved stories records matrix rows
+                const { data: storiesList, error: storyErr } = await supabaseClient
+                    .from('stories')
+                    .select('*')
+                    .eq('is_approved', true)
+                    .order('created_at', { ascending: false });
+
+                if(storyErr) throw storyErr;
+
+                // Pull aggregated vote datasets to sum counts metrics counters
+                const { data: votesList, error: voteErr } = await supabaseClient
+                    .from('story_votes')
+                    .select('*');
+
+                if(voteErr) throw voteErr;
+
+                activeChroniclesCache = storiesList || [];
+
+                // Track total votes count mapping keys per story element
+                const voteCountsMap = {};
+                activeChroniclesCache.forEach(s => voteCountsMap[s.id] = 0);
+
+                // Map real vote logs indices metrics mapping elements tracking loops
+                votesList.forEach(v => {
+                    if(voteCountsMap[v.story_id] !== undefined) {
+                        voteCountsMap[v.story_id]++;
+                    }
+                });
+
+                // Compute high score author to determine King crown allocation triggers
+                const authorTotalAccumulatedScoresMap = {};
+                activeChroniclesCache.forEach(s => {
+                    const currentStoryVotesCount = voteCountsMap[s.id] || 0;
+                    authorTotalAccumulatedScoresMap[s.author_name] = (authorTotalAccumulatedScoresMap[s.author_name] || 0) + currentStoryVotesCount;
+                });
+
+                // Extract leader student holding highest numerical counts
+                let currentMaxVotesRecorded = 0;
+                let crownedKingCandidateNameString = "";
+
+                Object.keys(authorTotalAccumulatedScoresMap).forEach(authorName => {
+                    const totalScore = authorTotalAccumulatedScoresMap[authorName];
+                    if(totalScore > currentMaxVotesRecorded && totalScore > 0) {
+                        currentMaxVotesRecorded = totalScore;
+                        crownedKingCandidateNameString = authorName;
+                    }
+                });
+
+                globalCrownedKingStudentName = crownedKingCandidateNameString; // Update universal background tracking register string reference
+                
+                // Repaint adjacent leaderboard assets to overlay glowing icons fluidly if changed
+                await runGlobalLeaderboardEngine();
+
+                if(activeChroniclesCache.length === 0) {
+                    feedGrid.innerHTML = `<div class='col-span-full text-center p-6 text-xs text-slate-400 font-bold border-2 border-dashed border-slate-300 rounded-xl bg-white'>No chronicles have been dropped yet for this break prompt segment!</div>`;
+                    return;
                 }
-            } catch (err) { console.error("Critical Registry Read Timeout Context: ", err); }
-        }
+
+                // Render matching glassmorphic post polaroids elements row templates loops
+                activeChroniclesCache.forEach(story => {
+                    const totalVotesForThisCard = voteCountsMap[story.id] || 0;
+                    const cleanDateLabel = new Date(story.created_at).toLocaleDateString(currentLanguage, { month: 'short', day: 'numeric' });
+                    
+                    // Verify if current user already logged an input row check to toggle button display configurations parameters state
+                    const hasCurrentVoterCheckedThisRow = votesList.some(v => v.story_id === story.id && v.voter_name === loggedInUser.Full_name);
+                    
+                    const storyCardNode = document.createElement("div");
+                    storyCardNode.className = "p-4 bg-white border-2 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] rounded-2xl flex flex-col justify-between space-y-3 relative overflow-hidden";
+                    
+                    // Inject a glowing gold visual border aura if the author holds king ranking profiles matching
+                    if(story.author_name === globalCrownedKingStudentName && globalCrownedKingStudentName !== "") {
+                        storyCardNode.classList.add("border-amber-400", "bg-amber-50/40");
+                    }
+
+                    const dynamicButtonPaletteStyle = hasCurrentVoterCheckedThisRow 
+                        ? "bg-slate-200 text-slate-400 cursor-not-allowed border-slate-300 shadow-none" 
+                        : "bg-yellow-300 text-slate-900 border-slate-900 hover:bg-yellow-400 shadow-[2px_2px_0px_0px_#1a0f0a]";
+
+                    // Check string signature representation tags to flag author names cards tags labels overlays
+                    const kingCrownIndicatorHTML = (story.author_name === globalCrownedKingStudentName && globalCrownedKingStudentName !== "") 
+                        ? `<span class='inline-block text-lg king-crown-animation pl-1' title='Official King of the Class Chronicles'>👑</span>` 
+                        : "";
+
+                    storyCardNode.innerHTML = `
+                        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                <span class="text-slate-700 font-extrabold flex items-center">${story.author_name}${kingCrownIndicatorHTML}</span>
+                                <span>${cleanDateLabel}</span>
+                            </div>
+                            <p class="text-xs font-bold text-slate-800 leading-relaxed select-all">
+                                "${story.story_text}"
+                            </p>
+                        </div>
+                        
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1 font-mono text-[10px] font-bold text-amber-700">
+                                <span>🏆 Score Rank:</span> <span class="bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded font-black">${totalVotesForThisCard} Kings</span>
+                            </div>
+                            <button onclick="castChronicleStoryKingVote('${story.id}', ${hasCurrentVoterCheckedThisRow})" class="px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider brutal-btn cursor-pointer transition ${dynamicButtonPaletteStyle}">
+                                ${LOCALIZATION_MAP[currentLanguage].voteCrownBtn || "👑 Vote for King"}
+                            </button>
+                        </div>
+                    `;
+                    feedGrid.appendChild(storyCardNode);
+                });
+
+            } catch (err) { console.error("Chronicle layout list drawing error trace: ", err); }
+        };
+
+        window.castChronicleStoryKingVote = async function(storyUUIDString, checkAlreadyVotedBooleanFlag) {
+            if(checkAlreadyVotedBooleanFlag) {
+                alert(LOCALIZATION_MAP[currentLanguage].alreadyVotedAlert || "You have already cast a validation vote for this story!");
+                return;
+            }
+
+            const voteInsertPayload = {
+                story_id: storyUUIDString,
+                voter_name: loggedInUser.Full_name
+            };
+
+            try {
+                const { error } = await supabaseClient
+                    .from('story_votes')
+                    .insert([voteInsertPayload]);
+
+                if(error) throw error;
+
+                // Fire clean celebration sparks
+                confetti({ particleCount: 30, angle: 90, spread: 45 });
+                
+                // Repaint interface blocks instantly row data feeds
+                await renderChroniclesStoriesFeedGridHTML();
+
+            } catch (err) {
+                console.error(err);
+                alert("Vote transmission skipped parameters criteria checking models rows rules.");
+            }
+        };
 
         function proceedToDashboard(userRecord) {
             loggedInUser = userRecord;
@@ -963,6 +1184,7 @@
                 
                 await synchronizeClassroomData();
                 populateSuperlativeDropdown();
+                await renderChroniclesStoriesFeedGridHTML(); // Sync public stories records channels logs maps grids
                 await runGlobalLeaderboardEngine();
                 
                 initializeLiveMarqueeBroadcastFeed();
@@ -988,6 +1210,9 @@
             } catch (e) { console.error(e); }
         }
 
+        // ========================================================= -->
+        // SCOREBOARD ENGINE: COUPLING DYNAMIC FLASHING KING CROWNS  -->
+        // ========================================================= -->
         async function runGlobalLeaderboardEngine() {
             const podiumsContainer = document.getElementById("leaderboard-podiums-container");
             if(!podiumsContainer) return;
@@ -1040,12 +1265,18 @@
                 archetypesList.forEach(arc => {
                     const topScorer = getTopLeaderForArchetype(arc.key);
                     const scoreboardBlock = document.createElement("div");
-                    scoreboardBlock.className = `${arc.bg} p-4 rounded-xl border-2 border-slate-700 font-arcade text-[10px] space-y-2 flex flex-col justify-between`;
+                    scoreboardBlock.className = `${arc.bg} p-4 rounded-xl border-2 border-slate-700 font-arcade text-[10px] space-y-2 flex flex-col justify-between relative overflow-hidden`;
                     
                     const scoreCountDisplay = topScorer && topScorer.count > 0 ? `${topScorer.count} PTS` : "0 PTS";
                     const scoreNameDisplay = topScorer && topScorer.count > 0 ? topScorer.name : "No Record Yet";
 
+                    // 🌟 CRITICAL REBUILD: If this specific leaderboard candidate profile name strings matches the active crowned chronicles king text literal, inject flashing floating emoji badge
+                    const overlayKingBadgeHTML = (topScorer && topScorer.name === globalCrownedKingStudentName && globalCrownedKingStudentName !== "") 
+                        ? `<div class='absolute top-1 right-1 text-base king-crown-animation' title='Chronicles Active Crowned King Profile!'>👑</div>` 
+                        : "";
+
                     scoreboardBlock.innerHTML = `
+                        ${overlayKingBadgeHTML}
                         <div class="text-white font-bold tracking-wider">${arc.title}</div>
                         <div class="${arc.color} font-black text-xs truncate my-1">${scoreNameDisplay}</div>
                         <div class="text-slate-500 text-right font-bold">${scoreCountDisplay}</div>
@@ -1059,119 +1290,6 @@
                 triggerAchievementUnlockCheck(23); 
 
             } catch (err) { console.error(err); }
-        }
-
-        async function initializeLiveMarqueeBroadcastFeed() {
-            const track = document.getElementById("live-ticker-track");
-            if(!track) return;
-
-            try {
-                const { data: latestFeeds, error } = await supabaseClient
-                    .from('messages')
-                    .select('sender_name, recipient_name, created_at, vibe_tags')
-                    .order('created_at', { ascending: false })
-                    .limit(5);
-
-                if(!error && latestFeeds && latestFeeds.length > 0) {
-                    let textStreamConcat = "";
-                    latestFeeds.forEach(item => {
-                        let tagsArray = [];
-                        try { tagsArray = Array.isArray(item.vibe_tags) ? item.vibe_tags : JSON.parse(item.vibe_tags); } catch(e){}
-                        const badgeSnippet = tagsArray.length > 0 ? tagsArray[0] : "💌";
-                        
-                        let cleanSender = item.sender_name;
-                        if (item.sender_name === 'Anonymous') {
-                            cleanSender = currentLanguage === 'ar' ? "فاعل خير مجهول" : (currentLanguage === 'fr' ? "Anonyme" : "Someone");
-                        }
-
-                        let templateSnippetText = "";
-                        if (currentLanguage === 'ar') {
-                            templateSnippetText = ` 🔥 تم إرسال مغلف [ ${badgeSnippet} ] بنجاح من ${cleanSender} إلى الزميل(ة) ${item.recipient_name}! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
-                        } else if (currentLanguage === 'fr') {
-                            templateSnippetText = ` 🔥 Enveloppe [ ${badgeSnippet} ] transmise avec succès de la part de ${cleanSender} à ${item.recipient_name} ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
-                        } else {
-                            templateSnippetText = ` 🔥 Envelope [ ${badgeSnippet} ] transmitted from ${cleanSender} to ${item.recipient_name} successfully! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
-                        }
-                        textStreamConcat += templateSnippetText;
-                    });
-
-                    track.innerHTML = textStreamConcat + textStreamConcat;
-                    triggerAchievementUnlockCheck(31);
-                } else {
-                    const fallbackDefaultMarqueeTxt = currentLanguage === 'ar' 
-                        ? " ✨ انشر الكلمات الطيبة والتقدير بين زملائك في الدفعة الآن! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" 
-                        : (currentLanguage === 'fr' ? " ✨ Partagez des ondes positives avec vos camarades de classe dès maintenant ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : " ✨ Share appreciation loops across the class matrix! True anonymity protocols are completely green. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-                    track.innerHTML = fallbackDefaultMarqueeTxt + fallbackDefaultMarqueeTxt;
-                }
-            } catch(e){ console.error(e); }
-        }
-
-        function initializeAchievementsMatrixStorageSystem() {
-            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
-            if(!localStorage.getItem(trackingKey)) {
-                localStorage.setItem(trackingKey, JSON.stringify([]));
-            }
-            renderAchievementsArcadeGridHTML();
-        }
-
-        function triggerAchievementUnlockCheck(achievementID) {
-            if(!loggedInUser) return;
-            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
-            let currentUnlockedArray = [];
-            try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
-
-            if(currentUnlockedArray.includes(achievementID)) return; 
-
-            currentUnlockedArray.push(achievementID);
-            localStorage.setItem(trackingKey, JSON.stringify(currentUnlockedArray));
-
-            if(currentUnlockedArray.length >= 15) triggerAchievementUnlockCheck(34);
-            confetti({ particleCount: 30, scalar: 1.1, colors: ['#ffeb3b', '#673ab7'] });
-            renderAchievementsArcadeGridHTML();
-        }
-
-        function renderAchievementsArcadeGridHTML() {
-            const grid = document.getElementById("trophies-scroll-matrix");
-            const counter = document.getElementById("unlocked-trophies-counter");
-            const headingNode = document.getElementById("achievements-heading-txt");
-            if(!grid || !counter) return;
-
-            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
-            let currentUnlockedArray = [];
-            try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
-
-            counter.innerText = currentUnlockedArray.length;
-            if (headingNode) {
-                headingNode.innerHTML = `🏆 ${LOCALIZATION_MAP[currentLanguage].achievementsHeading || "Achievements Locked: "} <span class="text-green-400">${currentUnlockedArray.length}</span>/35`;
-            }
-            grid.innerHTML = "";
-
-            MASTER_TROPHIES_BLUEPRINT.forEach(trophy => {
-                const isUnlocked = currentUnlockedArray.includes(trophy.id);
-                const cell = document.createElement("div");
-                
-                cell.className = `w-7 h-7 md:w-8 md:h-8 rounded-lg border flex items-center justify-center text-xs md:text-sm cursor-pointer transition-all duration-300 select-none ${
-                    isUnlocked 
-                    ? "bg-gradient-to-br from-yellow-300 to-amber-500 border-yellow-600 scale-100 animate-pulse" 
-                    : "bg-slate-800/80 border-slate-700 grayscale opacity-40 hover:opacity-70"
-                }`;
-                cell.innerText = trophy.icon;
-                
-                const updateHintDisplay = () => {
-                    const statusText = isUnlocked 
-                        ? (currentLanguage === 'ar' ? "🔓 تم الإنجاز" : (currentLanguage === 'fr' ? "🔓 DÉBLOQUÉ" : "🔓 UNLOCKED")) 
-                        : (currentLanguage === 'ar' ? "🔒 مقفل" : (currentLanguage === 'fr' ? "🔒 VERROUILLÉ" : "🔒 LOCKED"));
-                    
-                    const localizedTrophyName = trophy.name[currentLanguage] || trophy.name['en'];
-                    const localizedTrophyHint = trophy.hint[currentLanguage] || trophy.hint['en'];
-
-                    document.getElementById("selected-trophy-hint-display").innerHTML = `<span class='text-yellow-400 font-bold'>[${statusText}] ${localizedTrophyName}:</span> ${localizedTrophyHint}`;
-                };
-
-                cell.onmouseover = updateHintDisplay;
-                cell.onclick = updateHintDisplay;
-                grid.appendChild(cell);
-            });
         }
 
         async function fireQuickVibeTransmission(badgeIndexInteger) {
@@ -1237,6 +1355,29 @@
                 await runGlobalLeaderboardEngine();
                 await initializeLiveMarqueeBroadcastFeed();
             } catch(e) { alert("Transmission setup error."); }
+        }
+
+        function triggerFortuneCookieGame() {
+            const cookieAsset = document.getElementById("cookie-graphic-node");
+            cookieAsset.classList.add("animate-crack");
+            confetti({ particleCount: 50, spread: 45 });
+
+            const chosenRandomPick = POEMS_ARRAY[Math.floor(Math.random() * POEMS_ARRAY.length)];
+            const verseContentText = chosenRandomPick[currentLanguage] || chosenRandomPick['en'];
+            const textDisplayNode = document.getElementById("radiance-display");
+
+            let cookieClicksTotalCount = parseInt(localStorage.getItem(`cookie_clicks_total_${loggedInUser.id}`) || "0");
+            cookieClicksTotalCount++;
+            localStorage.setItem(`cookie_clicks_total_${loggedInUser.id}`, cookieClicksTotalCount);
+
+            if(cookieClicksTotalCount >= 1) triggerAchievementUnlockCheck(5);
+            if(cookieClicksTotalCount >= 5) triggerAchievementUnlockCheck(6);
+            if(cookieClicksTotalCount >= 15) triggerAchievementUnlockCheck(7);
+
+            setTimeout(() => {
+                textDisplayNode.innerHTML = `<div class='bg-white text-slate-900 p-3 border-2 border-slate-900 rounded-xl shadow-[3px_3px_0px_0px_#1a0f0a] italic font-medium'>${verseContentText}</div>`;
+                cookieAsset.classList.remove("animate-crack");
+            }, 300);
         }
 
         async function submitEnvelopePipeline() {
@@ -1358,6 +1499,8 @@
                 gridContainer.appendChild(card);
             });
         }
+
+        function filterStudentGrid() { renderStudentGrid(); }
 
         function openEnvelopeModalFor(base64Name) {
             globalTargetRecipient = decodeURIComponent(escape(atob(base64Name)));
@@ -1570,6 +1713,14 @@
             }
         }
 
+        function initializeAchievementsMatrixStorageSystem() {
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            if(!localStorage.getItem(trackingKey)) {
+                localStorage.setItem(trackingKey, JSON.stringify([]));
+            }
+            renderAchievementsArcadeGridHTML();
+        }
+
         function populateSuperlativeDropdown() {
             const select = document.getElementById("superlative-nominee-select");
             if(!select) return;
@@ -1583,7 +1734,6 @@
             });
         }
 
-        // Global Execution Lifecycle Core Trigger
         window.addEventListener("DOMContentLoaded", async () => {
             await fetchAllStudentsMetadata();
             triggerAchievementUnlockCheck(25); 
