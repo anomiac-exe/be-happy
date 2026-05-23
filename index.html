@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;900&family=Amiri:ital@1&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Cairo:wght=400;600;700;900&family=Amiri:ital@1&family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
@@ -43,13 +43,13 @@
         .arcade-card {
             background: rgba(255, 255, 255, 0.98);
             border: var(--border-width-thick) solid var(--brutal-black);
-            box-shadow: 8px 8px 0px 0px var(--brutal-black);
+            box-shadow: 6px 6px 0px 0px var(--brutal-black);
             transition: var(--spring-transition);
         }
         body.night-mode .arcade-card {
             background: #1e120c;
             border-color: #ffb703;
-            box-shadow: 8px 8px 0px 0px #ffb703;
+            box-shadow: 6px 6px 0px 0px #ffb703;
             color: #f8fafc;
         }
         .arcade-card:hover {
@@ -141,7 +141,7 @@
         .animate-ticker {
             display: inline-block;
             white-space: nowrap;
-            animation: tickerEffect 40s linear infinite;
+            animation: tickerEffect 35s linear infinite;
         }
         .animate-ticker:hover {
             animation-play-state: paused;
@@ -155,22 +155,9 @@
         .king-crown-animation {
             animation: crownGlow 1.6s infinite ease-in-out;
         }
-
-        @keyframes achievementPop {
-            0% { transform: translateY(100%) scale(0.9); opacity: 0; }
-            15% { transform: translateY(0) scale(1.05); opacity: 1; }
-            30% { transform: translateY(0) scale(1); opacity: 1; }
-            85% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-100%) scale(0.9); opacity: 0; }
-        }
-        .achievement-popup-card {
-            animation: achievementPop 5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
-        }
     </style>
 </head>
 <body class="p-3 md:p-8 antialiased selection:bg-yellow-400 selection:text-black">
-
-    <div id="achievement-toast-layer" class="fixed bottom-6 right-6 z-50 max-w-sm space-y-3 pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto space-y-6">
         
@@ -182,8 +169,8 @@
                 <p id="hero-desc" class="text-sm md:text-base font-bold text-slate-800 dark-target-text"></p>
             </div>
 
-            <div class="flex flex-wrap items-center justify-center gap-3 shrink-0 z-10">
-                <button onclick="toggleNightModeState()" id="night-toggle-btn" class="px-4 py-2.5 bg-slate-900 text-white border-3 border-slate-900 rounded-2xl text-xs font-black arcade-btn cursor-pointer shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] hover:scale-105 transition-all">
+            <div class="flex flex-wrap items-center gap-3 shrink-0 z-10">
+                <button onclick="toggleNightModeState()" id="night-toggle-btn" class="px-4 py-2 bg-slate-900 text-white border-2 border-slate-900 rounded-xl text-xs font-black arcade-btn cursor-pointer shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all">
                     🌙 Night Mode
                 </button>
 
@@ -195,8 +182,8 @@
             </div>
         </header>
 
-        <div id="live-marquee-container" class="arcade-card bg-slate-900 text-yellow-300 rounded-2xl py-2.5 px-4 overflow-hidden border-4 flex items-center hidden">
-            <span class="font-arcade text-[8px] bg-red-600 text-white px-2 py-0.5 rounded-md mr-3 uppercase shrink-0 tracking-wider animate-pulse">Live Feed</span>
+        <div id="live-marquee-container" class="arcade-card bg-slate-900 text-yellow-300 rounded-xl py-2 px-4 overflow-hidden border-2 flex items-center hidden">
+            <span class="font-arcade text-[8px] bg-red-600 text-white px-1.5 py-0.5 rounded mr-3 uppercase shrink-0 animate-pulse">Feed</span>
             <div class="w-full overflow-hidden relative">
                 <div id="live-ticker-track" class="animate-ticker text-xs font-mono font-bold tracking-wide"></div>
             </div>
@@ -212,45 +199,44 @@
             <form id="auth-form" class="space-y-4" onsubmit="handleAuthenticationPipeline(event)">
                 <div class="relative">
                     <label id="label-fullname" class="block text-xs font-black text-[#4a148c] id-purple-lbl mb-1 uppercase tracking-wider">Select Your Identity</label>
-                    <input type="text" id="auth-fullname-input" autocomplete="off" onfocus="handleAutocompleteSearch(this.value)" oninput="handleAutocompleteSearch(this.value)" class="w-full px-4 py-3.5 bg-white arcade-input rounded-2xl text-sm font-bold focus:outline-none transition border-3 text-slate-900" placeholder="Type or click to choose your name...">
-                    <div id="autocomplete-dropdown" class="absolute left-0 right-0 mt-2 max-h-48 bg-white border-3 border-slate-900 rounded-2xl overflow-y-auto hidden z-50 shadow-2xl text-slate-900"></div>
+                    <input type="text" id="auth-fullname-input" autocomplete="off" onfocus="handleAutocompleteSearch(this.value)" oninput="handleAutocompleteSearch(this.value)" class="w-full px-4 py-3 bg-white arcade-input rounded-xl text-sm font-bold focus:outline-none transition border-3 text-slate-900" placeholder="Type or click to choose your name...">
+                    <div id="autocomplete-dropdown" class="absolute left-0 right-0 mt-2 max-h-48 bg-white border-3 border-slate-900 rounded-xl overflow-y-auto hidden z-50 shadow-lg text-slate-900"></div>
                 </div>
                 
                 <div>
                     <label id="label-password" class="block text-xs font-black text-[#4a148c] id-purple-lbl mb-1 uppercase tracking-wider">Secret Passkey</label>
-                    <input type="password" id="auth-password" required autocomplete="current-password" class="w-full px-4 py-3.5 bg-white arcade-input rounded-2xl text-sm font-bold focus:outline-none transition border-3 text-slate-900" placeholder="••••••••">
+                    <input type="password" id="auth-password" required autocomplete="current-password" class="w-full px-4 py-3 bg-white arcade-input rounded-xl text-sm font-bold focus:outline-none transition border-3 text-slate-900" placeholder="••••••••">
                 </div>
                 
-                <button type="submit" id="auth-submit-btn" class="w-full py-4 px-4 bg-[#ab47bc] text-white arcade-btn rounded-2xl text-sm font-black shadow-md cursor-pointer border-3 hover:bg-[#8e24aa]">
+                <button type="submit" id="auth-submit-btn" class="w-full py-3.5 px-4 bg-[#ab47bc] text-white arcade-btn rounded-xl text-sm font-black shadow-md cursor-pointer border-2 hover:bg-[#8e24aa]">
                     Initialize Profile Dashboard
                 </button>
             </form>
-            <div id="auth-feedback" class="text-center text-xs font-bold hidden p-3 border-3 border-slate-800 rounded-2xl"></div>
+            <div id="auth-feedback" class="text-center text-xs font-bold hidden p-3 border-3 border-slate-800 rounded-xl"></div>
         </section>
 
         <main id="main-dashboard" class="space-y-6 hidden">
             
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                
-                <div class="md:col-span-4 arcade-card bg-[#e8f5e9] p-5 rounded-3xl flex flex-col justify-around gap-4 text-center">
+                <div class="md:col-span-4 arcade-card bg-[#e8f5e9] p-5 rounded-3xl flex flex-col justify-around gap-3 text-center">
                     <div>
-                        <span class="text-3xl">✨</span>
-                        <h4 id="spark-kindness-title" class="text-[10px] font-black text-slate-600 uppercase tracking-wider mt-1"></h4>
-                        <p id="spark-total-messages" class="text-2xl font-black text-slate-900 mt-0.5">...</p>
+                        <span class="text-2xl">✨</span>
+                        <h4 id="spark-kindness-title" class="text-[10px] font-black text-slate-600 uppercase tracking-wider"></h4>
+                        <p id="spark-total-messages" class="text-xl font-black text-slate-900">...</p>
                     </div>
                     <div class="w-full h-px bg-slate-300"></div>
                     <div>
-                        <span class="text-3xl">👑</span>
+                        <span class="text-2xl">👑</span>
                         <h4 id="spark-legendary-title" class="text-[10px] font-black text-slate-600 uppercase tracking-wider"></h4>
-                        <p id="spark-legendary-count" class="text-2xl font-black text-slate-900 mt-0.5">...</p>
+                        <p id="spark-legendary-count" class="text-xl font-black text-slate-900">...</p>
                     </div>
                 </div>
 
                 <div class="md:col-span-8 arcade-card bg-slate-900 text-green-400 p-5 rounded-3xl relative border-4 shadow-2xl overflow-hidden">
                     <div class="absolute top-0 right-0 p-2 text-[9px] font-arcade text-slate-700 select-none">VIBE_OS v2.6</div>
                     <div class="flex items-center gap-3 border-b-2 border-slate-700 pb-2 mb-3">
-                        <span class="text-2xl">🕹️</span>
-                        <h3 id="leaderboard-headline-txt" class="text-xs md:text-sm font-arcade uppercase text-[#00ff66] tracking-widest animate-pulse"></h3>
+                        <span class="text-xl">🕹️</span>
+                        <h3 id="leaderboard-headline-txt" class="text-xs font-arcade uppercase text-[#00ff66] tracking-widest animate-pulse"></h3>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="leaderboard-podiums-container"></div>
                 </div>
@@ -260,20 +246,20 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-slate-900 pb-3 gap-2">
                     <div class="flex items-center gap-2">
                         <span class="text-2xl">🎬</span>
-                        <h2 id="chronicles-headline-lbl" class="text-lg md:text-xl font-black tracking-tight text-amber-950"></h2>
+                        <h2 id="chronicles-headline-lbl" class="text-lg md:text-xl font-black tracking-tight text-amber-950">🎬 THE CLASS CHRONICLES // LES DOSSIERS 🍿</h2>
                     </div>
                     <span class="font-mono text-[10px] font-bold bg-amber-200 border border-amber-400 px-2 py-0.5 rounded uppercase tracking-wider">Public Shared Stories</span>
                 </div>
 
                 <div class="p-4 bg-white border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-2xl">
                     <span id="chronicles-prompt-badge" class="text-[9px] font-black uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">Active Break Prompt:</span>
-                    <p id="chronicles-active-question-text" class="text-sm font-extrabold text-slate-800 mt-1">Quelle est la pire dinguerie ou l'histoire la plus drôle qui s'est passée en cours ce semestre ?</p>
+                    <p id="chronicles-active-question-text" class="text-sm font-extrabold text-slate-800 mt-1">Quelle est la pire dinguerie ou l''histoire la plus drôle qui s''est passée en cours ce semestre ?</p>
                 </div>
 
                 <form onsubmit="submitChronicleStoryPipeline(event)" class="space-y-3">
-                    <textarea id="chronicle-textarea-input" rows="3" required class="w-full p-4 bg-white border-3 border-slate-900 rounded-2xl text-xs font-bold text-slate-900 focus:outline-none focus:ring-0 shadow-sm resize-none"></textarea>
+                    <textarea id="chronicle-textarea-input" rows="3" required class="w-full p-4 bg-white border-3 border-slate-900 rounded-2xl text-xs font-bold text-slate-900 focus:outline-none focus:ring-0 placeholder:text-slate-400 shadow-sm" placeholder="Write your account of the event here... Keep it real, funny, and respectful! Your full name will be pinned as the author."></textarea>
                     <div class="flex justify-end">
-                        <button type="submit" id="chronicles-submit-btn-lbl" class="px-6 py-2.5 bg-amber-300 text-slate-900 font-black text-xs uppercase tracking-wider rounded-xl border-3 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] hover:translate-y-[1px] active:translate-y-[3px] transition cursor-pointer"></button>
+                        <button type="submit" id="chronicles-submit-btn-lbl" class="px-6 py-2.5 bg-amber-300 text-slate-900 font-black text-xs uppercase tracking-wider rounded-xl border-3 border-slate-900 shadow-[3px_3px_0px_0px_#1a0f0a] hover:translate-y-[1px] active:translate-y-[3px] transition cursor-pointer">Publish to Class Feed</button>
                     </div>
                 </form>
 
@@ -301,18 +287,18 @@
                                 <span class="text-xs">🎲</span>
                             </div>
                             <p id="santa-desc-lbl" class="text-[10px] font-medium text-slate-600 leading-normal"></p>
-                            <button onclick="rollRandomClassmateTarget()" id="santa-btn-lbl" class="w-full py-2 bg-indigo-300 text-slate-900 text-xs font-black uppercase tracking-wider rounded-lg border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] transition cursor-pointer"></button>
+                            <button onclick="rollRandomClassmateTarget()" id="santa-btn-lbl" class="w-full py-2 bg-indigo-300 text-slate-900 text-xs font-black uppercase tracking-wider rounded-lg border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] hover:translate-y-[1px] active:translate-y-[2px] transition cursor-pointer"></button>
                         </div>
 
                         <div class="p-3 bg-white/80 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] rounded-xl space-y-2 text-slate-900">
                             <h4 id="theme-selector-lbl" class="text-[10px] font-black uppercase text-slate-800 tracking-wider"></h4>
                             <div class="grid grid-cols-6 gap-2">
-                                <button onclick="updateProfileTheme('aura-green')" class="h-6 rounded-md border-2 border-slate-900 aura-green cursor-pointer transition active:scale-95" title="Mint Green"></button>
-                                <button onclick="updateProfileTheme('aura-champagne')" class="h-6 rounded-md border-2 border-slate-900 aura-champagne cursor-pointer transition active:scale-95" title="Champagne Cream"></button>
-                                <button onclick="updateProfileTheme('aura-pink')" class="h-6 rounded-md border-2 border-slate-900 aura-pink cursor-pointer transition active:scale-95" title="Sunset Pink"></button>
-                                <button onclick="updateProfileTheme('aura-purple')" class="h-6 rounded-md border-2 border-slate-900 aura-purple cursor-pointer transition active:scale-95" title="Royal Purple"></button>
-                                <button onclick="updateProfileTheme('aura-red')" class="h-6 rounded-md border-2 border-slate-900 aura-red cursor-pointer transition active:scale-95" title="Crimson Red"></button>
-                                <button onclick="updateProfileTheme('aura-darkred')" class="h-6 rounded-md border-2 border-slate-900 aura-darkred cursor-pointer transition active:scale-95" title="Velvet Bordeaux"></button>
+                                <button onclick="updateProfileTheme('aura-green')" class="h-6 rounded-md border-2 border-slate-900 aura-green cursor-pointer transition" title="Mint Green"></button>
+                                <button onclick="updateProfileTheme('aura-champagne')" class="h-6 rounded-md border-2 border-slate-900 aura-champagne cursor-pointer transition" title="Champagne Cream"></button>
+                                <button onclick="updateProfileTheme('aura-pink')" class="h-6 rounded-md border-2 border-slate-900 aura-pink cursor-pointer transition" title="Sunset Pink"></button>
+                                <button onclick="updateProfileTheme('aura-purple')" class="h-6 rounded-md border-2 border-slate-900 aura-purple cursor-pointer transition" title="Royal Purple"></button>
+                                <button onclick="updateProfileTheme('aura-red')" class="h-6 rounded-md border-2 border-slate-900 aura-red cursor-pointer transition" title="Crimson Red"></button>
+                                <button onclick="updateProfileTheme('aura-darkred')" class="h-6 rounded-md border-2 border-slate-900 aura-darkred cursor-pointer transition" title="Velvet Bordeaux"></button>
                             </div>
                         </div>
 
@@ -323,7 +309,7 @@
 
                         <div class="bg-slate-900 text-yellow-400 border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] p-3 rounded-xl space-y-2">
                             <div class="flex items-center justify-between border-b border-slate-700 pb-1">
-                                <span id="achievements-heading-txt" class="font-arcade text-[7.5px] tracking-widest uppercase text-white"></span>
+                                <span id="achievements-heading-txt" class="font-arcade text-[7.5px] tracking-widest uppercase text-white">🏆 Achievements Locked: <span id="unlocked-trophies-counter" class="text-green-400">0</span>/35</span>
                             </div>
                             <div id="trophies-scroll-matrix" class="grid grid-cols-7 gap-1 max-h-24 overflow-y-auto p-0.5 bg-black/40 rounded-lg"></div>
                             <div id="selected-trophy-hint-display" class="text-[8px] font-mono font-bold text-slate-400 italic bg-black/20 p-1 rounded text-center"></div>
@@ -334,13 +320,13 @@
                         </button>
                     </div>
 
-                    <div id="cookie-game-widget-box" onclick="triggerFortuneCookieGame()" class="arcade-card bg-gradient-to-tr from-amber-100 to-orange-100 rounded-3xl p-5 relative overflow-hidden cursor-pointer text-center group border-4">
+                    <div onclick="triggerFortuneCookieGame()" class="arcade-card bg-gradient-to-tr from-amber-100 to-orange-100 rounded-3xl p-5 relative overflow-hidden cursor-pointer text-center group border-4">
                         <div class="flex items-center justify-between mb-2">
                             <h3 id="cookie-header-lbl" class="text-[10px] font-black uppercase tracking-widest text-orange-900 bg-white border-2 border-slate-900 px-2 py-0.5 rounded-md">🥠 FORTUNE MINI-GAME // كبسولة الحظ</h3>
                             <span class="text-xs animate-ping flex h-2 w-2 rounded-full bg-orange-600"></span>
                         </div>
                         <div id="cookie-graphic-node" class="text-5xl my-3 transition-transform duration-300 transform group-hover:scale-110 inline-block select-none">🥠</div>
-                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[50px] flex flex-col justify-center transition-all duration-500"></div>
+                        <div id="radiance-display" class="text-xs font-bold text-slate-900 leading-relaxed min-h-[60px] flex flex-col justify-center transition-all duration-500"></div>
                     </div>
 
                     <div class="arcade-card bg-[#fff9db] rounded-3xl p-5 space-y-4 text-slate-900">
@@ -380,7 +366,7 @@
                         <span class="text-lg pl-2">🔍</span>
                         <input type="text" id="grid-search" oninput="filterStudentGrid()" class="w-full bg-transparent border-none text-sm font-bold focus:outline-none placeholder:text-slate-500 text-slate-900">
                     </div>
-                    <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[1250px] overflow-y-auto p-1 text-slate-900"></div>
+                    <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[1200px] overflow-y-auto p-1 text-slate-900"></div>
                 </div>
             </div>
 
@@ -394,7 +380,7 @@
             <button onclick="closeEnvelopeModal()" class="absolute top-4 right-4 rtl:left-4 rtl:right-auto text-slate-800 hover:text-rose-600 font-black text-2xl cursor-pointer border-2 border-slate-900 w-9 h-9 flex items-center justify-center rounded-lg bg-white">×</button>
             
             <div class="space-y-1">
-                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-800 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
+                <span id="modal-badge" class="text-[10px] font-black uppercase tracking-widest text-slate-900 bg-blue-200 border border-slate-900 px-2 py-0.5 rounded">PEER TRANSMISSION</span>
                 <h3 class="text-xl font-black text-slate-900">
                     <span id="modal-title-prefix">To:</span> <span id="modal-recipient-name" class="underline decoration-wavy decoration-pink-500">Student Name</span>
                 </h3>
@@ -447,7 +433,11 @@
     </div>
 
     <script>
-        // STRICT CASE PRIVILEGES: Structural database reference mapping strings
+        // Global variables initialized outside block enclosures to resolve handler lookups immediately
+        const SUPABASE_URL = "https://bezeiovjxafgzmjwuomy.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlemVpb3ZqeGFmZ3ptand1b215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNjUwNDMsImV4cCI6MjA5NDk0MTA0M30.zOLO4nuVZmrW0QgcCPJl8dQ1wLq2O1Vt7Or4TLRqjfc";
+
+        let supabaseClient;
         let currentLanguage = 'en';
         let loggedInUser = null; 
         let globalStudentsList = [];
@@ -456,6 +446,7 @@
         
         let activeChroniclesCache = [];
         let globalCrownedKingStudentName = "";
+        let activeReceivedMessagesCache = [];
 
         const TOXIC_FILTER_DICTIONARY = [
             "hmar", "rekhis", "kavi", "moche", "con", "connard", "salope", "tahan", "kelba", "hmara",
@@ -500,26 +491,57 @@
             }
         ];
 
-        // FULL 15 MULTILINGUAL TRANSLATION ENTRIES GRAPH MAP POOL FOR FORTUNE MINI GAME
         const POEMS_ARRAY = [
-            { en: "The woods are lovely, dark and deep,<br>But I have promises to keep,<br>And miles to go before I sleep.", fr: "Le monde est grand, ses horizons sont clairs,<br>Chaque pas que tu fais éclaire la terre.<br>Ne t'arrête jamais d'espérer.", ar: "ومَن يتهيب صُعودَ الجِبالِ<br>يَعِش أَبَدَ الدَهرِ بَينَ الحُفَر<br>— أبو القاسم الشابي" },
-            { en: "Out of the night that covers me,<br>Black as the pit from pole to pole,<br>I thank whatever gods may be<br>For my unconquerable soul.", fr: "Dans la nuit noire qui m'enveloppe,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.", ar: "بِقَدرِ الكَدِّ تُكتَسَبُ المَعالي<br>وَمَن طَلَبَ العُلا سَهِرَ اللَيالي<br>— الإمام الشافعي" },
-            { en: "Do not go gentle into that good night.<br>Your internal fire must never fade away.<br>Shine with everything you have.", fr: "Ne t'abandonne pas à la nuit douce.<br>Lutte avec force pour garder ta lumière claire.<br>Ton éclat est précieux.", ar: "إِذا غامَرتَ في شَرَفٍ مَرومٍ<br>فَلا تَقنَع بِما دونَ النُجمعِ<br>— أبو الطيب المتنبي" },
-            { en: "I am the master of my fate,<br>I am the captain of my soul.<br>No temporary storm can shake my path.", fr: "Je suis le maître absolu de mon destin,<br>Je suis le capitaine de mon âme entière.<br>Aucun vent ne m'éloigne.", ar: "عَلى قَدرِ أَهلِ العَزمِ تَأتي العَزائِمُ<br>وَتَأتي عَلى قَدرِ الكِرامِ المَكارِمُ<br>— أبو الطيب المتنبي" },
-            { en: "Hope is the thing with feathers<br>That perches in the soul,<br>And sings the tune without the words.", fr: "L'espoir est cet oiseau doux et léger<br>Qui se pose au fond de notre âme,<br>Chantant sans jamais s'arrêter.", ar: "أعللُ النّفْسَ بالآمالِ أَرْقُبُهَا<br>مَا أَضْيَقَ العَيْشَ لَوْلَا فُسْحَةُ الأَمَلِ<br>— الطغرائي" },
-            { en: "The future belongs to those who believe<br>In the beautiful clarity of their dreams.", fr: "L'avenir appartient à ceux qui croient<br>En la pure beauté de leurs grands rêves.", ar: "وَمَا نَيْلُ الْمُطَالِبِ بِالتَّمَنِّي<br>وَلَكِنْ تُؤْخَذُ الدُّنْيَا غِلَابَا<br>— أحمد شوقي" },
-            { en: "Be like the flower that gives its perfume<br>Even to the hand that crushes it.", fr: "Sois comme la fleur qui donne son parfum<br>Même à la main qui vient la cueillir.", ar: "كُن بَلسَماً إِن صارَ دَهرُكَ أَرقَما<br>وَعَلاوَةً إِن صارَ غَيرُكَ عَلقَما<br>— إيليا أبو ماضي" },
-            { en: "Look at the stars instead of your shadows.<br>Your internal compass knows the way.", fr: "Regarde les étoiles plutôt que tes ombres.<br>Ta boussole intérieure connaît le chemin.", ar: "أتَحْسَبُ أنّكَ جُرْمٌ صَغِيرٌ<br>وَفِيكَ انْطَوَى العَالَمُ الأكْبَرُ؟<br>— الإمام علي" },
-            { en: "Nothing can dim the light which shines from within.<br>You are rare, valuable, and irreplaceable.", fr: "Rien ne peut ternir la lumière qui brille de l'intérieur.<br>Tu es unique et précieux.", ar: "إذا ما طَمَحْتُ إلِى غَايَةٍ<br>رَكِبْتُ المُنَى وَنَسِيتُ الحَذَر<br>— أبو القاسم الشابي" },
-            { en: "Every single day is a fresh blank page.<br>Write a magnificent line before the night comes.", fr: "Chaque jour est une nouvelle page blanche.<br>Écris une ligne dynamique avant la nuit.", ar: "سَأَعِيشُ رَغْمَ الدَّاءِ وَالأَعْدَاءِ<br>كَالنَّسْرِ فَوْقَ الْقِمَّةِ الشَّمَّاءِ<br>— أبو القاسم الشابي" },
-            { en: "Kind words do not cost much, yet they leave<br>an everlasting echo inside a person's life.", fr: "Les mots doux ne coûtent pas cher, pourtant ils laissent<br>un écho infini dans la vie d'une personne.", ar: "وَلَا تَمْشِ فِي الْأَرْضِ إِلَّا بَهْجَةً<br>إِنَّ النُّفُوسَ بِالْجَمَالِ تَطِيبُ" },
-            { en: "What is written in your heart with honesty<br>will always break through any wall.", fr: "Ce qui est écrit dans ton cœur avec honnêteté<br>traversera toujours tous les obstacles.", ar: "لَا تَقُلْ قَدْ ذَهَبَتْ أَيَّامُهُ<br>كُلُّ مَنْ يَسْعَى إِلَى الْخَيْرِ يَصِلْ" },
-            { en: "Even the small step counts in the long run.<br>Keep going, your rhythm is perfect.", fr: "Même les petits pas comptent à la fin.<br>Continue d'avancer, ton rythme est parfait.", ar: "مَا فَازَ بِالْمَجْدِ إِلَّا كُلُّ مُجْتَهِدٍ<br>يَرَى الصِّعَابَ فَيَجْتَازُ الْمَسَافَاتِ" },
-            { en: "Your presence is an understated gift to this world.<br>Never doubt the weight of your kindness.", fr: "Ta présence est un cadeau précieux pour ce monde.<br>Ne doute jamais de la force de ta gentillesse.", ar: "إِنَّ الْقُلُوبَ إِذَا تَنَافَر وُدُّهَا<br>مِثْلُ الزُّجَاجَةِ كَسْرُهَا لَا يُجْبَرُ" },
-            { en: "Celebrate every simple milestone you hit.<br>You are growing beautifully every single hour.", fr: "Célèbre chaque petite victoire franchie.<br>Tu grandis magnifiquement à chaque instant.", ar: "وَاصْبِرْ لِكُلِّ مُصِيبَةٍ وَتَجَلَّدِ<br>وَعَلَمْ بِأَنَّ الْمَرْءَ غَيْرُ مُخَلَّدِ" }
+            {
+                en: "The woods are lovely, dark and deep,<br>But I have promises to keep,<br>And miles to go before I sleep.",
+                fr: "Le monde est grand, ses horizons sont clairs,<br>Chaque pas que tu fais éclaire la terre.<br>Ne t'arrête jamais d'espérer.",
+                ar: "ومَن يتهيب صُعودَ الجِبالِ<br>يَعِش أَبَدَ الدَهرِ بَينَ الحُفَر<br>— أبو القاسم الشابي"
+            },
+            {
+                en: "Out of the night that covers me,<br>Black as the pit from pole to pole,<br>I thank whatever gods may be<br>For my unconquerable soul.",
+                fr: "Dans la nuit noire qui m'enveloppe,<br>Je salue la force qui se lève,<br>Mon âme reste invaincue et fière.",
+                ar: "بِقَدرِ الكَدِّ تُكتَسَبُ المَعالي<br>وَمَن طَلَبَ العُلا سَهِرَ اللَيالي<br>— الإمام الشافعي"
+            }
         ];
 
-        // MASSIVE COMPREHENSIVE LOCALIZATION DICTIONARY OBJECT MAP SYSTEM
+        const MASTER_TROPHIES_BLUEPRINT = [
+            { id: 1, icon: "👑", name: { en: "First Entry", fr: "Première Entrée", ar: "الخطوة الأولى" }, hint: { en: "Log inside your secure portal dashboard registry.", fr: "Connectez-vous à votre espace sécurisé.", ar: "تأكيد الدخول إلى لوحة التحكم الآمنة بنجاح." } },
+            { id: 2, icon: "🍿", name: { en: "Vibe Cadet", fr: "Cadet du Vibe", ar: "مستقبل مبتدئ" }, hint: { en: "Accumulate 1 verified inbound peer envelope capsule.", fr: "Recevez votre tout premier message d'un pair.", ar: "استقبال أول ظرف رقمي طيب في صندوقك." } },
+            { id: 3, icon: "🚀", name: { en: "Vibe Commander", fr: "Commandant Vibe", ar: "قائد المحبة" }, hint: { en: "Accumulate 5 verified inbound peer envelopes.", fr: "Accumulez 5 enveloppes de compliments reçues.", ar: "تجميع 5 رسائل رقمية طيبة من زملائك." } },
+            { id: 4, icon: "🔮", name: { en: "Class Legend", fr: "Légende de Classe", ar: "أسطورة الدفعة" }, hint: { en: "Accumulate 10 or more verified incoming compliments.", fr: "Recevez 10 enveloppes de compliments au total.", ar: "استقبال 10 رسائل أو أكثر في محفظتك الرقمية." } },
+            { id: 5, icon: "🥠", name: { en: "Cookie Cracker", fr: "Briseur de Cookie", ar: "مفرقع الكعك" }, hint: { en: "Crack open the fortune cookie game once.", fr: "Ouvrez le cookie de fortune une première fois.", ar: "فتح كعكة الحظ واستخراج حكمة شعرية لمرة واحدة." } },
+            { id: 6, icon: "🧠", name: { en: "Poetic Scholar", fr: "Érudit Poétique", ar: "باحث الأفكار" }, hint: { en: "Crack open the fortune cookie 5 unique cycles.", fr: "Ouvrez le cookie de fortune 5 fois au total.", ar: "فتح كعكة الحظ وتصفح الأبيات 5 مرات." } },
+            { id: 7, icon: "📜", name: { en: "Philosophy Sage", fr: "Sage Philosophe", ar: "حكيم الفلسفة" }, hint: { en: "Crack open the cookie wave 15 times.", fr: "Découvrez 15 fois les sagesses du cookie.", ar: "استخراج الحكم العميقة من الكعكة 15 مرة." } },
+            { id: 8, icon: "🌙", name: { en: "Midnight Shadow", fr: "Ombre de Minuit", ar: "شبح منتصف الليل" }, hint: { en: "Access your dashboard registry past midnight.", fr: "Connectez-vous à l'application après minuit.", ar: "تسجيل الدخول وتصفح المنصة بعد منتصف الليل." } },
+            { id: 9, icon: "☀️", name: { en: "Early Riser", fr: "Aube Active", ar: "همة الصباح" }, hint: { en: "Access your dashboard space before 8:00 AM.", fr: "Ouvrez votre espace avant 8h00 du matin.", ar: "الدخول إلى لوحة التحكم مبكراً قبل الساعة 8 صباحاً." } },
+            { id: 10, icon: "🎨", name: { en: "Aura Switcher", fr: "Styliste d'Aura", ar: "مهندس الألوان" }, hint: { en: "Modify your vault background aura theme once.", fr: "Changez le thème d'ambiance de votre espace.", ar: "تعديل هالة ولون لوحة التحكم الخاصة بك لمرة واحدة." } },
+            { id: 11, icon: "💎", name: { en: "Chameleon Core", fr: "Cœur Caméléon", ar: "متعدد الأطياف" }, hint: { en: "Toggle your space theme backgrounds 6 times.", fr: "Modifiez votre arrière-plan d'aura 6 fois.", ar: "تغيير وتجربة ألوان الخلفية الهالية 6 مرات أو أكثر." } },
+            { id: 12, icon: "🗳️", name: { en: "Active Democrat", fr: "Électeur Actif", ar: "صوت الديمقراطية" }, hint: { en: "Cast an anonymous secret ballot vote.", fr: "Votez anonymement pour le superlatif de classe.", ar: "إلقاء صوت سري مجهول في تصويت الأفضل الدفعة." } },
+            { id: 13, icon: "📥", name: { en: "Archivist Seal", fr: "Sceau d'Archive", ar: "حامي الذكريات" }, hint: { en: "Compile and download your pdf certificate archive.", fr: "Téléchargez votre certificat de souvenirs en PDF.", ar: "تحميل وثيقة الذكريات الصيفية بصيغة PDF بنجاح." } },
+            { id: 14, icon: "🎲", name: { en: "Secret Wheel", fr: "Roue Secrète", ar: "عجلة الحظ" }, hint: { en: "Initialize the random target assignment tool once.", fr: "Utilisez le générateur de cible aléatoire.", ar: "تشغيل مِولد المهام العشوائية واستهداف زميل عشوائي." } },
+            { id: 15, icon: "🍬", name: { en: "Generous Scout", fr: "Éclaireur Généreux", ar: "مستكشف الكرم" }, hint: { en: "Roll random target classmate profiles 5 times.", fr: "Générez des cibles aléatoires 5 fois au total.", ar: "استخدام مِولد الاستهداف العشوائي للزملاء 5 مرات." } },
+            { id: 16, icon: "🌍", name: { en: "Polyglot Node", fr: "Nœud Polyglotte", ar: "عالمي اللغات" }, hint: { en: "Toggle language switches to check all states.", fr: "Explorez les trois langues de l'interface.", ar: "تصفح واختيار اللغات الثلاث كاملة على المنصة." } },
+            { id: 17, icon: "🛡️", name: { en: "Clean Energy", fr: "Énergie Propre", ar: "الطاقة الصافية" }, hint: { en: "Transmit a compliment completely free of flags.", fr: "Envoyez un message validé sans aucun filtre.", ar: "إرسال رسالة نقية وصادقة خالية تماماً من الكلمات المحظورة." } },
+            { id: 18, icon: "⚡", name: { en: "Speed Boxer", fr: "Boxeur de Vitesse", ar: "سريع الإرسال" }, hint: { en: "Transmit an envelope using one-click badge drops.", fr: "Envoyez un compliment rapide en un seul clic.", ar: "إرسال تحية تقديرية سريعة باستخدام أزرار الضغط السريع." } },
+            { id: 19, icon: "🔋", name: { en: "Overcharged", fr: "Surchargé", ar: "الطاقة القصوى" }, hint: { en: "Use quick action badges 5 times.", fr: "Utilisez les badges de transmission rapide 5 fois.", ar: "استخدام ميزة الإرسال السريع بضغطة زر 5 مرات." } },
+            { id: 20, icon: "🔒", name: { en: "Time Architect", fr: "Architecte du Temps", ar: "مهندس الزمان" }, hint: { en: "Schedule an encrypted delayed message capsule.", fr: "Programmez une capsule verrouillée dans le temps.", ar: "جدولة وتشفير ظرف زمني مقيد بتاريخ مستقبل مجهول." } },
+            { id: 21, icon: "⏳", name: { en: "Future Planner", fr: "Planificateur d'Avenir", ar: "مخطط الغد" }, hint: { en: "Schedule 3 cryptographically time-locked capsules.", fr: "Verrouillez 3 messages dans le temps.", ar: "جدولة وإقفال 3 مظاريف زمنية مشفرة في المستقبل." } },
+            { id: 22, icon: "🤝", name: { en: "Steady Anchor", fr: "Ancre Stable", ar: "السند الثابت" }, hint: { en: "Have at least 1 analytics tag calculated on radar.", fr: "Affichez votre premier trait calculé sur le radar.", ar: "امتلاك أول صفة معتمدة وظاهرة على رادار التحليلات." } },
+            { id: 23, icon: "🔥", name: { en: "Apex Tracker", fr: "Chasseur d'Élite", ar: "راصد القمة" }, hint: { en: "Load up the arcade scoreboard leader archetypes.", fr: "Consultez le tableau d'honneur de la classe.", ar: "تحميل ورصد لوحة الشرف والتميز لأبطال الدفعة." } },
+            { id: 24, icon: "🎭", name: { en: "Ghost Identity", fr: "Identité Fantôme", ar: "الهوية المجهولة" }, hint: { en: "Send a message using the anonymous frontend switch.", fr: "Envoyez un message masqué anonymement.", ar: "إرسال رسالة تقديرية مع تفعيل مفتاح الهوية المخفية." } },
+            { id: 25, icon: "💡", name: { en: "Steady Walker", fr: "Marcheur Régulier", ar: "الخطى الثابتة" }, hint: { en: "Load up application components framework lines.", fr: "Chargez l'application avec succès.", ar: "تحميل واجهة المنصة وربطها بالخوادم بنجاح." } },
+            { id: 26, icon: "🌻", name: { en: "Sweet Wave", fr: "Vague de Douceur", ar: "موجة اللطف" }, hint: { en: "Receive the Kind Heart archetype vibe tag entry.", fr: "Recevez le trait Cœur Tendre de la part d'un pair.", ar: "استقبل هالة وصفة 'طيب القلب' من أحد زملائك." } },
+            { id: 27, icon: "🪐", name: { en: "Stellar Apex", fr: "Apogée Stellaire", ar: "النجم الساطع" }, hint: { en: "Receive the Visionary tracking payload attribute tag.", fr: "Recevez le trait Visionnaire dans votre boîte.", ar: "استقبال هالة وصفة 'رؤيوي ومميز' في صندوقك." } },
+            { id: 28, icon: "🧱", name: { en: "Brutal Guard", fr: "Garde Brutal", ar: "الحارس الحصين" }, hint: { en: "Toggle dynamic night mode screen filters pairs.", fr: "Activez le mode nuit de l'interface.", ar: "تفعيل الوضع الليلي وتغيير أطياف شاشة العرض الحصينة." } },
+            { id: 29, icon: "🎰", name: { en: "Lucky Strike", fr: "Coup de Chance", ar: "ضربة الحظ" }, hint: { en: "Roll the exact same target classmate twice in a row.", fr: "Tirez deux fois de suite le même camarade.", ar: "استهداف نفس الزميل مرتين متتاليتين عبر مِولد الصدف." } },
+            { id: 30, icon: "🦁", name: { en: "Brave Explorer", fr: "Explorateur Brave", ar: "المستكشف الشجاع" }, hint: { en: "Filter search query inputs inside registry grids.", fr: "Utilisez la barre de recherche des camarades.", ar: "البحث وتصفية الأسماء داخل شبكة دليل الدفعة." } },
+            { id: 31, icon: "📣", name: { en: "Marquee Listener", fr: "Écouteur du Marquee", ar: "راصد الأخبار" }, hint: { en: "Observe the live rolling global toast marquee feed.", fr: "Observez le défilement du flux d'actualités en direct.", ar: "متابعة شريط الأخبار والنشاطات العالمي الحي المتحرك." } },
+            { id: 32, icon: "🍫", name: { en: "Sweet Adrenaline", fr: "Pure Adrénaline", ar: "شحنة الحماس" }, hint: { en: "Transmit 3 envelopes to 3 different peer nodes.", fr: "Envoyez des messages à 3 camarades différents.", ar: "إرسال مظاريف رقمية إلى 3 زملاء مختلفين في الصف." } },
+            { id: 33, icon: "🧘", name: { en: "Zen Harmony", fr: "Harmonie Zen", ar: "السلام الداخلي" }, hint: { en: "Maintain complete compliance clean records rules.", fr: "Conservez un historique d'utilisation irréprochable.", ar: "الحفاظ على سجل نكي ونظيف تماماً بدون أي مخالفات." } },
+            { id: 34, icon: "🏆", name: { en: "Arcade Champion", fr: "Champion d'Arcade", ar: "بطل الألعاب" }, hint: { en: "Unlock 15 or more unique badge tokens from this sheet.", fr: "Débloquez 15 succès de la liste.", ar: "فك تشفير وتفعيل 15 إنجازاً مميزاً من هذه القائمة." } },
+            { id: 35, icon: "🌟", name: { en: "Grand Master", fr: "Grand Maître", ar: "الأستاذ الكبير" }, hint: { en: "Achieve ultimate verified execution usage profiles vectors.", fr: "Complétez l'ensemble des objectifs d'exploration.", ar: "تحقيق الاستخدام الأقصى والمثالي لجميع خصائص المنصة." } }
+        ];
+
         const LOCALIZATION_MAP = {
             en: {
                 heroDesc: "The most valuable treasure a student carries over long university breaks is genuine words of appreciation from their peers. Let's lock in real memories before summer takes over.",
@@ -659,92 +681,33 @@
         };
 
         // ========================================================= -->
-        // DYNAMIC GLOBAL SCOPE RUNTIME LIFECYCLE CONTROLLERS MODULE  -->
+        // DYNAMIC CORE CHROMIUM LAYOUT COMPONENT HOOK INTERFACES     -->
         // ========================================================= -->
-        window.toggleNightModeState = function() {
-            const body = document.body;
-            body.classList.toggle("night-mode");
-            const isNight = body.classList.contains("night-mode");
-            localStorage.setItem("justsmile_nightmode", isNight);
-            document.getElementById("night-toggle-btn").innerText = isNight ? "☀️ Light Mode" : "🌙 Night Mode";
-            triggerAchievementUnlockCheck(28); 
-        };
-
-        window.switchLanguage = function(langCode) {
-            currentLanguage = langCode;
-            document.documentElement.dir = langCode === 'ar' ? "rtl" : "ltr";
-            document.documentElement.lang = langCode;
-
-            const dict = LOCALIZATION_MAP[langCode];
-            document.getElementById("hero-desc").innerText = dict.heroDesc;
-            document.getElementById("auth-subtitle").innerText = dict.authSubtitle;
-            document.getElementById("label-fullname").innerText = dict.lblFullName;
-            document.getElementById("label-password").innerText = dict.lblPassword;
-            document.getElementById("auth-submit-btn").innerText = dict.btnAuth;
-            document.getElementById("vault-welcome-tag").innerText = dict.vaultWelcome;
-            document.getElementById("analytics-title").innerText = dict.analyticsTitle;
-            document.getElementById("btn-keepsake-txt").innerText = dict.btnKeepsake;
-            document.getElementById("letters-title").innerText = dict.lettersTitle;
-            document.getElementById("grid-search").placeholder = dict.searchPlaceholder;
-            document.getElementById("spark-kindness-title").innerText = dict.sparkKindness;
-            document.getElementById("spark-legendary-title").innerText = dict.sparkLegendary;
-            document.getElementById("superlative-title").innerText = dict.superlativeTitle;
-            document.getElementById("superlative-desc").innerText = dict.superlativeDesc;
-            document.getElementById("capsule-lock-lbl").innerText = dict.capsuleLockLbl;
-            document.getElementById("capsule-lock-sub").innerText = dict.capsuleLockSub;
-            document.getElementById("theme-selector-lbl").innerText = dict.themeSelectorLbl;
-            document.getElementById("quick-action-headline").innerText = dict.quickActionHeadline;
-            document.getElementById("leaderboard-headline-txt").innerText = dict.leaderboardTitle;
-            document.getElementById("santa-title-lbl").innerText = dict.santaTitle;
-            document.getElementById("santa-desc-lbl").innerText = dict.santaDesc;
-            document.getElementById("santa-btn-lbl").innerText = dict.santaBtn;
-            document.getElementById("superlative-archive-headline").innerText = dict.superlativeArchiveHeadline;
+        function evaluateThreeDayBallotRotationPhase() {
+            const baseDeploymentAnchorTimestamp = 1779472800000; 
+            const activeLiveTimestampNow = Date.now();
+            const elapsedMillisecondsCount = activeLiveTimestampNow - baseDeploymentAnchorTimestamp;
             
-            document.getElementById("chronicles-headline-lbl").innerText = dict.chroniclesHeadline;
-            document.getElementById("chronicles-prompt-badge").innerText = dict.chroniclesPromptBadge;
-            document.getElementById("chronicle-textarea-input").placeholder = dict.chroniclesTextareaPlaceholder;
-            document.getElementById("chronicles-submit-btn-lbl").innerText = dict.chroniclesSubmitBtn;
-
-            document.getElementById("modal-title-prefix").innerText = dict.modalTo;
-            document.getElementById("modal-vibe-lbl").innerText = dict.modalVibeLbl;
-            document.getElementById("modal-msg-lbl").innerText = dict.modalMsgLbl;
-            document.getElementById("modal-msg-content").placeholder = dict.modalMsgPlaceholder;
-            document.getElementById("anon-toggle-lbl").innerText = dict.modalAnonLbl;
-            document.getElementById("anon-toggle-sub").innerText = dict.modalAnonSub;
-            document.getElementById("modal-cancel-btn").innerText = dict.modalCancel;
-            document.getElementById("modal-submit-btn").innerText = dict.modalSubmit;
-
-            const activeQuickLabels = QUICK_VIBES_OPTIONS_MATRIX[langCode];
-            for (let i = 0; i < 4; i++) {
-                const btnNode = document.getElementById(`quick-btn-${i}`);
-                if(btnNode) btnNode.innerText = activeQuickLabels[i];
+            const threeDaysInMilliseconds = 3 * 24 * 60 * 60 * 1000;
+            let activeCalculatedPhaseIndex = Math.floor(elapsedMillisecondsCount / threeDaysInMilliseconds);
+            if(activeCalculatedPhaseIndex < 0) activeCalculatedPhaseIndex = 0;
+            
+            const targetPhaseObject = SUPERLATIVE_TIMELINE_PHASES[activeCalculatedPhaseIndex % SUPERLATIVE_TIMELINE_PHASES.length];
+            const displayQuestionEl = document.getElementById("superlative-question");
+            if(displayQuestionEl) {
+                displayQuestionEl.innerText = targetPhaseObject.prompt[currentLanguage] || targetPhaseObject.prompt['en'];
             }
-
-            ['en', 'fr', 'ar'].forEach(l => {
-                const btn = document.getElementById(`lang-btn-${l}`);
-                btn.className = l === langCode 
-                    ? "px-3 py-1.5 rounded-lg text-xs font-black transition-all bg-slate-950 text-white border-2 border-slate-950" 
-                    : "px-3 py-1.5 rounded-lg text-xs font-black transition-all text-slate-800 hover:bg-white/60";
-            });
-
-            updateVibeCheckboxInterface();
-            updateVibeCounterFeedback();
-            evaluateThreeDayBallotRotationPhase();
-
-            if(loggedInUser) {
-                renderAchievementsArcadeGridHTML();
-                renderStudentGrid();
-                renderReceivedMessages();
-                populateSuperlativeDropdown();
-                renderChroniclesStoriesFeedGridHTML(); 
+            
+            const historicalArchivedPhaseIndex = (activeCalculatedPhaseIndex - 1 + SUPERLATIVE_TIMELINE_PHASES.length) % SUPERLATIVE_TIMELINE_PHASES.length;
+            const historicalArchiveObject = SUPERLATIVE_TIMELINE_PHASES[historicalArchivedPhaseIndex];
+            
+            const archiveContentEl = document.getElementById("superlative-archive-content");
+            if(archiveContentEl) {
+                archiveContentEl.innerText = historicalArchiveObject.archive[currentLanguage] || historicalArchiveObject.archive['en'];
             }
+        }
 
-            if(!window.languagesVisitedTrace) window.languagesVisitedTrace = [];
-            if(!window.languagesVisitedTrace.includes(langCode)) window.languagesVisitedTrace.push(langCode);
-            if(window.languagesVisitedTrace.length === 3) triggerAchievementUnlockCheck(16);
-        };
-
-        window.handleAutocompleteSearch = function(query) {
+        function handleAutocompleteSearch(query) {
             const dropdown = document.getElementById("autocomplete-dropdown");
             if(!dropdown) return;
             dropdown.innerHTML = "";
@@ -767,16 +730,18 @@
                 dropdown.appendChild(rowItem);
             });
             dropdown.classList.remove("hidden");
-        };
+        }
 
-        // 🌟 CASE SENSITIVITY VERIFICATION FIXED: Structural sync against 'Full_name' keys matching database rows perfectly
-        window.handleAuthenticationPipeline = async function(event) {
+        // ========================================================= -->
+        // DUAL TABLE SYNCHRONIZATION PIPELINE                       -->
+        // ========================================================= -->
+        async function handleAuthenticationPipeline(event) {
             event.preventDefault(); 
             const fullNameInput = document.getElementById("auth-fullname-input").value.trim();
             const passwordInput = document.getElementById("auth-password").value;
             const feedbackEl = document.getElementById("auth-feedback");
 
-            feedbackEl.className = "text-center text-xs font-bold p-3 bg-purple-100 text-purple-900 border-3 border-slate-900 block animate-pulse";
+            feedbackEl.className = "text-center text-xs font-bold p-3 bg-purple-100 text-purple-900 border-3 border-slate-900 block";
             feedbackEl.innerText = "Querying credentials registry matrix checks...";
 
             const matchedUserRecord = globalStudentsList.find(s => s.Full_name.toLowerCase() === fullNameInput.toLowerCase());
@@ -815,116 +780,567 @@
                 feedbackEl.className = "text-center text-xs font-bold p-3 bg-rose-100 text-rose-900 border-3 border-slate-900 block";
                 feedbackEl.innerText = "Database sync failed.";
             }
-        };
+        }
 
-        window.rollRandomClassmateTarget = function() {
-            const validTargetsList = globalStudentsList.filter(s => s.Full_name !== loggedInUser.Full_name);
-            if(validTargetsList.length === 0) return;
+        function proceedToDashboard(userRecord) {
+            loggedInUser = userRecord;
+            document.getElementById("user-display-name").innerText = loggedInUser.Full_name;
+            document.getElementById("user-avatar-char").innerText = loggedInUser.Full_name.charAt(0).toUpperCase();
 
-            const randomClassmateIndex = Math.floor(Math.random() * validTargetsList.length);
-            const rolledTargetStudent = validTargetsList[randomClassmateIndex];
+            const cachedTheme = localStorage.getItem(`envelope_theme_${loggedInUser.id}`) || 'aura-champagne';
+            updateProfileTheme(cachedTheme);
 
-            let SantaRollsCounter = parseInt(localStorage.getItem(`santa_rolls_${loggedInUser.id}`) || "0");
-            SantaRollsCounter++;
-            localStorage.setItem(`santa_rolls_${loggedInUser.id}`, SantaRollsCounter);
-            
-            if(SantaRollsCounter >= 1) triggerAchievementUnlockCheck(14);
-            if(SantaRollsCounter >= 5) triggerAchievementUnlockCheck(15);
+            setTimeout(async () => {
+                document.getElementById("auth-section").classList.add("hidden");
+                document.getElementById("main-dashboard").classList.remove("hidden");
+                document.getElementById("live-marquee-container").classList.remove("hidden");
+                confetti({ particleCount: 100, spread: 60, origin: { y: 0.6 } });
+                
+                initializeAchievementsMatrixStorageSystem();
+                await synchronizeClassroomData();
+                populateSuperlativeDropdown(); 
+                await renderChroniclesStoriesFeedGridHTML(); 
+                await runGlobalLeaderboardEngine();
+                initializeLiveMarqueeBroadcastFeed();
 
-            const lastRolledName = localStorage.getItem(`last_rolled_name_${loggedInUser.id}`);
-            if(lastRolledName === rolledTargetStudent.Full_name) {
-                triggerAchievementUnlockCheck(29);
-            }
-            localStorage.setItem(`last_rolled_name_${loggedInUser.id}`, rolledTargetStudent.Full_name);
+                triggerAchievementUnlockCheck(1); 
+                const currentHour = new Date().getHours();
+                if(currentHour >= 0 && currentHour < 5) triggerAchievementUnlockCheck(8);
+                if(currentHour >= 5 && currentHour < 8) triggerAchievementUnlockCheck(9);
+            }, 800);
+        }
 
-            openEnvelopeModalFor(btoa(unescape(encodeURIComponent(rolledTargetStudent.Full_name))));
-        };
+        async function synchronizeClassroomData() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('Students')
+                    .select('id, Full_name')
+                    .order('Full_name', { ascending: true });
 
-        window.updateProfileTheme = function(themeClass) {
-            const card = document.getElementById("user-vault-card");
-            if(!card) return;
-            card.className = "arcade-card rounded-3xl p-5 space-y-4 relative overflow-hidden transition-all duration-300";
-            card.classList.add(themeClass);
-            
-            let auraChangesCount = parseInt(localStorage.getItem(`aura_theme_swaps_${loggedInUser.id}`) || "0");
-            auraChangesCount++;
-            localStorage.setItem(`aura_theme_swaps_${loggedInUser.id}`, auraChangesCount);
-            
-            if(auraChangesCount > 1) triggerAchievementUnlockCheck(10);
-            if(auraChangesCount >= 6) triggerAchievementUnlockCheck(11);
+                if (!error && data) { globalStudentsList = data; }
+                renderStudentGrid();
+                await renderReceivedMessages();
+            } catch (e) { console.error(e); }
+        }
 
-            if(loggedInUser) { localStorage.setItem(`envelope_theme_${loggedInUser.id}`, themeClass); }
-        };
+        async function runGlobalLeaderboardEngine() {
+            const podiumsContainer = document.getElementById("leaderboard-podiums-container");
+            if(!podiumsContainer) return;
+            podiumsContainer.innerHTML = "";
 
-        window.castSuperlativeVote = function() {
-            const chosenNominee = document.getElementById("superlative-nominee-select").value;
-            if(!chosenNominee) return;
-            confetti({ particleCount: 35, spread: 45 });
-            alert(currentLanguage === 'ar' ? "تم تسجيل صوتك السري بنجاح! شكرًا لك." : "Secret ballot superlative entry cataloged perfectly!");
-            triggerAchievementUnlockCheck(12); 
-        };
+            try {
+                const { data: messages, error } = await supabaseClient
+                    .from('messages')
+                    .select('recipient_name, vibe_tags')
+                    .eq('is_approved', true);
 
-        window.triggerFortuneCookieGame = function() {
-            const cookieAsset = document.getElementById("cookie-graphic-node");
-            cookieAsset.classList.add("animate-crack");
-            confetti({ particleCount: 50, spread: 45 });
+                if (error) throw error;
 
-            const chosenRandomPick = POEMS_ARRAY[Math.floor(Math.random() * POEMS_ARRAY.length)];
-            const verseContentText = chosenRandomPick[currentLanguage] || chosenRandomPick['en'];
-            const textDisplayNode = document.getElementById("radiance-display");
+                const userTraitsMatrix = {};
+                globalStudentsList.forEach(s => {
+                    userTraitsMatrix[s.Full_name] = { "Brilliant": 0, "Energy": 0, "Unstoppable": 0, "Total": 0 };
+                });
 
-            let cookieClicksTotalCount = parseInt(localStorage.getItem(`cookie_clicks_total_${loggedInUser.id}`) || "0");
-            cookieClicksTotalCount++;
-            localStorage.setItem(`cookie_clicks_total_${loggedInUser.id}`, cookieClicksTotalCount);
+                messages.forEach(msg => {
+                    const name = msg.recipient_name;
+                    if(!userTraitsMatrix[name]) return;
 
-            if(cookieClicksTotalCount >= 1) triggerAchievementUnlockCheck(5);
-            if(cookieClicksTotalCount >= 5) triggerAchievementUnlockCheck(6);
-            if(cookieClicksTotalCount >= 15) triggerAchievementUnlockCheck(7);
+                    let tagsArray = [];
+                    try { tagsArray = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArray = []; }
 
-            setTimeout(() => {
-                textDisplayNode.innerHTML = `<div class='bg-white text-slate-900 p-3 border-2 border-slate-900 rounded-xl shadow-[3px_3px_0px_0px_#1a0f0a] italic font-medium'>${verseContentText}</div>`;
-                cookieAsset.classList.remove("animate-crack");
-            }, 300);
-        };
+                    if(Array.isArray(tagsArray)) {
+                        tagsArray.forEach(tag => {
+                            userTraitsMatrix[name].Total++;
+                            const rawStr = tag.toLowerCase();
+                            if(rawStr.includes("brilliant") || rawStr.includes("عبقري") || rawStr.includes("esprit")) userTraitsMatrix[name]["Brilliant"]++;
+                            if(rawStr.includes("energy") || rawStr.includes("طاقة") || rawStr.includes("énergie")) userTraitsMatrix[name]["Energy"]++;
+                            if(rawStr.includes("unstoppable") || rawStr.includes("يتوقف") || rawStr.includes("inarrêtable")) userTraitsMatrix[name]["Unstoppable"]++;
+                        });
+                    }
+                });
 
-        window.closeEnvelopeModal = function() {
-            const modal = document.getElementById("envelope-modal");
-            modal.classList.add("opacity-0");
-            modal.querySelector(".transform").classList.add("scale-95");
-            setTimeout(() => modal.classList.add("hidden"), 300);
-        };
+                const getTopLeaderForArchetype = (key) => {
+                    return Object.keys(userTraitsMatrix).map(name => ({
+                        name: name,
+                        count: userTraitsMatrix[name][key]
+                    })).sort((a, b) => b.count - a.count)[0];
+                };
 
-        window.filterStudentGrid = function() { renderStudentGrid(); };
+                const archetypesList = [
+                    { title: "🧠 Most Brilliant", key: "Brilliant", color: "text-amber-400", bg: "bg-slate-800" },
+                    { title: "⚡ Pure Energy", key: "Energy", color: "text-cyan-400", bg: "bg-slate-800" },
+                    { title: "🔥 Unstoppable", key: "Unstoppable", color: "text-rose-400", bg: "bg-slate-800" }
+                ];
 
-        window.generateKeepsakePDF = function() {
-            if (activeReceivedMessagesCache.length === 0) return;
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+                archetypesList.forEach(arc => {
+                    const topScorer = getTopLeaderForArchetype(arc.key);
+                    const scoreboardBlock = document.createElement("div");
+                    scoreboardBlock.className = `${arc.bg} p-4 rounded-xl border-2 border-slate-700 font-arcade text-[10px] space-y-2 flex flex-col justify-between relative overflow-hidden`;
+                    
+                    const scoreCountDisplay = topScorer && topScorer.count > 0 ? `${topScorer.count} PTS` : "0 PTS";
+                    const scoreNameDisplay = topScorer && topScorer.count > 0 ? topScorer.name : "No Record Yet";
 
-            doc.rect(5, 5, 200, 287);
-            doc.setFont("Helvetica", "bold");
-            doc.setFontSize(22);
-            doc.text("JUST SMILE // KEEPSAKE ARCHIVE", 105, 25, { align: "center" });
+                    const overlayKingBadgeHTML = (topScorer && topScorer.name === globalCrownedKingStudentName && globalCrownedKingStudentName !== "") 
+                        ? `<div class='absolute top-1 right-1 text-base king-crown-animation' title='Chronicles Active Crowned King Profile!'>👑</div>` 
+                        : "";
 
-            let cursorY = 60;
-            activeReceivedMessagesCache.forEach((envelope) => {
-                if (cursorY > 250) { doc.addPage(); cursorY = 25; }
-                let cleanBodyText = envelope.content;
-                if (cleanBodyText.includes("__LOCK__:")) {
-                    cleanBodyText = cleanBodyText.split("__:").slice(2).join("__:");
+                    scoreboardBlock.innerHTML = `
+                        ${overlayKingBadgeHTML}
+                        <div class="text-white font-bold tracking-wider">${arc.title}</div>
+                        <div class="${arc.color} font-black text-xs truncate my-1">${scoreNameDisplay}</div>
+                        <div class="text-slate-500 text-right font-bold">${scoreCountDisplay}</div>
+                    `;
+                    podiumsContainer.appendChild(scoreboardBlock);
+                });
+
+                document.getElementById("spark-total-messages").innerText = `${messages.length} Envelopes Drops`;
+                document.getElementById("spark-legendary-count").innerText = `${messages.length + 32} Secret Ballots`;
+                
+                triggerAchievementUnlockCheck(23); 
+
+            } catch (err) { console.error(err); }
+        }
+
+        async function initializeLiveMarqueeBroadcastFeed() {
+            const track = document.getElementById("live-ticker-track");
+            if(!track) return;
+
+            try {
+                const { data: latestFeeds, error } = await supabaseClient
+                    .from('messages')
+                    .select('sender_name, recipient_name, created_at, vibe_tags')
+                    .order('created_at', { ascending: false })
+                    .limit(5);
+
+                if(!error && latestFeeds && latestFeeds.length > 0) {
+                    let textStreamConcat = "";
+                    latestFeeds.forEach(item => {
+                        let tagsArray = [];
+                        try { tagsArray = Array.isArray(item.vibe_tags) ? item.vibe_tags : JSON.parse(item.vibe_tags); } catch(e){}
+                        const badgeSnippet = tagsArray.length > 0 ? tagsArray[0] : "💌";
+                        
+                        let cleanSender = item.sender_name;
+                        if (item.sender_name === 'Anonymous') {
+                            cleanSender = currentLanguage === 'ar' ? "فاعل خير مجهول" : (currentLanguage === 'fr' ? "Anonyme" : "Someone");
+                        }
+
+                        let templateSnippetText = "";
+                        if (currentLanguage === 'ar') {
+                            templateSnippetText = ` 🔥 تم إرسال مغلف [ ${badgeSnippet} ] بنجاح من ${cleanSender} إلى الزميل(ة) ${item.recipient_name}! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        } else if (currentLanguage === 'fr') {
+                            templateSnippetText = ` 🔥 Enveloppe [ ${badgeSnippet} ] transmise avec succès de la part de ${cleanSender} à ${item.recipient_name} ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        } else {
+                            templateSnippetText = ` 🔥 Envelope [ ${badgeSnippet} ] transmitted from ${cleanSender} to ${item.recipient_name} successfully! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+                        }
+                        textStreamConcat += templateSnippetText;
+                    });
+
+                    track.innerHTML = textStreamConcat + textStreamConcat;
+                    triggerAchievementUnlockCheck(31);
+                } else {
+                    const fallbackDefaultMarqueeTxt = currentLanguage === 'ar' 
+                        ? " ✨ انشر الكلمات الطيبة والتقدير بين زملائك في الدفعة الآن! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" 
+                        : (currentLanguage === 'fr' ? " ✨ Partagez des ondes positives avec vos camarades de classe dès maintenant ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : " ✨ Share appreciation loops across the class matrix! True anonymity protocols are completely green. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                    track.innerHTML = fallbackDefaultMarqueeTxt + fallbackDefaultMarqueeTxt;
                 }
-                const strippedText = cleanBodyText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '');
-                const splitLines = doc.splitTextToSize(`"${strippedText}"`, 160);
-                const blockH = (splitLines.length * 5) + 12;
+            } catch(e){ console.error(e); }
+        }
 
-                doc.rect(18, cursorY, 174, blockH);
-                doc.text(splitLines, 22, cursorY + 6);
-                cursorY += blockH + 6;
+        function initializeAchievementsMatrixStorageSystem() {
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            if(!localStorage.getItem(trackingKey)) {
+                localStorage.setItem(trackingKey, JSON.stringify([]));
+            }
+            renderAchievementsArcadeGridHTML();
+        }
+
+        function triggerAchievementUnlockCheck(achievementID) {
+            if(!loggedInUser) return;
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            let currentUnlockedArray = [];
+            try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
+
+            if(currentUnlockedArray.includes(achievementID)) return; 
+            currentUnlockedArray.push(achievementID);
+            localStorage.setItem(trackingKey, JSON.stringify(currentUnlockedArray));
+
+            if(currentUnlockedArray.length >= 15) triggerAchievementUnlockCheck(34);
+            renderAchievementsArcadeGridHTML();
+        }
+
+        function renderAchievementsArcadeGridHTML() {
+            const grid = document.getElementById("trophies-scroll-matrix");
+            const counter = document.getElementById("unlocked-trophies-counter");
+            const headingNode = document.getElementById("achievements-heading-txt");
+            if(!grid || !counter) return;
+
+            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
+            let currentUnlockedArray = [];
+            try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
+
+            counter.innerText = currentUnlockedArray.length;
+            if (headingNode) {
+                headingNode.innerHTML = `🏆 ${LOCALIZATION_MAP[currentLanguage].achievementsHeading || "Achievements Locked: "} <span class="text-green-400">${currentUnlockedArray.length}</span>/35`;
+            }
+            grid.innerHTML = "";
+
+            MASTER_TROPHIES_BLUEPRINT.forEach(trophy => {
+                const isUnlocked = currentUnlockedArray.includes(trophy.id);
+                const cell = document.createElement("div");
+                
+                cell.className = `w-7 h-7 md:w-8 md:h-8 rounded-lg border flex items-center justify-center text-xs md:text-sm cursor-pointer transition-all duration-300 select-none ${
+                    isUnlocked 
+                    ? "bg-gradient-to-br from-yellow-300 to-amber-500 border-yellow-600 scale-100" 
+                    : "bg-slate-800/80 border-slate-700 grayscale opacity-40"
+                }`;
+                cell.innerText = trophy.icon;
+                
+                const updateHintDisplay = () => {
+                    const statusText = isUnlocked 
+                        ? (currentLanguage === 'ar' ? "🔓 تم الإنجاز" : (currentLanguage === 'fr' ? "🔓 DÉBLOQUÉ" : "🔓 UNLOCKED")) 
+                        : (currentLanguage === 'ar' ? "🔒 مقفل" : (currentLanguage === 'fr' ? "🔒 VERROUILLÉ" : "🔒 LOCKED"));
+                    
+                    const localizedTrophyName = trophy.name[currentLanguage] || trophy.name['en'];
+                    const localizedTrophyHint = trophy.hint[currentLanguage] || trophy.hint['en'];
+
+                    document.getElementById("selected-trophy-hint-display").innerHTML = `<span class='text-yellow-400 font-bold'>[${statusText}] ${localizedTrophyName}:</span> ${localizedTrophyHint}`;
+                };
+
+                cell.onmouseover = updateHintDisplay;
+                cell.onclick = updateHintDisplay;
+                grid.appendChild(cell);
             });
+        }
+
+        async function fireQuickVibeTransmission(badgeIndexInteger) {
+            const indexTargetedTagEnglish = QUICK_VIBES_OPTIONS_MATRIX['en'][badgeIndexInteger];
             
-            doc.save("Just_Smile_Keepsake.pdf");
-            triggerAchievementUnlockCheck(13); 
-        };
+            const standardQuickCommentsPool = {
+                en: `Dropped an instant burst of appreciation your way! Attaching the ${indexTargetedTagEnglish} trait badge. Have an amazing break!`,
+                fr: `Je t'envoie un élan d'énergie positive en un clic ! Mention spéciale pour le trait ${QUICK_VIBES_OPTIONS_MATRIX['fr'][badgeIndexInteger]}. Passe un excellent été !`,
+                ar: `أرسلت لك تحية تقديرية سريعة بضغطة زر واحدة! تمنياتي لك بعطلة رائعة مليئة بصفة: ${QUICK_VIBES_OPTIONS_MATRIX['ar'][badgeIndexInteger]}.`
+            };
+
+            const autoGeneratedCommentText = standardQuickCommentsPool[currentLanguage] || standardQuickCommentsPool['en'];
+            
+            const localizedVibeArrayPayload = [
+                QUICK_VIBES_OPTIONS_MATRIX['en'][badgeIndexInteger], 
+                QUICK_VIBES_OPTIONS_MATRIX['fr'][badgeIndexInteger], 
+                QUICK_VIBES_OPTIONS_MATRIX['ar'][badgeIndexInteger]
+            ];
+
+            const quickActionPayload = {
+                content: autoGeneratedCommentText,
+                recipient_name: globalTargetRecipient,
+                sender_name: loggedInUser.Full_name, 
+                is_approved: true,
+                toxic_flag: false,
+                vibe_tags: localizedVibeArrayPayload
+            };
+
+            const backupPrivateLogPayload = {
+                sender_name: loggedInUser.Full_name,
+                recipient_name: globalTargetRecipient,
+                message_content: `[⚡ QUICK VIBE BADGE]: ${autoGeneratedCommentText}`,
+                vibe_tags: localizedVibeArrayPayload,
+                is_anonymous_on_frontend: false
+            };
+
+            try {
+                const { error: publicErr } = await supabaseClient.from('messages').insert([quickActionPayload]);
+                if (publicErr) throw publicErr;
+
+                await supabaseClient.from('admin_logs').insert([backupPrivateLogPayload]);
+
+                confetti({ particleCount: 40, origin: { y: 0.6 } });
+                closeEnvelopeModal();
+                alert("Quick vibe capsule transmitted immediately!");
+                
+                let quickCount = parseInt(localStorage.getItem(`quick_vibe_count_${loggedInUser.id}`) || "0");
+                quickCount++;
+                localStorage.setItem(`quick_vibe_count_${loggedInUser.id}`, quickCount);
+                
+                if(quickCount >= 1) triggerAchievementUnlockCheck(18);
+                if(quickCount >= 5) triggerAchievementUnlockCheck(19);
+
+                let uniqueInteractedNodesList = [];
+                try { uniqueInteractedNodesList = JSON.parse(localStorage.getItem(`unique_nodes_interacted_${loggedInUser.id}`)) || []; } catch(e){}
+                if(!uniqueInteractedNodesList.includes(globalTargetRecipient)) {
+                    uniqueInteractedNodesList.push(globalTargetRecipient);
+                    localStorage.setItem(`unique_nodes_interacted_${loggedInUser.id}`, JSON.stringify(uniqueInteractedNodesList));
+                }
+                if(uniqueInteractedNodesList.length >= 3) triggerAchievementUnlockCheck(32);
+
+                await synchronizeClassroomData();
+                await runGlobalLeaderboardEngine();
+                await initializeLiveMarqueeBroadcastFeed();
+            } catch(e) { alert("Transmission setup error."); }
+        }
+
+        async function submitEnvelopePipeline() {
+            const rawContent = document.getElementById("modal-msg-content").value.trim();
+            const isAnonymous = document.getElementById("modal-anon-checkbox").checked;
+            const chosenLockDate = document.getElementById("modal-lock-date").value;
+
+            if (selectedVibeTraits.length !== 3) {
+                alert("Please select exactly 3 distinct vibe traits option badges!");
+                return;
+            }
+            if (!rawContent) {
+                alert("Message text space cannot be empty.");
+                return;
+            }
+
+            let toxicFlagTriggered = false;
+            const textToAnalyze = rawContent.toLowerCase();
+            TOXIC_FILTER_DICTIONARY.forEach(slurPattern => {
+                if (textToAnalyze.includes(slurPattern)) toxicFlagTriggered = true;
+            });
+
+            const databaseApprovedState = !toxicFlagTriggered;
+            const publicSenderValue = isAnonymous ? "Anonymous" : loggedInUser.Full_name;
+            const finalProcessedPayloadContent = chosenLockDate ? `__LOCK__:${chosenLockDate}__:${rawContent}` : rawContent;
+
+            const publicEnvelopePayload = {
+                content: finalProcessedPayloadContent,
+                recipient_name: globalTargetRecipient,
+                sender_name: publicSenderValue,
+                is_approved: databaseApprovedState,
+                toxic_flag: toxicFlagTriggered,
+                vibe_tags: selectedVibeTraits
+            };
+
+            const privateLogPayload = {
+                sender_name: loggedInUser.Full_name,
+                recipient_name: globalTargetRecipient,
+                message_content: rawContent,
+                vibe_tags: selectedVibeTraits,
+                is_anonymous_on_frontend: isAnonymous
+            };
+
+            const submitBtn = document.getElementById("modal-submit-btn");
+            submitBtn.disabled = true;
+
+            try {
+                const { error: publicErr } = await supabaseClient.from('messages').insert([publicEnvelopePayload]);
+                if (publicErr) throw publicErr;
+
+                await supabaseClient.from('admin_logs').insert([privateLogPayload]);
+
+                confetti({ particleCount: 40 });
+                closeEnvelopeModal();
+                alert("Your capsule matrix transmission channel has completed sync pipelines.");
+                
+                if(!toxicFlagTriggered) triggerAchievementUnlockCheck(17);
+                if(chosenLockDate) triggerAchievementUnlockCheck(20);
+                
+                let timeLocksSavedCount = parseInt(localStorage.getItem(`timelocks_count_${loggedInUser.id}`) || "0");
+                if(chosenLockDate) {
+                    timeLocksSavedCount++;
+                    localStorage.setItem(`timelocks_count_${loggedInUser.id}`, timeLocksSavedCount);
+                    if(timeLocksSavedCount >= 3) triggerAchievementUnlockCheck(21);
+                }
+
+                if(isAnonymous) triggerAchievementUnlockCheck(24);
+
+                let uniqueInteractedNodesList = [];
+                try { uniqueInteractedNodesList = JSON.parse(localStorage.getItem(`unique_nodes_interacted_${loggedInUser.id}`)) || []; } catch(e){}
+                if(!uniqueInteractedNodesList.includes(globalTargetRecipient)) {
+                    uniqueInteractedNodesList.push(globalTargetRecipient);
+                    localStorage.setItem(`unique_nodes_interacted_${loggedInUser.id}`, JSON.stringify(uniqueInteractedNodesList));
+                }
+                if(uniqueInteractedNodesList.length >= 3) triggerAchievementUnlockCheck(32);
+
+                await synchronizeClassroomData();
+                await runGlobalLeaderboardEngine();
+                await initializeLiveMarqueeBroadcastFeed();
+            } catch (err) {
+                alert("Database transmission failed.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = LOCALIZATION_MAP[currentLanguage].modalSubmit;
+            }
+        }
+
+        function renderStudentGrid() {
+            const gridContainer = document.getElementById("students-grid");
+            if(!gridContainer) return;
+            gridContainer.innerHTML = "";
+            const searchQuery = document.getElementById("grid-search").value.toLowerCase().trim();
+
+            if(searchQuery.length > 0) triggerAchievementUnlockCheck(30);
+
+            const filteredList = globalStudentsList.filter(student => {
+                return student.Full_name.toLowerCase().includes(searchQuery) && student.id !== loggedInUser.id;
+            });
+
+            filteredList.forEach(student => {
+                const card = document.createElement("div");
+                card.className = "brutal-card bg-white rounded-2xl p-4 flex items-center justify-between group cursor-pointer border-2 text-slate-900";
+                card.setAttribute("onclick", `openEnvelopeModalFor('${btoa(unescape(encodeURIComponent(student.Full_name)))}')`);
+                
+                const initials = student.Full_name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0,2);
+                
+                card.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#eddcd2] border-2 border-slate-900 text-slate-900 font-black text-xs flex items-center justify-center group-hover:rotate-6 transition-all shadow-sm">
+                            ${initials}
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-black text-slate-900">${student.Full_name}</h4>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Classmate</p>
+                        </div>
+                    </div>
+                    <span class="text-md transform group-hover:scale-125 transition-all">💌</span>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        async function renderReceivedMessages() {
+            const cardsStack = document.getElementById("received-messages-stack");
+            const totalCountLabel = document.getElementById("letters-count");
+            if(!cardsStack) return;
+            cardsStack.innerHTML = "";
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('messages')
+                    .select('*')
+                    .eq('recipient_name', loggedInUser.Full_name)
+                    .eq('is_approved', true);
+
+                if (error) throw error;
+                activeReceivedMessagesCache = data || [];
+                totalCountLabel.innerText = activeReceivedMessagesCache.length;
+
+                if(activeReceivedMessagesCache.length === 0) {
+                    cardsStack.innerHTML = `<div class='text-center p-6 text-xs font-bold text-slate-400 italic'>No letters here yet. Spreading some joy around class might prompt a quick reply!</div>`;
+                    renderVibeAnalyticsGraph([]);
+                    return;
+                }
+
+                activeReceivedMessagesCache.forEach((msg) => {
+                    const polaroidCard = document.createElement("div");
+                    polaroidCard.className = "brutal-card bg-white p-5 rounded-2xl relative space-y-3 border-2 text-slate-900";
+
+                    let displayContentString = msg.content;
+                    let displaySenderLabel = msg.sender_name;
+                    let isCapsuleLocked = false;
+                    let targetUnlockDateString = "";
+
+                    if (displayContentString.startsWith("__LOCK__:")) {
+                        const parts = displayContentString.split("__:");
+                        targetUnlockDateString = parts[1]; 
+                        displayContentString = parts.slice(2).join("__:");
+
+                        const unlockDateObj = new Date(targetUnlockDateString);
+                        unlockDateObj.setHours(0,0,0,0);
+                        const cleanToday = new Date();
+                        cleanToday.setHours(0,0,0,0);
+
+                        if (cleanToday < unlockDateObj) isCapsuleLocked = true;
+                    }
+
+                    let tagsArr = [];
+                    try { tagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArr = ["✨ Class Star"]; }
+
+                    tagsArr.forEach(t => {
+                        if(t.includes("Kind Heart") || t.includes("طيب القلب") || t.includes("Tendre")) triggerAchievementUnlockCheck(26);
+                        if(t.includes("Visionary") || t.includes("رؤيوي") || t.includes("Visionnaire")) triggerAchievementUnlockCheck(27);
+                    });
+
+                    let tagsHTML = "";
+                    tagsArr.forEach(t => {
+                        tagsHTML += `<span class="bg-slate-100 border border-slate-900 px-2 py-0.5 rounded-md text-[9px] font-black">${t}</span>`;
+                    });
+
+                    if (isCapsuleLocked) {
+                        polaroidCard.className = "brutal-card bg-amber-50/70 p-5 rounded-2xl relative space-y-3 border-2 border-dashed text-slate-900";
+                        polaroidCard.innerHTML = `
+                            <div class="space-y-2">
+                                <div class="text-xs font-black text-amber-900 flex items-center gap-1.5 bg-amber-200 inline-block px-2 py-0.5 rounded-md border border-amber-400">
+                                    🔒 Locked Mystery Capsule Envelope
+                                </div>
+                                <p class="text-xs font-bold text-slate-300 italic select-none filter blur-[5px]">
+                                    This beautiful message stays hidden until the date criteria unlocks.
+                                </p>
+                                <div class="text-[10px] font-black text-slate-700 bg-white p-2 border border-slate-400 rounded-lg inline-block shadow-sm">
+                                    📅 Unlocks on: <span class="text-pink-600 font-extrabold">${targetUnlockDateString}</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 pt-2 opacity-40">${tagsHTML}</div>
+                        `;
+                    } else {
+                        polaroidCard.innerHTML = `
+                            <div class="text-xs font-bold text-slate-800 leading-relaxed italic select-all">
+                                "${displayContentString}"
+                            </div>
+                            <div class="flex flex-wrap gap-1 pt-1">${tagsHTML}</div>
+                            <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] font-black text-slate-400">
+                                <span>FROM: ${displaySenderLabel}</span>
+                                <span class="text-emerald-700 font-extrabold">✓ DECRYPTED</span>
+                            </div>
+                        `;
+                    }
+                    cardsStack.appendChild(polaroidCard);
+                });
+
+                renderVibeAnalyticsGraph(activeReceivedMessagesCache);
+                if(activeReceivedMessagesCache.length > 0) triggerAchievementUnlockCheck(22);
+            } catch (err) { console.error(err); }
+        }
+
+        function renderVibeAnalyticsGraph(messagesArray) {
+            const graphContainer = document.getElementById("analytics-bars-container");
+            if(!graphContainer) return;
+            graphContainer.innerHTML = "";
+            
+            const numericalFrequenciesAccumulator = [0, 0, 0, 0, 0, 0, 0, 0];
+            let rawTotalTagsAnalyzedCount = 0;
+
+            messagesArray.forEach(msg => {
+                try {
+                    const parsedTagsList = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
+                    if(Array.isArray(parsedTagsList)) {
+                        parsedTagsList.forEach(singleTagString => {
+                            const normalizedText = singleTagString.toLowerCase();
+                            
+                            for (let i = 0; i < RADAR_SUBSTRING_COMPILER_MAP.length; i++) {
+                                const mappingObj = RADAR_SUBSTRING_COMPILER_MAP[i];
+                                const patternMatched = mappingObj.keywords.some(keyword => normalizedText.includes(keyword));
+                                
+                                if(patternMatched) {
+                                    numericalFrequenciesAccumulator[mappingObj.id]++;
+                                    rawTotalTagsAnalyzedCount++;
+                                    break; 
+                                }
+                            }
+                        });
+                    }
+                } catch(e){ console.error(e); }
+            });
+
+            const currentActiveLabelsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
+            
+            for (let i = 0; i < 8; i++) {
+                const countValue = numericalFrequenciesAccumulator[i];
+                const dynamicPercentageWidth = rawTotalTagsAnalyzedCount > 0 ? Math.round((countValue / rawTotalTagsAnalyzedCount) * 100) : 0;
+
+                const progressRowMarkup = document.createElement("div");
+                progressRowMarkup.className = "space-y-1";
+                progressRowMarkup.innerHTML = `
+                    <div class="flex justify-between text-[10px] font-black text-slate-700">
+                        <span>${currentActiveLabelsPool[i]}</span>
+                        <span>${countValue}</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-3 rounded-md border border-slate-900 overflow-hidden shadow-inner relative">
+                        <div class="bg-pink-400 h-full border-r border-slate-900 transition-all duration-1000" style="width: ${rawTotalTagsAnalyzedCount > 0 ? dynamicPercentageWidth : 5}%"></div>
+                    </div>
+                `;
+                graphContainer.appendChild(progressRowMarkup);
+            }
+        }
 
         window.submitChronicleStoryPipeline = async function(event) {
             event.preventDefault();
@@ -1070,7 +1486,7 @@
                 });
 
             } catch (err) { console.error(err); }
-        };
+        }
 
         window.castChronicleStoryKingVote = async function(storyUUIDString, checkAlreadyVotedBooleanFlag) {
             if(checkAlreadyVotedBooleanFlag) {
@@ -1089,424 +1505,13 @@
                     .insert([voteInsertPayload]);
 
                 if(error) throw error;
-
                 confetti({ particleCount: 30, angle: 90, spread: 45 });
                 await renderChroniclesStoriesFeedGridHTML();
-
-            } catch (err) {
-                console.error(err);
-                alert("Vote transmission skipped parameters criteria checking models rows rules.");
-            }
+            } catch (err) { console.error(err); }
         };
 
-        function proceedToDashboard(userRecord) {
-            loggedInUser = userRecord;
-            document.getElementById("user-display-name").innerText = loggedInUser.Full_name;
-            document.getElementById("user-avatar-char").innerText = loggedInUser.Full_name.charAt(0).toUpperCase();
-
-            const cachedTheme = localStorage.getItem(`envelope_theme_${loggedInUser.id}`) || 'aura-champagne';
-            updateProfileTheme(cachedTheme);
-
-            setTimeout(async () => {
-                document.getElementById("auth-section").classList.add("hidden");
-                document.getElementById("main-dashboard").classList.remove("hidden");
-                document.getElementById("live-marquee-container").classList.remove("hidden");
-                confetti({ particleCount: 100, spread: 60, origin: { y: 0.6 } });
-                
-                initializeAchievementsMatrixStorageSystem();
-                
-                await synchronizeClassroomData();
-                populateSuperlativeDropdown();
-                await renderChroniclesStoriesFeedGridHTML(); 
-                await runGlobalLeaderboardEngine();
-                
-                initializeLiveMarqueeBroadcastFeed();
-
-                triggerAchievementUnlockCheck(1); 
-                
-                const currentHour = new Date().getHours();
-                if(currentHour >= 0 && currentHour < 5) triggerAchievementUnlockCheck(8);
-                if(currentHour >= 5 && currentHour < 8) triggerAchievementUnlockCheck(9);
-            }, 800);
-        }
-
-        async function synchronizeClassroomData() {
-            try {
-                const { data, error } = await supabaseClient
-                    .from('Students')
-                    .select('id, Full_name')
-                    .order('Full_name', { ascending: true });
-
-                if (!error && data) { globalStudentsList = data; }
-                renderStudentGrid();
-                await renderReceivedMessages();
-            } catch (e) { console.error(e); }
-        }
-
-        async function runGlobalLeaderboardEngine() {
-            const podiumsContainer = document.getElementById("leaderboard-podiums-container");
-            if(!podiumsContainer) return;
-            podiumsContainer.innerHTML = "";
-
-            try {
-                const { data: messages, error } = await supabaseClient
-                    .from('messages')
-                    .select('recipient_name, vibe_tags')
-                    .eq('is_approved', true);
-
-                if (error) throw error;
-
-                const userTraitsMatrix = {};
-                globalStudentsList.forEach(s => {
-                    userTraitsMatrix[s.Full_name] = { "Brilliant": 0, "Energy": 0, "Unstoppable": 0, "Total": 0 };
-                });
-
-                messages.forEach(msg => {
-                    const name = msg.recipient_name;
-                    if(!userTraitsMatrix[name]) return;
-
-                    let tagsArray = [];
-                    try { tagsArray = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArray = []; }
-
-                    if(Array.isArray(tagsArray)) {
-                        tagsArray.forEach(tag => {
-                            userTraitsMatrix[name].Total++;
-                            const rawStr = tag.toLowerCase();
-                            if(rawStr.includes("brilliant") || rawStr.includes("عبقري") || rawStr.includes("esprit")) userTraitsMatrix[name]["Brilliant"]++;
-                            if(rawStr.includes("energy") || rawStr.includes("طاقة") || rawStr.includes("énergie")) userTraitsMatrix[name]["Energy"]++;
-                            if(rawStr.includes("unstoppable") || rawStr.includes("يتوقف") || rawStr.includes("inarrêtable")) userTraitsMatrix[name]["Unstoppable"]++;
-                        });
-                    }
-                });
-
-                const getTopLeaderForArchetype = (key) => {
-                    return Object.keys(userTraitsMatrix).map(name => ({
-                        name: name,
-                        count: userTraitsMatrix[name][key]
-                    })).sort((a, b) => b.count - a.count)[0];
-                };
-
-                const archetypesList = [
-                    { title: "🧠 Most Brilliant", key: "Brilliant", color: "text-amber-400", bg: "bg-slate-800" },
-                    { title: "⚡ Pure Energy", key: "Energy", color: "text-cyan-400", bg: "bg-slate-800" },
-                    { title: "🔥 Unstoppable", key: "Unstoppable", color: "text-rose-400", bg: "bg-slate-800" }
-                ];
-
-                archetypesList.forEach(arc => {
-                    const topScorer = getTopLeaderForArchetype(arc.key);
-                    const scoreboardBlock = document.createElement("div");
-                    scoreboardBlock.className = `${arc.bg} p-4 rounded-xl border-2 border-slate-700 font-arcade text-[10px] space-y-2 flex flex-col justify-between relative overflow-hidden`;
-                    
-                    const scoreCountDisplay = topScorer && topScorer.count > 0 ? `${topScorer.count} PTS` : "0 PTS";
-                    const scoreNameDisplay = topScorer && topScorer.count > 0 ? topScorer.name : "No Record Yet";
-
-                    const overlayKingBadgeHTML = (topScorer && topScorer.name === globalCrownedKingStudentName && globalCrownedKingStudentName !== "") 
-                        ? `<div class='absolute top-1 right-1 text-base king-crown-animation' title='Chronicles Active Crowned King Profile!'>👑</div>` 
-                        : "";
-
-                    scoreboardBlock.innerHTML = `
-                        ${overlayKingBadgeHTML}
-                        <div class="text-white font-bold tracking-wider">${arc.title}</div>
-                        <div class="${arc.color} font-black text-xs truncate my-1">${scoreNameDisplay}</div>
-                        <div class="text-slate-500 text-right font-bold">${scoreCountDisplay}</div>
-                    `;
-                    podiumsContainer.appendChild(scoreboardBlock);
-                });
-
-                document.getElementById("spark-total-messages").innerText = `${messages.length} Envelopes Drops`;
-                document.getElementById("spark-legendary-count").innerText = `${messages.length + 32} Secret Ballots`;
-                
-                triggerAchievementUnlockCheck(23); 
-
-            } catch (err) { console.error(err); }
-        }
-
-        function renderStudentGrid() {
-            const gridContainer = document.getElementById("students-grid");
-            if(!gridContainer) return;
-            gridContainer.innerHTML = "";
-            const searchQuery = document.getElementById("grid-search").value.toLowerCase().trim();
-
-            if(searchQuery.length > 0) triggerAchievementUnlockCheck(30);
-
-            const filteredList = globalStudentsList.filter(student => {
-                return student.Full_name.toLowerCase().includes(searchQuery) && student.id !== loggedInUser.id;
-            });
-
-            filteredList.forEach(student => {
-                const card = document.createElement("div");
-                card.className = "brutal-card bg-white rounded-2xl p-4 flex items-center justify-between group cursor-pointer border-2 text-slate-900";
-                card.setAttribute("onclick", `openEnvelopeModalFor('${btoa(unescape(encodeURIComponent(student.Full_name)))}')`);
-                
-                const initials = student.Full_name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0,2);
-                
-                card.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-[#eddcd2] border-2 border-slate-900 text-slate-900 font-black text-xs flex items-center justify-center group-hover:rotate-6 transition-all shadow-sm">
-                            ${initials}
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-black text-slate-900">${student.Full_name}</h4>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase">Classmate</p>
-                        </div>
-                    </div>
-                    <span class="text-md transform group-hover:scale-125 transition-all">💌</span>
-                `;
-                gridContainer.appendChild(card);
-            });
-        }
-
-        function openEnvelopeModalFor(base64Name) {
-            globalTargetRecipient = decodeURIComponent(escape(atob(base64Name)));
-            document.getElementById("modal-recipient-name").innerText = globalTargetRecipient;
-            
-            selectedVibeTraits = [];
-            document.getElementById("modal-msg-content").value = "";
-            document.getElementById("modal-anon-checkbox").checked = false;
-            document.getElementById("modal-lock-date").value = "";
-
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById("modal-lock-date").min = today;
-            
-            updateVibeCheckboxInterface();
-            updateVibeCounterFeedback();
-
-            const modal = document.getElementById("envelope-modal");
-            modal.classList.remove("hidden");
-            setTimeout(() => {
-                modal.classList.remove("opacity-0");
-                modal.querySelector(".transform").classList.remove("scale-95");
-            }, 10);
-        }
-
-        function updateVibeCheckboxInterface() {
-            const poolContainer = document.getElementById("vibe-checkbox-grid");
-            if(!poolContainer) return; 
-            poolContainer.innerHTML = "";
-            
-            const availableTraits = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
-            
-            availableTraits.forEach((trait) => {
-                const isChecked = selectedVibeTraits.includes(trait);
-                const itemBtn = document.createElement("div");
-                itemBtn.className = `p-2.5 border-2 rounded-xl text-xs font-black text-center cursor-pointer transition-all ${
-                    isChecked 
-                    ? "bg-amber-300 text-slate-900 border-slate-900 shadow-[2px_2px_0px_0px_#1a0f0a] scale-[1.02]" 
-                    : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
-                }`;
-                itemBtn.innerText = trait;
-                itemBtn.onclick = () => toggleVibeTraitSelection(trait);
-                poolContainer.appendChild(itemBtn);
-            });
-        }
-
-        function toggleVibeTraitSelection(traitValue) {
-            if (selectedVibeTraits.includes(traitValue)) {
-                selectedVibeTraits = selectedVibeTraits.filter(t => t !== traitValue);
-            } else {
-                if (selectedVibeTraits.length >= 3) selectedVibeTraits.shift();
-                selectedVibeTraits.push(traitValue);
-            }
-            updateVibeCheckboxInterface();
-            updateVibeCounterFeedback();
-        }
-
-        function updateVibeCounterFeedback() {
-            const feedbackTextNode = document.getElementById("vibe-counter-feedback");
-            if(!feedbackTextNode) return;
-            const textString = LOCALIZATION_MAP[currentLanguage].modalVibeCounter;
-            feedbackTextNode.innerText = textString.replace("{count}", selectedVibeTraits.length);
-        }
-
-        async function renderReceivedMessages() {
-            const cardsStack = document.getElementById("received-messages-stack");
-            const totalCountLabel = document.getElementById("letters-count");
-            if(!cardsStack) return;
-            cardsStack.innerHTML = "";
-
-            try {
-                const { data, error } = await supabaseClient
-                    .from('messages')
-                    .select('*')
-                    .eq('recipient_name', loggedInUser.Full_name)
-                    .eq('is_approved', true);
-
-                if (error) throw error;
-                activeReceivedMessagesCache = data || [];
-                totalCountLabel.innerText = activeReceivedMessagesCache.length;
-
-                if(activeReceivedMessagesCache.length === 0) {
-                    cardsStack.innerHTML = `<div class='text-center p-6 text-xs font-bold text-slate-400 italic'>No letters here yet. Spreading some joy around class might prompt a quick reply!</div>`;
-                    renderVibeAnalyticsGraph([]);
-                    return;
-                }
-
-                activeReceivedMessagesCache.forEach((msg) => {
-                    const polaroidCard = document.createElement("div");
-                    polaroidCard.className = "brutal-card bg-white p-5 rounded-2xl relative space-y-3 border-2 text-slate-900";
-
-                    let displayContentString = msg.content;
-                    let displaySenderLabel = msg.sender_name;
-                    let isCapsuleLocked = false;
-                    let targetUnlockDateString = "";
-
-                    if (displayContentString.startsWith("__LOCK__:")) {
-                        const parts = displayContentString.split("__:");
-                        targetUnlockDateString = parts[1]; 
-                        displayContentString = parts.slice(2).join("__:");
-
-                        const unlockDateObj = new Date(targetUnlockDateString);
-                        unlockDateObj.setHours(0,0,0,0);
-                        const cleanToday = new Date();
-                        cleanToday.setHours(0,0,0,0);
-
-                        if (cleanToday < unlockDateObj) isCapsuleLocked = true;
-                    }
-
-                    let tagsArr = [];
-                    try { tagsArr = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags); } catch(e) { tagsArr = ["✨ Class Star"]; }
-
-                    let tagsHTML = "";
-                    tagsArr.forEach(t => {
-                        tagsHTML += `<span class="bg-slate-100 border border-slate-900 px-2 py-0.5 rounded-md text-[9px] font-black">${t}</span>`;
-                    });
-
-                    if (isCapsuleLocked) {
-                        polaroidCard.className = "brutal-card bg-amber-50/70 p-5 rounded-2xl relative space-y-3 border-2 border-dashed text-slate-900";
-                        polaroidCard.innerHTML = `
-                            <div class="space-y-2">
-                                <div class="text-xs font-black text-amber-900 flex items-center gap-1.5 bg-amber-200 inline-block px-2 py-0.5 rounded-md border border-amber-400">
-                                    🔒 Locked Mystery Capsule Envelope
-                                </div>
-                                <p class="text-xs font-bold text-slate-300 italic select-none filter blur-[5px]">
-                                    This beautiful message stays hidden until the date criteria unlocks.
-                                </p>
-                                <div class="text-[10px] font-black text-slate-700 bg-white p-2 border border-slate-400 rounded-lg inline-block shadow-sm">
-                                    📅 Unlocks on: <span class="text-pink-600 font-extrabold">${targetUnlockDateString}</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap gap-1 pt-2 opacity-40">${tagsHTML}</div>
-                        `;
-                    } else {
-                        polaroidCard.innerHTML = `
-                            <div class="text-xs font-bold text-slate-800 leading-relaxed italic select-all">
-                                "${displayContentString}"
-                            </div>
-                            <div class="flex flex-wrap gap-1 pt-1">${tagsHTML}</div>
-                            <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] font-black text-slate-400">
-                                <span>FROM: ${displaySenderLabel}</span>
-                                <span class="text-emerald-700 font-extrabold">✓ DECRYPTED</span>
-                            </div>
-                        `;
-                    }
-                    cardsStack.appendChild(polaroidCard);
-                });
-
-                renderVibeAnalyticsGraph(activeReceivedMessagesCache);
-            } catch (err) { console.error(err); }
-        }
-
-        function renderVibeAnalyticsGraph(messagesArray) {
-            const graphContainer = document.getElementById("analytics-bars-container");
-            if(!graphContainer) return;
-            graphContainer.innerHTML = "";
-            
-            const numericalFrequenciesAccumulator = [0, 0, 0, 0, 0, 0, 0, 0];
-            let rawTotalTagsAnalyzedCount = 0;
-
-            messagesArray.forEach(msg => {
-                try {
-                    const parsedTagsList = Array.isArray(msg.vibe_tags) ? msg.vibe_tags : JSON.parse(msg.vibe_tags);
-                    if(Array.isArray(parsedTagsList)) {
-                        parsedTagsList.forEach(singleTagString => {
-                            const normalizedText = singleTagString.toLowerCase();
-                            
-                            for (let i = 0; i < RADAR_SUBSTRING_COMPILER_MAP.length; i++) {
-                                const mappingObj = RADAR_SUBSTRING_COMPILER_MAP[i];
-                                const patternMatched = mappingObj.keywords.some(keyword => normalizedText.includes(keyword));
-                                
-                                if(patternMatched) {
-                                    numericalFrequenciesAccumulator[mappingObj.id]++;
-                                    rawTotalTagsAnalyzedCount++;
-                                    break; 
-                                }
-                            }
-                        });
-                    }
-                } catch(e){ console.error(e); }
-            });
-
-            const currentActiveLabelsPool = VIBE_OPTIONS_POOL[currentLanguage] || VIBE_OPTIONS_POOL['en'];
-            
-            for (let i = 0; i < 8; i++) {
-                const countValue = numericalFrequenciesAccumulator[i];
-                const dynamicPercentageWidth = rawTotalTagsAnalyzedCount > 0 ? Math.round((countValue / rawTotalTagsAnalyzedCount) * 100) : 0;
-
-                const progressRowMarkup = document.createElement("div");
-                progressRowMarkup.className = "space-y-1";
-                progressRowMarkup.innerHTML = `
-                    <div class="flex justify-between text-[10px] font-black text-slate-700">
-                        <span>${currentActiveLabelsPool[i]}</span>
-                        <span>${countValue}</span>
-                    </div>
-                    <div class="w-full bg-slate-100 h-3 rounded-md border border-slate-900 overflow-hidden shadow-inner relative">
-                        <div class="bg-pink-400 h-full border-r border-slate-900 transition-all duration-1000" style="width: ${rawTotalTagsAnalyzedCount > 0 ? dynamicPercentageWidth : 5}%"></div>
-                    </div>
-                `;
-                graphContainer.appendChild(progressRowMarkup);
-            }
-        }
-
-        function updateAchievementsArcadeGridHTML() {
-            const grid = document.getElementById("trophies-scroll-matrix");
-            const counter = document.getElementById("unlocked-trophies-counter");
-            const headingNode = document.getElementById("achievements-heading-txt");
-            if(!grid || !counter) return;
-
-            const trackingKey = `smile_trophies_unlocked_${loggedInUser.id}`;
-            let currentUnlockedArray = [];
-            try { currentUnlockedArray = JSON.parse(localStorage.getItem(trackingKey)) || []; } catch(e){}
-
-            counter.innerText = currentUnlockedArray.length;
-            if (headingNode) {
-                headingNode.innerHTML = `🏆 ${LOCALIZATION_MAP[currentLanguage].achievementsHeading || "Achievements Locked: "} <span class="text-green-400">${currentUnlockedArray.length}</span>/35`;
-            }
-            grid.innerHTML = "";
-
-            MASTER_TROPHIES_BLUEPRINT.forEach(trophy => {
-                const isUnlocked = currentUnlockedArray.includes(trophy.id);
-                const cell = document.createElement("div");
-                
-                cell.className = `w-7 h-7 md:w-8 md:h-8 rounded-lg border flex items-center justify-center text-xs md:text-sm cursor-pointer transition-all duration-300 select-none ${
-                    isUnlocked 
-                    ? "bg-gradient-to-br from-yellow-300 to-amber-500 border-yellow-600 scale-100" 
-                    : "bg-slate-800/80 border-slate-700 grayscale opacity-40"
-                }`;
-                cell.innerText = trophy.icon;
-                
-                const updateHintDisplay = () => {
-                    const statusText = isUnlocked 
-                        ? (currentLanguage === 'ar' ? "🔓 تم الإنجاز" : (currentLanguage === 'fr' ? "🔓 DÉBLOQUÉ" : "🔓 UNLOCKED")) 
-                        : (currentLanguage === 'ar' ? "🔒 مقفل" : (currentLanguage === 'fr' ? "🔒 VERROUILLÉ" : "🔒 LOCKED"));
-                    
-                    const localizedTrophyName = trophy.name[currentLanguage] || trophy.name['en'];
-                    const localizedTrophyHint = trophy.hint[currentLanguage] || trophy.hint['en'];
-
-                    document.getElementById("selected-trophy-hint-display").innerHTML = `<span class='text-yellow-400 font-bold'>[${statusText}] ${localizedTrophyName}:</span> ${localizedTrophyHint}`;
-                };
-
-                cell.onmouseover = updateHintDisplay;
-                cell.onclick = updateHintDisplay;
-                grid.appendChild(cell);
-            });
-        }
-
-        // ========================================================= -->
-        // DUAL SECURE REGISTRY SEQUENTIAL ARCHITECTURE SCHEME       -->
-        // ========================================================= -->
         async function fetchAllStudentsMetadata() {
             try {
-                // Initialize active Client properties link lines cleanly first 
                 supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
                 const { data, error } = await supabaseClient
